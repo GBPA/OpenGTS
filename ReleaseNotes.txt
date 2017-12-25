@@ -1,0 +1,26 @@
+
+Version 2.6.5
+- NEW: Added additional status codes.
+- NEW: Added "maximumRpm" field to Device table
+- UPD: Added support for table Insert/Update "IGNORE" keyword.
+- UPD: Added support for table alternate key sort order.
+- DCS: Enabled additional support for TKNano, and OBD data.
+- UPD: Added partial support for OpenSeaMaps to OpenLayers map support.
+- UPD: Updated UnwiredLabs cell-tower lookup to allow including the deviceID.
+
+-----------------------------------------------------------------------------------
+
+Project Home Page:
+    http://www.opengts.org
+
+Download Latest Version from SourceForge:
+    https://sourceforge.net/projects/opengts/
+
+Documentation (installation/configuration, tutorials, FAQ):
+    http://www.opengts.org/FAQ.html
+    http://www.opengts.org/documentation.html
+
+GTS Enterprise:
+    http://www.geotelematic.com/gts.html
+    http://www.geotelematic.com/documentation.html
+

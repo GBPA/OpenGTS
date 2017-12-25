@@ -1,0 +1,78 @@
+
+/* Login page */
+.accountLoginTable { 
+    margin-top: 50px;
+    width: 300px;
+    text-align: center;
+}
+.accountLoginCell { 
+    padding: 10px; 
+    text-align: center;
+    border: none; 
+    background-color: none; 
+}
+
+/* table containing vertical-separator (if any) and login text */
+TABLE.accountLoginContentTable {
+    width: 100%;
+    text-align: left;
+}
+
+/* Banner300 Image row */
+TR.banner300ImageRow {
+    /*background-image: url(...);*/
+}
+TD.banner300ImageCell {
+    /* position: relative; <== to display text on top of image */
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent;
+}
+SPAN.banner300ImageTitle {
+    font-size: 16pt;
+    font-weight: bold; 
+    width: 100%;
+    background-color: transparent;
+    /* for displaying text on top of login banner-300 image *
+    position: absolute;
+    left: 20%;
+    margin-left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    */
+}
+
+/* Account/User/Password content row */
+TR.accountUserPasswordContentRow {
+    /*background-color: rgba(255,255,255,0.5);*/
+}
+
+/* vertical separator (if any) */
+TD.accountLoginVertSepCell {
+    width: 10px;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 12px;
+}
+
+TD.accountLoginTextCell {
+    width: 100%;
+    text-align: left;
+}
+
+/* Login form table */
+TABLE.accountLoginFormTable {
+    padding-top: 10px;
+    padding-left: 0px;
+}
+TD.accountLoginFieldLabel {
+    padding-top: 4px;
+    padding-right: 4px;
+    text-align: left;
+    font-size: 11pt;
+}
+TD.accountLoginFieldValue {
+    padding-top: 4px;
+    font-size: 10pt;
+}

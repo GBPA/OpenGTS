@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+ 
+<!ELEMENT DCServerConfig (Include*, DCServer+)>
+	<!ATTLIST DCServerConfig bindAddress CDATA #IMPLIED>
+	<!ATTLIST DCServerConfig backlog CDATA #IMPLIED>
+	<!ATTLIST DCServerConfig portOffset CDATA #IMPLIED>
+	<!ATTLIST DCServerConfig includeDir CDATA #IMPLIED>
+
+<!ELEMENT DCServer (Description, ModelNames?, Attributes?, UniqueIDPrefix?, ListenPorts, Properties?, GlobalProperties?, EventCodeMap?, Commands?)>
+	<!ATTLIST DCServer name     CDATA #REQUIRED>
+	<!ATTLIST DCServer protocol CDATA #IMPLIED>
+
+<!ELEMENT ModelNames (#PCDATA)>
+
+<!ELEMENT Attributes (#PCDATA)>
+
+<!ELEMENT ListenPorts (#PCDATA)>
+	<!ATTLIST ListenPorts tcpPort CDATA #IMPLIED>
+	<!ATTLIST ListenPorts udpPort CDATA #IMPLIED>
+
+<!ELEMENT UniqueIDPrefix (#PCDATA)>
+
+<!ELEMENT Properties (Property+)>
+
+<!ELEMENT GlobalProperties (Property+)>
+
+<!ELEMENT Property (#PCDATA)>
+	<!ATTLIST Property key CDATA #IMPLIED>
+
+<!ELEMENT EventCodeMap (Code+)>
+	<!ATTLIST EventCodeMap enabled CDATA #IMPLIED>
+
+<!ELEMENT Code (#PCDATA)>
+	<!ATTLIST Code key CDATA #IMPLIED>
+
+<!ELEMENT Commands (AclName?, Command+)>
+	<!ATTLIST Commands dispatchHost CDATA #IMPLIED>
+	<!ATTLIST Commands dispatchPort CDATA #IMPLIED>
+
+<!ELEMENT Command (AclName?, Type, Description, String, Arg*, StatusCode?)>
+	<!ATTLIST Command name      CDATA #IMPLIED>
+	<!ATTLIST Command hasArgs   CDATA #IMPLIED>
+	<!ATTLIST Command expectAck CDATA #IMPLIED>
+	<!ATTLIST Command enabled   CDATA #IMPLIED>
+
+<!ELEMENT Type (#PCDATA)>
+
+<!ELEMENT Description (#PCDATA)>
+
+<!ELEMENT AclName (#PCDATA)>
+	<!ATTLIST AclName default CDATA #IMPLIED>
+
+<!ELEMENT String (#PCDATA)>
+	<!ATTLIST String protocol CDATA #IMPLIED>
+
+<!ELEMENT Arg (#PCDATA)>
+	<!ATTLIST Arg name         CDATA #IMPLIED>
+	<!ATTLIST Arg length       CDATA #IMPLIED>
+	<!ATTLIST Arg defaultValue CDATA #IMPLIED>
+	<!ATTLIST Arg readOnly     CDATA #IMPLIED>
+
+<!ELEMENT StatusCode (#PCDATA)>
+
+<!ELEMENT Include (#PCDATA)>
+	<!ATTLIST Include dir CDATA #IMPLIED>
+	<!ATTLIST Include file CDATA #IMPLIED>
+	<!ATTLIST Include optional CDATA #IMPLIED>
