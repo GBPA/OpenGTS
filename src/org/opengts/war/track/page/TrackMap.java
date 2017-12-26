@@ -513,7 +513,7 @@ public abstract class TrackMap
         JavaScriptTools.writeEndJavaScript(out);
 
         /* TrackMap.js */
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("TrackMap.js"), request);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/TrackMap.js"), request);
 
         /* sorttable.js */
         if (sortableLocDet ||

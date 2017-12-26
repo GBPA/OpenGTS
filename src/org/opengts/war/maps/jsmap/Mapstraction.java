@@ -216,7 +216,7 @@ public class Mapstraction
         java.util.List<String> jsList = new Vector<String>();
 
         /* main mapping support javascript */
-        jsList.add(JavaScriptTools.qualifyJSFileRef("maps/jsmap.js"));
+        jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/jsmap.js"));
 
         /* specific Mapstraction provider */
         String mapProvider = this.getProperties().getString(PROP_provider, DEFAULT_PROVIDER);
@@ -235,7 +235,7 @@ public class Mapstraction
             //String key = this._getAuthKey(mapProvider,"INVALID_KEY");
             //jsList.add("https://maps.google.com/maps?file=api&v=2&key="+key);
             // -
-            jsList.add(JavaScriptTools.qualifyJSFileRef("mapstraction/labeledmarker.js"));
+            jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/mapstraction/labeledmarker.js"));
         } else
         // ------
         // not yet tested
@@ -329,10 +329,10 @@ public class Mapstraction
         /* include 'mapstraction.js' */
         if (this.getProperties().getBoolean(PROP_LOCAL_JS,false)) {
             // - 2013/09/30
-            jsList.add(JavaScriptTools.qualifyJSFileRef("mapstraction/mxn/mxn.js?("+mapProvider+")"));
+            jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/mapstraction/mxn/mxn.js?("+mapProvider+")"));
             // - old version below
-            //jsList.add(JavaScriptTools.qualifyJSFileRef("mapstraction/mapstraction-geocode.js"));
-            //jsList.add(JavaScriptTools.qualifyJSFileRef("mapstraction/mapstraction.js"));
+            //jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/mapstraction/mapstraction-geocode.js"));
+            //jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/mapstraction/mapstraction.js"));
         } else {
             // - 2013/09/30
             jsList.add("https://mapstraction.com/mxn/build/latest/mxn.js?("+mapProvider+")");
@@ -343,12 +343,12 @@ public class Mapstraction
 
         /* include OpenGTS mapping support for Mapstraction */
         // - 2013/09/30
-        jsList.add(JavaScriptTools.qualifyJSFileRef("maps/MapstractionMXN2.js"));
+        jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/MapstractionMXN2.js"));
         // - older version below
         //if (this.isVersion2()) {
-        //    jsList.add(JavaScriptTools.qualifyJSFileRef("maps/MapstractionV2.js"));
+        //    jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/MapstractionV2.js"));
         //} else {
-        //    jsList.add(JavaScriptTools.qualifyJSFileRef("maps/MapstractionV1.js"));
+        //    jsList.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/MapstractionV1.js"));
         //}
 
         /* write out script html */

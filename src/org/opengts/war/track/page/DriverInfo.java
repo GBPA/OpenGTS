@@ -468,7 +468,7 @@ public class DriverInfo
                 MenuBar.writeJavaScript(out, pageName, reqState);
                 JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef(SORTTABLE_JS), request);
                 if (showDateCal)  {
-                    JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("DriverInfo.js"), request);
+                    JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/DriverInfo.js"), request);
                     Calendar.writeJavaScript(out, reqState);
                     JavaScriptTools.writeStartJavaScript(out);
                     out.write("// Calendar vars \n");
@@ -620,7 +620,7 @@ public class DriverInfo
                         i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
                     out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
-                  
+
 
                     /* start of form */
                     out.write("<form class='form-horizontal' name='"+FORM_DRIVER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'

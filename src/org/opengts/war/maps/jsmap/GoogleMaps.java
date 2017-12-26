@@ -315,7 +315,7 @@ public class GoogleMaps
             out.println("    <tbody>");
             out.println("    <tr>");
             out.println("      <td class='searchPlaceTextTD'>");
-            out.println("        <input id='pac-input' class='pacInputText form-control' type='text' placeholder='" + i18n.getString("GoogleMaps.searchLocation","Search Location ...") + "' autocomplete='off'>"); 
+            out.println("        <input id='pac-input' class='pacInputText form-control' type='text' placeholder='" + i18n.getString("GoogleMaps.searchLocation","Search Location ...") + "' autocomplete='off'>");
             out.println("      </td>");
             if (includeTypes) {
             out.println("      <td class='searchPlaceTypesTD'>");
@@ -560,11 +560,11 @@ public class GoogleMaps
         /* display Javascript */
         //Print.logInfo("Writing GoogleMaps JavaScript includes ...");
         super.writeJSIncludes(out, reqState, new String[] {
-            JavaScriptTools.qualifyJSFileRef("maps/jsmap.js"),
+            JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/jsmap.js"),
             mapCtlURL,
             ((this.isVersion3() || this.isVersionJS() || this.isVersionCB())?
-                JavaScriptTools.qualifyJSFileRef("maps/GoogleMapsV3.js") :
-                JavaScriptTools.qualifyJSFileRef("maps/GoogleMapsV2.js") )
+                JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/GoogleMapsV3.js") :
+                JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/GoogleMapsV2.js") )
         });
         //Print.logInfo("... Done writing GoogleMaps JavaScript includes.");
 

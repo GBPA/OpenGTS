@@ -161,12 +161,13 @@ public class MenuBar
         }
 
         /* MenuBar.js */
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("MenuBar.js"), request);
+        //JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/MenuBar.js"), request);
 
         /* include anchor link */
         boolean inclAnchor = privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_includeTextAnchor,false);
 
         /* specific menu items */
+        /*
         int itemHeight = 13;
         JavaScriptTools.writeStartJavaScript(out);
         out.println("function mnubarCreateSubMenu(mainObj) {");
@@ -234,6 +235,7 @@ public class MenuBar
         out.println("  return mbSubMenuObj;");
         out.println("}");
         JavaScriptTools.writeEndJavaScript(out);
+        */
 
     }
 

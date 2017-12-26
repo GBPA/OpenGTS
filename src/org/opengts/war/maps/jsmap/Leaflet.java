@@ -321,9 +321,9 @@ public class Leaflet
         throws IOException
     {
         Vector<String> jsURLs = new Vector<String>();
-        jsURLs.add(JavaScriptTools.qualifyJSFileRef("maps/jsmap.js"));
+        jsURLs.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/jsmap.js"));
         ListTools.toList(this._getLeafletJS(reqState), jsURLs);
-        jsURLs.add(JavaScriptTools.qualifyJSFileRef("maps/LeafletV1_0_0.js"));
+        jsURLs.add(JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/LeafletV1_0_0.js"));
         super.writeJSIncludes(out, reqState, jsURLs.toArray(new String[jsURLs.size()]));
     }
 

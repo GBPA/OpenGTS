@@ -451,7 +451,7 @@ public abstract class MapProviderAdapter
 
         /* begin icon table */
         if (outputHtml) {
-            sb.append("<table class=\""+CSS_legend+"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n");
+            sb.append("<table class=\""+CSS_legend+" table\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n");
         } else {
             //
         }
@@ -514,9 +514,9 @@ public abstract class MapProviderAdapter
                     double S = (scale > 0.0)? scale : 1.0;
                     int    W = (int)Math.round(S * pp.getIconWidth()) ;
                     int    H = (int)Math.round(S * pp.getIconHeight());
-                    sb.append("<img class=\""+CSS_legend+"\" src=\""+imgUrl+"\" width=\""+W+"\" height=\""+H+"\">");
+                    sb.append("<img class=\""+CSS_legend+"\" src=\"https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/"+imgUrl+"\" width=\""+W+"\" height=\""+H+"\">");
                 } else {
-                    sb.append("<img class=\""+CSS_legend+"\" src=\""+imgUrl+"\">");
+                    sb.append("<img class=\""+CSS_legend+"\" src=\"https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/"+imgUrl+"\">");
                 }
                 sb.append("</td>");
                 sb.append("<td class=\""+CSS_legend+"\">");

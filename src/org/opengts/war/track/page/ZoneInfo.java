@@ -803,7 +803,7 @@ public class ZoneInfo
                     JavaScriptTools.writeEndJavaScript(out);
 
                     /* Geozone.js */
-                    JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("Geozone.js"), request);
+                    JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/Geozone.js"), request);
 
                 }
             }

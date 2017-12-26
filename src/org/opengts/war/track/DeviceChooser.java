@@ -190,7 +190,7 @@ public class DeviceChooser
         JavaScriptTools.writeEndJavaScript(out);
 
         /* DeviceChooser.js */
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("DeviceChooser.js"), request);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/DeviceChooser.js"), request);
 
     }
 
@@ -371,7 +371,7 @@ public class DeviceChooser
         /* form */
         if (DeviceChooser.isSearchEnabled(privLabel)) {
             out.write("<form class='form-horizontal' id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='GET' action=\"javascript:true;\" target='_self' style=''>\n"); // target='_top'
-          
+
             out.write("<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+" form-control' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>\n");
             out.write("</form>\n");
         }

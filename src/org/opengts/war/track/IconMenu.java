@@ -191,7 +191,7 @@ public class IconMenu
         throws IOException
     {
         HttpServletRequest request = reqState.getHttpServletRequest();
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("IconMenu.js"), request);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/IconMenu.js"), request);
     }
 
     // ------------------------------------------------------------------------

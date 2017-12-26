@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,8 +29,8 @@
 //  - http://garzilla.net/vemaps/MovePolygon.aspx
 //  - http://garzilla.net/vemaps/SideBar.aspx
 // ----------------------------------------------------------------------------
-// Note: 
-//   When using the Microsoft Virtual Earth mapping service, it is your responsibility 
+// Note:
+//   When using the Microsoft Virtual Earth mapping service, it is your responsibility
 //   to make sure you comply with all of the Microsoft terms of use for this service:
 // ----
 // Microsoft Virtual Earth Service API Terms of Use:
@@ -62,7 +62,7 @@ public class VirtualEarth
 {
 
     // ------------------------------------------------------------------------
-    // NOTE: 2017/08/23  
+    // NOTE: 2017/08/23
     // Microsoft has terminated support for v6.2 as of 08/22.  They recommend migrating to v8
     // General information:
     //  - https://social.msdn.microsoft.com/Forums/en-US/876a50e1-5e36-4eb4-844e-63788f09fe72/api-version-62-not-working?forum=bingmaps
@@ -92,10 +92,10 @@ public class VirtualEarth
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    /* VirtualEarth instance */ 
-    public VirtualEarth(String name, String key) 
+    /* VirtualEarth instance */
+    public VirtualEarth(String name, String key)
     {
-        super(name, key); 
+        super(name, key);
         this.addSupportedFeature(FEATURE_LATLON_DISPLAY);
         this.addSupportedFeature(FEATURE_DISTANCE_RULER);
         this.addSupportedFeature(FEATURE_GEOZONES);
@@ -108,8 +108,8 @@ public class VirtualEarth
 
     // ------------------------------------------------------------------------
 
-    /* write mapping support JS to stream */ 
-    protected void writeJSVariables(PrintWriter out, RequestProperties reqState) 
+    /* write mapping support JS to stream */
+    protected void writeJSVariables(PrintWriter out, RequestProperties reqState)
         throws IOException
     {
         super.writeJSVariables(out, reqState);
@@ -118,15 +118,15 @@ public class VirtualEarth
     // ------------------------------------------------------------------------
 
     protected void writeJSIncludes(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
         MapProvider mp = reqState.getMapProvider();
         RTProperties mrtp = (mp != null)? mp.getProperties() : null;
         String mapControlURL = (mrtp != null)? mrtp.getString("ve.mapcontrol", null) : null;
         super.writeJSIncludes(out, reqState, new String[] {
-            JavaScriptTools.qualifyJSFileRef("maps/jsmap.js"),
+            JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/jsmap.js"),
             (!StringTools.isBlank(mapControlURL)? mapControlURL : VE_MAPCONTROL_URL),
-            JavaScriptTools.qualifyJSFileRef("maps/VirtualEarth.js")
+            JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/maps/VirtualEarth.js")
         });
     }
 

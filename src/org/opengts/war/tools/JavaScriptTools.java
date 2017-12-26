@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,7 @@ public class JavaScriptTools
 
     // ------------------------------------------------------------------------
     // Return specified JS file reference relative to "./js" directory
-    
+
     public static String qualifyJSFileRef(String jsFileRef)
     {
         if (jsFileRef == null) {
@@ -89,10 +89,10 @@ public class JavaScriptTools
         out.write("var "+var+" = ");
         if (value == null) {
             out.write("null");
-        } else 
+        } else
         if ((value instanceof Number) || (value instanceof Boolean)) {
             out.write(value.toString());
-        } else 
+        } else
         if (value instanceof Object[]) {
             Object obj[] = (Object[])value;
             out.write("[");
@@ -150,13 +150,13 @@ public class JavaScriptTools
         JavaScriptTools._writeJSIncludes(out, jsFileRefs, AttributeTools.GetSessionSequence(request));
     }
 
-    public static void writeJSIncludes(PrintWriter out, String jsFileRefs[], int seq) 
+    public static void writeJSIncludes(PrintWriter out, String jsFileRefs[], int seq)
         throws IOException
     {
         JavaScriptTools._writeJSIncludes(out, jsFileRefs, seq);
     }
 
-    private static void _writeJSIncludes(PrintWriter out, String jsFileRefs[], int seq) 
+    private static void _writeJSIncludes(PrintWriter out, String jsFileRefs[], int seq)
         throws IOException
     {
         if (jsFileRefs != null) {
@@ -184,7 +184,7 @@ public class JavaScriptTools
     }
 
     // ------------------------------------------------------------------------
-    // Write 'utils.js' 
+    // Write 'utils.js'
 
     public static void writeUtilsJS(PrintWriter out, HttpServletRequest request)
         throws IOException
@@ -195,26 +195,26 @@ public class JavaScriptTools
     public static void writeUtilsJS(PrintWriter out, int seq)
         throws IOException
     {
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("utils.js"), seq);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/utils.js"), seq);
     }
 
     // ------------------------------------------------------------------------
-    // Start/End JavaScript section 
-    
+    // Start/End JavaScript section
+
     public static void writeStartJavaScript(PrintWriter out)
     {
         out.println("<script type=\"text/javascript\">");
       //out.println("//<![CDATA[");
         out.println("<!--");
     }
-    
+
     public static void writeEndJavaScript(PrintWriter out)
     {
       //out.println("//]]>");
         out.println("//-->");
         out.println("</script>");
     }
-        
+
     // ------------------------------------------------------------------------
     // helper to write out JavaScript lines
 
@@ -235,5 +235,5 @@ public class JavaScriptTools
             out.println(js);
         }
     }
-    
+
 }

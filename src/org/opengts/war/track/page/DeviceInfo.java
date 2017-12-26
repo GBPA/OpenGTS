@@ -2425,7 +2425,7 @@ public class DeviceInfo
             public void write(PrintWriter out) throws IOException {
                 MenuBar.writeJavaScript(out, pageName, reqState);
                 JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef(SORTTABLE_JS), request);
-                JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("DeviceInfo.js"), request);
+                JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/DeviceInfo.js"), request);
                 if (showDateCal)  {
                     Calendar.writeJavaScript(out, reqState);
                     JavaScriptTools.writeStartJavaScript(out);

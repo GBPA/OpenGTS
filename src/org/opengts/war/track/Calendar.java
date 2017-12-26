@@ -336,7 +336,7 @@ public class Calendar
         JavaScriptTools.writeEndJavaScript(out);
 
         /* Calendar.js */
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("Calendar.js"), request);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/Calendar.js"), request);
 
     }
 

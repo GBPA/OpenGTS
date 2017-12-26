@@ -1007,9 +1007,9 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
             }
             var dirImage = null
             if (this.drawDivBox) {
-                dirImage = expanded? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "/images/arrowDn3.png";
+                dirImage = expanded? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowDn3.png";
             } else {
-                dirImage = (hasPrior != expanded)? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "/images/arrowDn3.png";
+                dirImage = (hasPrior != expanded)? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowDn3.png";
             }
             calendarHTML += "<img src=\"" + calImageBaseDir + dirImage + "\" height='5'>";
         }

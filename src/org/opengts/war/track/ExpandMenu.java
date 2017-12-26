@@ -58,7 +58,7 @@ public class ExpandMenu
         throws IOException
     {
         HttpServletRequest request = reqState.getHttpServletRequest();
-        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("ExpandMenu.js"), request);
+        JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/js/ExpandMenu.js"), request);
     }
 
     // ------------------------------------------------------------------------

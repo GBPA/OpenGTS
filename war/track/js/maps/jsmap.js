@@ -2480,7 +2480,7 @@ function jsmCustomMapMarker(W, H, C)
     //  - The 'corner' color is the same as the 'fill' color
     //  - The border is always black
     //  - No transparency
-    return "http://chart.apis.google.com/chart?cht=mm&ext=.png&chs="+W+"x"+H+"&chco="+C+"FF,"+C+"FF,000000FF";
+    return "https://chart.apis.google.com/chart?cht=mm&ext=.png&chs="+W+"x"+H+"&chco="+C+"FF,"+C+"FF,000000FF";
 };
 
 // ----------------------------------------------------------------------------
@@ -2978,7 +2978,7 @@ function evIndexedIconURL(e)
 {
     // http://DOMAIN/track/Marker?icon=/images/pp/pin30_blue_fill.png?fr=3,4,11,7,9,Serif&color=880000&text=99
     var tx = e.index;
-    return evTextLabelIconURL("/images/pp/pin30_blue_fill.png", "3,4,11,7,9,Serif", "", "", "880000", tx);
+    return evTextLabelIconURL("https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30_blue_fill.png", "3,4,11,7,9,Serif", "", "", "880000", tx);
 };
 
 /**
@@ -3188,7 +3188,7 @@ function evDeviceNameBubbleURL(e, bgc, fgc)
     // Note: The anchor is at 0,0.   The icon width depends on the width of the text in the icon.
     var tx  = e.devVIN;
     var url =
-        "http://chart.googleapis.com/chart?chst=d_bubble_text_small" +
+        "https://chart.googleapis.com/chart?chst=d_bubble_text_small" +
         "&chld=bb|"+tx+"|"+bgc+"|"+fgc;
     return url;
 };
@@ -3217,7 +3217,7 @@ function jsmBatteryLevelIMG(lvl)
         } else {
             var battLvl = numParseInt(((lvl * 100.0) + 0.5), 0);
             if (battLvl > 99) { battLvl = 99; }
-            battIcon = "Marker?icon=/images/Batt000.png&fr=5,2,25,12,10&text="+battLvl+"%25";
+            battIcon = "Marker?icon=https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt000.png&fr=5,2,25,12,10&text="+battLvl+"%25";
         }
     } else {
         //icon
@@ -3236,7 +3236,7 @@ function jsmBatteryLevelIMG(lvl)
         if (lvl <= 0.90) {
             battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt090.png";
         } else {
-            battIcon = "images/Batt100.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt100.png";
         }
     }
     return "<img src=\""+battIcon+"\"/>";
@@ -3318,7 +3318,7 @@ function mapProviderUnload()
 
 function googleGeocodeAddress(address) {
     var addr  = strEncode(address);
-	var rgURL = "http://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&sensor=false";
+	var rgURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addr + "&sensor=false";
 	try {
 	    var req  = jsmGetXMLHttpRequest();
 	    if (req) {
