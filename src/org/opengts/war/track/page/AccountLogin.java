@@ -360,19 +360,6 @@ public class AccountLogin
                 // -- start LoginTable/AccountUserPasswordContentRow
                 out.println("<tr class='accountUserPasswordContentRow'>");
 
-                // -- vertical separator (optional)
-                String vSepImg = acctRTP.getString(PROP_VSeparatorImage,"./images/VSep_DBlue.png");
-                if (!StringTools.isBlank(vSepImg)) {
-                    String W = acctRTP.getString(PROP_VSeparatorImage_W,"8");
-                    String H = acctRTP.getString(PROP_VSeparatorImage_H,"300");
-                    out.print("<td class='"+CSS_LOGIN_VSEP_CELL+"'>");
-                    out.print("<img ");
-                    if (!StringTools.isBlank(W)) { out.print(" width='"+W+"'"); }
-                    if (!StringTools.isBlank(H)) { out.print(" height='"+H+"'"); }
-                    out.print(" src='"+vSepImg+"'/>");
-                    out.print("</td>");
-                }
-
                 // -- start AccountUserPasswordCell
                 out.println("<td class='"+CSS_LOGIN_TEXT_CELL+"'>");
 

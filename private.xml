@@ -69,7 +69,7 @@
       -Replaced property "trackMap.showLastLocation" with "trackMap.showUpdateLast".
    2008/10/16  Martin D. Flynn
       -Simplified ACL usage (attribute "maximum" changed to "values", reduced number of ACLs).
-      -Added additional Domain Properties 
+      -Added additional Domain Properties
    2008/12/01  Martin D. Flynn
       -Global Domain Property tags have now been placed in a "Properties" parent tag.
    2009/01/01  Martin D. Flynn
@@ -127,7 +127,7 @@
 ====   http://wwp.greenwichmeantime.com/info/timezone.htm
 ====   http://www.worldtimezone.com
 ==== A list of available timezones can be found in the file 'timezones.conf'
-==== These TimeZones will be shared among all of the specified PrivateLabel Domains 
+==== These TimeZones will be shared among all of the specified PrivateLabel Domains
 -->
 <TimeZones>
     US/Hawaii  US/Alaska  US/Pacific  US/Arizona  US/Mountain  US/Central  US/Eastern
@@ -138,7 +138,7 @@
     Europe/Stockholm  Europe/Zurich
     GMT  GMT+00:00
     GMT+01:00  GMT+02:00  GMT+03:00  GMT+04:00  GMT+05:00  GMT+05:30  GMT+06:00  GMT+06:30  GMT+07:00
-    GMT+08:00  GMT+09:00  GMT+10:00  GMT+11:00  GMT+12:00  GMT+13:00  GMT+14:00  
+    GMT+08:00  GMT+09:00  GMT+10:00  GMT+11:00  GMT+12:00  GMT+13:00  GMT+14:00
     GMT-01:00  GMT-02:00  GMT-03:00  GMT-04:00  GMT-05:00             GMT-06:00             GMT-07:00
     GMT-08:00  GMT-09:00  GMT-10:00  GMT-11:00  GMT-12:00
 </TimeZones>
@@ -148,22 +148,22 @@
 <!--
 Notes:
 * Make sure you replace all occurances of "example.com" below with your own domain name.
-* The 'host' attribute on the 'Domain' tag specifies to which webserver domain name the 'Domain' 
-  definition refers.  Specifying 'host="*"' indicates that this 'Domain' tag should be considered 
-  the default PrivateLabel Domain definition for all connections made to the server.  You may create 
+* The 'host' attribute on the 'Domain' tag specifies to which webserver domain name the 'Domain'
+  definition refers.  Specifying 'host="*"' indicates that this 'Domain' tag should be considered
+  the default PrivateLabel Domain definition for all connections made to the server.  You may create
   multiple 'Domain' definitions, each with their own set of attributes and features.
-* The OpenGTS system has the ability to bind Account records to a specific PrivateLabel domain 
-  (defined by a "Domain" tag below). This is done to provide specific access control to certain 
-  services such as mapping and reverse-geocoding. (ie. when a device connects to the server to send 
-  data, the PrivateLabel defined for the account is used to determine which reverse-geocoding service 
-  to use to create an address from the latitude/longitude). To bind an account record to a specific 
-  PrivateLabel 'Domain', set the 'privateLabelName' column in the specific account record to the 
-  specified 'name' of the Domain (ie. the value of the 'name' attribute).  If an account record 
-  'privateLabelName' has not been specified (ie. is blank), then the services defined in the default 
+* The OpenGTS system has the ability to bind Account records to a specific PrivateLabel domain
+  (defined by a "Domain" tag below). This is done to provide specific access control to certain
+  services such as mapping and reverse-geocoding. (ie. when a device connects to the server to send
+  data, the PrivateLabel defined for the account is used to determine which reverse-geocoding service
+  to use to create an address from the latitude/longitude). To bind an account record to a specific
+  PrivateLabel 'Domain', set the 'privateLabelName' column in the specific account record to the
+  specified 'name' of the Domain (ie. the value of the 'name' attribute).  If an account record
+  'privateLabelName' has not been specified (ie. is blank), then the services defined in the default
   PrivateLabel will be used.
-* If no default PrivateLabel domain has been specified (ie. no 'Domain' tag exists with attribute 
-  'host="*"'), then all Account records must have a valid 'privateLabelName' specified.  Otherwise, 
-  no PrivateLabel domain can be associated with the account, and some services (reverse-geocoding, 
+* If no default PrivateLabel domain has been specified (ie. no 'Domain' tag exists with attribute
+  'host="*"'), then all Account records must have a valid 'privateLabelName' specified.  Otherwise,
+  no PrivateLabel domain can be associated with the account, and some services (reverse-geocoding,
   etc) may not be available.
 * To remove the "Demo" button from the login pages, specify 'demo="false"' below.
 * Supported languages now include:
@@ -185,16 +185,16 @@ Notes:
   To change the locale to a different language, look for the locale="en" on the Domain tag below and
   replace "en" with the desired supported language code from the above list.
 -->
-<Domain 
-    name="${Domain.name=default}" 
+<Domain
+    name="${Domain.name=default}"
     host="${Domain.host=*}"
-    allowLogin="${Domain.allowLogin=true}" 
+    allowLogin="${Domain.allowLogin=true}"
     accountLogin="${Domain.accountLogin=true}"
     userLogin="${Domain.userLogin=true}"
     emailLogin="${Domain.emailLogin=false}"
     showPassword="${Domain.showPassword=true}"
     restricted="${Domain.restricted=false}"
-    demo="${Domain.demo=false}" 
+    demo="${Domain.demo=false}"
     locale="${Domain.locale=en}">
 
     <!-- Default Base URL -->
@@ -207,7 +207,7 @@ Notes:
     <Alias host="${Domain.Alias.1=}"/>
     <Alias host="${Domain.Alias.2=}"/>
 
-    <!-- Default login account/user (when no AcountID/UserID is specified) 
+    <!-- Default login account/user (when no AcountID/UserID is specified)
      === DefaultLoginAccount:
      ===   The default accout id will be used if the account id is left blank, or if the account login
      ===   field is not included on the login screen based on the Domain attribute 'accountLogin' value.
@@ -225,16 +225,16 @@ Notes:
 
     <!-- ========================================================================================== -->
 
-    <!-- "Domain" level I18N Strings 
+    <!-- "Domain" level I18N Strings
      === Specify localizable strings here which can be referenced elsewhere in this XML file, or in
      === the "loginSession.jsp" file referenced in the "WebPages" tag.
      === - These strings can be referenced within property and string values by surrounding the key
-     ===   with ${...}, such as "${i18n.MyLocalizableText}".  
-     === - Like other Localizable text, these strings will appear the in the various 
+     ===   with ${...}, such as "${i18n.MyLocalizableText}".
+     === - Like other Localizable text, these strings will appear the in the various
      ===   "LocalStrings_XX.properties" files.
-     === - The <I18N> tag section must appear before the refererence to the specific string key 
+     === - The <I18N> tag section must appear before the refererence to the specific string key
      ===   elsewhere in this XML file.
-     --> 
+     -->
     <I18N>
         <!-- Legend -->
         <String key="i18n.PushPin_Legend"    i18n="PrivateXML.legend.title"             >Pushpin Legend</String>
@@ -285,11 +285,11 @@ Notes:
          === value with the property name below.  For instance:
          ===    Domain.Properties.trackMap.calendarAction=fixed
          -->
-        
+
         <!-- Default Enabled MapProvider -->
         <!--
         <Property key="MapProvider.active">googleMaps</Property>
-        <Property key="zoneInfo.showShapeColor">true</Property> 
+        <Property key="zoneInfo.showShapeColor">true</Property>
         -->
 
         <!-- Override HTMLTools "http.userAgent" (see RTKey.HTTP_USER_AGENT) -->
@@ -297,7 +297,7 @@ Notes:
 
         <!-- Track properties -->
         <Property key="track.validateIDs">true</Property>                       <!-- [true|false] validate all IDs (MUST BE TRUE) -->
-        <Property key="track.enableAuthenticationService">false</Property>      <!-- [true|false] enable "page=AUTHENTICATE" -->
+        <Property key="track.enableAuthenticationService">true</Property>      <!-- [true|false] enable "page=AUTHENTICATE" -->
         <Property key="track.forwardToSecureAccess">false</Property>            <!-- [true|false] forward 'http' to 'https' -->
         <Property key="track.firstLoginPageID">menu.top</Property>              <!-- [menu.top|map.device|map.fleet] first page after login -->
 
@@ -343,19 +343,19 @@ Notes:
         <Property key="trackMap.showLocationDetails">true</Property>            <!-- [true|false] show "Location Details" report -->
         <Property key="trackMap.detailAscending">true</Property>                <!-- [true|false] sort detail events in ascending/descending order -->
         <Property key="trackMap.showUpdateAll">true</Property>                  <!-- [true|false] show "Update All" location button -->
-        <Property key="trackMap.showUpdateLast">false</Property>                <!-- [true|false] show Update "Last" location button -->
+        <Property key="trackMap.showUpdateLast">true</Property>                <!-- [true|false] show Update "Last" location button -->
         <Property key="trackMap.mapControlLocation">right</Property>            <!-- [right|left] show controls to the left|right of the map -->
         <Property key="trackMap.mapControlCollapsible">true</Property>          <!-- [true|false] show collapsible controls -->
         <Property key="trackMap.showLocateNow">false</Property>                 <!-- [true|false] show "Locate Now" button -->
         <Property key="trackMap.showGoogleKML">false</Property>                 <!-- [true|false|last] show "Google KML" link -->
         <Property key="trackMap.limitType">last</Property>                      <!-- [first|last] overflow limit type -->
-        <Property key="trackMap.enableGeocode">false</Property>                 <!-- [true|false] (EXPERIMENTAL) show "Find Address" -->
-        <Property key="trackMap.showDeviceLink">false</Property>                <!-- [true|false] show Device Link (requires Device support) -->
-        <Property key="trackMap.showBatteryLevel">false</Property>              <!-- [false|icon|percent|default] show last Battery Level (requires Device support) -->
+        <Property key="trackMap.enableGeocode">true</Property>                 <!-- [true|false] (EXPERIMENTAL) show "Find Address" -->
+        <Property key="trackMap.showDeviceLink">true</Property>                <!-- [true|false] show Device Link (requires Device support) -->
+        <Property key="trackMap.showBatteryLevel">true</Property>              <!-- [false|icon|percent|default] show last Battery Level (requires Device support) -->
         <Property key="trackMap.useRouteDisplayColor">true</Property>           <!-- [true|false] use Device 'displayColor' for route-line color -->
-        <Property key="trackMap.showAllContainedGeozones">false</Property>      <!-- [true|false] (EXPERIMENTAL) show all contained Geozones ('false' shows only 'inner' Geozone) -->
+        <Property key="trackMap.showAllContainedGeozones">true</Property>      <!-- [true|false] (EXPERIMENTAL) show all contained Geozones ('false' shows only 'inner' Geozone) -->
         <Property key="trackMap.lastDevicePushpin.fleet">true</Property>        <!-- [true|false] show device pushpin for last pushpin on fleet map -->
-        <Property key="trackMap.lastDevicePushpin.device">false</Property>      <!-- [true|false] show device pushpin for last pushpin on device map -->
+        <Property key="trackMap.lastDevicePushpin.device">true</Property>      <!-- [true|false] show device pushpin for last pushpin on device map -->
 
         <!-- GoogleKML properties -->
         <Property key="googleKML.lastPushpinID">blue</Property>                 <!-- Color ID of the last event pushpin -->
@@ -363,57 +363,57 @@ Notes:
         <!-- ReportMenu properties -->
         <Property key="reportMenu.useMapDates">true</Property>                  <!-- [true|false] use 'Map' Calendar dates (else use private dates) -->
         <Property key="reportMenu.showTimezoneSelection">true</Property>        <!-- [true|false] show timezone selection pulldown -->
-        <Property key="reportMenu.enableReportEmail">false</Property>           <!-- [true|false] enable 'EMail' format option for reports -->
+        <Property key="reportMenu.enableReportEmail">true</Property>           <!-- [true|false] enable 'EMail' format option for reports -->
         <Property key="reportMenu.customFormatURL"></Property>                  <!-- [URL]  (EXPERIMENTAL) -->
 
         <!-- ReportDisplay properties -->
-        <Property key="reportDisplay.showGoogleKML">false</Property>            <!-- [true|false] show "KML" link (supported reports only) -->
+        <Property key="reportDisplay.showGoogleKML">true</Property>            <!-- [true|false] show "KML" link (supported reports only) -->
 
         <!-- DeviceInfo properties -->
-        <Property key="deviceInfo.allowEditServerID">false</Property>           <!-- [true|false] Allow editing "Server ID" -->
-        <Property key="deviceInfo.allowEditFirmwareVersion">false</Property>    <!-- [true|false] Allow editing "Firmware Version" -->
-        <Property key="deviceInfo.showNotificationFields">default</Property>    <!-- [true|false|default] show notification fields -->
-        <Property key="deviceInfo.showWorkOrderField">default</Property>        <!-- [true|false|default] show WorkOrder ID field -->
-        <Property key="deviceInfo.showPropertiesButton">false</Property>        <!-- [true|false] show "Properties" button -->
-        <Property key="deviceInfo.showSmsButton">false</Property>               <!-- [true|false] show "SMS" button -->
-        <Property key="deviceInfo.showFixedLocation">false</Property>           <!-- [true|false] show Device 'fixed' location (required fixe loc fields) -->
-        <Property key="deviceInfo.showNotes">false</Property>                   <!-- [true|false] show "Notes" field -->
-        <Property key="deviceInfo.showExpectedAcks">false</Property>            <!-- [true|false] show "Expect Ack" column -->
-        <Property key="deviceInfo.showIgnitionIndex">false</Property>           <!-- [true|false] show Ignition Index -->
+        <Property key="deviceInfo.allowEditServerID">true</Property>           <!-- [true|false] Allow editing "Server ID" -->
+        <Property key="deviceInfo.allowEditFirmwareVersion">true</Property>    <!-- [true|false] Allow editing "Firmware Version" -->
+        <Property key="deviceInfo.showNotificationFields">true</Property>    <!-- [true|false|default] show notification fields -->
+        <Property key="deviceInfo.showWorkOrderField">true</Property>        <!-- [true|false|default] show WorkOrder ID field -->
+        <Property key="deviceInfo.showPropertiesButton">true</Property>        <!-- [true|false] show "Properties" button -->
+        <Property key="deviceInfo.showSmsButton">true</Property>               <!-- [true|false] show "SMS" button -->
+        <Property key="deviceInfo.showFixedLocation">true</Property>           <!-- [true|false] show Device 'fixed' location (required fixe loc fields) -->
+        <Property key="deviceInfo.showNotes">true</Property>                   <!-- [true|false] show "Notes" field -->
+        <Property key="deviceInfo.showExpectedAcks">true</Property>            <!-- [true|false] show "Expect Ack" column -->
+        <Property key="deviceInfo.showIgnitionIndex">true</Property>           <!-- [true|false] show Ignition Index -->
         <Property key="deviceInfo.maximumIgnitionIndex">7</Property>            <!-- [0..15]      maximum Ignition Index -->
         <Property key="deviceInfo.showPushpinID">true</Property>                <!-- [true|false] show Pushpin ID -->
         <Property key="deviceInfo.showPushpinChooser">true</Property>           <!-- [true|false] show Pushpin Chooser -->
         <Property key="deviceInfo.showDisplayColor">true</Property>             <!-- [true|false] show Display Color ("Route-Line") -->
-        <Property key="deviceInfo.showDataKey">false</Property>                 <!-- [true|false] (EXPERIMENTAL) show Data Key -->
+        <Property key="deviceInfo.showDataKey">true</Property>                 <!-- [true|false] (EXPERIMENTAL) show Data Key -->
         <Property key="deviceInfo.showServiceID">true</Property>                <!-- [true|false] show Service ID -->
         <Property key="deviceInfo.allowNewDevice">true</Property>               <!-- [true|false|sysadmin] allow new device creation -->
         <Property key="deviceInfo.allowDeleteDevice">true</Property>            <!-- [true|false|sysadmin] allow delete device -->
-        <Property key="deviceInfo.showFaultCodes">false</Property>              <!-- [true|false] show last fault codes (requires Device/EventData table support) -->
+        <Property key="deviceInfo.showFaultCodes">true</Property>              <!-- [true|false] show last fault codes (requires Device/EventData table support) -->
         <Property key="deviceInfo.sms.useDeviceSMSCommands">true</Property>     <!-- [true|false] Use Device "deviceCode" SMS commands -->
-        <Property key="deviceInfo.showFuelCapacity">false</Property>            <!-- [true|false] show fuel capacity -->
-        <Property key="deviceInfo.showFuelLevelProfile">false</Property>        <!-- [false|select|text] show fuel profile -->
+        <Property key="deviceInfo.showFuelCapacity">true</Property>            <!-- [true|false] show fuel capacity -->
+        <Property key="deviceInfo.showFuelLevelProfile">true</Property>        <!-- [false|select|text] show fuel profile -->
 
         <!-- GroupInfo properties -->
-        <Property key="groupInfo.showPropertiesButton">false</Property>         <!-- [true|false] show "Properties" button -->
+        <Property key="groupInfo.showPropertiesButton">true</Property>         <!-- [true|false] show "Properties" button -->
         <Property key="groupInfo.deviceListSortBy">desc</Property>              <!-- [id|desc] sort device member list by -->
 
         <!-- UserInfo properties -->
-        <Property key="userInfo.showPreferredDeviceID">false</Property>         <!-- [true|false|admin] show preferred device ID field -->
-        <Property key="userInfo.showPassword">false</Property>                  <!-- [true|false] Show passwords on User admin -->
+        <Property key="userInfo.showPreferredDeviceID">true</Property>         <!-- [true|false|admin] show preferred device ID field -->
+        <Property key="userInfo.showPassword">true</Property>                  <!-- [true|false] Show passwords on User admin -->
         <Property key="userInfo.authorizedGroupCount">0</Property>              <!-- [Integer] (EXPERIMENTAL) Number of authorized group pull-downs to show -->
 
         <!-- DriverInfo properties -->
-        <Property key="driverInfo.showDeviceID">false</Property>                <!-- [true|false] Show "Device ID" field -->
+        <Property key="driverInfo.showDeviceID">true</Property>                <!-- [true|false] Show "Device ID" field -->
 
         <!-- ZoneInfo properties -->
         <Property key="zoneInfo.mapControlLocation">right</Property>            <!-- [right|left] show controls to the left|right of the map -->
-        <Property key="zoneInfo.enableGeocode">false</Property>                 <!-- [true|false] (Experimental) show "Center on ZipCode" -->
-        <Property key="zoneInfo.showOverlapPriority">false</Property>           <!-- [true|false] show "Overlap Priority" pull-down -->
+        <Property key="zoneInfo.enableGeocode">true</Property>                 <!-- [true|false] (Experimental) show "Center on ZipCode" -->
+        <Property key="zoneInfo.showOverlapPriority">true</Property>           <!-- [true|false] show "Overlap Priority" pull-down -->
         <Property key="zoneInfo.showArriveDepartZone">true</Property>           <!-- [true|false] show "Arrival/Departure Zone" checkbox -->
-        <Property key="zoneInfo.showAutoNotify">false</Property>                <!-- [true|false] show "Auto Notify" checkbox (also requires email setup) -->
-        <Property key="zoneInfo.showClientUploadZone">false</Property>          <!-- [true|false|id] show "Client Upload" checkbox/ID -->
+        <Property key="zoneInfo.showAutoNotify">true</Property>                <!-- [true|false] show "Auto Notify" checkbox (also requires email setup) -->
+        <Property key="zoneInfo.showClientUploadZone">true</Property>          <!-- [true|false|id] show "Client Upload" checkbox/ID -->
         <Property key="zoneInfo.showShapeColor">true</Property>                 <!-- [true|false] show zone shape color -->
-        <Property key="zoneInfo.showSpeedLimit">false</Property>                <!-- [true|false] show speed limit -->
+        <Property key="zoneInfo.showSpeedLimit">true</Property>                <!-- [true|false] show speed limit -->
         <Property key="zoneInfo.maximumDisplayedVertices">-1</Property>         <!-- [1..8] maximum number of point/vertices to display -->
 
         <!-- StatusCodeInfo properties (module may not be present) -->
@@ -422,9 +422,9 @@ Notes:
 
         <!-- SysAdminAccounts properties (module may not be present) -->
         <Property key="sysAdminAccounts.allowDeleteAccount">true</Property>     <!-- [true|false] allow delete account -->
-        <Property key="sysAdminAccounts.showPasswords">false</Property>         <!-- [true|false] show passwords (possible security risk) -->
-        <Property key="sysAdminAccounts.showAccountManager">false</Property>    <!-- [true|false] show account manager, if supported -->
-        <Property key="sysAdminAccounts.showNotes">false</Property>             <!-- [true|false] show "Notes" -->
+        <Property key="sysAdminAccounts.showPasswords">true</Property>         <!-- [true|false] show passwords (possible security risk) -->
+        <Property key="sysAdminAccounts.showAccountManager">true</Property>    <!-- [true|false] show account manager, if supported -->
+        <Property key="sysAdminAccounts.showNotes">true</Property>             <!-- [true|false] show "Notes" -->
 
         <!-- Account-Login properties (if available) -->
         <Property key="accountLogin.enableLogin">false</Property>               <!-- [true|false] allow login to other accounts (possible security risk) -->
@@ -445,15 +445,15 @@ Notes:
         <Property key="ruleInfo.showPredefinedActions">false</Property>         <!-- [true|false] Display predefined (canned) actions -->
 
         <!-- SysAdminInfo properties (module may not be present) -->
-        <Property key="sysAdminInfo.showEventsPerSecond">false</Property>       <!-- [true|false] show Events-Per-Second -->
+        <Property key="sysAdminInfo.showEventsPerSecond">true</Property>       <!-- [true|false] show Events-Per-Second -->
 
         <!-- DeviceChooser properties -->
         <Property key="deviceChooser.sortBy">description</Property>             <!-- [id|name|description] sort by -->
         <Property key="deviceChooser.useTable">true</Property>                  <!-- [true|false] use DeviceChooser table selection -->
         <Property key="deviceChooser.idPosition">last</Property>                <!-- [none|first|last] ID column position -->
-        <Property key="deviceChooser.search">false</Property>                   <!-- [true|false] enable description search -->
+        <Property key="deviceChooser.search">true</Property>                   <!-- [true|false] enable description search -->
         <Property key="deviceChooser.matchContains">true</Property>             <!-- [true|false] match on 'contains' (otherwise 'startsWith') -->
-        <Property key="deviceChooser.singleItemTextField">false</Property>      <!-- [true|false] text field for single selections (non-table only) -->
+        <Property key="deviceChooser.singleItemTextField">true</Property>      <!-- [true|false] text field for single selections (non-table only) -->
         <Property key="deviceChooser.includeListHtml">false</Property>          <!-- [true|false] EXPERIMENTAL -->
         <Property key="deviceChooser.extraDebugEntries">0</Property>            <!-- DEBUG TESTING PURPOSES ONLY! -->
 
@@ -465,32 +465,32 @@ Notes:
         <Property key="deviceAlerts.refreshInterval">120</Property>             <!-- [#sec] refresh interval in seconds -->
    <!-- <Property key="deviceAlerts.mapPageName">map.fleet</Property>  -->      <!-- [<pageName>] forwarded page name -->
    <!-- <Property key="deviceAlerts.mapPageName">map.device</Property> -->      <!-- [<pageName>] forwarded page name -->
-        <Property key="deviceAlerts.showAllDevices">false</Property>            <!-- [true|false] show all devices (incl those without alerts) -->
+        <Property key="deviceAlerts.showAllDevices">true</Property>            <!-- [true|false] show all devices (incl those without alerts) -->
         <Property key="deviceAlerts.maxActiveAlertAge">21600</Property>         <!-- [#sec] maximum 'active' alert (21600 == 6 hrs)-->
 
         <!-- Obsolete properties -->
         <!--
-        <Property key="groupInfo.validateNewIDs">true</Property>                
-        <Property key="userInfo.validateNewIDs">true</Property>                 
-        <Property key="driverInfo.validateNewIDs">true</Property>               
-        <Property key="zoneInfo.validateNewIDs">true</Property>                 
-        <Property key="sysAdminAccounts.validateNewIDs">true</Property>         
-        <Property key="roleInfo.validateNewIDs">true</Property>                 
-        <Property key="ruleInfo.validateNewIDs">true</Property>                 
-        <Property key="deviceInfo.validateNewIDs">true</Property>               
+        <Property key="groupInfo.validateNewIDs">true</Property>
+        <Property key="userInfo.validateNewIDs">true</Property>
+        <Property key="driverInfo.validateNewIDs">true</Property>
+        <Property key="zoneInfo.validateNewIDs">true</Property>
+        <Property key="sysAdminAccounts.validateNewIDs">true</Property>
+        <Property key="roleInfo.validateNewIDs">true</Property>
+        <Property key="ruleInfo.validateNewIDs">true</Property>
+        <Property key="deviceInfo.validateNewIDs">true</Property>
         -->
 
     </Properties>
 
     <!-- ========================================================================================== -->
-    <!-- Default Pushpins ========================================================================= 
+    <!-- Default Pushpins =========================================================================
      === Pushpins creation options:
      ===  http://www.powerhut.co.uk/googlemaps/custom_markers.php
      -->
 
-    <!-- The "Pushpins" tag section allows overriding the pushpins displayed on the map. 
-     === These are the standard Google icons 
-     ===  IE.  http://labs.google.com/ridefinder/images/mm_20_red.png 
+    <!-- The "Pushpins" tag section allows overriding the pushpins displayed on the map.
+     === These are the standard Google icons
+     ===  IE.  http://labs.google.com/ridefinder/images/mm_20_red.png
      -->
     <!--
     <Pushpins baseURL="http://labs.google.com/ridefinder/images/">
@@ -541,9 +541,9 @@ Notes:
 
     <!-- Multiple 'Pushpins' tags may be specified -->
     <Pushpins baseURL="images/pp/">
-        <!-- 
+        <!--
          === This example shows how a custom pushpin marker can be generated from within Javascript itself.
-         === The Javascript function argument 'e' below, is a pointer to a 'MapEventRecord' object which 
+         === The Javascript function argument 'e' below, is a pointer to a 'MapEventRecord' object which
          === contains the following properties relative to the current event:
          ===   device    : The Device ID
          ===   timestamp : The Epoch timestamp
@@ -561,7 +561,7 @@ Notes:
          ===   address   : The street address (may be blank if address is not available)
          === =======================
          === The example Javascript functions 'evHeadingYellowURL', 'evHeadingGreenURL', and 'evHeadingMarkerURL',
-         === can be found in the 'jsmap.js' file and analyzes the event 'heading' and returns a URL reference that 
+         === can be found in the 'jsmap.js' file and analyzes the event 'heading' and returns a URL reference that
          === indicates the direction of travel.
          === =======================
          === The Pushpin keys "all", "fleet", "stop", "slow", "moving", "last" below are used by the default icon
@@ -583,7 +583,7 @@ Notes:
         <Pushpin key="yellowh"  eval="evHeadingYellowURL(e)" shadow="pin30_shadow.png" iconSize="18,30" iconOffset="9,30" shadowSize="30,30" image="pin30_yellow_h1.png"/>
         <Pushpin key="heading"  eval="evHeadingMarkerURL(e)" shadow="pin30_shadow.png" iconSize="18,30" iconOffset="9,30" shadowSize="30,30" image="pin30_green_h1.png"/>
     </Pushpins>
- 
+
     <!-- Text Label pushpin -->
     <Pushpins baseURL="">
         <!--
@@ -603,7 +603,7 @@ Notes:
 
     <Legend type="device" includeDefault="true">
         <Title>${i18n.PushPin_Legend}:</Title>
-        <!-- If the text field contains any of the following key replacement vars, the value  
+        <!-- If the text field contains any of the following key replacement vars, the value
          === will be replaced with the speed units of the current account:
          ===   %{kph:XX} : XX, specified in km/h, will be converted to the account speed units
          ===   %{mph:XX} : XX, specified in mph, will be converted to the account speed units
@@ -653,19 +653,19 @@ Notes:
      ===     <Property key="replay.interval">1700</Property>        - milliseconds replay interval (values < 30 are interpreted as seconds)
      ===     <Property key="replay.singlePushpin">false</Property>  - show only single pushpin during replay
      -->
- 
+
     <!-- =============================================
-     === OpenLayers [http://www.openlayers.org] 
+     === OpenLayers [http://www.openlayers.org]
      ===   using OpenStreetMaps [http://www.openstreetmap.org]
      === When using an OpenStreetMaps tile-server, please comply with their "Tile Usage Policy":
      ===    http://wiki.openstreetmap.org/wiki/Tile_usage_policy
      -->
-    <MapProvider name="openLayers" 
+    <MapProvider name="openLayers"
         active="${Domain.MapProvider.active=true}"
         class="org.opengts.war.maps.jsmap.OpenLayers"
         rtPropPrefix="Domain.MapProvider.">
 
-        <!-- override location of OpenLayers client-side JavaScript 
+        <!-- override location of OpenLayers client-side JavaScript
          === If you wish to keep your own local cache of the OpenLayers.js JavaScript
          === Copy the OpenLayers.js module to a local server, then change this link
          === to point to your local cached version.
@@ -728,53 +728,53 @@ Notes:
 
         <!--
          === The IconSelector tag provdes an ability to select what icon to display for specific types of
-         === events.  An enabled "RuleFactory" implementation is required to evaluate the icon selector value.  
+         === events.  An enabled "RuleFactory" implementation is required to evaluate the icon selector value.
          === The "RuleFactory" 'interface' may be viewed in the source module "org.opengts.db.RuleFactory.java", from
          === which an 'implementation' will need to be created and installed into "Device.setRuleFactory(ruleFactory)".
          ===
          === A commercial "RuleFactory" implementation is available which can evaluate 'selectors' like the following:
          ===    - ((mph<5.0)?"red":(mph<20.0)?"yellow":(mph<=65.0)?"green":"arrow")
-         ===        If the vehicle speed is < 5mph, display the RED pushpin, else if < 20mph, display the YELLOW pushpin, 
+         ===        If the vehicle speed is < 5mph, display the RED pushpin, else if < 20mph, display the YELLOW pushpin,
          ===        else if <= 65mph, display the GREEN pushpin, otherwise display the "arrow" icon (when over 65mph).
          ===    - ($INZONE?"white":(mph<5.0)?"red":"green")
-         ===        If in any defined GeoZone, display the WHITE pushpin, else if < 5mph, display the RED pushpin, 
+         ===        If in any defined GeoZone, display the WHITE pushpin, else if < 5mph, display the RED pushpin,
          ===        otherwise display the GREEN pushpin.
          ===    - (($DORMANT>=3600)?"red":"green")
          ===        If vehicle has not moved for 3600 seconds, display the RED pushpin, otherwise display the GREEN pushpin.
          ===    - (($WEEKDAY&&!$INZONE("home"))?"red":"green")
-         ===        If it is a weekday and the vehicle is outside defined GeoZone "home", display the RED pushpin, 
+         ===        If it is a weekday and the vehicle is outside defined GeoZone "home", display the RED pushpin,
          ===        otherwise display the GREEN pushpin.
          ===    - ($BIT(input,1)?"purple":"white")
-         ===        If digital input 1 is 'ON' ('input' is a bitmask, and '1' represents the second bit), display 
+         ===        If digital input 1 is 'ON' ('input' is a bitmask, and '1' represents the second bit), display
          ===        the PURPLE pushpin, otherwise display the WHITE pushpin.
-         === This RuleFactory can also be used to analyze incoming events and send notification, such as an email, 
-         === when installed as an Event analysis rule.  Rule functions, such as $ARRIVE, $DEPART, etc, are available 
+         === This RuleFactory can also be used to analyze incoming events and send notification, such as an email,
+         === when installed as an Event analysis rule.  Rule functions, such as $ARRIVE, $DEPART, etc, are available
          === for this purpose.  For more information, please contact us for details.
          ===
-         === The default icon selector (when no RuleFactory is available, or the 'iconSelector' has not been 
+         === The default icon selector (when no RuleFactory is available, or the 'iconSelector' has not been
          === specified) is implemented in Java, and is equivalent to the following:
          ===    - ($DIN?"orange":(speed<8)?"red":(speed<32)?"yellow":"green")
-         ===        If the StatusCode is any digital input, display the ORANGE pushpin, else if the speed is less 
-         ===        than 8 km/h, display the RED pushpin, else if the speed is less than 32 km/h, display the 
+         ===        If the StatusCode is any digital input, display the ORANGE pushpin, else if the speed is less
+         ===        than 8 km/h, display the RED pushpin, else if the speed is less than 32 km/h, display the
          ===        YELLOW pushpin, otherwise display the GREEN pushpin".
          === This default 'selector' is implemented in the method "getDefaultMapIconIndex(...)" in the EventData class.
          === -->
         <!-- example icon selectors below (a valid 'RuleFactory' implementaion/installation required):
-        <IconSelector type="device" ruleFactoryName="GTSRulesEngine,SecureENRE,ENRE"><![CDATA[ 
-            ((mph<5.0)?"red":(mph<20.0)?"yellow":(mph<70.0)?"green":"greendot") 
+        <IconSelector type="device" ruleFactoryName="GTSRulesEngine,SecureENRE,ENRE"><![CDATA[
+            ((mph<5.0)?"red":(mph<20.0)?"yellow":(mph<70.0)?"green":"greendot")
             ]]></IconSelector>
-        <IconSelector type="fleet" ruleFactoryName="GTSRulesEngine,SecureENRE,ENRE"><![CDATA[ 
+        <IconSelector type="fleet" ruleFactoryName="GTSRulesEngine,SecureENRE,ENRE"><![CDATA[
             (isLast?$DEVICON("bluedot"):(mph<5)?"stop":(mph<20)?"yellowh":"greenh")
             ]]></IconSelector>
         -->
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === OpenLayers [http://www.openlayers.org] using GeoServer
      -->
-    <MapProvider name="geoServer" 
-        active="${Domain.MapProvider.active=false}" 
+    <MapProvider name="geoServer"
+        active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.OpenLayers"
         rtPropPrefix="Domain.MapProvider.">
         <Property key="map.fillFrame">false</Property>                  <!-- expand map to fill page frame -->
@@ -801,19 +801,19 @@ Notes:
         <Legend type="device" includeDefault="true"/>
         <Legend type="fleet"  includeDefault="true"/>
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === Leaflet: OpenStreetMap
      === When using an OpenStreetMaps tile-server, please comply with their "Tile Usage Policy":
      ===    http://wiki.openstreetmap.org/wiki/Tile_usage_policy
      -->
-    <MapProvider name="leaflet_osm" 
+    <MapProvider name="leaflet_osm"
         active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.Leaflet"
         rtPropPrefix="Domain.MapProvider.">
 
-        <!-- override location of Leaflet client-side JavaScript 
+        <!-- override location of Leaflet client-side JavaScript
          === If you wish to keep your own local cache of the Leaflet.js JavaScript
          === Copy the Leaflet.js module to a local server, then change this link
          === to point to your local cached version.
@@ -887,7 +887,7 @@ Notes:
         <Legend type="device" includeDefault="true"/>
         <Legend type="fleet"  includeDefault="true"/>
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === Leaflet: ESRI
@@ -897,12 +897,12 @@ Notes:
      ===  - https://github.com/esri/esri-leaflet#terms
      ===    (developer account required)
      -->
-    <MapProvider name="leaflet_esri" 
+    <MapProvider name="leaflet_esri"
         active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.Leaflet"
         rtPropPrefix="Domain.MapProvider.">
 
-        <!-- override location of Leaflet client-side CSS/JavaScript 
+        <!-- override location of Leaflet client-side CSS/JavaScript
          === If you wish to keep your own local cache of the Leaflet.js JavaScript
          === Copy the Leaflet.js module to a local server, then change this link
          === to point to your local cached version.
@@ -922,7 +922,7 @@ Notes:
 
         <!-- ESRI config -->
         <Property key="javascript.inline" trim="false"><![CDATA[
-function _createEsriMap(mapElem) { 
+function _createEsriMap(mapElem) {
     var map = L.map(mapElem.id);
     L.esri.basemapLayer("Topographic").addTo(map);
     return map;
@@ -993,7 +993,7 @@ CREATE_MAP_CALLBACK = _createEsriMap;
         <Legend type="device" includeDefault="true"/>
         <Legend type="fleet"  includeDefault="true"/>
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === Leaflet: MapBox
@@ -1002,13 +1002,13 @@ CREATE_MAP_CALLBACK = _createEsriMap;
      ===  - https://www.mapbox.com/tos/
      ===    (developer account required)
      -->
-    <MapProvider name="leaflet_mapbox" 
+    <MapProvider name="leaflet_mapbox"
         active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.Leaflet"
         key="${Domain.MapProvider.key=*** PLACE AUTHORIZATION KEY HERE ***}"
         rtPropPrefix="Domain.MapProvider.">
 
-        <!-- override location of Leaflet client-side CSS/JavaScript 
+        <!-- override location of Leaflet client-side CSS/JavaScript
          === If you wish to keep your own local cache of the Leaflet.js JavaScript
          === Copy the Leaflet.js module to a local server, then change this link
          === to point to your local cached version.
@@ -1027,7 +1027,7 @@ CREATE_MAP_CALLBACK = _createEsriMap;
 
         <!-- MapBox config -->
         <Property key="javascript.inline" trim="false"><![CDATA[
-function _createMapBoxMap(mapElem) { 
+function _createMapBoxMap(mapElem) {
     L.mapbox.accessToken = MAP_AUTHORIZATION;
     return L.mapbox.map(mapElem.id, 'mapbox.streets');
 };
@@ -1097,11 +1097,11 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Legend type="device" includeDefault="true"/>
         <Legend type="fleet"  includeDefault="true"/>
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === Microsoft Virtual Earth [http://dev.live.com]
-     === Note: When using the Microsoft Virtual Earth mapping service, it is your responsibility 
+     === Note: When using the Microsoft Virtual Earth mapping service, it is your responsibility
      === to make sure you comply with all of the Microsoft terms of use for this service.
      === Microsoft Virtual Earth Service API Terms of Use:
      ===   http://www.microsoft.com/maps/product/licensing_for_nonprofit.aspx
@@ -1111,7 +1111,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      === Microsoft Online Privacy Statement:
      ===   http://privacy.microsoft.com/
      -->
-    <MapProvider name="virtualEarth" 
+    <MapProvider name="virtualEarth"
         active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.VirtualEarth"
         rtPropPrefix="Domain.MapProvider.">
@@ -1171,8 +1171,8 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
     <!-- =============================================
      === Mapstraction [http://www.mapstraction.com]
      -->
-    <MapProvider name="mapstraction" 
-        active="${Domain.MapProvider.active=false}" 
+    <MapProvider name="mapstraction"
+        active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.Mapstraction"
         rtPropPrefix="Domain.MapProvider.">
         <!-- <Property key="map.width">680</Property>           -->     <!-- map width -->
@@ -1194,7 +1194,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Legend type="device" includeDefault="true"/>
         <Legend type="fleet"  includeDefault="true"/>
 
-    </MapProvider> 
+    </MapProvider>
 
     <!-- =============================================
      === GoogleMaps
@@ -1205,7 +1205,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      === sure you comply with all of the Google terms of use for this service.
      ===    https://developers.google.com/maps/terms
      -->
-    <MapProvider name="googleMaps" 
+    <MapProvider name="googleMaps"
         active="${Domain.MapProvider.active=false}"
         class="org.opengts.war.maps.jsmap.GoogleMaps"
         key="${Domain.MapProvider.key=***PLACE_AUTHORIZATION_KEY_HERE***}"
@@ -1216,7 +1216,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Property key="google.version">3</Property>
         <Property key="google.sensor">true</Property>
         <Property key="google.channel"></Property>
-        <Property key="google.useSSL">false</Property>
+        <Property key="google.useSSL">true</Property>
         <Property key="google.addTrafficOverlay">false</Property>
         <Property key="google.addWeatherOverlay">false</Property>
         <Property key="google.addCloudOverlay">false</Property>
@@ -1273,8 +1273,8 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
 
     <!-- ========================================================================================== -->
     <!-- ReverseGeocodeProvider
-     === To enable reverse-geocoding, set the chosen ReverseGeocodeProvider 'active' attribute 
-     === to "true" and set the following Account column values for each account that is to   
+     === To enable reverse-geocoding, set the chosen ReverseGeocodeProvider 'active' attribute
+     === to "true" and set the following Account column values for each account that is to
      === have reverse-geocoding enabled:
      ===    - Set 'geocoderMode' to either 2 (partial), or 3 (full).
      ===    - Set 'privateLabelName' to the 'name' or 'host' of this Domain (Edit the Account
@@ -1288,14 +1288,14 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
     <!-- =============================================
      === Geonames Reverse-Geocode Provider (default disabled)
      === - This reverse-geocoding uses the services provided by 'GeoNames.org' [http://www.geonames.org]
-     === - Geonames also provides a commercial-use reverse-geocoding service that guarantees a faster and 
+     === - Geonames also provides a commercial-use reverse-geocoding service that guarantees a faster and
      ===   more reliable response time.  More information is available at the following link:
      ===      http://www.geonames.org/commercial-webservices.html
      ===   Or contact them at the following email address:
      ===      services@geonames.org
      ===   (Make sure you let them know you are using it with 'OpenGTS'!)
      -->
-    <ReverseGeocodeProvider name="geonames" 
+    <ReverseGeocodeProvider name="geonames"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.geonames.GeoNames"
         key=""
@@ -1305,7 +1305,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Property key="postalFailover">false</Property> <!-- findNearbyPostalCodes -->
         <Property key="streetFailover">false</Property> <!-- findNearbyStreetsOSM -->
         <!--
-         === - Set the following properties to appropriate values when purchasing the 
+         === - Set the following properties to appropriate values when purchasing the
          ===   Geonames Commercial reverse-geocoding service.
          === - Geonames may also require a "username" for the free service as well.
          -->
@@ -1314,13 +1314,13 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Property key="token"></Property>
         <Property key="alwaysFast">false</Property>
     </ReverseGeocodeProvider>
-    <ReverseGeocodeProvider name="geonames_navteq" 
+    <ReverseGeocodeProvider name="geonames_navteq"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.geonames.GeoNames"
         key=""
         rtPropPrefix="Domain.ReverseGeocodeProvider.">
         <!--
-         === Set the following properties to appropriate values when purchasing the 
+         === Set the following properties to appropriate values when purchasing the
          === Locally hosted Geonames Commercial reverse-geocoding service using NavTeq:
          -->
         <Property key="host">localhost:8080</Property>
@@ -1340,7 +1340,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      ===    Domain.ReverseGeocodeProvider.active=opencage
      ===    Domain.ReverseGeocodeProvider.key=*PLACE_AUTHORIZATION_KEY_HERE*
      -->
-    <ReverseGeocodeProvider name="opencage" 
+    <ReverseGeocodeProvider name="opencage"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.opencage.OpenCageData"
         key="${Domain.ReverseGeocodeProvider.key=*PLACE_AUTHORIZATION_KEY_HERE*}"
@@ -1353,7 +1353,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      === - http://www.gisgraphy.com
      === - Must be installed on your servers
      -->
-    <ReverseGeocodeProvider name="gisgraphy" 
+    <ReverseGeocodeProvider name="gisgraphy"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.gisgraphy.GisGraphy"
         key=""
@@ -1369,7 +1369,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      === - http://www.gisgraphy.com
      === - Must be installed on your servers
      -->
-    <ReverseGeocodeProvider name="gisgraphy4" 
+    <ReverseGeocodeProvider name="gisgraphy4"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.gisgraphy4.GisGraphy"
         key=""
@@ -1379,15 +1379,15 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
     </ReverseGeocodeProvider>
 
     <!-- =============================================
-     === Nominatim OpenStreetMap/Mapquest Reverse-Geocode Provider 
+     === Nominatim OpenStreetMap/Mapquest Reverse-Geocode Provider
      === - Mapquest      ==> http://open.mapquestapi.com/nominatim/
      === - OpenStreetMap ==> http://nominatim.openstreetmap.org
-     ===   The OpenStreetMap "Nominatim Usage Policy" can be found at the following link: 
+     ===   The OpenStreetMap "Nominatim Usage Policy" can be found at the following link:
      ===     http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy
      === - Register for Mapquest Nominatim AppKey at the following link:
      ===     https://developer.mapquest.com/
      -->
-    <ReverseGeocodeProvider name="nominatim" 
+    <ReverseGeocodeProvider name="nominatim"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.nominatim.Nominatim"
         key=""
@@ -1407,13 +1407,13 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      === TineGeocoder Reverse-Geocode Provider (default disabled)
      === - This reverse-geocoding uses the services provided by 'TinyGeocoder.com' [http://www.TinyGeocoder.com]
      -->
-    <ReverseGeocodeProvider name="tinygeocoder" 
+    <ReverseGeocodeProvider name="tinygeocoder"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.tinygeocoder.TinyGeocoder"
         key=""
         rtPropPrefix="Domain.ReverseGeocodeProvider.">
     </ReverseGeocodeProvider>
-    <GeocodeProvider name="tinygeocoder" 
+    <GeocodeProvider name="tinygeocoder"
         active="${Domain.GeocodeProvider.active=false}"
         class="org.opengts.geocoder.tinygeocoder.TinyGeocoder"
         key=""
@@ -1427,7 +1427,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      ===   to make sure you comply with all of the Google terms of use for this service.
      === - NOTE: Google may limit he number of reverse-geocodes allowed in any 24-hour period.
      -->
-    <ReverseGeocodeProvider name="google" 
+    <ReverseGeocodeProvider name="google"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.google.GoogleGeocodeV2"
         key="${Domain.ReverseGeocodeProvider.key=***PLACE_AUTHORIZATION_KEY_HERE ***}"
@@ -1435,7 +1435,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Property key="sensor">true</Property>
         <Property key="alwaysFast">false</Property>
     </ReverseGeocodeProvider>
-    <GeocodeProvider name="googleV2" 
+    <GeocodeProvider name="googleV2"
         active="${Domain.GeocodeProvider.active=false}"
         class="org.opengts.geocoder.google.GoogleGeocodeV2"
         key="${Domain.GeocodeProvider.key=}"
@@ -1449,7 +1449,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      ===   to make sure you comply with all of the Google terms of use for this service.
      === - NOTE: Google may limit he number of reverse-geocodes allowed in any 24-hour period.
      -->
-    <ReverseGeocodeProvider name="googleV3" 
+    <ReverseGeocodeProvider name="googleV3"
         active="${Domain.ReverseGeocodeProvider.active=false}"
         class="org.opengts.geocoder.google.GoogleGeocodeV3"
         key="${Domain.ReverseGeocodeProvider.key=}"
@@ -1459,7 +1459,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
         <Property key="signatureKey"></Property>
         <Property key="ignoreIfMoving">false</Property>     <!-- true to only RG if stopped -->
     </ReverseGeocodeProvider>
-    <GeocodeProvider name="googleV3" 
+    <GeocodeProvider name="googleV3"
         active="${Domain.GeocodeProvider.active=false}"
         class="org.opengts.geocoder.google.GoogleGeocodeV3"
         key="${Domain.GeocodeProvider.key=}"
@@ -1472,11 +1472,11 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
 
     <!-- =============================================
      === OpenCellID
-     === Note: A "key" may be required to access this service.  
+     === Note: A "key" may be required to access this service.
      === Please see the following link for more info:
      ===   http://www.opencellid.org/
      -->
-    <MobileLocationProvider name="openCellID" 
+    <MobileLocationProvider name="openCellID"
         active="${Domain.MobileLocationProvider.active=false}"
         class="org.opengts.cellid.opencellid.OpenCellID"
         key="${Domain.MobileLocationProvider.key=}"
@@ -1486,11 +1486,11 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
 
     <!-- =============================================
      === UnwiredLabs (not yet tested - may not yet be fully supported)
-     === Note: A "key" (token) may be required to access this service.  
+     === Note: A "key" (token) may be required to access this service.
      === Please see the following link for more info:
      ===   http://www.unwiredlabs.com/
      -->
-    <MobileLocationProvider name="unwiredLabs" 
+    <MobileLocationProvider name="unwiredLabs"
         active="${Domain.MobileLocationProvider.active=false}"
         class="org.opengts.cellid.unwiredlabs.UnwiredLabs"
         key="${Domain.MobileLocationProvider.key=}"
@@ -1602,11 +1602,11 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
     <!-- Defined pages
      === Notes:
      ===  - All classes listed here must implement "org.opengts.war.tools.WebPage"
-     ===  - Remove/Comment any of the following "Page" tags to disable the corresponding feature 
+     ===  - Remove/Comment any of the following "Page" tags to disable the corresponding feature
      ===  - Comment/Remove the 'NewAccount' line below to disable the ability to create new accounts
-     ===  - The components of these webpages are displayed as taglib entries within the JSP file 
-     ===    "war/track/jsp/loginSession.jsp" (which is copied into the 'track.war' file at built-time).  
-     ===    The page decorations (look-and-feel) can be changed by modifying this JSP file.  
+     ===  - The components of these webpages are displayed as taglib entries within the JSP file
+     ===    "war/track/jsp/loginSession.jsp" (which is copied into the 'track.war' file at built-time).
+     ===    The page decorations (look-and-feel) can be changed by modifying this JSP file.
      ===  - A complete custom JSP file can also be created and used for the web-interface display.
      ===    The new JSP file should be specified on the "jsp=" attribute on the "WebPages" tag below.
      ===    This file should be specified relative to the servlet base "track/" directory.
@@ -1626,8 +1626,8 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
      ===    "topMenu.menuType" must be set to "button-icon".
      -->
     <WebPages rtPropPrefix="Domain.WebPages."
-        jsp="default" 
-        cssDir="/css" 
+        jsp="default"
+        cssDir="/css"
         iconDir=""
         buttonDir=""
         >
@@ -1759,7 +1759,7 @@ CREATE_MAP_CALLBACK = _createMapBoxMap;
     </WebPages>
 
     <!-- Defined reports
-     === All reports referenced here must be predefined in 'reports.xml' 
+     === All reports referenced here must be predefined in 'reports.xml'
      === Those with the attribute optional="true" may not be present in this release
      -->
     <Reports rtPropPrefix="Domain.Reports.">
