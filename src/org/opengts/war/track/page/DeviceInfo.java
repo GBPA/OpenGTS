@@ -2575,17 +2575,16 @@ public class DeviceInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) :
                         i18n.getString("DeviceInfo.viewDevice","View {0} Information", devTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span>&nbsp;\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>&nbsp;\n");
                     out.write("<a href='"+refreshURL+"'><span class=''>"+i18n.getString("DeviceInfo.refresh","Refresh")+"</a>\n");
-                    out.write("<br/>\n");
                     out.write("<hr>\n");
 
                     // -- device selection table (Select, Device ID, Description, ...)
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DeviceInfo.selectDevice","Select a {0}",devTitles)+":</h1>\n");
+                    out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DeviceInfo.selectDevice","Select a {0}",devTitles)+":</h2>\n");
                     out.write("<div style='margin-left:25px;'>\n");
                     out.write("<form name='"+FORM_DEVICE_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SEL_DEVICE+"'/>");
-                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+"' cellspacing='0' cellpadding='0' border='0'>\n");
+                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n");
                     out.write(" <thead>\n");
                     out.write("  <tr class='" +CommonServlet.CSS_ADMIN_TABLE_HEADER_ROW+"'>\n");
                     out.write("   <th class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_COL_SEL+"' nowrap>"+FilterText(i18n.getString("DeviceInfo.select","Select"))+"</th>\n");
@@ -2729,22 +2728,22 @@ public class DeviceInfo
                     }
                     out.write(" </tbody>\n");
                     out.write("</table>\n");
-                    out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
+                    out.write("<table cellpadding='0' class='table' cellspacing='0' border='0' style=''>\n");
                     out.write("<tr>\n");
                     if (_allowView) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DeviceInfo.view","View")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DeviceInfo.view","View")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowEdit) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DeviceInfo.edit","Edit")+"'>");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DeviceInfo.edit","Edit")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowCommand) {
                         if (hasCommandHandlers > 0) {
                             out.write("<td style='padding-left:5px;'>");
-                            out.write("<input type='submit' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("DeviceInfo.properties","Commands")+"'>");
+                            out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("DeviceInfo.properties","Commands")+"'>");
                             out.write("</td>\n");
                         } else {
                             //Print.logWarn("No matching DeviceCommandHandlers found");
@@ -2752,12 +2751,12 @@ public class DeviceInfo
                     }
                     if (_allowSmsCmd) {  // SMS commands
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_SMS +"' value='"+i18n.getString("DeviceInfo.sms","SMS")+"'>");
+                        out.write("<input type='submit' class='btn btn-info' name='"+PARM_SUBMIT_SMS +"' value='"+i18n.getString("DeviceInfo.sms","SMS")+"'>");
                         out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_DEL +"' value='"+i18n.getString("DeviceInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
+                        out.write("<input type='submit' class='btn btn-danger' name='"+PARM_SUBMIT_DEL +"' value='"+i18n.getString("DeviceInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
                         out.write("&nbsp;");
                     }
@@ -2777,15 +2776,15 @@ public class DeviceInfo
                         if (allowNewDevMode == DEVMODE_MANAGER) {
                             createText += " " + i18n.getString("DeviceInfo.managerOnly","(AccountManager only)");
                         }
-                        out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+createText+":</h1>\n");
+                        out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+createText+":</h2>\n");
                         out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
-                        out.write("<form name='"+FORM_DEVICE_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
+                        out.write("<form name='"+FORM_DEVICE_NEW+"' method='post' class='form-horizontal' action='"+newURL+"' target='_self'>"); // target='_top'
                         out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW_DEVICE+"'/>");
-                        out.write(i18n.getString("DeviceInfo.deviceID","{0} ID",devTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
-                        out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DeviceInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                        out.write(i18n.getString("DeviceInfo.deviceID","{0} ID",devTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                        out.write(" <input class='btn btn-success' type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DeviceInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                         out.write("</form>\n");
                         out.write("</div>\n");
-                        out.write("<hr>\n");
+
                     }
 
                 }
