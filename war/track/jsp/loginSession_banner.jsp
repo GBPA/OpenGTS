@@ -164,5 +164,12 @@
     <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/jquery.slimscroll.js"></script>
     <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/waves.js"></script>
     <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/custom.min.js"></script>
+    <script>
+      $( window ).load(function() {
+        if ( $('#side-menu li.active').length ) {
+          $('#side-menu li.active').find('a').addClass('active');
+        }
+      });
+    </script>
 </body>
 </html>
