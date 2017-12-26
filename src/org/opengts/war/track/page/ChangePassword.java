@@ -225,10 +225,9 @@ public class ChangePassword
                 String pwdURL  = privLabel.getWebPageURL(reqState, pageName, COMMAND_PWD_CHANGE);
                 out.write("<h1>"+i18n.getString("ChangePassword.menuDesc","Change your password")+"</h1>\n");
                 out.write("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+i18n.getString("ChangePassword.enterCurrent","Enter your Current and New Passwords:")+"</p>\n");
-                out.write("<hr/>\n");
                 out.write("<form name='Passwd' class='form-horizontal' method='post' action='"+pwdURL+"' target='_self'>\n"); // target='_top'
                 out.write("  <table class='table'>\n");
-                out.write("  <tr><td>"+i18n.getString("ChangePassword.oldPass","Old Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_OLD_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
+                out.write("  <tr><td style=''>"+i18n.getString("ChangePassword.oldPass","Old Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_OLD_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
                 out.write("  <tr><td>"+i18n.getString("ChangePassword.newPass","New Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_NEW1_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
                 out.write("  <tr><td>"+i18n.getString("ChangePassword.confirmNew","Confirm New:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_NEW2_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
                 out.write("  </table>\n");

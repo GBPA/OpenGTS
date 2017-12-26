@@ -902,16 +902,15 @@ public class UserInfo
                     i18n.getString("UserInfo.viewEditUser","View/Edit User Information") :
                     i18n.getString("UserInfo.viewUser","View User Information");
               //String selectUserJS = "javascript:dinfoSelectUser()";
-                out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                out.write("<hr>\n");
+                out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                 // user selection table (Select, User ID, User Desc)
                 if (_listUsers) {
 
                     // user selection table (Select, User ID, User Desc)
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.selectUser","Select a User")+":</h1>\n");
+                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.selectUser","Select a User")+":</h3>\n");
                     out.write("<div style='margin-left:25px;'>\n");
-                    out.write("<form name='"+FORM_USER_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
+                    out.write("<form name='"+FORM_USER_SELECT+"' method='post' class='form-horizontal' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
                     out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing=0 cellpadding=0 border=0>\n");
                     out.write(" <thead>\n");
@@ -974,17 +973,17 @@ public class UserInfo
                     out.write("<tr>\n");
                     if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("UserInfo.view","View")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("UserInfo.view","View")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("UserInfo.edit","Edit")+"'>");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("UserInfo.edit","Edit")+"'>");
                         out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("UserInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
+                        out.write("<input type='submit' class='btn btn-danger' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("UserInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
                         out.write("&nbsp;");
                     }
@@ -997,15 +996,15 @@ public class UserInfo
 
                     /* new user */
                     if (_allowNew) {
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.createNewUser","Create a new user")+":</h1>\n");
+                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.createNewUser","Create a new user")+":</h3\n");
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
-                    out.write("<form name='"+FORM_USER_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
+                    out.write("<form name='"+FORM_USER_NEW+"' method='post' class='form-horizontal' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
-                    out.write(i18n.getString("UserInfo.userID","User ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
-                    out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("UserInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                    out.write(i18n.getString("UserInfo.userID","User ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                    out.write(" <input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("UserInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
                     }
 
                 } else {

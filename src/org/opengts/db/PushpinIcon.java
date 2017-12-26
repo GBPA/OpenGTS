@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -111,12 +111,12 @@ public class PushpinIcon
     private static final String G_PUSHPIN_PURPLE        = G_PUSHPIN_URL + "mm_20_purple.png";
     private static final String G_PUSHPIN_GRAY          = G_PUSHPIN_URL + "mm_20_gray.png";
     private static final String G_PUSHPIN_WHITE         = G_PUSHPIN_URL + "mm_20_white.png";
-    
+
     private static final int    G_ICON_SIZE[]           = new int[] { 12, 20 };
     private static final int    G_ICON_OFFSET[]         = new int[] {  6, 20 };
 
     private static final String G_PUSHPIN_SHADOW        = G_PUSHPIN_URL + "mm_20_shadow.png";
-    
+
     private static final int    G_SHADOW_SIZE[]         = new int[] { 22, 20 };
 
     // ------------------------------------------------------------------------
@@ -128,7 +128,7 @@ public class PushpinIcon
     // -- Default icon images included with OpenGTS
     // -  (created using "Marker Maker" once located at "http://www.gmaplive.com/marker_maker.php")
 
-    private static final String PUSHPIN_URL             = "images/pp/";
+    private static final String PUSHPIN_URL             = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/";
 
     private static final String PUSHPIN_BLACK           = PUSHPIN_URL + "pin30_black.png";
     private static final String PUSHPIN_BROWN           = PUSHPIN_URL + "pin30_brown.png";
@@ -140,7 +140,7 @@ public class PushpinIcon
     private static final String PUSHPIN_PURPLE          = PUSHPIN_URL + "pin30_purple.png";
     private static final String PUSHPIN_GRAY            = PUSHPIN_URL + "pin30_gray.png";
     private static final String PUSHPIN_WHITE           = PUSHPIN_URL + "pin30_white.png";
-    
+
     private static final int    ICON_SIZE[]             = new int[] { 18, 30 };
     private static final int    ICON_OFFSET[]           = new int[] {  9, 30 };
 
@@ -354,33 +354,33 @@ public class PushpinIcon
     }
 
     public static final TextIcon TextIconList[] = {
-        new TextIcon("White_47x1"   , 
-            "images/pp/label47_fill.png", 
+        new TextIcon("White_47x1"   ,
+            "images/pp/label47_fill.png",
             3, 2, 42, 13,   // Color frame
             3, 2, 42, 13,   // Text frame
             11, null),      // Font size, Font name
-        new TextIcon("White_67x1"   , 
-            "images/pp/label67_fill.png"  , 
+        new TextIcon("White_67x1"   ,
+            "images/pp/label67_fill.png"  ,
             3, 2, 62, 13,   // Color frame
             3, 2, 62, 13,   // Text frame
             11, null),      // Font size, Font name
-        new TextIcon("White_67x2"   , 
-            "images/pp/label67x2_fill.png", 
+        new TextIcon("White_67x2"   ,
+            "images/pp/label67x2_fill.png",
             2, 2, 62, 26,   // Color frame
             2, 2, 62, 26,   // Text frame
             11, null),      // Font size, Font name
-        new TextIcon("White_67x2_pp", 
-            "images/pp/label67x2_fill.png", 
+        new TextIcon("White_67x2_pp",
+            "images/pp/label67x2_fill.png",
             2, 2, 62, 26,   // Color frame
             5, 2, 59, 26,   // Text frame (room for PushPin)
             11, null),      // Font size, Font name
-        new TextIcon("White_67x3"   , 
-            "images/pp/label67x3_fill.png", 
+        new TextIcon("White_67x3"   ,
+            "images/pp/label67x3_fill.png",
             2, 2, 62, 38,   // Color frame
             2, 2, 62, 38,   // Text frame
             11, null),      // Font size, Font name
-        new TextIcon("White_67x3_pp", 
-            "images/pp/label67x3_fill.png", 
+        new TextIcon("White_67x3_pp",
+            "images/pp/label67x3_fill.png",
             2, 2, 62, 38,   // Color frame
             5, 2, 59, 38,   // Text frame (room for PushPin)
             11, null),      // Font size, Font name
@@ -395,7 +395,7 @@ public class PushpinIcon
                     ti.getImageIcon();
                     // -- return TextIcon
                     return ti;
-                } 
+                }
             }
         }
         Print.logWarn("TextIcon not found: " + name);
@@ -439,42 +439,42 @@ public class PushpinIcon
         private volatile URL       imageURL  = null;
         private volatile ImageIcon imageIcon = null;
         // ---
-        public TextIcon(String name, 
-            String path, 
-            int xOfs,  int yOfs,  int xSiz,  int ySiz, 
-            int xOfs2, int yOfs2, int xSiz2, int ySiz2, 
+        public TextIcon(String name,
+            String path,
+            int xOfs,  int yOfs,  int xSiz,  int ySiz,
+            int xOfs2, int yOfs2, int xSiz2, int ySiz2,
             double fontPt, String fontName) {
             File iconFile = ResolveFile(path);
             URL  iconURL  = ToURL(iconFile);
             this._init(
                 name, iconURL, // ImageIcon lazy loading
-                xOfs, yOfs, xSiz, ySiz, 
+                xOfs, yOfs, xSiz, ySiz,
                 fontPt, fontName);
             this._setTextFrame(xOfs2, yOfs2, xSiz2, ySiz2);
         }
         // ---
-        public TextIcon(ImageIcon icon, 
-            int xOfs, int yOfs, int xSiz, int ySiz, 
+        public TextIcon(ImageIcon icon,
+            int xOfs, int yOfs, int xSiz, int ySiz,
             int fontPt, String fontName) {
             this._init(
                 icon, // ImageIcon already loaded
-                xOfs, yOfs, xSiz, ySiz, 
+                xOfs, yOfs, xSiz, ySiz,
                 fontPt, fontName);
         }
         // ---
-        public TextIcon(File file, 
-            int xOfs, int yOfs, int xSiz, int ySiz, 
+        public TextIcon(File file,
+            int xOfs, int yOfs, int xSiz, int ySiz,
             double fontPt, String fontName) {
-            this(ToURL(file), 
-                xOfs, yOfs, xSiz, ySiz, 
+            this(ToURL(file),
+                xOfs, yOfs, xSiz, ySiz,
                 fontPt, fontName);
         }
         // ---
-        public TextIcon(URL url, 
-            int xOfs, int yOfs, int xSiz, int ySiz, 
+        public TextIcon(URL url,
+            int xOfs, int yOfs, int xSiz, int ySiz,
             double fontPt, String fontName) {
             this._init(LoadImageIcon(url),  // ImageIcon loaded now
-                xOfs, yOfs, xSiz, ySiz, 
+                xOfs, yOfs, xSiz, ySiz,
                 fontPt, fontName);
         }
         // ---
@@ -497,8 +497,8 @@ public class PushpinIcon
         }
         // ---
         private void _init(
-            String name, URL iconURL, 
-            int xOfs, int yOfs, int xSiz, int ySiz, 
+            String name, URL iconURL,
+            int xOfs, int yOfs, int xSiz, int ySiz,
             double fontPt, String fontName) {
             this._setName(name);
             this._setColorFrame(xOfs, yOfs, xSiz, ySiz);
@@ -510,8 +510,8 @@ public class PushpinIcon
             }
         }
         private void _init(
-            ImageIcon icon, 
-            int xOfs, int yOfs, int xSiz, int ySiz, 
+            ImageIcon icon,
+            int xOfs, int yOfs, int xSiz, int ySiz,
             double fontPt, String fontName) {
             this._init(null,(URL)null,xOfs,yOfs,xSiz,ySiz,fontPt,fontName);
             this.imageIcon = icon;
@@ -818,12 +818,12 @@ public class PushpinIcon
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    /** 
+    /**
     *** Loads icon images found at the specified directory
     *** @param baseDir  The directory containing the icon images to load.
     ***                 Must be relative to the servlet context path.
     **/
-    public static OrderedMap<String,PushpinIcon> LoadFromDirectory(String baseDir, 
+    public static OrderedMap<String,PushpinIcon> LoadFromDirectory(String baseDir,
         OrderedMap<String,PushpinIcon> ppiMap)
     {
         //Print.logInfo("Relative Image directory: " + baseDir);
@@ -892,7 +892,7 @@ public class PushpinIcon
             /* shadow? (not currently supported) */
             String shadowURL    = null; // no shadow
             int    shadowSize[] = null;
-            if (StringTools.containsIgnoreCase(ppIconURL,"shadow")) { 
+            if (StringTools.containsIgnoreCase(ppIconURL,"shadow")) {
                 continue; // skip shadow icons
             }
 
@@ -1029,7 +1029,7 @@ public class PushpinIcon
     // ------------------------------------------------------------------------
 
     private String          name         = "";
-    
+
     private String          imageURL     = null;
 
     private String          iconURL      = null;
@@ -1042,7 +1042,7 @@ public class PushpinIcon
     private String          shadowURL    = null;
     private int             shadowWidth  = 22;
     private int             shadowHeight = 20;
-    
+
     private String          backURL      = null;
     private int             backWidth    = 0;
     private int             backHeight   = 0;
@@ -1050,9 +1050,9 @@ public class PushpinIcon
     private int             backOffsetY  = 0;
 
     // ------------------------------------------------------------------------
-    
+
     /**
-    *** Constructor 
+    *** Constructor
     *** @param name         This PushPin name
     *** @param imageURL     The image used to represent the icon for user selection
     *** @param icon         The icon image URL, for Javascript command which returns the icon URL
@@ -1071,7 +1071,7 @@ public class PushpinIcon
         String icon  , boolean iconEval, int iconSize[], int iconHotspot[],
         String shadow, int shadowSize[],
         String back  , int backSize[]  , int backOffset[]
-        ) 
+        )
     {
 
         /* name */
@@ -1103,7 +1103,7 @@ public class PushpinIcon
     }
 
     /**
-    *** Constructor 
+    *** Constructor
     *** @param name          This PushPin name
     *** @param imageURL      The image used to represent the icon for user selection
     *** @param icon          The icon image URL
@@ -1116,7 +1116,7 @@ public class PushpinIcon
         String name  , String imageURL,
         String icon  , int iconSize[], int iconHotspot[],
         String shadow, int shadowSize[]
-        ) 
+        )
     {
         this(name , imageURL,
             icon  , false, iconSize, iconHotspot,
@@ -1184,7 +1184,7 @@ public class PushpinIcon
         return StringTools.replaceKeys(this.iconURL, keyValMap);
     }
     */
-    
+
     // ------------------------------------------------------------------------
 
     /**
@@ -1195,8 +1195,8 @@ public class PushpinIcon
     {
         return this.iconEval;
     }
-    
-    /** 
+
+    /**
     *** This method attempts to duplicate the JavaScript evaluation for generated
     *** pushpin URLs which will be used on the maps/reports, etc.<br>
     *** This impelmentation should match the JavaScript implementations in the "jsmaps.js"
@@ -1212,7 +1212,7 @@ public class PushpinIcon
     ***   <li>evIndexedIconURL(e)</li>
     *** </ul>
     *** @param e     The EventData instance
-    *** @param index The event index (starting with '1') 
+    *** @param index The event index (starting with '1')
     *** @return  The pushpin URL
     **/
     public String getIconEvalURL(EventData e, int index)
@@ -1236,7 +1236,7 @@ public class PushpinIcon
         if (!this.getIconEval()) {
             return this.getImageURL();
         }
-        
+
         /* test eval */
         double e_speedKPH = (e != null)? e.getSpeedKPH() : 0.0;
         double e_heading  = (e != null)? e.getHeading()  : 0.0;
@@ -1329,13 +1329,13 @@ public class PushpinIcon
             String fill   = ""; // fill color (TODO: parse frame color value, if present)
             String border = ""; // border color
             String color  = ""; // text color
-            String url = 
-                "Marker?"  + 
-                "icon="    + icon + 
-                "&fr="     + fr + 
-                "&fill="   + fill + 
-                "&border=" + border + 
-                "&color="  + color + 
+            String url =
+                "Marker?"  +
+                "icon="    + icon +
+                "&fr="     + fr +
+                "&fill="   + fill +
+                "&border=" + border +
+                "&color="  + color +
                 "&text="   + StringTools.htmlFilterValue(text);
             return url;
         } else
@@ -1349,13 +1349,13 @@ public class PushpinIcon
             String fill   = "";
             String border = ""; // border color
             String color  = "000000"; // text color
-            String url = 
-                "Marker?"  + 
-                "icon="    + icon + 
-                "&fr="     + fr + 
-                "&fill="   + fill + 
-                "&border=" + border + 
-                "&color="  + color + 
+            String url =
+                "Marker?"  +
+                "icon="    + icon +
+                "&fr="     + fr +
+                "&fill="   + fill +
+                "&border=" + border +
+                "&color="  + color +
                 "&arrow="  + arrow;
             return url;
         } else
@@ -1367,58 +1367,58 @@ public class PushpinIcon
             String fill   = ""; // fill color (TODO: parse frame color value, if present)
             String border = ""; // border color
             String color  = "880000"; // text color
-            String url = 
-                "Marker?"  + 
-                "icon="    + icon + 
-                "&fr="     + fr + 
-                "&fill="   + fill + 
-                "&border=" + border + 
-                "&color="  + color + 
+            String url =
+                "Marker?"  +
+                "icon="    + icon +
+                "&fr="     + fr +
+                "&fill="   + fill +
+                "&border=" + border +
+                "&color="  + color +
                 "&text="   + StringTools.htmlFilterValue(text);
             return url;
         }
 
         /* not found, return default */
         return this.getImageURL();
-        
+
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
     *** Gets the Pushpin Icon image width (in pixels)
     *** @return The icon image width
     **/
-    public int getIconWidth() 
+    public int getIconWidth()
     {
         return this.iconWidth;
     }
-    
+
     /**
     *** Gets the Pushpin Icon image height (in pixels)
     *** @return The icon image height
     **/
-    public int getIconHeight() 
+    public int getIconHeight()
     {
         return this.iconHeight;
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
     *** Gets the Pushpin Icon image 'hotspot' X-offset (in pixels)
     *** @return The icon image 'hotspot' X-offset
     **/
-    public int getIconHotspotX() 
+    public int getIconHotspotX()
     {
         return this.iconHotspotX;
     }
-    
+
     /**
     *** Gets the Pushpin Icon image 'hotspot' Y-offset (in pixels)
     *** @return The icon image 'hotspot' Y-offset
     **/
-    public int getIconHotspotY() 
+    public int getIconHotspotY()
     {
         return this.iconHotspotY;
     }
@@ -1445,7 +1445,7 @@ public class PushpinIcon
     *** Gets the Pushpin Icon shadow image URL
     *** @return The icon shadow image url
     **/
-    public String getShadowURL() 
+    public String getShadowURL()
     {
         return this.shadowURL;
     }
@@ -1456,16 +1456,16 @@ public class PushpinIcon
     *** Gets the Pushpin Icon shadow image width (in pixels)
     *** @return The icon shadow image width
     **/
-    public int getShadowWidth() 
+    public int getShadowWidth()
     {
         return this.shadowWidth;
     }
-    
+
     /**
     *** Gets the Pushpin Icon shadow image height (in pixels)
     *** @return The icon shadow image height
     **/
-    public int getShadowHeight() 
+    public int getShadowHeight()
     {
         return this.shadowHeight;
     }
@@ -1488,16 +1488,16 @@ public class PushpinIcon
     *** Gets the Pushpin Icon background image width (in pixels)
     *** @return The icon background image width
     **/
-    public int getBackgroundWidth() 
+    public int getBackgroundWidth()
     {
         return this.backWidth;
     }
-    
+
     /**
     *** Gets the Pushpin Icon background image height (in pixels)
     *** @return The icon background image height
     **/
-    public int getBackgroundHeight() 
+    public int getBackgroundHeight()
     {
         return this.backHeight;
     }
@@ -1508,16 +1508,16 @@ public class PushpinIcon
     *** Gets the Pushpin Icon background image 'hotspot' X-offset (in pixels)
     *** @return The icon image 'hotspot' X-offset
     **/
-    public int getBackgroundOffsetX() 
+    public int getBackgroundOffsetX()
     {
         return this.backOffsetX;
     }
-    
+
     /**
     *** Gets the Pushpin Icon background image 'hotspot' Y-offset (in pixels)
     *** @return The icon image 'hotspot' Y-offset
     **/
-    public int getBackgroundOffsetY() 
+    public int getBackgroundOffsetY()
     {
         return this.backOffsetY;
     }
@@ -1665,7 +1665,7 @@ public class PushpinIcon
                 sb.append(" ");
                 String shadow = "shadow=\"" + shadowURL + "\"";
                 sb.append(shadow);
-    
+
                 /* "shadowSize=" */
                 int shadowWidth  = ppi.getShadowWidth();
                 int shadowHeight = ppi.getShadowHeight();

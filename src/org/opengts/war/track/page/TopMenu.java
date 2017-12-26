@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -91,7 +91,7 @@ public class TopMenu
     }
 
     // ------------------------------------------------------------------------
-    
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_MAIN;
@@ -103,7 +103,7 @@ public class TopMenu
         //I18N i18n = privLabel.getI18N(TopMenu.class);
         return super._getMenuDescription(reqState,"");
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -130,7 +130,7 @@ public class TopMenu
     // ------------------------------------------------------------------------
 
     public void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         final String pageMsg)
         throws IOException
     {
@@ -140,7 +140,7 @@ public class TopMenu
         final String       pageName   = TopMenu.this.getPageName();
 
         /* menu type */
-        final MenuType menuType = EnumTools.getValueOf(MenuType.class, 
+        final MenuType menuType = EnumTools.getValueOf(MenuType.class,
             privLabel.getStringProperty(PrivateLabel.PROP_TopMenu_menuType,null),
             MenuType.FIXED);
         //Print.logInfo("PrivateLabel name: " + privLabel.getName());
@@ -219,19 +219,19 @@ public class TopMenu
 
                 /* frame header */
                 if (showHeader) {
-                    out.println("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+
+                    out.println("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+
                         i18n.getString("TopMenu.mainMenu","Main Menu")+
-                        "</span><br/>");
-                    out.println("<span class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+
+                        "</h1>");
+                    out.println("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+
                         i18n.getString("TopMenu.selectItem","Please select an item from the following menu:")+
-                        "</span><br/>");
-                    out.println("<hr/>");
+                        "</p>");
+                  out.println("<hr/>");
                 }
 
                 /* display menu */
                 boolean showIcon = menuType.isIcon();
                 switch (menuType) {
-                    case FIXED: 
+                    case FIXED:
                     case FIXED_ICON: {
                         boolean menuHelp = privLabel.getBooleanProperty(PrivateLabel.PROP_TopMenu_showMenuHelp,true);
                         ExpandMenu.writeMenu(out, reqState, "topMenuFixed", false, showIcon, descriptionType, menuHelp);
