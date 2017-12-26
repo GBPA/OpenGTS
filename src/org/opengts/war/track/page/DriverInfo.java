@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,7 +55,7 @@ public class DriverInfo
     // ------------------------------------------------------------------------
     // Parameters
 
-    // forms 
+    // forms
     public  static final String FORM_DRIVER_SELECT              = "DriverInfoSelect";
     public  static final String FORM_DRIVER_EDIT                = "DriverInfoEdit";
     public  static final String FORM_DRIVER_NEW                 = "DriverInfoNew";
@@ -114,7 +114,7 @@ public class DriverInfo
     }
 
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -126,14 +126,14 @@ public class DriverInfo
         I18N i18n = privLabel.getI18N(DriverInfo.class);
         return super._getMenuDescription(reqState,i18n.getString("DriverInfo.editMenuDesc","View/Edit Driver Information"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
         I18N i18n = privLabel.getI18N(DriverInfo.class);
         return super._getMenuHelp(reqState,i18n.getString("DriverInfo.editMenuHelp","View and Edit Driver information"));
     }
-    
+
     // ------------------------------------------------------------------------
 
     public String getNavigationDescription(RequestProperties reqState)
@@ -151,7 +151,7 @@ public class DriverInfo
     }
 
     // ------------------------------------------------------------------------
-    
+
     private static long GetDayNumber(String ymd)
     {
         if (StringTools.isBlank(ymd)) {
@@ -170,7 +170,7 @@ public class DriverInfo
             return (new DayNumber(dn)).format(DayNumber.DATE_FORMAT_YMD_1);
         }
     }
-    
+
     // ------------------------------------------------------------------------
 
     private static String Filter(String s)
@@ -181,7 +181,7 @@ public class DriverInfo
             return s;
         }
     }
-    
+
     public void writePage(
         final RequestProperties reqState,
         String pageMsg)
@@ -455,7 +455,7 @@ public class DriverInfo
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = DriverInfo.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "DriverInfo.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "DriverInfo.css", cssDir);
                 if (showDateCal)  {
                     Calendar.writeStyle(out, reqState);
                 }
@@ -505,12 +505,12 @@ public class DriverInfo
                     String editURL    = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String selectURL  = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String newURL     = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
-                    
+
                     // DriverInfo selection table (Select, DriverInfo ID, DriverInfo Name)
                     out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DriverInfo.selectDriver","Select a Driver")+":</h1>\n");
                     out.write("<div style='margin-left:25px;'>\n");
@@ -556,7 +556,7 @@ public class DriverInfo
                                 out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL    +"' nowrap>"+licExpStr  +"</td>\n");
                             }
                         } catch (DBException dbe) {
-                            // 
+                            //
                         }
                         out.write("  </tr>\n");
                     }
@@ -564,23 +564,23 @@ public class DriverInfo
                     out.write("</table>\n");
                     out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
-                    if (_allowView  ) { 
+                    if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DriverInfo.view","View")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowEdit  ) { 
+                    if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DriverInfo.edit","Edit")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
                         out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("DriverInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
-                        out.write("&nbsp;"); 
+                        out.write("&nbsp;");
                     }
-                    out.write("</td>\n"); 
+                    out.write("</td>\n");
                     out.write("</tr>\n");
                     out.write("</table>\n");
                     out.write("</form>\n");
@@ -610,15 +610,15 @@ public class DriverInfo
             HTML_CONTENT = new HTMLOutput(CommonServlet.CSS_CONTENT_FRAME, m) {
                 public void write(PrintWriter out) throws IOException {
                     String pageName = DriverInfo.this.getPageName();
-    
+
                     // frame header
                   //String menuURL    = EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),PAGE_MENU_TOP);
                     String menuURL    = privLabel.getWebPageURL(reqState, PAGE_MENU_TOP);
                     String editURL    = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String selectURL  = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String newURL     = DriverInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
@@ -652,7 +652,7 @@ public class DriverInfo
                     if (showDeviceID) {
                         String devTitles[] = reqState.getDeviceTitles();
                         String selDevID    = (_selDriver != null)? _selDriver.getDeviceID() : "";
-                        ComboMap devMap    = new ComboMap(reqState.createDeviceDescriptionMap(true/*includeID*/)); 
+                        ComboMap devMap    = new ComboMap(reqState.createDeviceDescriptionMap(true/*includeID*/));
                         devMap.insert("", i18n.getString("DriverInfo.noDevice","None",devTitles));
                         out.println(FormRow_Separator());
                         out.println(FormRow_ComboBox (PARM_DEVICE_ID, _uiEdit, i18n.getString("DriverInfo.deviceID","{0} ID",devTitles)+":", selDevID, devMap, "", -1));
@@ -687,6 +687,6 @@ public class DriverInfo
             HTML_CONTENT);              // Content
 
     }
-    
+
     // ------------------------------------------------------------------------
 }

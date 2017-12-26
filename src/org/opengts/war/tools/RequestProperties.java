@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,12 +37,12 @@
 //      for the current selection
 //     -Increase default map size
 //  2007/12/13  Martin D. Flynn
-//     -Added methods to allow customizing 'Device', 'Device Group', and 'Entity' 
+//     -Added methods to allow customizing 'Device', 'Device Group', and 'Entity'
 //      titles.
 //  2008/04/11  Martin D. Flynn
 //     -Removed 'getMapProperties' method (the MapProvider now contains its own properties)
 //  2008/07/21  Martin D. Flynn
-//     -Optimized the "StringTools.KeyValueMap" 'getKeyValue' lookup, and added some 
+//     -Optimized the "StringTools.KeyValueMap" 'getKeyValue' lookup, and added some
 //      additional keys.
 //  2008/08/15  Martin D. Flynn
 //     -The 'admin' user [see "User.getAdminUserID()"] is always granted "ALL" access.
@@ -97,7 +97,7 @@ public class RequestProperties
 
     // ------------------------------------------------------------------------
     // -- Login frame generation targets
-    
+
     public  static final String       HTML_LOGIN_FRAME      = "loginFrame.html";
     public  static final String       _HTML_LOGIN_FRAME     = "/" + HTML_LOGIN_FRAME;
     public  static final String       HTML_LOGIN            = "login.html";
@@ -117,7 +117,7 @@ public class RequestProperties
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // -- Web-page elements (see 'getPageFrameSection', 'writePageFrameSection')
-    
+
     public  static final int    PAGE_FRAME_HEADER           = 0x0001;
     public  static final int    PAGE_FRAME_NAVIGATION       = 0x0002;
     public  static final int    PAGE_FRAME_FOOTER           = 0x0004;
@@ -125,13 +125,13 @@ public class RequestProperties
     public  static final int    PAGE_FRAME_RIGHT            = 0x0020;
     public  static final int    PAGE_FRAME_CONTENT          = 0x0100;
     public  static final int    PAGE_FRAME_CONTENT_MENUBAR  = 0x0200;
-    public  static final int    PAGE_FRAME_ALL              = 
-        PAGE_FRAME_HEADER | 
-        PAGE_FRAME_NAVIGATION | 
-        PAGE_FRAME_LEFT | 
-        PAGE_FRAME_CONTENT | 
-        PAGE_FRAME_CONTENT_MENUBAR | 
-        PAGE_FRAME_RIGHT | 
+    public  static final int    PAGE_FRAME_ALL              =
+        PAGE_FRAME_HEADER |
+        PAGE_FRAME_NAVIGATION |
+        PAGE_FRAME_LEFT |
+        PAGE_FRAME_CONTENT |
+        PAGE_FRAME_CONTENT_MENUBAR |
+        PAGE_FRAME_RIGHT |
         PAGE_FRAME_FOOTER;
 
     // ------------------------------------------------------------------------
@@ -187,7 +187,7 @@ public class RequestProperties
                                 }
                                 if ((imagePath == null) || !FileTools.isDirectory(imagePath)) {
                                     // -- image path is not a valid directory
-                                    continue; 
+                                    continue;
                                 }
                                 // -- get list of image files in image directory
                                 //Print.logInfo("Looking for images in: " + imagePath);
@@ -199,7 +199,7 @@ public class RequestProperties
                                         String name  = (p > 0)? fName.substring(0,p) : fName;
                                         String key   = IMAGE_KEY_PFX + name.toLowerCase();
                                         String path  = sp + "/" + fName;
-                                        this.imgMap.put(key, path);                    // %key ==> path 
+                                        this.imgMap.put(key, path);                    // %key ==> path
                                         this.imgNames.put(key, IMAGE_KEY_PFX + name);  // %key ==> %name
                                     }
                                 } else {
@@ -265,7 +265,7 @@ public class RequestProperties
     private static final ImageMap BannerURLMap = new ImageMap(
         // -- 1) banner image locations
         "images/banner",
-        "extra/images/banner", 
+        "extra/images/banner",
         "imagePack/banner",
         // -- 2) look in Tomcat "ROOT/images/banner"
         "/images/banner",
@@ -296,8 +296,8 @@ public class RequestProperties
     /* pre-defined texture images */
     private static final ImageMap TextureURLMap = new ImageMap(
         // -- 1) texture image locations
-        "images/texture", 
-        "extra/images/texture", 
+        "images/texture",
+        "extra/images/texture",
         "imagePack/texture",
         // -- 2) look in Tomcat "ROOT/images/texture"
         "/images/texture",
@@ -342,8 +342,8 @@ public class RequestProperties
 
             /* Runtime URI */
             String uri = RTConfig.getString(DBConfig.PROP_track_baseURI, null);
-            if (uri == null) { 
-                uri = Constants._DEFAULT_BASE_URI; 
+            if (uri == null) {
+                uri = Constants._DEFAULT_BASE_URI;
             }
 
             /* set Track baseURI */
@@ -370,11 +370,11 @@ public class RequestProperties
     private HttpServletResponse response                = null;
     private HttpServletRequest  request                 = null;
     private boolean             isSoapRequest           = false;
-    
+
     private String              baseURI                 = null;
-    
+
     private String              webPageURI              = null; // non-null to override default
-    
+
     private boolean             cookiesRequired         = true; // default to true
 
     private String              ipAddress               = "";
@@ -568,7 +568,7 @@ public class RequestProperties
     {
         this.cookiesRequired = cookiesReq;
     }
-    
+
     /* return the cookies enabled flag */
     public boolean getCookiesRequired()
     {
@@ -582,7 +582,7 @@ public class RequestProperties
     {
         this.ipAddress = ipAddr;
     }
-    
+
     /* return the current IP address */
     public String getIPAddress()
     {
@@ -613,7 +613,7 @@ public class RequestProperties
             return this.faviconLink;
         }
     }
-    
+
     /* returns true if favicon is defined */
     public boolean hasFaviconLink()
     {
@@ -732,7 +732,7 @@ public class RequestProperties
     {
         this.isReport = report;
     }
-    
+
     /* return true if this is a "report" request */
     public boolean isReport()
     {
@@ -851,7 +851,7 @@ public class RequestProperties
     {
         this.notifyEventsOnly = notifyEvents;
     }
-    
+
     /* return true if this request should get notify events only */
     public boolean getDeviceNotifyEventsOnly()
     {
@@ -873,13 +873,13 @@ public class RequestProperties
     }
 
     // ------------------------------------------------------------------------
-    
+
     /* set page frame sections written to client */
     public void setPageFrameSections(int pfs)
     {
         this.pageFrameSections = pfs | PAGE_FRAME_CONTENT;
     }
-    
+
     /* return page frame sections to write to client */
     public int getPageFrameSections()
     {
@@ -915,7 +915,7 @@ public class RequestProperties
     {
         this.cmdName = cmd;
     }
-    
+
     /* return the URL command name */
     public String getCommandName()
     {
@@ -927,7 +927,7 @@ public class RequestProperties
     {
         this.cmdArg = arg;
     }
-    
+
     /* return the URL argument string */
     public String getCommandArg()
     {
@@ -941,7 +941,7 @@ public class RequestProperties
     {
         this.privLabel = _privLabel;
     }
-    
+
     /* get the PrivateLabel for this domain */
     // does(must) not return null
     public PrivateLabel getPrivateLabel()
@@ -971,7 +971,7 @@ public class RequestProperties
     }
 
     /* returns true if locale is RTL (right-to-left) */
-    private static final String LocaleRTL[] = { 
+    private static final String LocaleRTL[] = {
         "ar",   // Arabic
         "arc",  // Aramaic
         "he",   // Hebrew
@@ -979,7 +979,7 @@ public class RequestProperties
         "yi",   // Yiddish
         // https://en.wikipedia.org/wiki/Right-to-left#RTL_Wikipedia_languages
     };
-    public boolean isLocaleRTL() 
+    public boolean isLocaleRTL()
     {
         Locale locale = this.getLocale();
         if (locale != null) {
@@ -1064,7 +1064,7 @@ public class RequestProperties
     {
         this.loginErrorAlert = true;
     }
-    
+
     public boolean _isLoginErrorAlert()
     {
         return this.loginErrorAlert;
@@ -1093,7 +1093,7 @@ public class RequestProperties
             // -- no HttpServletRequest
             //Print.logInfo("HttpServletRequest is null");
             return false;
-        } else 
+        } else
         if (_privLabel == null) {
             // -- no PrivateLabel
             //Print.logInfo("PrivateLabel is null");
@@ -1177,7 +1177,7 @@ public class RequestProperties
         if (request == null) {
             // no HttpServletRequest
             return false;
-        } else 
+        } else
         if (_privLabel == null) {
             // no PrivateLabel
             return false;
@@ -1225,7 +1225,7 @@ public class RequestProperties
             Print.logWarn("Account not specified!");
         }
     }
-    
+
     /* return the current Account */
     public Account getCurrentAccount()
     {
@@ -1318,7 +1318,7 @@ public class RequestProperties
     {
         this.setSelectedDeviceGroupID(groupID, true);
     }
-    
+
     /* return the current device group ID/name */
     public void setSelectedDeviceGroupID(String groupID, boolean isActualSpecifiedGroup)
     {
@@ -1382,7 +1382,7 @@ public class RequestProperties
     // does not return null
     public OrderedSet<String> getDeviceGroupIDList(boolean inclAll)
     {
-        // Warning: this caches the returned value!  
+        // Warning: this caches the returned value!
         if (this.deviceGrpSet == null) {
             User user = this.getCurrentUser();
             if (!User.isAdminUser(user)) {
@@ -1421,7 +1421,7 @@ public class RequestProperties
         }
         return inclAll? this.deviceGrpSetAll : this.deviceGrpSet;
     }
-    
+
     /* get the description of a specific device */
     private DeviceGroup descLastGroup = null;
     public String getDeviceGroupDescription(String grpID, boolean rtnDispName)
@@ -1433,8 +1433,8 @@ public class RequestProperties
         }
 
         /* previous device group? */
-        if ((this.descLastGroup != null) && 
-            this.descLastGroup.getAccountID().equals(this.getCurrentAccountID()) && 
+        if ((this.descLastGroup != null) &&
+            this.descLastGroup.getAccountID().equals(this.getCurrentAccountID()) &&
             this.descLastGroup.getGroupID().equals(grpID)) {
             String n = rtnDispName? this.descLastGroup.getDisplayName() : this.descLastGroup.getDescription();
             return !n.equals("")? n : grpID;
@@ -1535,7 +1535,7 @@ public class RequestProperties
     public String getDeviceDescription(String devID, boolean rtnDispName)
     {
         String devDescFields[] = new String[] {
-            Device.FLD_displayName, 
+            Device.FLD_displayName,
             Device.FLD_description
         };
 
@@ -1545,10 +1545,10 @@ public class RequestProperties
         }
 
         /* previous device? */
-        if ((this.descLastDeviceDescription != null) && 
-            this.descLastDeviceDescription.getAccountID().equals(this.getCurrentAccountID()) && 
+        if ((this.descLastDeviceDescription != null) &&
+            this.descLastDeviceDescription.getAccountID().equals(this.getCurrentAccountID()) &&
             this.descLastDeviceDescription.getDeviceID().equals(devID)) {
-            String n = rtnDispName? 
+            String n = rtnDispName?
                 this.descLastDeviceDescription.getDisplayName() :   // Device.FLD_displayName
                 this.descLastDeviceDescription.getDescription();    // Device.FLD_description
             return !n.equals("")? n : devID;
@@ -1560,7 +1560,7 @@ public class RequestProperties
             try {
                 this.descLastDeviceDescription = Device._getDevice(acct, devID, devDescFields);
                 if (this.descLastDeviceDescription != null) {
-                    String n = rtnDispName? 
+                    String n = rtnDispName?
                         this.descLastDeviceDescription.getDisplayName() :  // Device.FLD_displayName
                         this.descLastDeviceDescription.getDescription();   // Device.FLD_description
                     return !n.equals("")? n : devID;
@@ -1675,10 +1675,10 @@ public class RequestProperties
         }
 
         /* previous driver? */
-        if ((this.descLastDriverDescription != null) && 
-            this.descLastDriverDescription.getAccountID().equals(this.getCurrentAccountID()) && 
+        if ((this.descLastDriverDescription != null) &&
+            this.descLastDriverDescription.getAccountID().equals(this.getCurrentAccountID()) &&
             this.descLastDriverDescription.getDriverID().equals(drvID)) {
-            String n = rtnDispName? 
+            String n = rtnDispName?
                 this.descLastDriverDescription.getDisplayName() :   // Driver.FLD_displayName
                 this.descLastDriverDescription.getDescription();    // Driver.FLD_description
             return !n.equals("")? n : drvID;
@@ -1690,7 +1690,7 @@ public class RequestProperties
             try {
                 this.descLastDriverDescription = Driver.getDriver(acct, drvID);
                 if (this.descLastDriverDescription != null) {
-                    String n = rtnDispName? 
+                    String n = rtnDispName?
                         this.descLastDriverDescription.getDisplayName() :  // Driver.FLD_displayName
                         this.descLastDriverDescription.getDescription();   // Driver.FLD_description
                     return !n.equals("")? n : drvID;
@@ -1842,12 +1842,12 @@ public class RequestProperties
 
     /* create Device/DeviceGroup IDDescription list */
     @Deprecated // used only by DashboardMap.java
-    public java.util.List<IDDescription> createIDDescriptionList(boolean groupList, 
+    public java.util.List<IDDescription> createIDDescriptionList(boolean groupList,
         IDDescription.SortBy sortBy)
     {
         boolean inclAll = true, inclInactv = false;
-        OrderedSet<String> dgList = groupList? 
-            this.getDeviceGroupIDList(inclAll) : 
+        OrderedSet<String> dgList = groupList?
+            this.getDeviceGroupIDList(inclAll) :
             this.getDeviceIDList(inclInactv);
         java.util.List<IDDescription> idList = new Vector<IDDescription>();
         if (!ListTools.isEmpty(dgList)) {
@@ -1855,8 +1855,8 @@ public class RequestProperties
             boolean rtnDispName = sortBy.equals(IDDescription.SortBy.NAME);
             for (int i = 0; i < dgList.size(); i++) {
                 String dgid = dgList.get(i); // Device/Group ID
-                String desc = groupList? 
-                    this.getDeviceGroupDescription(dgid,rtnDispName) : 
+                String desc = groupList?
+                    this.getDeviceGroupDescription(dgid,rtnDispName) :
                     this.getDeviceDescription     (dgid,rtnDispName);
                 idList.add(new IDDescription(dgid, desc));
                 //Print.logInfo("DeviceGroup: " + dgid + " - " + desc);
@@ -1890,7 +1890,7 @@ public class RequestProperties
                     _cacheZoomRegionShapes = msList;
                 }
             }
-            
+
         }
         return _cacheZoomRegionShapes;
     }
@@ -2140,10 +2140,10 @@ public class RequestProperties
 
             // -- return fleet events
             return evList.toArray(new EventData[evList.size()]);
-                
+
         } else {
             // -- individual device events
-            
+
             // -- selected device
             Device device = this.getSelectedDevice();
             if (device == null) {
@@ -2194,7 +2194,7 @@ public class RequestProperties
             return ev;
 
         }
- 
+
     }
 
     // ------------------------------------------------------------------------
@@ -2330,7 +2330,7 @@ public class RequestProperties
             // -- return fleet events
             //Print.logWarn("Event Count: " + evCount);
             return !ListTools.isEmpty(devList)? devList : null;
-                
+
         } else {
             // -- individual device events
 
@@ -2385,7 +2385,7 @@ public class RequestProperties
             return !ListTools.isEmpty(devList)? devList : null;
 
         }
- 
+
     }
 
     // ------------------------------------------------------------------------
@@ -2448,7 +2448,7 @@ public class RequestProperties
     {
         return this.getPrivateLabel().getDateFormat();
     }
-    
+
     // ------------------------------------------------------------------------
 
     /* set the current time zone */
@@ -2471,7 +2471,7 @@ public class RequestProperties
         /* initialize Timezone String */
         if (StringTools.isBlank(this.timeZoneLongStr)) {
             String tzStr = null;
-            
+
             /* User/Account timezone string */
             Account a = this.getCurrentAccount();
             User    u = this.getCurrentUser();
@@ -2485,7 +2485,7 @@ public class RequestProperties
                 } else {
                     //Print.logInfo("User TimeZone: " + tzStr);
                 }
-            } else 
+            } else
             if (a != null) {
                 // get Account timezone
                 tzStr = a.getTimeZone();
@@ -2494,7 +2494,7 @@ public class RequestProperties
 
             /* still no timezone? */
             if (StringTools.isBlank(tzStr)) {
-                // make sure we have a timezone 
+                // make sure we have a timezone
                 tzStr = Account.GetDefaultTimeZone();
             }
 
@@ -2544,7 +2544,7 @@ public class RequestProperties
             return this.timeZone;
         }
     }
-    
+
     /* return the list of time zones */
     public java.util.List<String> getTimeZonesList()
     {
@@ -2582,19 +2582,19 @@ public class RequestProperties
     /* set event retrieval limit type [first/last] */
     public void setEventLimitType(String limitType)
     {
-        this.eventLimitType = (limitType != null) && limitType.equalsIgnoreCase("first")? 
+        this.eventLimitType = (limitType != null) && limitType.equalsIgnoreCase("first")?
             EventData.LimitType.FIRST : EventData.LimitType.LAST;
     }
 
     /* get event retrieval limit type [first/last] */
     public EventData.LimitType getEventLimitType()
     {
-        return this.isFleet()? EventData.LimitType.LAST : 
+        return this.isFleet()? EventData.LimitType.LAST :
             ((this.eventLimitType != null)? this.eventLimitType : EventData.LimitType.LAST);
     }
 
     // ------------------------------------------------------------------------
-    
+
     /* set the last event time */
     public void setLastEventTime(DateTime lastTime)
     {
@@ -3066,7 +3066,7 @@ public class RequestProperties
         return RequestProperties.reqI18NKeyMap;
 
     } // _getI18NKeyMap()
-    
+
     // --------------------------------
 
     /**
@@ -3126,7 +3126,7 @@ public class RequestProperties
     /**
     *** Create a new I18N String accessor object (Freemarker)
     **/
-    public Object ftl_I18NAccessor() 
+    public Object ftl_I18NAccessor()
     {
         if (this.i18bAccessor_blank == null) {
             // -- lazy init
@@ -3296,7 +3296,7 @@ public class RequestProperties
                     int p = url.lastIndexOf("/");
                     if (p > 0) {
                         // Strip "/XXXX" and append baseURI
-                        // TODO: may still need some tweaking 
+                        // TODO: may still need some tweaking
                         String baseURI = RequestProperties.TRACK_BASE_URI();
                         if (baseURI.startsWith(".")) { baseURI = baseURI.substring(1); }
                         url = url.substring(0,p) + baseURI;
@@ -3645,7 +3645,7 @@ public class RequestProperties
     *** Writes the Track section specified by the key, into the provided PrintWriter.
     *** (used by the track taglib)
     **/
-    public void writeTrackSection(HttpServletRequest request, PrintWriter pw, 
+    public void writeTrackSection(HttpServletRequest request, PrintWriter pw,
         String key, String keyArg, String keyDft)
         throws IOException
     {
@@ -3717,8 +3717,8 @@ public class RequestProperties
 
         /* expandMenu */
         if (key.equalsIgnoreCase(CommonServlet.SECTION_MENU)) {
-            ExpandMenu.writeMenu(pw, reqState, 
-                null/*menuID*/, true/*expandableMenu*/, 
+            ExpandMenu.writeMenu(pw, reqState,
+                null/*menuID*/, true/*expandableMenu*/,
                 false/*showIcon*/, ExpandMenu.DESC_LONG, false/*showMenuHelp*/);
             return;
         }
@@ -3801,7 +3801,7 @@ public class RequestProperties
         if (key.equalsIgnoreCase(CommonServlet.SECTION_CSSFILE)) {
             String cssFilePath = StringTools.trim(keyArg);
             if (!StringTools.isBlank(cssFilePath)) {
-                WebPageAdaptor.writeCssLink(pw, reqState, cssFilePath, null);
+                //WebPageAdaptor.writeCssLink(pw, reqState, cssFilePath, null);
             }
             return;
         }
@@ -3860,8 +3860,8 @@ public class RequestProperties
             if (!StringTools.isBlank(imgSrc)) {
                 // -- <a href='LINK' target='_blank'><img src='IMAGE' border='0' with='WIDTH' height='HEIGHT'/></a>
                 StringBuffer sb = new StringBuffer();
-                if (!StringTools.isBlank(imgLink)) { 
-                    sb.append("<a href='").append(imgLink).append("' target='_blank'>"); 
+                if (!StringTools.isBlank(imgLink)) {
+                    sb.append("<a href='").append(imgLink).append("' target='_blank'>");
                 }
                 sb.append("<img src='").append(imgSrc).append("' border='0'");
                 if (!StringTools.isBlank(imgWidth)) {
@@ -3939,12 +3939,12 @@ public class RequestProperties
         if (key.equalsIgnoreCase(CommonServlet.SECTION_JAVASCRIPT)) {
             // -- always write "utils.js"
             JavaScriptTools.writeUtilsJS(pw, request);
-            // -- check for other javascript 
+            // -- check for other javascript
             Object obj = request.getAttribute(CommonServlet.SECTION_JAVASCRIPT);
             if (obj instanceof HTMLOutput) {
-                ((HTMLOutput)obj).write(pw); 
+                ((HTMLOutput)obj).write(pw);
             } else {
-                pw.write("<!-- Unexpected section type '" + key + "' [" + StringTools.className(obj) + "] -->"); 
+                pw.write("<!-- Unexpected section type '" + key + "' [" + StringTools.className(obj) + "] -->");
             }
             return;
         }
@@ -3974,18 +3974,18 @@ public class RequestProperties
             }
             return;
         }
- 
+
         // --------------------------------------------------------------------
 
         /* HTMLOutput */
         Object obj = request.getAttribute(key);
         if (obj == null) {
-            pw.write("<!-- Undefined section '" + key + "' -->"); 
+            pw.write("<!-- Undefined section '" + key + "' -->");
         } else
         if (obj instanceof HTMLOutput) {
-            ((HTMLOutput)obj).write(pw); 
+            ((HTMLOutput)obj).write(pw);
         } else {
-            pw.write("<!-- Unexpected section type '" + key + "' [" + StringTools.className(obj) + "] -->"); 
+            pw.write("<!-- Unexpected section type '" + key + "' [" + StringTools.className(obj) + "] -->");
         }
         return;
 
@@ -4235,7 +4235,7 @@ public class RequestProperties
                 // -- blank means default value
                 rtn = dftS; // may be null
             } else
-            if (rtnS.equalsIgnoreCase("none") || 
+            if (rtnS.equalsIgnoreCase("none") ||
                 rtnS.equalsIgnoreCase("%none")  ) {
                 // -- no image requested
                 rtn = ""; // blank, not null
@@ -4258,12 +4258,12 @@ public class RequestProperties
                 // -- blank means default value
                 rtn = dftS; // may be null
             } else
-            if (rtnS.equalsIgnoreCase("none") || 
+            if (rtnS.equalsIgnoreCase("none") ||
                 rtnS.equalsIgnoreCase("%none")  ) {
                 // -- transparent
                 rtn = "transparent";
             } else
-            if (rtnS.equalsIgnoreCase("Translucent") || 
+            if (rtnS.equalsIgnoreCase("Translucent") ||
                 rtnS.equalsIgnoreCase("%Translucent")  ) {
                 // -- translucent white
                 rtn = "rgba(255,255,255,0.8)";

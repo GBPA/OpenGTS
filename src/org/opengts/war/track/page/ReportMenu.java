@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -128,8 +128,8 @@ public class ReportMenu
     *** Writes the JavaScript information
     **/
     protected static void writeJS_MenuUpdate(PrintWriter out, RequestProperties reqState, ReportMenu rptMenu,
-        boolean showFromCal, String parm_RANGE_FR[], 
-        boolean showToCal  , String parm_RANGE_TO[], 
+        boolean showFromCal, String parm_RANGE_FR[],
+        boolean showToCal  , String parm_RANGE_TO[],
         String parm_TIMEZONE[],
         boolean allowNonHtmlFormat)
         throws IOException
@@ -418,7 +418,7 @@ public class ReportMenu
         out.write("       }\n");
         out.write("   }\n");
         out.write("}\n");
-        
+
         out.write("// Report radio button selection changed \n");
         out.write("function rptmReportRadioChanged() {\n");
         out.write("   try {\n");
@@ -527,8 +527,8 @@ public class ReportMenu
     // --------------------------------
 
     /**
-    *** Returns true if this report type should display device groups 
-    *** @return True if this report type should display device groups 
+    *** Returns true if this report type should display device groups
+    *** @return True if this report type should display device groups
     **/
     public boolean isReportTypeDeviceGroup()
     {
@@ -536,8 +536,8 @@ public class ReportMenu
     }
 
     /**
-    *** Returns true if this report type should display devices 
-    *** @return True if this report type should display devices 
+    *** Returns true if this report type should display devices
+    *** @return True if this report type should display devices
     **/
     public boolean isReportTypeDevice()
     {
@@ -545,8 +545,8 @@ public class ReportMenu
     }
 
     /**
-    *** Returns true if this report type should display drivers 
-    *** @return True if this report type should display drivers 
+    *** Returns true if this report type should display drivers
+    *** @return True if this report type should display drivers
     **/
     public boolean isReportTypeDriver()
     {
@@ -554,8 +554,8 @@ public class ReportMenu
     }
 
     /**
-    *** Returns true if this report type should display tables 
-    *** @return True if this report type should display tables 
+    *** Returns true if this report type should display tables
+    *** @return True if this report type should display tables
     **/
     public boolean isReportTypeTable()
     {
@@ -586,7 +586,7 @@ public class ReportMenu
         I18N i18n = privLabel.getI18N(ReportMenu.class);
         return super._getMenuDescription(reqState,i18n.getString("ReportMenu.menuDesc","GPS tracking reports"));
     }
-   
+
     /**
     *** Gets the menu help text
     *** @param reqState  The login session RequestProperties instance
@@ -681,7 +681,7 @@ public class ReportMenu
     *** @param pageMsg   The page message
     **/
     public void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         final String pageMsg)
         throws IOException
     {
@@ -701,7 +701,7 @@ public class ReportMenu
         /* error */
         String m = pageMsg;
         boolean error = !StringTools.isBlank(m);
-        
+
         /* date parameters */
         final boolean showFromCal  = this.getShowFromCalendar();
         final boolean showToCal    = this.getShowToCalendar();
@@ -714,7 +714,7 @@ public class ReportMenu
         String rangeFr   = (String)AttributeTools.getRequestAttribute(request, parm_RANGE_FR  , "");
         String rangeTo   = (String)AttributeTools.getRequestAttribute(request, parm_RANGE_TO  , "");
         String tzStr     = (String)AttributeTools.getRequestAttribute(request, parm_TIMEZONE  , "");
-        
+
         /* other args */
         String limitStr  = (String)AttributeTools.getRequestAttribute(request, PARM_LIMIT     , "");
         String limitType = (String)AttributeTools.getRequestAttribute(request, PARM_LIMIT_TYPE, ""); // not used
@@ -749,7 +749,7 @@ public class ReportMenu
                 tzStr = currAcct.getTimeZone();
             }
             if (StringTools.isBlank(tzStr)) {
-                // -- make sure we have a timezone 
+                // -- make sure we have a timezone
                 // -  (unecessary, since Account/User will return a timezone)
                 tzStr = Account.GetDefaultTimeZone();
             }
@@ -805,7 +805,7 @@ public class ReportMenu
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = ReportMenu.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "ReportMenu.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "ReportMenu.css", cssDir);
                 Calendar.writeStyle(out, reqState);
                 if (DeviceChooser.isDeviceChooserUseTable(privLabel)) {
                     DeviceChooser.writeStyle(out, reqState);
@@ -817,13 +817,13 @@ public class ReportMenu
         final boolean allowNonHtmlFormat = privLabel.hasReadAccess(currUser, this.getFormatAclName(_ACL_NON_HTML_FORMATS)) &&
             privLabel.getBooleanProperty(PrivateLabel.PROP_ReportMenu_allowNonHtmlFormats,true);
         final boolean outFormat_HTML = true; // always enabled
-        final boolean outFormat_CSV  = allowNonHtmlFormat; // && 
+        final boolean outFormat_CSV  = allowNonHtmlFormat; // &&
             //ReportURL.hasFormatReadAccess(currUser, privLabel, this.getAclName(), ReportURL.FORMAT_CSV);
-        final boolean outFormat_XML  = allowNonHtmlFormat; // && 
+        final boolean outFormat_XML  = allowNonHtmlFormat; // &&
             //ReportURL.hasFormatReadAccess(currUser, privLabel, this.getAclName(), ReportURL.FORMAT_XML);
         final boolean outFormat_XLS  = allowNonHtmlFormat && ReportSpreadsheet.IsExcelSpreadsheetSupported(); // &&
             //ReportURL.hasFormatReadAccess(currUser, privLabel, this.getAclName(), ReportURL.FORMAT_XML);
-        final boolean outFormat_PDF  = false; // allowNonHtmlFormat && 
+        final boolean outFormat_PDF  = false; // allowNonHtmlFormat &&
             //ReportURL.hasFormatReadAccess(currUser, privLabel, this.getAclName(), ReportURL.FORMAT_PDF);
 
         /* has notification email address */
@@ -840,12 +840,12 @@ public class ReportMenu
         } else
         if (StringTools.isBlank(smtpProps.getFromEmailType("report"))) {
             // -- no "From" email address
-            Print.logWarn("No valid 'From' notification email address defined ('EMail' option disabled)"); 
+            Print.logWarn("No valid 'From' notification email address defined ('EMail' option disabled)");
             outFormat_EHTML = false;
         } else
         if (!EMail.isSendMailEnabled()) {
             // -- SendMail not installed/enabled
-            Print.logWarn("SendMail/JavaMail not installed."); 
+            Print.logWarn("SendMail/JavaMail not installed.");
             outFormat_EHTML = false;
         } else {
             // -- otherwise enabled
@@ -880,8 +880,8 @@ public class ReportMenu
                         privLabel.getWebPageURL(reqState, pageName, Track.COMMAND_DEVICE_LIST));
                 }
                 ReportMenu.writeJS_MenuUpdate(out, reqState, ReportMenu.this,
-                    showFromCal, parm_RANGE_FR, 
-                    showToCal  , parm_RANGE_TO, 
+                    showFromCal, parm_RANGE_FR,
+                    showToCal  , parm_RANGE_TO,
                     parm_TIMEZONE,
                     allowNonHtmlFormat);
             }
@@ -898,21 +898,21 @@ public class ReportMenu
                 String reportURL = Track.GetBaseURL(reqState); // EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI());
 
                 /* Command Form */
-                // -- This entire form is 'hidden'.  It's used by JS functions to submit specific commands 
+                // -- This entire form is 'hidden'.  It's used by JS functions to submit specific commands
                 String pageTarget = "_self"; // change to "_blank" to open reports in a separate page  // target='_top'
                 out.write("\n");
                 out.write("<form id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+reportURL+"\" target='"+pageTarget+"'>\n");
                 out.write(" <input type='hidden' name='"+PARM_PAGE              +"' value=''/>\n");
                 out.write(" <input type='hidden' name='"+PARM_COMMAND           +"' value=''/>\n");
                 out.write(" <input type='hidden' name='"+PARM_ARGUMENT          +"' value=''/>\n");
-                if (isGroup)  { 
-                out.write(" <input type='hidden' name='"+PARM_GROUP_ID          +"' value=''/>\n"); 
+                if (isGroup)  {
+                out.write(" <input type='hidden' name='"+PARM_GROUP_ID          +"' value=''/>\n");
                 } else
                 if (isDevice) {
-                out.write(" <input type='hidden' name='"+PARM_DEVICE_ID         +"' value=''/>\n"); 
+                out.write(" <input type='hidden' name='"+PARM_DEVICE_ID         +"' value=''/>\n");
                 } else
                 if (isDriver) {
-                out.write(" <input type='hidden' name='"+PARM_DRIVER_ID         +"' value=''/>\n"); 
+                out.write(" <input type='hidden' name='"+PARM_DRIVER_ID         +"' value=''/>\n");
                 }
                 out.write(" <input type='hidden' name='"+PARM_REPORT[0]         +"' value=''/>\n");
                 out.write(" <input type='hidden' name='"+PARM_REPORT_OPT        +"' value=''/>\n");
@@ -1183,9 +1183,9 @@ public class ReportMenu
                 // the following pushes the calendars to the top
                 // (however, it also pushes the footer to the bottom of the frame, and leaves
                 // a bunch of space below the footer)
-                //out.write("<div style='height:100%'>&nbsp;</div>\n"); 
-                
-                out.write(  "</div>\n");                
+                //out.write("<div style='height:100%'>&nbsp;</div>\n");
+
+                out.write(  "</div>\n");
                 out.write("</div>\n");
                 out.write("\n");
 
@@ -1237,7 +1237,7 @@ public class ReportMenu
                                     String d = optMap.get(k);
                                     out.write("<input id='"+optId+"' name='"+optId+"' type='hidden' value='"+k+"'>");
                                     out.write("<span class='"+CSS_REPORT_RADIO_OPTION+"'>["+d+"]</span>\n");
-                                } else 
+                                } else
                                 */
                                 {
                                     ComboMap comboOptMap = new ComboMap(optMap);
@@ -1256,7 +1256,7 @@ public class ReportMenu
                 out.write("</form>\n");
                 out.write("</td>\n");
                 out.write("</tr>\n");
-                
+
                 out.write(" <!-- Begin Report Submit -->\n");
                 out.write(" <tr>\n");
                 out.write("  <td valign='bottom' style='text-align: left;'>\n");
@@ -1319,7 +1319,7 @@ public class ReportMenu
                 out.write("</table>\n");  // }
 
                 /* write DeviceChooser DIV */
-                if (DeviceChooser.isDeviceChooserUseTable(privLabel) && 
+                if (DeviceChooser.isDeviceChooserUseTable(privLabel) &&
                     (isGroup || isDevice || isDriver)) {
                     java.util.List<IDDescription> idList;
                     if (isGroup) {

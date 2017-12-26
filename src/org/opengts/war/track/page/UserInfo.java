@@ -834,7 +834,7 @@ public class UserInfo
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = UserInfo.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "UserInfo.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "UserInfo.css", cssDir);
             }
         };
 

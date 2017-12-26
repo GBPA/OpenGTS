@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -80,7 +80,7 @@ public class Calendar
         Action(int v)                       { vv = v; }
         public int     getIntValue()        { return vv; }
     };
-    
+
     public static Action getCalendarAction(String action)
     {
         String act = StringTools.trim(action).toLowerCase();
@@ -221,11 +221,11 @@ public class Calendar
 
     // ------------------------------------------------------------------------
     // write calendar Style
-    
+
     public static void writeStyle(PrintWriter out, RequestProperties reqState)
         throws IOException
     {
-        WebPageAdaptor.writeCssLink(out, reqState, "Calendar.css", null);
+        //WebPageAdaptor.writeCssLink(out, reqState, "Calendar.css", null);
     }
 
     // ------------------------------------------------------------------------
@@ -281,11 +281,11 @@ public class Calendar
 
         /* I18N */
         if (timeTxtFld) {
-        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_HOUR"  , i18n.getString("Calendar.inputHour.tooltip"  ,"Double-click to enter hour")); 
-        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_MINUTE", i18n.getString("Calendar.inputMinute.tooltip","Double-click to enter minute")); 
+        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_HOUR"  , i18n.getString("Calendar.inputHour.tooltip"  ,"Double-click to enter hour"));
+        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_MINUTE", i18n.getString("Calendar.inputMinute.tooltip","Double-click to enter minute"));
         } else {
-        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_HOUR"  , i18n.getString("Calendar.incrementHour.tooltip","Click to increment hour")); 
-        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_MINUTE", i18n.getString("Calendar.incrementMinute.tooltip","Click to increment minute")); 
+        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_HOUR"  , i18n.getString("Calendar.incrementHour.tooltip","Click to increment hour"));
+        JavaScriptTools.writeJSVar(out, "TOOLTIP_SET_MINUTE", i18n.getString("Calendar.incrementMinute.tooltip","Click to increment minute"));
         }
         JavaScriptTools.writeJSVar(out, "TOOLTIP_EXPAND"    , i18n.getString("Calendar.expand.tooltip", "Click to expand calendar"));
         JavaScriptTools.writeJSVar(out, "TOOLTIP_COLLAPSE"  , i18n.getString("Calendar.collapse.tooltip", "Click to collapse calendar"));

@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,9 +64,9 @@ public class ReportDisplay
     extends WebPageAdaptor
     implements Constants
 {
-    
+
     // ------------------------------------------------------------------------
-    
+
     /* DEBUG: save emailed report output to "/tmp/" (should be false for production) */
     private static final boolean DEBUG_SAVE_EHTML_TO_TMP    = false;
 
@@ -132,7 +132,7 @@ public class ReportDisplay
         this.setPageNavigation(pageNav);
         return super.getPageNavigationHTML(reqState,true);
     }
-    
+
     // ------------------------------------------------------------------------
 
     public String getMenuName(RequestProperties reqState)
@@ -146,7 +146,7 @@ public class ReportDisplay
         //I18N i18n = privLabel.getI18N(ReportDisplay.class);
         return super._getMenuDescription(reqState,"");
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         //PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -188,15 +188,15 @@ public class ReportDisplay
         TimeZone tmz      = reqState.getTimeZone();
         String iconSel    = report.getMapIconSelector(); // may be null
         OrderedMap<String,PushpinIcon> iconMap = mapProvider.getPushpinIconMap(reqState);
-        return EventUtil.getInstance().formatMapEvent(privLabel, edp, 
-            iconSel, iconMap, 
+        return EventUtil.getInstance().formatMapEvent(privLabel, edp,
+            iconSel, iconMap,
             isFleet, stoppedState,
             tmz, dateFmt, timeFmt);
 
     }
 
     private void _writeReportMap(
-        HttpServletResponse response, final RequestProperties reqState, 
+        HttpServletResponse response, final RequestProperties reqState,
         final ReportData report, final I18N i18n)
         throws ReportException, IOException
     {
@@ -389,15 +389,15 @@ public class ReportDisplay
 
         pw.write("</head>\n");
         pw.write("\n");
-        
+
         // -- HTML Body
-        pw.write("<body onload=\"javascript:trackMapOnLoad();\" onunload=\"javascript:trackMapOnUnload();\">\n"); 
+        pw.write("<body onload=\"javascript:trackMapOnLoad();\" onunload=\"javascript:trackMapOnUnload();\">\n");
         //pw.write(" leftmargin='0' rightmargin='0' topmargin='0' bottommargin='0'>\n");
         pw.write("<div>\n"); //  style='align:center; width:99%; height:99%;'>\n");
         mapProvider.writeMapCell(pw, reqState, new MapDimension());
         pw.write("</div>\n");
         pw.write("</body>\n");
-        
+
         // -- HTML end
         pw.write("</html>\n");
         pw.close();
@@ -451,8 +451,8 @@ public class ReportDisplay
         }
 
         /* KML output */
-        GoogleKML.getInstance().writeEvents(pw, 
-            account, devList, 
+        GoogleKML.getInstance().writeEvents(pw,
+            account, devList,
             privLabel);
 
     }
@@ -488,7 +488,7 @@ public class ReportDisplay
         pw.write("\n");
 
         // HTML body
-        pw.write("<body>\n");  
+        pw.write("<body>\n");
         //String graphImageURL = EncodeURL(reqState, report.getGraphImageURL());  // OBSOLETE
         //if (!StringTools.isBlank(graphImageURL)) {
         //    // image URL
@@ -507,7 +507,7 @@ public class ReportDisplay
     // ------------------------------------------------------------------------
 
     public void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         final String pageMsg)
         throws IOException
     {
@@ -538,7 +538,7 @@ public class ReportDisplay
         String rptOption   = (String)AttributeTools.getRequestAttribute(request, PARM_REPORT_OPT , "");
         String rptText     = (String)AttributeTools.getRequestAttribute(request, PARM_REPORT_TEXT, ""); // not used
         String deviceID    = (String)AttributeTools.getRequestAttribute(request, PARM_DEVICE_ID  , "");
-        String groupID     = (String)AttributeTools.getRequestAttribute(request, PARM_GROUP_ID   , ""); 
+        String groupID     = (String)AttributeTools.getRequestAttribute(request, PARM_GROUP_ID   , "");
         String rangeFr     = (String)AttributeTools.getRequestAttribute(request, PARM_RANGE_FR   , "");
         String rangeTo     = (String)AttributeTools.getRequestAttribute(request, PARM_RANGE_TO   , "");
         String tzStr       = (String)AttributeTools.getRequestAttribute(request, PARM_TIMEZONE   , "");
@@ -556,7 +556,7 @@ public class ReportDisplay
         rptOption   = this.getStringProperty(privLabel, PROP_REPORT_OPT , rptOption);
         rptText     = this.getStringProperty(privLabel, PROP_REPORT_TEXT, rptText);   // not used
         deviceID    = this.getStringProperty(privLabel, PROP_DEVICE_ID  , deviceID);
-        groupID     = this.getStringProperty(privLabel, PROP_GROUP_ID   , groupID); 
+        groupID     = this.getStringProperty(privLabel, PROP_GROUP_ID   , groupID);
         rangeFr     = this.getStringProperty(privLabel, PROP_RANGE_FR   , rangeFr);
         rangeTo     = this.getStringProperty(privLabel, PROP_RANGE_TO   , rangeTo);
         tzStr       = this.getStringProperty(privLabel, PROP_TIMEZONE   , tzStr);
@@ -733,11 +733,11 @@ public class ReportDisplay
                 // -- convert "to" date (ie. +0d,23:59")
                 String   arg_TO  = URIArg.decodeArg(null,autoReportURL.getArgValue(Calendar.PARM_RANGE_TO)).toString();
                 DateTime dtm_TO  = Calendar.parseDate(arg_TO, tz, true );
-                if (dtm_TO == null) { 
+                if (dtm_TO == null) {
                     if (reportDta.getRequiresTimeEnd()) {
                         Print.logWarn("Unable to parse 'to' date: " + arg_TO);
                     }
-                    dtm_TO = new DateTime(dtm_FR.getDayEnd(),tz); 
+                    dtm_TO = new DateTime(dtm_FR.getDayEnd(),tz);
                 }
                 long     day_TO  = DateTime.getDayNumberFromDate(dtm_TO);
                 long     delt_TO = day_TO - day_NW;
@@ -774,12 +774,12 @@ public class ReportDisplay
                 kmlURL.addArg(PARM_FORMAT[1], ReportData.FORMAT_KML);
                 //graphURL.setArgValue(PARM_DEVICE_ID, deviceID);
                 reportDta.setKmlURL(kmlURL);
-            } 
+            }
         }
 
         /* TimeZone */
-        if (StringTools.isBlank(tzStr)        || 
-            tzStr.equalsIgnoreCase("account") || 
+        if (StringTools.isBlank(tzStr)        ||
+            tzStr.equalsIgnoreCase("account") ||
             tzStr.equalsIgnoreCase("user")      ) {
             if (user != null) {
                 // -- try User timezone
@@ -793,7 +793,7 @@ public class ReportDisplay
                 tzStr = account.getTimeZone();
             }
             if (StringTools.isBlank(tzStr)) {
-                // -- make sure we have a timezone 
+                // -- make sure we have a timezone
                 // -  (unecessary, since Account/User will return a timezone)
                 tzStr = Account.GetDefaultTimeZone();
             }
@@ -823,9 +823,9 @@ public class ReportDisplay
                     Print.logException("Reading Device last event: " + reqState.getCurrentAccountID() + "/" + deviceID, dbe);
                 }
             }
-            if (dateFr == null) { 
+            if (dateFr == null) {
                 // -- default to current day start
-                dateFr = Calendar.getCurrentDayStart(tz); 
+                dateFr = Calendar.getCurrentDayStart(tz);
             }
         } else
         if (rangeFr.equalsIgnoreCase("current")) {
@@ -833,9 +833,9 @@ public class ReportDisplay
         } else
         if (!rangeFr.equals("")) {
             dateFr = Calendar.parseDate(rangeFr, tz, false);
-            if (dateFr == null) { 
+            if (dateFr == null) {
                 Print.logWarn("Unable to parse 'From' date: " + rangeFr);
-                dateFr = Calendar.getCurrentDayStart(tz); 
+                dateFr = Calendar.getCurrentDayStart(tz);
             }
         } else {
             dateFr = Calendar.getCurrentDayStart(tz); // does not return null
@@ -858,7 +858,7 @@ public class ReportDisplay
                     Print.logException("Reading Device last event: " + reqState.getCurrentAccountID() + "/" + deviceID, dbe);
                 }
             }
-            if (dateTo == null) { 
+            if (dateTo == null) {
                 // -- default to current day end
                 dateTo = Calendar.getCurrentDayEnd(tz);  // does not return null
             }
@@ -872,9 +872,9 @@ public class ReportDisplay
         } else
         if (!rangeTo.equals("")) {
             dateTo = Calendar.parseDate(rangeTo, tz, false);
-            if (dateTo == null) { 
+            if (dateTo == null) {
                 Print.logWarn("Unable to parse 'To' date: " + rangeTo);
-                dateTo = Calendar.getCurrentDayEnd(tz); 
+                dateTo = Calendar.getCurrentDayEnd(tz);
             }
         } else {
             dateTo = Calendar.getCurrentDayEnd(tz);  // does not return null
@@ -1102,11 +1102,11 @@ public class ReportDisplay
                 try {
                     pw.write("\n");
                     pw.write("<!-- Begin Report Style -->\n");
-                    String cssDir = ReportDisplay.this.getCssDirectory(); 
-                    WebPageAdaptor.writeCssLink(pw, reqState, "ReportDisplay.css", cssDir);
+                    String cssDir = ReportDisplay.this.getCssDirectory();
+                    //WebPageAdaptor.writeCssLink(pw, reqState, "ReportDisplay.css", cssDir);
                     if (reportLayout.hasCSSFiles()) {
                         for (String file : reportLayout.getCSSFiles(true)) {
-                            WebPageAdaptor.writeCssLink(pw, reqState, file, cssDir);
+                            //WebPageAdaptor.writeCssLink(pw, reqState, file, cssDir);
                         }
                     }
                     reportDta.writeReportStyle(ReportURL.FORMAT_HTML, new OutputProvider(pw));
@@ -1278,8 +1278,8 @@ public class ReportDisplay
                         byte rptAttach[] = bhsp.toByteArray();  // contains entire report HTML
                         String multipartType = "";
                         // -- subject
-                        String subj = 
-                            i18n.getString("ReportDisplay.reportTitle","Report") + ": " + 
+                        String subj =
+                            i18n.getString("ReportDisplay.reportTitle","Report") + ": " +
                             reportDta.getReportTitle() + " - " + subTitle; // email subject
                         // -- body
                         String body = null; // <== null to prevent multiple attachmets
@@ -1302,8 +1302,8 @@ public class ReportDisplay
                         SendMail.Attachments attach = new SendMail.Attachments(
                             multipartType, // "mixed"/"alternative"
                             new SendMail.Attachment(
-                                rptAttach, 
-                                reportID + ".html", 
+                                rptAttach,
+                                reportID + ".html",
                                 HTMLTools.MIME_HTML())
                         );
                         SendMail.send(frEmail,toEmail,subj,body,attach,smtpProps,false);

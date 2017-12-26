@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -116,7 +116,7 @@ public class ReportTable
     {
         this(null, null);
     }
-    
+
     protected ReportTable(ReportHeader rh, ReportBody rb)
     {
         this.rptHeader       = (rh != null)? rh : new ReportHeader(this);
@@ -169,7 +169,7 @@ public class ReportTable
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    private int writeHTML(OutputProvider out, int level, ReportData rd) 
+    private int writeHTML(OutputProvider out, int level, ReportData rd)
         throws ReportException
     {
         PrintWriter pw = null;
@@ -206,7 +206,7 @@ public class ReportTable
 
     }
 
-    private int _writeHTML(PrintWriter out, int level, ReportData rd, int ndx) 
+    private int _writeHTML(PrintWriter out, int level, ReportData rd, int ndx)
         throws ReportException
     {
 
@@ -357,7 +357,7 @@ public class ReportTable
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    private int writeXML(OutputProvider out, int level, ReportData rd, ReportURL.Format rptFormat) 
+    private int writeXML(OutputProvider out, int level, ReportData rd, ReportURL.Format rptFormat)
         throws ReportException
     {
         int rcdCount = 0;
@@ -365,7 +365,7 @@ public class ReportTable
         return rcdCount;
     }
 
-    private int _writeXML(OutputProvider out, int level, ReportData rd, ReportURL.Format rptFormat) 
+    private int _writeXML(OutputProvider out, int level, ReportData rd, ReportURL.Format rptFormat)
         throws ReportException
     {
 
@@ -384,7 +384,7 @@ public class ReportTable
         I18N i18n = privLabel.getI18N(ReportTable.class);
         String PFX1 = XMLTools.PREFIX(isSoapRequest, level * ReportTable.INDENT);
         String PFX2 = XMLTools.PREFIX(isSoapRequest, (level + 1) * ReportTable.INDENT);
-        
+
         /* Account/User */
         String accountID = rd.getAccountID();
         String userID    = rd.getUserID();
@@ -448,7 +448,7 @@ public class ReportTable
         pw.print(XMLTools.startTAG(isSoapRequest,TAG_SelectionLimit,                     // TAG_SelectionLimit
             XMLTools.ATTR("type",rc.getSelectionLimitType()),
             false,false));
-        pw.print(XmlFilter(isSoapRequest,rc.getSelectionLimit()));                     
+        pw.print(XmlFilter(isSoapRequest,rc.getSelectionLimit()));
         pw.print(XMLTools.endTAG(isSoapRequest,TAG_SelectionLimit,true));                // TAG_SelectionLimit
 
         /* Ascending */
@@ -570,7 +570,7 @@ public class ReportTable
                     byte rptAttach[] = StringTools.getBytes(htmlStr);
                     String multipartType = "";
                     // -- subject
-                    String subj = 
+                    String subj =
                         i18n.getString("ReportDisplay.reportTitle","Report")+": " +
                         rd.getReportTitle() + " - " + subTitle; // email subject
                     // -- body
@@ -595,7 +595,7 @@ public class ReportTable
                         multipartType, // "mixed"/"alternative"
                         new SendMail.Attachment(
                             rptAttach,
-                            reportID + ".html", 
+                            reportID + ".html",
                             HTMLTools.MIME_HTML())
                     );
                     SendMail.send(frEmail,toEmail,subj,body,attach,smtpProps,false);
@@ -666,12 +666,12 @@ public class ReportTable
                 try {
                     pw.write("\n");
                     pw.write("<!-- Begin Report Style -->\n");
-                    String cssDir = privLabel.getCssDirectory(); 
-                    WebPageAdaptor.writeCssLink(pw, reqState, "ReportDisplay.css", cssDir);
+                    String cssDir = privLabel.getCssDirectory();
+                    //WebPageAdaptor.writeCssLink(pw, reqState, "ReportDisplay.css", cssDir);
                     ReportLayout reportLayout = report.getReportLayout();
                     if (reportLayout.hasCSSFiles()) {
                         for (String file : reportLayout.getCSSFiles(true)) {
-                            WebPageAdaptor.writeCssLink(pw, reqState, file, cssDir);
+                            //WebPageAdaptor.writeCssLink(pw, reqState, file, cssDir);
                         }
                     }
                     report.writeReportStyle(ReportURL.FORMAT_HTML, new OutputProvider(pw));
@@ -724,7 +724,7 @@ public class ReportTable
             emailLinkProps.setString("EMailReport.url" , emailURL.toString());
             emailLinkProps.setString("EMailReport.desc", "Web Link"); // I18N
         }
- 
+
         /* write report byte array */
         HttpServletResponse httpResp = reqState.getHttpServletResponse();
         BufferedHttpServletResponse bhsp = new BufferedHttpServletResponse(httpResp);
@@ -775,7 +775,7 @@ public class ReportTable
         } else {
             return "";
         }
-        
+
     }
 
     // ------------------------------------------------------------------------
@@ -812,7 +812,7 @@ public class ReportTable
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    private int writeCSV(OutputProvider out, int level, ReportData rd, boolean mimeCSV) 
+    private int writeCSV(OutputProvider out, int level, ReportData rd, boolean mimeCSV)
         throws ReportException
     {
 
@@ -861,7 +861,7 @@ public class ReportTable
 
     }
 
-    private int _writeCSV(PrintWriter pw, int level, ReportData rd, int devCnt) 
+    private int _writeCSV(PrintWriter pw, int level, ReportData rd, int devCnt)
         throws ReportException
     {
 
@@ -964,7 +964,7 @@ public class ReportTable
         //     ==> BodyRowTemplate
         //         ==> BodyColumnTemplate
         this.rptBody.writeXLS(rptSS, level+1, rd);
-        
+
         /* return record count */
         return this.rptBody.getRecordCount(rd); // rd.getReportRecordCount()
 
@@ -973,7 +973,7 @@ public class ReportTable
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    private int writePDF(OutputProvider out, int level, ReportData rd) 
+    private int writePDF(OutputProvider out, int level, ReportData rd)
         throws ReportException
     {
         Print.logInfo("PDF report output ...");
@@ -984,7 +984,7 @@ public class ReportTable
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    private int writeCallback(OutputProvider out, int level, ReportData rd) 
+    private int writeCallback(OutputProvider out, int level, ReportData rd)
         throws ReportException
     {
 

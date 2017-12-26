@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -76,7 +76,7 @@ var CLASS_DETAILS_TABLE_S       = "mapDetailsTable_sortable";       // TABLE
 var CLASS_DETAILS_HEADER_ROW    = "mapDetailsHeaderRow";            // TR
 var CLASS_DETAILS_HEADER_COL_N  = "mapDetailsHeaderColumn_nosort";  // TH
 var CLASS_DETAILS_HEADER_COL_S  = "mapDetailsHeaderColumn_sort";    // TH
-var CLASS_DETAILS_ROW_HILITE    = "mapDetailsDataRowHiLite";    
+var CLASS_DETAILS_ROW_HILITE    = "mapDetailsDataRowHiLite";
 var CLASS_DETAILS_ROW_ODD       = "mapDetailsDataRowOdd";
 var CLASS_DETAILS_ROW_EVEN      = "mapDetailsDataRowEven";
 var CLASS_DETAILS_INDEX_COL     = "mapDetailsIndexColumn";
@@ -186,7 +186,7 @@ function JSMapPoint(lat, lon)
     this.lon = lon;
 };
 
-//JSMapPoint.prototype.isValid = funtion() 
+//JSMapPoint.prototype.isValid = funtion()
 //{
 //    return ((this.lat != 0.0) || (this.lon != 0.0))? true : false;
 //};
@@ -338,11 +338,11 @@ JSBounds.prototype.calculateMetersPerPixel = function(viewWidth, viewHeight)
 /**
 *** Constructor: Creates a JSMapPushpin
 **/
-function JSMapPushpin(rcdNdx, dsNdx, ppNdx, evRcd, 
+function JSMapPushpin(rcdNdx, dsNdx, ppNdx, evRcd,
     lat, lon,
     label, html,
     ppIcon)
-    //iconURL, iconSize, iconHotspot, 
+    //iconURL, iconSize, iconHotspot,
     //shadowURL, shadowSize)
 {
 
@@ -361,8 +361,8 @@ function JSMapPushpin(rcdNdx, dsNdx, ppNdx, evRcd,
     if (this.evRcd != null) {
         this.accRadM   = this.evRcd.accuracy;
         this.isCellLoc = this.evRcd.isCellLoc;
-        if (this.isCellLoc && (this.accRadM < 100)) { 
-            this.accRadM = 100; 
+        if (this.isCellLoc && (this.accRadM < 100)) {
+            this.accRadM = 100;
         }
     }
 
@@ -437,8 +437,8 @@ JSMapPushpin.prototype.getHTML = function()
         if (gpsStr != "") { gpsStr += ", "; }
         gpsStr += "+/- " + numFormatFloat(accRadM * ALTITUDE_METERS_MULT,0) + " " + ALTITUDE_UNITS;
     }
-    if (gpsStr != "") { 
-        gpsStr = "[" + gpsStr + "]"; 
+    if (gpsStr != "") {
+        gpsStr = "[" + gpsStr + "]";
     }
 
     /* balloon text */
@@ -571,11 +571,11 @@ function JSDetailPoint(rcdNdx, dsNdx, ppNdx, evRcd, textColor)
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // --- map initialization
- 
+
 /**
 *** Initializes the map
 **/
-function jsMapInit() 
+function jsMapInit()
 {
     if (jsmap == null) {
         jsmapElem = document.getElementById(MAP_ID);
@@ -588,14 +588,14 @@ function jsMapInit()
                 } else {
                     // seems to be necessary on IE (it doesn't throw an exception)
                     alert(
-                        "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" + 
+                        "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" +
                         "Error occured while creating JSMap" +
                         "(map provider service may be temporarily unavailable)"
                         );
                 }
             } catch (e) {
                 alert(
-                    "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" + 
+                    "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" +
                     "Error initializing map\n" +
                     "(map provider service may be temporarily unavailable)\n" +
                     e
@@ -603,7 +603,7 @@ function jsMapInit()
             }
         } else {
             alert(
-                "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" + 
+                "[jsMapInit]: " + MAP_PROVIDER_NAME + "\n" +
                 "Div '" + MAP_ID + "' not found"
                 );
         }
@@ -675,7 +675,7 @@ function jsmCenterOnLastPushpin(showLastPointOnly)
         if (jds.routePoints && (jds.routePoints.length >= 2) && (jds.routeColor != ROUTE_COLOR_NONE)) {
             jsmap.JSDrawRoute(jds.routePoints, jds.routeColor);
         }
-    
+
         /* draw the pushpins */
         var jpp = jds.pushPins;
         if (jpp && (jpp.length > 0)) {
@@ -686,7 +686,7 @@ function jsmCenterOnLastPushpin(showLastPointOnly)
                 jsmap.JSDrawPushpins(jpp, jsmRecenterZoomMode(RECENTER_ZOOM), REPLAY_STOPPED);
             }
         }
-    
+
     }
 
     /* close the detail report */
@@ -700,7 +700,7 @@ function jsmCenterOnLastPushpin(showLastPointOnly)
 /**
 *** Sets the points/attributes on the current map
 **/
-function _jsmSetMap(recenterMode, /*JSMapDataSet[]*/mapDataSets, poiPins, replay) 
+function _jsmSetMap(recenterMode, /*JSMapDataSet[]*/mapDataSets, poiPins, replay)
 {
     if (!jsmap) { return; }
 
@@ -721,7 +721,7 @@ function _jsmSetMap(recenterMode, /*JSMapDataSet[]*/mapDataSets, poiPins, replay
             var jds = jsvDataSets[i]; // JSMapDataSet
 
             /* draw the route line first */
-            if (jds.routePoints && (jds.routePoints.length >= 2) && (jds.routeColor != ROUTE_COLOR_NONE)) { 
+            if (jds.routePoints && (jds.routePoints.length >= 2) && (jds.routeColor != ROUTE_COLOR_NONE)) {
                 jsmap.JSDrawRoute(jds.routePoints, jds.routeColor);
             }
 
@@ -744,7 +744,7 @@ function _jsmSetMap(recenterMode, /*JSMapDataSet[]*/mapDataSets, poiPins, replay
 /**
 *** Returns an AJAX request object
 **/
-function jsmGetXMLHttpRequest() 
+function jsmGetXMLHttpRequest()
 {
     return getXMLHttpRequest();
 };
@@ -766,7 +766,7 @@ function jsmParseAJAXPoints(dataText, recenterMode, replay) // tmz
 };
 
 /**
-*** Parse the specified JSON 
+*** Parse the specified JSON
 **/
 function jsmParseAJAXPoints_JSON(jsonText, recenterMode, replay) // tmz
 {
@@ -958,7 +958,7 @@ function jsmParseAJAXPoints_JSON(jsonText, recenterMode, replay) // tmz
             } else
             if (!route) {
                 showRoute = false;
-            } 
+            }
         }
 
         /* points */
@@ -1047,7 +1047,7 @@ function jsmParseAJAXPoints_JSON(jsonText, recenterMode, replay) // tmz
 
             /* motion change [JSON] */
             if (evRcd.stopped < 0) {
-                // undefined, 
+                // undefined,
             } else
             if (evRcd.stopped == 0) { // moving
                 if (lastStopEv != null) {
@@ -1064,7 +1064,7 @@ function jsmParseAJAXPoints_JSON(jsonText, recenterMode, replay) // tmz
             }
 
             /* save last reported event times */
-            if (!IS_FLEET && (evRcd.timestamp > jsvLastEventEpoch)) { 
+            if (!IS_FLEET && (evRcd.timestamp > jsvLastEventEpoch)) {
                 jsvLastEventEpoch   = evRcd.timestamp;
                 jsvLastEventYMD     = { YYYY:evRcd.year, MM:evRcd.month1, DD:evRcd.day }; // in selected timezone
                 jsvLastEventDateFmt = evRcd.dateFmt;
@@ -1191,11 +1191,11 @@ function jsmParseAJAXPoints_JSON(jsonText, recenterMode, replay) // tmz
 
     /* return number of points parsed */
     return jsvDetailPoints.length;
-        
+
 };
 
 /**
-*** Parse the specified XML 
+*** Parse the specified XML
 **/
 function jsmParseAJAXPoints_XML(xmlText, recenterMode, replay) // tmz
 {
@@ -1349,7 +1349,7 @@ function jsmParseAJAXPoints_XML(xmlText, recenterMode, replay) // tmz
             } else
             if (!route) {
                 showRoute = false;
-            } 
+            }
         }
         //alert("Route = "+route+"/"+showRoute+" [" + getXMLNodeAttribute(dsAttr,ATTR_route,"?"));
 
@@ -1453,7 +1453,7 @@ function jsmParseAJAXPoints_XML(xmlText, recenterMode, replay) // tmz
             }
 
             /* save last reported event times */
-            if (!IS_FLEET && (evRcd.timestamp > jsvLastEventEpoch)) { 
+            if (!IS_FLEET && (evRcd.timestamp > jsvLastEventEpoch)) {
                 jsvLastEventEpoch   = evRcd.timestamp;
                 jsvLastEventYMD     = { YYYY:evRcd.year, MM:evRcd.month1, DD:evRcd.day }; // in selected timezone
                 jsvLastEventDateFmt = evRcd.dateFmt;
@@ -1578,7 +1578,7 @@ function jsmParseAJAXPoints_XML(xmlText, recenterMode, replay) // tmz
 
     /* return number of points parsed */
     return jsvDetailPoints.length;
-        
+
 };
 
 // ----------------------------------------------------------------------------
@@ -1586,7 +1586,7 @@ function jsmParseAJAXPoints_XML(xmlText, recenterMode, replay) // tmz
 /**
 *** Load and display point from the specified URL and display them on the current map
 **/
-function jsmLoadPoints(mapURL, recenterMode, replay) 
+function jsmLoadPoints(mapURL, recenterMode, replay)
 {
     try {
         var req = jsmGetXMLHttpRequest();
@@ -1683,10 +1683,10 @@ function jsmSetLoadingPointsState(state)
 // ----------------------------------------------------------------------------
 
 /**
-*** Return true if the device last event has been received within the 
+*** Return true if the device last event has been received within the
 *** delta-time specified.
 **/
-function jsmIsDeviceOnline(offlineSec) 
+function jsmIsDeviceOnline(offlineSec)
 {
     var nowTime  = (new Date()).getTime() / 1000; // current Epoch time
     var deltaSec = nowTime - jsvLastEventEpoch;
@@ -1698,7 +1698,7 @@ function jsmIsDeviceOnline(offlineSec)
 /**
 *** Ping device
 **/
-function jsmDevicePing(pingURL) 
+function jsmDevicePing(pingURL)
 {
     try {
         var req = jsmGetXMLHttpRequest();
@@ -1854,9 +1854,9 @@ function jsmCreatePushPin(rcdNdx, dsNdx, ppNdx, evRcd)
     return new JSMapPushpin(
         rcdNdx, dsNdx, ppNdx, evRcd,
         evRcd.latitude, evRcd.longitude,
-        evRcd.device, html, 
+        evRcd.device, html,
         ppi);
-        //ppi.iconURL, ppi.iconSize, ppi.iconHotspot, 
+        //ppi.iconURL, ppi.iconSize, ppi.iconHotspot,
         //ppi.shadow, ppi.shadowSize);
 
 };
@@ -2018,7 +2018,7 @@ function jsmShowDetailPushpin(dsNdx, ppNdx)
 /**
 *** Shows the 'Location Details' table
 **/
-function jsmShowDetailReport() 
+function jsmShowDetailReport()
 {
 
     /* clear details */
@@ -2090,7 +2090,7 @@ function jsmShowDetailReport()
     var html = "";
     var CLASS_DETAILS_TABLE = SORTABLE_LOCATION_DETAILS? CLASS_DETAILS_TABLE_S : CLASS_DETAILS_TABLE_N;
     var CLASS_DETAILS_HEADER_COL = SORTABLE_LOCATION_DETAILS? CLASS_DETAILS_HEADER_COL_S : CLASS_DETAILS_HEADER_COL_N;
-    html += "<table id='LocationDetailsReport' class='"+CLASS_DETAILS_TABLE+"' cellspacing='0' cellpadding='0'>\n";
+    html += "<table id='LocationDetailsReport' class='"+CLASS_DETAILS_TABLE+" table' cellspacing='0' cellpadding='0'>\n";
     html += "<thead>\n";
     if (jsvPartialData) {
         var columns = 4 + (IS_FLEET?1:0) + (SHOW_ADDR?1:0) + (SHOW_SPEED?(COMBINE_SPEED_HEAD?1:2):0);
@@ -2108,14 +2108,14 @@ function jsmShowDetailReport()
         html += _jsmShowDetailReport_header( -1, TEXT_SATCOUNT, CLASS_DETAILS_HEADER_COL); // sort ok
     }
     if (SHOW_SPEED) {
-        if (COMBINE_SPEED_HEAD) { 
+        if (COMBINE_SPEED_HEAD) {
             html += _jsmShowDetailReport_header( -1, TEXT_SPEED, CLASS_DETAILS_HEADER_COL); // sort ok
         } else {
             html += _jsmShowDetailReport_header( -1, TEXT_SPEED, CLASS_DETAILS_HEADER_COL); // sort ok
             html += _jsmShowDetailReport_header( -1, TEXT_HEADING, CLASS_DETAILS_HEADER_COL_N); // nosort
         }
     }
-    if (SHOW_ADDR) { 
+    if (SHOW_ADDR) {
         html += _jsmShowDetailReport_header( -1, TEXT_ADDR, CLASS_DETAILS_HEADER_COL_N); // nosort
     }
     if (SHOW_OPT_FIELDS) {
@@ -2127,7 +2127,7 @@ function jsmShowDetailReport()
     }
     html += "</tr>\n";
     html += "</thead>\n";
-    
+
     /* generate HTML table body */
     html += "<tbody>\n";
     var lastDevice = "";
@@ -2163,7 +2163,7 @@ function jsmShowDetailReport()
         }
         // device id (fleet only)
         if (IS_FLEET) {
-            html += "<td nowrap class='"+dataClass+"'>" + pt.device + "</td>"; 
+            html += "<td nowrap class='"+dataClass+"'>" + pt.device + "</td>";
         }
         // date/time
         html += "<td nowrap class='"+dataClass+"' sorttable_customkey='" + pt.timestamp + "'>" + pt.dateTime + "</td>";
@@ -2188,14 +2188,14 @@ function jsmShowDetailReport()
             }
         }
         // address
-        if (SHOW_ADDR) { 
-            html += "<td nowrap class='"+dataClass+"'>" + pt.address + "&nbsp;</td>"; 
+        if (SHOW_ADDR) {
+            html += "<td nowrap class='"+dataClass+"'>" + pt.address + "&nbsp;</td>";
         }
         // optional fields
         if (SHOW_OPT_FIELDS) {
             for (var opti = 0; opti < OptionalEventFieldCount() && (opti < 10); opti++) {
                 var v = (pt.optDesc && (opti < pt.optDesc.length))? pt.optDesc[opti] : "";
-                html += "<td nowrap class='"+dataClass+"'>" + v + "&nbsp;</td>"; 
+                html += "<td nowrap class='"+dataClass+"'>" + v + "&nbsp;</td>";
             }
         }
         html += "</tr>\n";
@@ -2406,7 +2406,7 @@ function _jsmSetPointZoneValue(ndx, lat, lon, radiusM)
         /* display (remove for production?) */
         jsmSetLatLonDisplay(lat, lon);
         jsmSetDistanceDisplay(radiusM);
-    
+
     }
 };
 
@@ -2427,7 +2427,7 @@ function jsmGetElementValue(item)
 function jsmSetElementValue(item, value)
 {
     if (item != null) {
-        item.value = value; 
+        item.value = value;
     }
 };
 
@@ -2452,8 +2452,8 @@ function jsmSetIDValue(idName, value)
 **/
 function jsmSetElementInnerHTML(item, html)
 {
-    if (item != null) { 
-        item.innerHTML = html; 
+    if (item != null) {
+        item.innerHTML = html;
     }
 };
 
@@ -2544,7 +2544,7 @@ function jsmControlDisplay(expand)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Calculate and return a color based on the event speed.
 *** This algorithm performs the following:
 ***  - If the speed is greater than 70 mph, the returned color is green.
@@ -2581,14 +2581,14 @@ function evSpeedColor(e)
         // return black
         return "000000";
     }
-        
+
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event speed.
-*** Analyzes the event 'speed' and creates an icon marker URL on the fly that fades from 
-*** RED (stopped) to YELLOW (slow) to GREEN (fast).  It uses the Google Charts API to create the map 
+*** Analyzes the event 'speed' and creates an icon marker URL on the fly that fades from
+*** RED (stopped) to YELLOW (slow) to GREEN (fast).  It uses the Google Charts API to create the map
 *** marker icon [http://code.google.com/apis/chart/].  The first 2 arguments are the desired icon
 *** width and height (required since it is dynamically creating this icon).
 *** Example usage (in the Pushpins tag, within a MapProvider):
@@ -2605,7 +2605,7 @@ function evSpeedMarkerURL(W,H,e)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event age, based on the current time.
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2634,7 +2634,7 @@ function evCurrentAgeMarkerURL(e)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event creation age (time difference between
 *** when the event was generated in the device and when it finally sent it to the
 *** server).
@@ -2664,7 +2664,7 @@ function evCreateAgeMarkerURL(e)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event GPS age (time difference between
 *** when the event was generated in the device and when it finally sent it to the
 *** server).
@@ -2694,7 +2694,7 @@ function evGpsAgeMarkerURL(e)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2735,7 +2735,7 @@ function evHeadingMarkerURL(e) // US
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2773,7 +2773,7 @@ function evHeadingMarkerURL_eu(e) // Europe
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2812,7 +2812,7 @@ function evHeadingMarkerURL_ca(e) // Canada
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2851,7 +2851,7 @@ function evHeadingMarkerURL_CC(e) // Custom
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2880,7 +2880,7 @@ function evHeadingMiniDotURL_ar(e) // Argentina
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a 'yellow' pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2905,7 +2905,7 @@ function evHeadingYellowURL(e)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a 'green' pushpin/icon URL based on the event heading
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2930,10 +2930,10 @@ function evHeadingGreenURL(e)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a 'target' pushpin: 'green' if moving fast, 'yellow' if moving
 *** slow, and 'red' if stopped.
-*** Note: "CrosshairXXXX.gif" images may need to be replaced with your 
+*** Note: "CrosshairXXXX.gif" images may need to be replaced with your
 ****      Custom images, if not present in this version.
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2953,7 +2953,7 @@ function evSpeedLastURL(e)
 // ----------------------------------------------------------------------------
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Return the Green pushpin URL path if the specified digital input it ON.
 *** Return the Red pushpin URL path if the specified digital input it OFF.
 **/
@@ -2970,7 +2970,7 @@ function evGpioMarkerURL(I,e)
 // custom label markers
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a pushpin/icon URL which includes the event index
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2982,7 +2982,7 @@ function evIndexedIconURL(e)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the device short name (up to 7 digits, 5/6 chars)
 *** @param e  The 'MapEventRecord' object
 **/
@@ -2996,7 +2996,7 @@ function evDeviceNameIconURL(e, fill, border)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the device short name (up to 10 digits, 8/9 chars)
 *** @param e  The 'MapEventRecord' object
 **/
@@ -3010,7 +3010,7 @@ function evDeviceNameIconURL_W(e, fill, border)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the following:
 ***   - Device Short-Name
 ***   - Speed
@@ -3028,7 +3028,7 @@ function evDeviceNameIconURL_PPL2(e, fill, border)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the following:
 ***   - Device Short-Name
 ***   - Timestamp (HH:MM:SS)
@@ -3048,7 +3048,7 @@ function evDeviceNameIconURL_PPL3(e, fill, border)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the device short name,
 *** with a background color that is based on the vehicle speed
 *** @param e  The 'MapEventRecord' object
@@ -3073,7 +3073,7 @@ function evDeviceNameSpeedIconURL(e)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the ID/Name at the specified index
 *** @param e  The 'MapEventRecord' object
 *** @param x  The 'optional' field index with the event object
@@ -3085,7 +3085,7 @@ function evOptFieldIconURL(e,x)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the device short name
 *** @param e    The 'MapEventRecord' object
 *** @param icon The image URL
@@ -3099,7 +3099,7 @@ function evLabelIconURL(e, icon, fr, fill)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes the device short name
 **/
 function evTextLabelIconURL(icon, fr, fill, border, color, text)
@@ -3112,20 +3112,20 @@ function evTextLabelIconURL(icon, fr, fill, border, color, text)
     //   border=<BorderColor>                               - text frame border color
     //   color=<TextColor>                                  - text color
     //   text=<ShortText>                                   - text
-    var url = 
-        "Marker?"  + 
-        "icon="    + strEncode(icon) + 
-        "&fr="     + strEncode(fr) + 
-        "&fill="   + strEncode(fill) + 
-        "&border=" + strEncode(border) + 
-        "&color="  + strEncode(color) + 
+    var url =
+        "Marker?"  +
+        "icon="    + strEncode(icon) +
+        "&fr="     + strEncode(fr) +
+        "&fill="   + strEncode(fill) +
+        "&border=" + strEncode(border) +
+        "&color="  + strEncode(color) +
         "&text="   + strEncode(text);
     //alert("Marker URL: " + url);
     return url;
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes an arrow pointing in the specified direction
 *** @param e    The 'MapEventRecord' object
 *** @param icon The image URL
@@ -3150,7 +3150,7 @@ function evArrowIconURL(e, icon, fr, c)
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a label pushpin/icon URL which includes an arrow pointing in the specified direction
 **/
 function evArrowLabelIconURL(icon, fr, fill, border, color, heading)
@@ -3163,20 +3163,20 @@ function evArrowLabelIconURL(icon, fr, fill, border, color, heading)
     //   border=<BorderColor>                               - frame border color
     //   color=<TextColor>                                  - arrow color
     //   arrow=<Heading>                                    - arrow direction
-    var url = 
+    var url =
         "Marker?"  +
-        "icon="    + strEncode(icon) + 
-        "&fr="     + strEncode(fr) + 
-        "&fill="   + strEncode(fill) + 
-        "&border=" + strEncode(border) + 
-        "&color="  + strEncode(color) + 
+        "icon="    + strEncode(icon) +
+        "&fr="     + strEncode(fr) +
+        "&fill="   + strEncode(fill) +
+        "&border=" + strEncode(border) +
+        "&color="  + strEncode(color) +
         "&arrow="  + strEncode(heading);
     //alert("Marker URL: " + url);
     return url;
 };
 
 /**
-*** Pushpin: 
+*** Pushpin:
 *** Returns a Google Chart custom bubble icon URL which includes the device short name
 *** @param e   The 'MapEventRecord' object
 *** @param bgc The background color
@@ -3187,7 +3187,7 @@ function evDeviceNameBubbleURL(e, bgc, fgc)
     // http://chart.googleapis.com/chart?chst=d_bubble_text_small&chld=bb|Hello%20World|FFFFFF|AA0000
     // Note: The anchor is at 0,0.   The icon width depends on the width of the text in the icon.
     var tx  = e.devVIN;
-    var url = 
+    var url =
         "http://chart.googleapis.com/chart?chst=d_bubble_text_small" +
         "&chld=bb|"+tx+"|"+bgc+"|"+fgc;
     return url;
@@ -3251,16 +3251,16 @@ var recursiveRefresh = 0;
 /**
 *** Device ping
 **/
-function mapDevicePing(pingURL) 
-{ // required function 
+function mapDevicePing(pingURL)
+{ // required function
     jsmDevicePing(pingURL);
 };
 
 /**
-*** Parse CSV points and display on map 
+*** Parse CSV points and display on map
 *** @param zonePoints  Array of JSMapPoint's
 **/
-function mapProviderParseZones(zonePoints) 
+function mapProviderParseZones(zonePoints)
 {
     jsMapInit();
     jsmParseGeozones(zonePoints);
@@ -3269,8 +3269,8 @@ function mapProviderParseZones(zonePoints)
 /**
 *** Parse XML/JSON points and display on map
 **/
-function mapProviderParseXML(xmlText) 
-{ // required function 
+function mapProviderParseXML(xmlText)
+{ // required function
     jsMapInit();
     jsmParseAJAXPoints(xmlText, jsmRecenterZoomMode(RECENTER_ZOOM), 0);
 };
@@ -3278,9 +3278,9 @@ function mapProviderParseXML(xmlText)
 /**
 *** Update map, and recenter if specified
 **/
-function mapProviderUpdateMap(mapURL, recenterMode, replay) 
-{ // required function 
-    if (recursiveRefresh != 0) { return; } // we're already in a 'update' 
+function mapProviderUpdateMap(mapURL, recenterMode, replay)
+{ // required function
+    if (recursiveRefresh != 0) { return; } // we're already in a 'update'
     recursiveRefresh++;
     jsMapInit();
     jsmLoadPoints(mapURL, recenterMode, replay);
@@ -3290,7 +3290,7 @@ function mapProviderUpdateMap(mapURL, recenterMode, replay)
 /**
 *** Stop replay (if running)
 **/
-function mapProviderPauseReplay(replay) 
+function mapProviderPauseReplay(replay)
 {
     return jsmap? jsmap.JSPauseReplay(replay) : REPLAY_STOPPED;
 };
@@ -3298,7 +3298,7 @@ function mapProviderPauseReplay(replay)
 /**
 *** Display "Location Details" report if it is hidden, else hide
 **/
-function mapProviderToggleDetails() 
+function mapProviderToggleDetails()
 { // required function
     jsvDetailVisible = DETAILS_WINDOW? true : !jsvDetailVisible;
     jsmShowDetailReport();
@@ -3307,8 +3307,8 @@ function mapProviderToggleDetails()
 /**
 *** Unload any map resources
 **/
-function mapProviderUnload() 
-{ // required function 
+function mapProviderUnload()
+{ // required function
     jsmUnload();
 };
 

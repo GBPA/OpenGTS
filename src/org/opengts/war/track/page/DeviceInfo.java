@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -149,7 +149,7 @@ public class DeviceInfo
     implements Constants
 {
 
-    
+
     // ------------------------------------------------------------------------
 
     private static final boolean EDIT_SERVER_ID             = false;
@@ -161,8 +161,8 @@ public class DeviceInfo
     private static final boolean SHOW_IGNITION_NDX          = true;
     private static final boolean SHOW_DISPLAY_COLOR         = true;
     private static final boolean SHOW_SPEED_LIMIT           = false;
-    private static final boolean SHOW_REPORTED_ODOM         = true;  
-    private static final boolean SHOW_REPORTED_ENG_HRS      = true;  
+    private static final boolean SHOW_REPORTED_ODOM         = true;
+    private static final boolean SHOW_REPORTED_ENG_HRS      = true;
     private static final boolean SHOW_MAINTENANCE_ODOM      = true;  // still requires maintenance support
     private static final boolean SHOW_MAINTENANCE_HOURS     = true;  // still requires maintenance support
     private static final boolean SHOW_MAINTENANCE_NOTES     = true;  // still requires maintenance support
@@ -207,7 +207,7 @@ public class DeviceInfo
     public  static final String _ACL_FUEL_CAPACITY          = "fuelCapacity";
     public  static final String _ACL_FUEL_PROFILE           = "fuelProfile";
     public  static final String _ACL_FUEL_ECONOMY           = "fuelEconomy";
-    private static final String _ACL_LIST[]                 = new String[] { 
+    private static final String _ACL_LIST[]                 = new String[] {
       //_ACL_SERVERID,      // [2.6.2-B19]
       //_ACL_FIRMWARE,      // [2.6.2-B19]
         _ACL_RULES,
@@ -391,10 +391,10 @@ public class DeviceInfo
 
     public  static final String PARM_BORDER_CROSS_ENAB      = "d_bcEnable";
     public  static final String PARM_BORDER_CROSS_TIME      = "d_bcTime";
-    
+
     public  static final String PARM_SHARE_START            = "d_shareFr";
     public  static final String PARM_SHARE_END              = "d_shareTo";
-    
+
     public  static final String PARM_SUBSCRIBE_ID           = "d_subsID";
     public  static final String PARM_SUBSCRIBE_NAME         = "d_subsName";
     public  static final String PARM_SUBSCRIBE_AVATAR       = "d_subsAvat";
@@ -413,7 +413,7 @@ public class DeviceInfo
     static {
         // DeviceInfo._initDeviceCommandHandlers(); <== cannot be initialized here
     };
-    
+
     private static Map<String,DeviceCmdHandler> _getDCMap()
     {
         DeviceInfo._initDeviceCommandHandlers();
@@ -486,12 +486,12 @@ public class DeviceInfo
                 /* DeviceCmd_SMS.class */
                 Class<DeviceCmd_SMS> DeviceCmd_SMS_class = GetDeviceCmd_SMS_class();
                 if (DeviceCmd_SMS_class != null) {
-    
+
                     /* add available Device command pages */
                     String DeviceCmd_ = "DeviceCmd_";
                     String devCmdPackage = DeviceCmd_SMS_class.getPackage().getName(); // always present
                     java.util.List<DCServerConfig> dcServerList = DCServerFactory.getServerConfigList(true/*inclAll*/);
-                    for (DCServerConfig dcs : dcServerList) { // for (String _dchn : optDevCmdHandlerClasses) 
+                    for (DCServerConfig dcs : dcServerList) { // for (String _dchn : optDevCmdHandlerClasses)
 
                         /* existing "DeviceCmd_xxxx" command ui module */
                         String dcsName = dcs.getName();
@@ -513,7 +513,7 @@ public class DeviceInfo
                             //Print.logInfo("DCS does not define any commands: " + dcsName);
                             continue;
                         }
-            
+
                         /* get class */
                         String   dchClassName = devCmdPackage + "." + dcn;
                         Class<?> dchClass     = null;
@@ -551,7 +551,7 @@ public class DeviceInfo
                             DeviceInfo._addDeviceCommandHandler(stdDCH);
                             //Print.logInfo("Added General command handler UI: DeviceCmd_General("+dcsName+")");
                         }
-            
+
                         // -- check for additional DCS name args
                         if (!ListTools.isEmpty(dchArgs)) {
                             for (int a = 0; a < dchArgs.length; a++) {
@@ -586,7 +586,7 @@ public class DeviceInfo
                         }
 
                     }
-        
+
                     /* SMS */
                     try {
                         SMSCommandHandler = /*(DeviceCmd_SMS)*/DeviceCmd_SMS_class.newInstance(); // new DeviceCmd_SMS();
@@ -596,7 +596,7 @@ public class DeviceInfo
                     }
 
                 }
-        
+
                 /* initialized */
                 didInitDeviceCommandHandlers = true;
 
@@ -635,7 +635,7 @@ public class DeviceInfo
         return dch;
 
     }
-    
+
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
@@ -648,7 +648,7 @@ public class DeviceInfo
         public StateMaskBit(int ndx, String csvDesc, String dftTitle, Locale locale) {
             this.bitNdx    = ndx;
             String v[]     = StringTools.split(csvDesc,','); // Title,FalseDesc,TrueDesc
-            this.title     = AccountRecord.GetSimpleLocalString((v.length > 0)? v[0] : dftTitle+ndx, locale); 
+            this.title     = AccountRecord.GetSimpleLocalString((v.length > 0)? v[0] : dftTitle+ndx, locale);
             this.falseDesc = AccountRecord.GetSimpleLocalString((v.length > 1)? v[1] : "0"         , locale);
             this.trueDesc  = AccountRecord.GetSimpleLocalString((v.length > 2)? v[2] : "1"         , locale);
         }
@@ -741,7 +741,7 @@ public class DeviceInfo
             return 0L;
         } else {
             String ymd = (dsf != null)? dsf.convertToYMD(dateStr) : dateStr;
-            DayNumber dn = DayNumber.parseDayNumber(ymd); // 
+            DayNumber dn = DayNumber.parseDayNumber(ymd); //
             DateTime  dt = (dn != null)? (dayStart?dn.getDayStart(tmz):dn.getDayEnd(tmz)) : null;
             return (dt != null)? dt.getTimeSec() : 0L;
         }
@@ -776,7 +776,7 @@ public class DeviceInfo
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public DeviceInfo()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -784,9 +784,9 @@ public class DeviceInfo
         this.setPageNavigation(new String[] { PAGE_LOGIN, PAGE_MENU_TOP });
         this.setLoginRequired(true);
     }
-    
+
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -799,7 +799,7 @@ public class DeviceInfo
         String devTitles[] = reqState.getDeviceTitles();
         return super._getMenuDescription(reqState,i18n.getString("DeviceInfo.editMenuDesc","View/Edit {0} Information", devTitles));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -827,7 +827,7 @@ public class DeviceInfo
     }
 
     // ------------------------------------------------------------------------
-    
+
     public String[] getChildAclList()
     {
         return _ACL_LIST;
@@ -870,7 +870,7 @@ public class DeviceInfo
         } else {
             return StringTools.parseBoolean(snf,false);
         }
-        
+
     }
 
     private boolean _showSubscriberInfo(PrivateLabel privLabel)
@@ -885,7 +885,7 @@ public class DeviceInfo
             }
             return false;
         }
-        
+
         /* show subscriber info*/
         return ssi;
 
@@ -952,7 +952,7 @@ public class DeviceInfo
             //    // deny if over limit
             //    Print.logInfo("Allow New Device? Deny - over limit");
             //    return DEVMODE_DENY;
-            //} else 
+            //} else
             {
                 // -- otherwise allow
                 Print.logDebug("Allow New Device? Allow - as specified");
@@ -984,7 +984,7 @@ public class DeviceInfo
                 Print.logDebug("Allow Delete Device? Allow - if AccountManager");
                 return DEVMODE_MANAGER;
             } else
-            if (!StringTools.isBlank(globAND) && 
+            if (!StringTools.isBlank(globAND) &&
                 StringTools.parseBoolean(globAND,false) == false) {
                 // -- explicit deny
                 Print.logInfo("Allow Delete Device? Deny - disallowed");
@@ -1015,7 +1015,7 @@ public class DeviceInfo
         final boolean      showFuelEcon  = DBConfig.hasExtraPackage();
         final boolean      showFuelCost  = showFuelEcon;
         final boolean      acctBCEnabled = ((currAcct!=null)&&currAcct.getIsBorderCrossing())?true:false;
-        final TimeZone     acctTimeZone  = Account.getTimeZone(currAcct,DateTime.getGMTTimeZone()); 
+        final TimeZone     acctTimeZone  = Account.getTimeZone(currAcct,DateTime.getGMTTimeZone());
         final DateTime.DateStringFormat dsf = privLabel.getDateStringFormat();
         String  msg         = null;
         boolean groupsChg   = false;
@@ -1122,8 +1122,8 @@ public class DeviceInfo
             // -- active
             boolean editActive = sysadminLogin || privLabel.hasWriteAccess(currUser, this.getAclName(_ACL_ACTIVE));
             boolean devActv = ComboOption.parseYesNoText(locale, devActive, true);
-            if (editActive && (selDev.getIsActive() != devActv)) { 
-                selDev.setIsActive(devActv); 
+            if (editActive && (selDev.getIsActive() != devActv)) {
+                selDev.setIsActive(devActv);
             }
             // -- expiration timestamp [2.6.4-B12]
             boolean devExpOK = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showDeviceExpirationTime,SHOW_EXPIRATION_TIME);;
@@ -1222,8 +1222,8 @@ public class DeviceInfo
             boolean editFuelProf1 = sysadminLogin || privLabel.hasWriteAccess(currUser, this.getAclName(_ACL_FUEL_PROFILE));
             if (showFuelProf && editFuelProf1) {
                 String flpn1 = fuelProf1.equalsIgnoreCase(FuelLevelProfile.FLP_NONE_ID)? "" : fuelProf1;
-                if ((flpn1.indexOf(":") < 0)                                       && 
-                    (flpn1.equalsIgnoreCase(FuelLevelProfile.FLP_LINEAR_NAME  ) || 
+                if ((flpn1.indexOf(":") < 0)                                       &&
+                    (flpn1.equalsIgnoreCase(FuelLevelProfile.FLP_LINEAR_NAME  ) ||
                      flpn1.equalsIgnoreCase(FuelLevelProfile.FLP_CYLINDER_NAME)   )  ) {
                     int scale1  = StringTools.parseInt(fuelProf1Sca,0);
                     int offset1 = StringTools.parseInt(fuelProf1Ofs,0);
@@ -1242,8 +1242,8 @@ public class DeviceInfo
             boolean editFuelProf2 = sysadminLogin || privLabel.hasWriteAccess(currUser, this.getAclName(_ACL_FUEL_PROFILE));
             if (showFuelProf && editFuelProf2) {
                 String flpn2 = fuelProf1.equalsIgnoreCase(FuelLevelProfile.FLP_NONE_ID)? "" : fuelProf2;
-                if ((flpn2.indexOf(":") < 0)                                       && 
-                    (flpn2.equalsIgnoreCase(FuelLevelProfile.FLP_LINEAR_NAME  ) || 
+                if ((flpn2.indexOf(":") < 0)                                       &&
+                    (flpn2.equalsIgnoreCase(FuelLevelProfile.FLP_LINEAR_NAME  ) ||
                      flpn2.equalsIgnoreCase(FuelLevelProfile.FLP_CYLINDER_NAME)   )  ) {
                     int scale2  = StringTools.parseInt(fuelProf2Sca,0);
                     int offset2 = StringTools.parseInt(fuelProf2Ofs,0);
@@ -1468,7 +1468,7 @@ public class DeviceInfo
             // -- Maintenance Interval
             if (Device.supportsPeriodicMaintenance()) {
                 Account.DistanceUnits distUnits = Account.getDistanceUnits(currAcct);
-                // -- Odometer Maintenance 
+                // -- Odometer Maintenance
                 boolean maintOdomOK = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showMaintenanceOdometer,SHOW_MAINTENANCE_ODOM);
                 if (maintOdomOK) { // Domain.Properties.deviceInfo.showMaintenanceOdometer=false
                     // -- Odometer Maintenance #0
@@ -1525,7 +1525,7 @@ public class DeviceInfo
                 // -- service time
                 boolean servTimeOK = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showServiceTime,SHOW_SERVICE_TIME);
                 if (servTimeOK) { // Domain.Properties.deviceInfo.showServiceTime=false
-                    TimeZone tmz = Account.getTimeZone(selDev.getAccount(),DateTime.getGMTTimeZone()); 
+                    TimeZone tmz = Account.getTimeZone(selDev.getAccount(),DateTime.getGMTTimeZone());
                     String lastServ   = AttributeTools.getRequestString(request, PARM_LAST_SERVICE_TIME, "");
                     long   lastServTS = GetEpochTimeDayEnd(dsf, lastServ, tmz);
                     selDev.setLastServiceTime(lastServTS); // saved as epoch timestamp
@@ -1564,8 +1564,8 @@ public class DeviceInfo
               //String  ruleWrap    = AttributeTools.getRequestString(  request, PARM_DEV_RULE_WRAP   ,  null);
                 // -- Allow Notification
                 boolean allowNtfy = ComboOption.parseYesNoText(locale, ruleAllow, true);
-                if (selDev.getAllowNotify() != allowNtfy) { 
-                    selDev.setAllowNotify(allowNtfy); 
+                if (selDev.getAllowNotify() != allowNtfy) {
+                    selDev.setAllowNotify(allowNtfy);
                 }
                 // -- Notification email
                 if (notifyEmail != null) {
@@ -1618,8 +1618,8 @@ public class DeviceInfo
                 }
                 // -- notify wrapper
                 boolean ntfyWrap = false; // ComboOption.parseYesNoText(locale, ruleWrap, true);
-                if (selDev.getNotifyUseWrapper() != ntfyWrap) { 
-                    selDev.setNotifyUseWrapper(ntfyWrap); 
+                if (selDev.getNotifyUseWrapper() != ntfyWrap) {
+                    selDev.setNotifyUseWrapper(ntfyWrap);
                 }
                 // -- last-notify-time reset
                 if ((selDev.getLastNotifyTime() != 0L) && alertReset) {
@@ -1673,8 +1673,8 @@ public class DeviceInfo
             // -- Enable Driver ELogs
             if (Account.IsELogEnabled(selDev.getAccount())) {
                 boolean elogEnable = ComboOption.parseYesNoText(locale, enELogStr, false);
-                if (selDev.getELogEnabled() != elogEnable) { 
-                    selDev.setELogEnabled(elogEnable); 
+                if (selDev.getELogEnabled() != elogEnable) {
+                    selDev.setELogEnabled(elogEnable);
                 }
             }
             // -- Preferred Group ID [PARM_GROUP_ID]
@@ -1709,7 +1709,7 @@ public class DeviceInfo
                         // -- preferred groupID
                         //Print.logInfo("Setting current Device Preferred GroupID: " + prefGrpID);
                         selDev.setGroupID(prefGrpID);
-                        boolean addGroupEntry = showPrefGrp && 
+                        boolean addGroupEntry = showPrefGrp &&
                             privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_addToPreferredGroup,ADD_TO_PREFERRED_GROUP);
                         if (addGroupEntry) {
                             // -- add a group entry for this group
@@ -1852,7 +1852,7 @@ public class DeviceInfo
         final User         currUser      = reqState.getCurrentUser(); // may be null
         final String       pageName      = this.getPageName();
         final boolean      acctBCEnabled = ((currAcct!=null)&&currAcct.getIsBorderCrossing())?true:false;
-        final TimeZone     acctTimeZone  = Account.getTimeZone(currAcct,DateTime.getGMTTimeZone()); 
+        final TimeZone     acctTimeZone  = Account.getTimeZone(currAcct,DateTime.getGMTTimeZone());
         String m = pageMsg;
         boolean error = false;
         String cmdBtnTitle = i18n.getString("DeviceInfo.commands","Commands"); // included here to maintain I18N string
@@ -1919,7 +1919,7 @@ public class DeviceInfo
                 // -- not over device limit
                 overDevLimit = 0;
             }
-        } else 
+        } else
         if (allowNewDevMode == DEVMODE_ALLOW) {
             if (sysadminLogin) {
                 // -- no max limit
@@ -1964,9 +1964,9 @@ public class DeviceInfo
         boolean allowView = allowEdit || privLabel.hasReadAccess(currUser, this.getAclName());
 
         /* "Commands"("Properties") */
-        boolean allowCommand = 
-            (currAcct != null) && 
-            allowView && 
+        boolean allowCommand =
+            (currAcct != null) &&
+            allowView &&
             privLabel.hasWriteAccess(currUser, this.getAclName(_ACL_COMMANDS)) &&
             privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showPropertiesButton,true);
         if (Print.isDebugLoggingLevel()) {
@@ -1984,13 +1984,13 @@ public class DeviceInfo
 
         /* "SMS" Commands */
         DeviceInfo._initDeviceCommandHandlers(); // initialize to pick up SMS command button [2.6.1-B21]
-        boolean allowSmsCmd = 
-            (currAcct != null) && 
+        boolean allowSmsCmd =
+            (currAcct != null) &&
             currAcct.getSmsEnabled() &&
-            allowView && 
+            allowView &&
             privLabel.hasWriteAccess(currUser,this.getAclName(_ACL_SMS)) &&
-            privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showSmsButton,false) && 
-            (SMSCommandHandler != null) && 
+            privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showSmsButton,false) &&
+            (SMSCommandHandler != null) &&
             SMSCommandHandler.hasSmsCommands(reqState); // DeviceCmd_SMS
         if (Print.isDebugLoggingLevel()) {
             if (allowSmsCmd) {
@@ -2410,7 +2410,7 @@ public class DeviceInfo
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = DeviceInfo.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "DeviceInfo.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "DeviceInfo.css", cssDir);
                 if (showDateCal)  {
                     Calendar.writeStyle(out, reqState);
                 }
@@ -2572,8 +2572,8 @@ public class DeviceInfo
                     boolean showAcks = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showExpectedAcks,false);
 
                     // -- frame header
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) :
                         i18n.getString("DeviceInfo.viewDevice","View {0} Information", devTitles);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span>&nbsp;\n");
                     out.write("<a href='"+refreshURL+"'><span class=''>"+i18n.getString("DeviceInfo.refresh","Refresh")+"</a>\n");
@@ -2630,8 +2630,8 @@ public class DeviceInfo
                     int hasCommandHandlers = 0;
                     boolean okUpdateDevice = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_optimizeUpdateDevice,OPTIMIZE_IGNITION_STATE);
                     for (int d = 0; d < _deviceList.size(); d++) {
-                        String rowClass = ((d & 1) == 0)? 
-                            CommonServlet.CSS_ADMIN_TABLE_BODY_ROW_ODD : 
+                        String rowClass = ((d & 1) == 0)?
+                            CommonServlet.CSS_ADMIN_TABLE_BODY_ROW_ODD :
                             CommonServlet.CSS_ADMIN_TABLE_BODY_ROW_EVEN;
                         out.write("  <tr class='"+rowClass+"'>\n");
                         try {
@@ -2649,15 +2649,15 @@ public class DeviceInfo
                                 String  ignDesc     = "";
                                 String  ignColor    = "black";
                                 switch (ignState) {
-                                    case  0: 
+                                    case  0:
                                         ignDesc  = FilterText(i18n.getString("DeviceInfo.ignitionOff"    , "Off"));
                                         ignColor = ColorTools.BLACK.toString(true);
                                         break;
-                                    case  1: 
+                                    case  1:
                                         ignDesc  = FilterText(i18n.getString("DeviceInfo.ignitionOn"     , "On"));
                                         ignColor = ColorTools.GREEN.toString(true);
                                         break;
-                                    default: 
+                                    default:
                                         ignDesc  = FilterText(i18n.getString("DeviceInfo.ignitionUnknown", "Unknown"));
                                         ignColor = ColorTools.DARK_YELLOW.toString(true);
                                         break;
@@ -2731,29 +2731,29 @@ public class DeviceInfo
                     out.write("</table>\n");
                     out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
-                    if (_allowView) { 
+                    if (_allowView) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DeviceInfo.view","View")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowEdit) { 
+                    if (_allowEdit) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DeviceInfo.edit","Edit")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowCommand) { 
+                    if (_allowCommand) {
                         if (hasCommandHandlers > 0) {
                             out.write("<td style='padding-left:5px;'>");
                             out.write("<input type='submit' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("DeviceInfo.properties","Commands")+"'>");
-                            out.write("</td>\n"); 
+                            out.write("</td>\n");
                         } else {
-                            //Print.logWarn("No matching DeviceCommandHandlers found"); 
+                            //Print.logWarn("No matching DeviceCommandHandlers found");
                         }
                     }
                     if (_allowSmsCmd) {  // SMS commands
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_SMS +"' value='"+i18n.getString("DeviceInfo.sms","SMS")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
@@ -2761,7 +2761,7 @@ public class DeviceInfo
                     } else {
                         out.write("&nbsp;");
                     }
-                    out.write("</td>\n"); 
+                    out.write("</td>\n");
                     out.write("</tr>\n");
                     out.write("</table>\n");
                     out.write("</form>\n");
@@ -2853,9 +2853,9 @@ public class DeviceInfo
                     boolean workHoursOK   = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showHoursOfOperation,SHOW_HOURS_OF_OPERATION);
                     boolean faultCodesOK  = privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showFaultCodes,SHOW_FAULT_CODES);
                     boolean speedLimOK    = Device.hasRuleFactory(); // || privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showSpeedLimit,SHOW_SPEED_LIMIT);
-                    boolean fixLocOK      = (_selDev != null) && Device.supportsFixedLocation() && 
+                    boolean fixLocOK      = (_selDev != null) && Device.supportsFixedLocation() &&
                         privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showFixedLocation,SHOW_FIXED_LOCATION);
-                    boolean shareMapOK    = (_selDev != null) && Device.supportsMapShare() && 
+                    boolean shareMapOK    = (_selDev != null) && Device.supportsMapShare() &&
                         privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_showSharedMapDates,SHOW_MAP_SHARE_DATES);
                     boolean edServID_     = _editServID && ((_selDev == null) || (_selDev.getLastConnectTime() <= 0L)) &&
                         privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceInfo_allowEditServerID,EDIT_SERVER_ID);
@@ -2879,25 +2879,25 @@ public class DeviceInfo
                         showFuelProf = showFuelCap;
                         fuelProfType = 1;      // text
                     } else
-                    if (showFuelProfS.equalsIgnoreCase("false" ) || 
+                    if (showFuelProfS.equalsIgnoreCase("false" ) ||
                         showFuelProfS.equalsIgnoreCase("no"    )   ) {
                         // -- do not show
                         showFuelProf = false;  // no display
                         fuelProfType = 0;      // none
                     } else
-                    if (showFuelProfS.equalsIgnoreCase("true"  ) || 
-                        showFuelProfS.equalsIgnoreCase("yes"   ) || 
-                        showFuelProfS.equalsIgnoreCase("combo" ) || 
+                    if (showFuelProfS.equalsIgnoreCase("true"  ) ||
+                        showFuelProfS.equalsIgnoreCase("yes"   ) ||
+                        showFuelProfS.equalsIgnoreCase("combo" ) ||
                         showFuelProfS.equalsIgnoreCase("select")   ) {
                         // -- show as ComboBox
                         showFuelProf = true;   // display
                         fuelProfType = 2;      // combo
-                    } else 
+                    } else
                     if (showFuelProfS.equalsIgnoreCase("text"  )   ) {
                         // -- show as TextField
                         showFuelProf = true;   // display
                         fuelProfType = 1;      // text
-                    } else 
+                    } else
                     if (showFuelProfS.equalsIgnoreCase("scale" )   ) {
                         showFuelProf = true;   // display
                         fuelProfType = 3;      // scale
@@ -2954,8 +2954,8 @@ public class DeviceInfo
                     if (StringTools.isBlank(lastEventTime  )) { lastEventTime   = i18n.getString("DeviceInfo.noLastEvent"   ,"none" ); }
 
                     /* frame header */
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) :
                         i18n.getString("DeviceInfo.viewDevice","View {0} Information", devTitles);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
@@ -3248,7 +3248,7 @@ public class DeviceInfo
                                     name1   = flp.getID();
                                     scale1  = String.valueOf(Math.round(flp.getScale()));
                                     offset1 = String.valueOf(Math.round(flp.getOffset()));
-                                } 
+                                }
                                 if (fuelItemDisplayed > 0) { out.println(FormRow_SubSeparator()); }
                                 out.println(FormRow_ComboBox( PARM_DEV_FUEL_PROFILE1      , _editFuelPrf, i18n.getString("DeviceInfo.fuelProfile1"      ,"Fuel Tank #1 Profile"       )+":", name1  , flpCombo, "", -1));
                                 out.println(FormRow_TextField(PARM_DEV_FUEL_PROFILE1_SCALE, _editFuelPrf, i18n.getString("DeviceInfo.fuelProfile1Scale" ,"Fuel Tank #1 Profile Scale" )+":", scale1 , 5, 5));
@@ -3279,7 +3279,7 @@ public class DeviceInfo
                                     name2   = flp.getID();
                                     scale2  = String.valueOf(Math.round(flp.getScale()));
                                     offset2 = String.valueOf(Math.round(flp.getOffset()));
-                                } 
+                                }
                                 if (fuelItemDisplayed > 0) { out.println(FormRow_SubSeparator()); }
                                 out.println(FormRow_ComboBox( PARM_DEV_FUEL_PROFILE2      , _editFuelPrf, i18n.getString("DeviceInfo.fuelProfile2"      ,"Fuel Tank #2 Profile"       )+":", name2  , flpCombo, "", -1));
                                 out.println(FormRow_TextField(PARM_DEV_FUEL_PROFILE2_SCALE, _editFuelPrf, i18n.getString("DeviceInfo.fuelProfile2Scale" ,"Fuel Tank #2 Profile Scale" )+":", scale2 , 5, 5));
@@ -3476,7 +3476,7 @@ public class DeviceInfo
                         if (SHOW_NOTIFY_SELECTOR           || // always show?
                             !Device.hasENRE()              || // show if non-ENRE is installed
                             !StringTools.isBlank(ntfySel)  || //   or if the selector or message is specified
-                            !StringTools.isBlank(ntfySubj) || 
+                            !StringTools.isBlank(ntfySubj) ||
                             !StringTools.isBlank(ntfyText)   ) {
                             out.println(FormRow_SubSeparator());
                             String notifyRuleTitle = i18n.getString("DeviceInfo.notifyRule","Notify Rule");
@@ -3675,7 +3675,7 @@ public class DeviceInfo
                         if (grpID.equalsIgnoreCase(DeviceGroup.DEVICE_GROUP_ALL)) {
                             out.write(Form_CheckBox(null,pname,false,true,null,null));
                         } else {
-                            boolean devInGroup = (_selDev != null)? 
+                            boolean devInGroup = (_selDev != null)?
                                 DeviceGroup.isDeviceInDeviceGroup(_selDev.getAccountID(), grpID, _selDevID) :
                                 false;
                             out.write(Form_CheckBox(grpID,pname,_uiEdit,devInGroup,null,null));
@@ -3697,7 +3697,7 @@ public class DeviceInfo
                         out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     }
                     out.write("</form>\n");
-                    
+
                 }
             };
 
@@ -3710,7 +3710,7 @@ public class DeviceInfo
                 public void write(PrintWriter out) throws IOException {
 
                     /* frame title */
-                    String frameTitle = i18n.getString("DeviceInfo.setDeviceProperties","({0}) Set {1} Properties", 
+                    String frameTitle = i18n.getString("DeviceInfo.setDeviceProperties","({0}) Set {1} Properties",
                         _dcHandler.getServerDescription(), devTitles[0]);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
@@ -3730,7 +3730,7 @@ public class DeviceInfo
                 public void write(PrintWriter out) throws IOException {
 
                     /* frame title */
-                    String frameTitle = i18n.getString("DeviceInfo.setDeviceSMS","({0}) Send {1} SMS", 
+                    String frameTitle = i18n.getString("DeviceInfo.setDeviceSMS","({0}) Send {1} SMS",
                         _dcHandler.getServerDescription(), devTitles[0]);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
@@ -3756,6 +3756,6 @@ public class DeviceInfo
             HTML_CONTENT);              // Content
 
     }
-    
+
     // ------------------------------------------------------------------------
 }

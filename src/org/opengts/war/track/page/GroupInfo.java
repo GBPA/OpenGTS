@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,7 +57,7 @@ public class GroupInfo
     // ------------------------------------------------------------------------
     // Parameters
 
-    // forms 
+    // forms
     public  static final String FORM_GROUP_SELECT           = "GroupInfoSelect";
     public  static final String FORM_GROUP_EDIT             = "GroupInfoEdit";
     public  static final String FORM_GROUP_NEW              = "GroupInfoNew";
@@ -100,7 +100,7 @@ public class GroupInfo
 
     // ------------------------------------------------------------------------
     // CSS Class "class='"
-    
+
     public  static final String CSS_DEVICES_VIEW            = "groupDevicesViewDiv";
     public  static final String CSS_DEVICES_MEMBER_VIEW     = "groupDevicesMemberDiv";
     public  static final String CSS_DEVICES_HEADER_ROW      = "groupDevicesHeaderRow";
@@ -111,7 +111,7 @@ public class GroupInfo
 
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public GroupInfo()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -121,7 +121,7 @@ public class GroupInfo
     }
 
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -134,7 +134,7 @@ public class GroupInfo
         I18N i18n = privLabel.getI18N(GroupInfo.class);
         return super._getMenuDescription(reqState,i18n.getString("GroupInfo.editMenuDesc","View/Edit {0} Information", grpTitles));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         String grpTitles[] = reqState.getDeviceGroupTitles();
@@ -162,9 +162,9 @@ public class GroupInfo
     }
 
     // ------------------------------------------------------------------------
-    
+
     /* encode a PendingPacket.SetPropertyPacket, and add it to the property change list */
-    private boolean _addPropertyPacket(HttpServletRequest request, String reqAttr, int propCode, 
+    private boolean _addPropertyPacket(HttpServletRequest request, String reqAttr, int propCode,
         java.util.List<PendingPacket.SetPropertyPacket> propList)
     {
         String val = AttributeTools.getRequestString(request, reqAttr, "");
@@ -229,7 +229,7 @@ public class GroupInfo
             msg = i18n.getString("GroupInfo.invalidExcessSpeed","Invalid 'Excess Speed' property"); // UserErrMsg
             return msg;
         }
-        
+
         /* no properties defined? */
         if (propList.isEmpty()) {
             msg = i18n.getString("GroupInfo.noPropertiesChanged","No property changes have been defined"); // UserErrMsg
@@ -267,7 +267,7 @@ public class GroupInfo
                         queueCount++;
                     }
                 }
-    
+
             } catch (DBException dbe) {
 
                 Print.logException("Error inserting PendingPacket ...", dbe);
@@ -277,7 +277,7 @@ public class GroupInfo
             }
 
         }
-    
+
         /* return result */
         if (msg != null) {
             return  msg;
@@ -291,7 +291,7 @@ public class GroupInfo
     }
 
     // ------------------------------------------------------------------------
-    
+
     public void writePage(
         final RequestProperties reqState,
         String pageMsg)
@@ -555,7 +555,7 @@ public class GroupInfo
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = GroupInfo.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "GroupInfo.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "GroupInfo.css", cssDir);
             }
         };
 
@@ -588,19 +588,19 @@ public class GroupInfo
                     String pageName = GroupInfo.this.getPageName();
                     String grpTitles[] = reqState.getDeviceGroupTitles();
                     String devTitles[] = reqState.getDeviceTitles();
-    
+
                     // frame header
                   //String menuURL    = EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),PAGE_MENU_TOP);
                     String menuURL    = privLabel.getWebPageURL(reqState, PAGE_MENU_TOP);
                     String editURL    = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String selectURL  = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String newURL     = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information", grpTitles) : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information", grpTitles) :
                         i18n.getString("GroupInfo.viewGroup","View {0} Information", grpTitles);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
-                        
+
                     // group selection table (Select, Group ID, Group Description)
                     out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.selectGroup","Select a {0}",grpTitles)+":</h1>\n");
                     out.write("<div style='margin-left:25px;'>\n");
@@ -646,7 +646,7 @@ public class GroupInfo
                                     out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL    +"' nowrap>"+devCount+"</td>\n");
                                 }
                             } catch (DBException dbe) {
-                                // 
+                                //
                             }
                         }
                         out.write("  </tr>\n");
@@ -655,26 +655,26 @@ public class GroupInfo
                     out.write("</table>\n");
                     out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
-                    if (_allowView  ) { 
+                    if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("GroupInfo.view","View")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowEdit  ) { 
+                    if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("GroupInfo.edit","Edit")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowProp  ) { 
+                    if (_allowProp  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("GroupInfo.properties","Properties")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
-                    if (_allowDelete) { 
+                    if (_allowDelete) {
                         out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("GroupInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
-                        out.write("&nbsp;"); 
+                        out.write("&nbsp;");
                     }
                     out.write("</td>\n");
                     out.write("</tr>\n");
@@ -716,14 +716,14 @@ public class GroupInfo
                     String editURL    = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String selectURL  = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String newURL     = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                    String frameTitle = _allowEdit? 
-                        i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information",grpTitles) : 
+                    String frameTitle = _allowEdit?
+                        i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information",grpTitles) :
                         i18n.getString("GroupInfo.viewGroup","View {0} Information",grpTitles);
                     out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                     out.write("<hr>\n");
-    
+
                     // -- group view/edit form
-    
+
                     /* start of form */
                     out.write("<form name='"+FORM_GROUP_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_GROUP+"'/>\n");
@@ -853,7 +853,7 @@ public class GroupInfo
                     }
                     out.write("<a href='"+editURL+"' style='margin-left:20px;'>"+(_editProps?i18n.getString("GroupInfo.cancel","Cancel"):i18n.getString("GroupInfo.back","Back"))+"</a>\n");
                     out.write("</form>\n");
-                    
+
                 }
             };
 
@@ -870,6 +870,6 @@ public class GroupInfo
             HTML_CONTENT);              // Content
 
     }
-    
+
     // ------------------------------------------------------------------------
 }

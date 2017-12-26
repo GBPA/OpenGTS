@@ -185,7 +185,7 @@ public class TopMenu
                         IconMenu.writeStyle(out, reqState);
                         break;
                 }
-                WebPageAdaptor.writeCssLink(out, reqState, "TopMenu.css", TopMenu.this.getCssDirectory());
+                //WebPageAdaptor.writeCssLink(out, reqState, "TopMenu.css", TopMenu.this.getCssDirectory());
             }
         };
 

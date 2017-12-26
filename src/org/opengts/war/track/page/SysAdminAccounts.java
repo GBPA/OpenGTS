@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,15 +66,15 @@ public class SysAdminAccounts
     extends WebPageAdaptor
     implements Constants
 {
-    
+
     // ------------------------------------------------------------------------
-    
+
     private static final boolean SHOW_NOTES                     = false;
 
     // ------------------------------------------------------------------------
     // Parameters
 
-    // forms 
+    // forms
     public  static final String FORM_ACCOUNT_SELECT             = "SysAdminSelect";
     public  static final String FORM_ACCOUNT_EDIT               = "SysAdminEdit";
     public  static final String FORM_ACCOUNT_NEW                = "SysAdminNew";
@@ -99,7 +99,7 @@ public class SysAdminAccounts
     // parameters
     public  static final String PARM_NEW_NAME                   = "s_newname";
     public  static final String PARM_ACCOUNT_SELECT             = "s_account";
-    
+
     public  static final String PARM_ACCT_ID                    = "a_id";
     public  static final String PARM_ACCT_CREATED               = "a_created";
     public  static final String PARM_ACCT_LAST_LOGIN            = "a_lastlogin";
@@ -156,7 +156,7 @@ public class SysAdminAccounts
 
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public SysAdminAccounts()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -175,7 +175,7 @@ public class SysAdminAccounts
     //}
 
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -187,7 +187,7 @@ public class SysAdminAccounts
         I18N i18n = privLabel.getI18N(SysAdminAccounts.class);
         return super._getMenuDescription(reqState,i18n.getString("SysAdminAccounts.editMenuDesc","System Accounts"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -243,7 +243,7 @@ public class SysAdminAccounts
     {
         return StringTools.isBlank(s)? "&nbsp;" : StringTools.htmlFilterText(s);
     }
-    
+
     private boolean isValidPassword(String pwd)
     {
         if (StringTools.isBlank(pwd)) {
@@ -322,13 +322,13 @@ public class SysAdminAccounts
         final boolean  hasAccountMgr = Account.SupportsAccountManager();
         final boolean  showAccountManager = hasAccountMgr &&
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showAccountManager,false);
-        final boolean  showRetainEvents = 
+        final boolean  showRetainEvents =
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showRetainEvents,false);
-        final boolean  showAllowWebService = 
+        final boolean  showAllowWebService =
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showAllowWebService,false);
-        final boolean  showEnableDriverELogs = DBConfig.hasELogPackage() && 
+        final boolean  showEnableDriverELogs = DBConfig.hasELogPackage() &&
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showEnableDriverELogs,true);
-        final boolean  showAutoAddDevices = 
+        final boolean  showAutoAddDevices =
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showAutoAddDevices,false);
         final boolean  showExpiration = isSysAdmin &&
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showExpiration,false);
@@ -339,7 +339,7 @@ public class SysAdminAccounts
         final boolean  showMaxPingCount = DBConfig.hasExtraPackage();
 
         /* data push url */
-        final boolean  showDataPushURL = 
+        final boolean  showDataPushURL =
             privLabel.getBooleanProperty(PrivateLabel.PROP_SysAdminAccounts_showDataPushURL,false) &&
             Account.SupportsDataPushURL();
 
@@ -670,8 +670,8 @@ public class SysAdminAccounts
                         }
                     } else {
                         boolean acctActv = ComboOption.parseYesNoText(locale, acctActive, true);
-                        if (selAccount.getIsActive() != acctActv) { 
-                            selAccount.setIsActive(acctActv); 
+                        if (selAccount.getIsActive() != acctActv) {
+                            selAccount.setIsActive(acctActv);
                         }
                     }
                     // -- password
@@ -726,20 +726,20 @@ public class SysAdminAccounts
                         boolean isManager = false;
                         if (!StringTools.isBlank(acctIsManager)) {
                             isManager = ComboOption.parseYesNoText(locale, acctIsManager, false);
-                            if (selAccount.getIsAccountManager() != isManager) { 
-                                selAccount.setIsAccountManager(isManager); 
+                            if (selAccount.getIsAccountManager() != isManager) {
+                                selAccount.setIsAccountManager(isManager);
                             }
                         }
                         String oldMgrID = selAccount.getManagerID();
                         if (isManager) {
-                            String newMgrID = !StringTools.isBlank(acctManagerID)? 
+                            String newMgrID = !StringTools.isBlank(acctManagerID)?
                                 acctManagerID : selAccount.getAccountID(); // default to AccountID
                             if (StringTools.isBlank(oldMgrID)) {
-                                selAccount.setManagerID(newMgrID); 
+                                selAccount.setManagerID(newMgrID);
                             } else
-                            if (!oldMgrID.equals(newMgrID)) { 
+                            if (!oldMgrID.equals(newMgrID)) {
                                 Print.logWarn("Changing 'ManagerID': " + oldMgrID + " ==> " + newMgrID);
-                                selAccount.setManagerID(newMgrID); 
+                                selAccount.setManagerID(newMgrID);
                             }
                         } else {
                             //if (!StringTools.isBlank(oldMgrID)) { // removed [2.5.8-B62]
@@ -783,8 +783,8 @@ public class SysAdminAccounts
                     // -- Allow Notification
                     if (isSysAdmin) {
                         boolean allowNotify = ComboOption.parseYesNoText(locale, ruleAllowStr, true);
-                        if (selAccount.getAllowNotify() != allowNotify) { 
-                            selAccount.setAllowNotify(allowNotify); 
+                        if (selAccount.getAllowNotify() != allowNotify) {
+                            selAccount.setAllowNotify(allowNotify);
                         }
                     }
                     // -- SMS
@@ -800,15 +800,15 @@ public class SysAdminAccounts
                     // -- border crossing
                     if (Account.SupportsBorderCrossing()) {
                         boolean isBCross = ComboOption.parseYesNoText(locale, isBCrossStr, false);
-                        if (selAccount.getIsBorderCrossing() != isBCross) { 
-                            selAccount.setIsBorderCrossing(isBCross); 
+                        if (selAccount.getIsBorderCrossing() != isBCross) {
+                            selAccount.setIsBorderCrossing(isBCross);
                         }
                     }
                     // -- auto-add devices
                     if (showAutoAddDevices && isSysAdmin) {
                         boolean autoAddDev = ComboOption.parseYesNoText(locale, acctAutoDev, false);
-                        if (selAccount.getAutoAddDevices() != autoAddDev) { 
-                            selAccount.setAutoAddDevices(autoAddDev); 
+                        if (selAccount.getAutoAddDevices() != autoAddDev) {
+                            selAccount.setAutoAddDevices(autoAddDev);
                         }
                     }
                     // -- maximum allowed devices
@@ -903,7 +903,7 @@ public class SysAdminAccounts
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = SysAdminAccounts.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "SysAdminAccounts.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "SysAdminAccounts.css", cssDir);
             }
         };
 
@@ -941,8 +941,8 @@ public class SysAdminAccounts
                 String editURL    = SysAdminAccounts.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                 String selectURL  = SysAdminAccounts.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                 String newURL     = SysAdminAccounts.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                String frameTitle = _allowNew? 
-                    i18n.getString("SysAdminAccounts.createDeleteAccounts","Create/Delete/Edit Accounts") : 
+                String frameTitle = _allowNew?
+                    i18n.getString("SysAdminAccounts.createDeleteAccounts","Create/Delete/Edit Accounts") :
                     i18n.getString("SysAdminAccounts.viewEditAccounts","View/Edit Accounts");
                 out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
                 out.write("<hr>\n");
@@ -980,7 +980,7 @@ public class SysAdminAccounts
                         try {
                             acct = Account.getAccount(ListTools.itemAt(_accountList,u,""));
                         } catch (DBException dbe) {
-                            // 
+                            //
                         }
                         if (acct == null) {
                             continue;
@@ -1081,28 +1081,28 @@ public class SysAdminAccounts
                     out.write("</table>\n");
                     out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
-                    if (_allowView) { 
+                    if (_allowView) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("SysAdminAccounts.view","View")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowEdit) { 
+                    if (_allowEdit) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("SysAdminAccounts.edit","Edit")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     if (_allowLogin) {
                         out.write("<td style='padding-left:30px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_LOGIN+"' value='"+i18n.getString("SysAdminAccounts.login","Login")+"' "+Onclick_ConfirmLogin(locale)+">");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
                         out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("SysAdminAccounts.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
-                        out.write("&nbsp;"); 
+                        out.write("&nbsp;");
                     }
-                    out.write("</td>\n"); 
+                    out.write("</td>\n");
                     out.write("</tr>\n");
                     out.write("</table>\n");
                     out.write("</form>\n");
@@ -1161,7 +1161,7 @@ public class SysAdminAccounts
                     ComboMap    privLblList = null;
                     if (editSysAdmin) {
                         // editable PrivateLabel
-                        privLblList = isSysAdmin? 
+                        privLblList = isSysAdmin?
                             new ComboMap(BasicPrivateLabelLoader.getPrivateLabelNames(true)) :
                             new ComboMap();
                         if (!ListTools.containsKey(privLblList, acctPrivLbl)) {

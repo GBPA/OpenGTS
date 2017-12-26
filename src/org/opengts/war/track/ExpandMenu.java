@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,14 +41,14 @@ public class ExpandMenu
     public static final int DESC_NONE       = 0;
     public static final int DESC_SHORT      = 1;
     public static final int DESC_LONG       = 2;
-    
+
     // ------------------------------------------------------------------------
     // write Style
 
     public static void writeStyle(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
-        WebPageAdaptor.writeCssLink(out, reqState, "ExpandMenu.css", null);
+        //WebPageAdaptor.writeCssLink(out, reqState, "ExpandMenu.css", null);
     }
 
     // ------------------------------------------------------------------------
@@ -73,7 +73,7 @@ public class ExpandMenu
         Locale       locale    = reqState.getLocale();
         String  parentPageName = null;
         Account        account = reqState.getCurrentAccount();
-        
+
         /* disable menu help if menu description is not displayed */
         boolean showInline = false;
         if (descriptionType == ExpandMenu.DESC_NONE) {
@@ -92,7 +92,7 @@ public class ExpandMenu
 
         /* start menu */
         out.println("<ul id='"+topMenuID+"'>");
-        
+
         /* iterate through menu groups */
         Map<String,MenuGroup> menuMap = privLabel.getMenuGroupMap();
         for (String mgn : menuMap.keySet()) {
@@ -102,7 +102,7 @@ public class ExpandMenu
                 //Print.logInfo("Skipping menu group: %s", mgn);
                 continue;
             }
-            
+
             boolean didDisplayGroup = false;
             for (WebPage wp : mg.getWebPageList(reqState)) {
                 String menuName = wp.getPageName();
@@ -111,7 +111,7 @@ public class ExpandMenu
                 String url      = wp.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());
 
                 /* skip login page */
-                if (menuName.equalsIgnoreCase(Constants.PAGE_LOGIN)) { 
+                if (menuName.equalsIgnoreCase(Constants.PAGE_LOGIN)) {
                     // omit login
                     //Print.logInfo("Skipping login page: %s", menuName);
                     continue;
@@ -124,7 +124,7 @@ public class ExpandMenu
 
                 /* skip pages that are not ok to display */
                 if (!wp.isOkToDisplay(reqState)) {
-                    continue; 
+                    continue;
                 }
 
                 /* menu description */
@@ -214,18 +214,18 @@ public class ExpandMenu
 
                     } else {
                         // this section may not appear as expected on IE
-    
+
                         /* start table */
                         out.write("<table class='"+leafClass+"' cellpadding='0' cellspacing='0'>");
                         out.write("<tr>");
-    
+
                         /* menu icon */
                         if (!StringTools.isBlank(iconURI)) {
                             out.write("<td class='"+leafIconClass+"'>");
                             out.write(anchorStart + "<img class='"+leafIconClass+"' src='"+iconURI+"'/></a>");
                             out.write("</td>");
                         }
-                    
+
                         /* menu description/help */
                         if (!StringTools.isBlank(menuDesc)) {
                             out.write("<td class='"+leafDescClass+"'>");
@@ -236,20 +236,20 @@ public class ExpandMenu
                             }
                             out.write("</td>");
                         }
-    
+
                         /* end table */
                         out.write("</tr>");
                         out.write("</table>");
-                    
+
                     }
-    
+
                     /* end menu list item */
                     out.write("</li>\n");
-                    
+
                 }
- 
+
             }
-                
+
             /* end menu group */
             if (didDisplayGroup) {
                 if (showInline) {
@@ -259,12 +259,12 @@ public class ExpandMenu
                 }
                 out.write("</li>\n");
             }
-                
+
         }
-        
+
         /* end of menu */
         out.write("</ul>\n");
-        
+
         /* init menu if expandable */
         if (expandableMenu) {
             out.write("<script type=\"text/javascript\"> new ExpandMenu('"+topMenuID+"'); </script>\n");

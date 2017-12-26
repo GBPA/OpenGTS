@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,7 +20,7 @@
 //  2007/01/25  Martin D. Flynn
 //     -Initial release
 //  2007/02/26  Martin D. Flynn
-//     -Change made to display device delection pull-down, event if there is only 
+//     -Change made to display device delection pull-down, event if there is only
 //      one device available.
 //  2007/06/03  Martin D. Flynn
 //     -Added I18N support
@@ -37,9 +37,9 @@
 //  2008/02/17  Martin D. Flynn
 //     -Added support for map auto-update.
 //  2008/02/21  Martin D. Flynn
-//     -Changed used of "escape(X)" to "strEncode(X)" [defined in 'utils.js' as a call 
-//      to "encodeURIComponent(X)"] which fixes the encoding of "GMT+X:XX" timezones 
-//      (previously "GMT+1:00" would be encoded as "GMT 1:00", which ended up being 
+//     -Changed used of "escape(X)" to "strEncode(X)" [defined in 'utils.js' as a call
+//      to "encodeURIComponent(X)"] which fixes the encoding of "GMT+X:XX" timezones
+//      (previously "GMT+1:00" would be encoded as "GMT 1:00", which ended up being
 //      interpreted as just "GMT").
 //  2008/04/11  Martin D. Flynn
 //     -Use the account/user timezone when calculating the "default" date range.
@@ -265,7 +265,7 @@ public abstract class TrackMap
     }
 
     // ------------------------------------------------------------------------
-    
+
     public String[] getChildAclList()
     {
         return _ACL_LIST;
@@ -278,7 +278,7 @@ public abstract class TrackMap
         this.isFleet = fleet;
         this.showFromCalendar = !this.isFleet;
     }
-    
+
     public boolean isFleet()
     {
         return this.isFleet;
@@ -306,7 +306,7 @@ public abstract class TrackMap
     // GPS/Map JavaScript
 
     protected void writeJS_MapUpdate(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         PrintWriter out,
         String  mapUpdURL, String devicePingURL, String kmlUpdURL,
         boolean autoUpdateEnabled, boolean autoUpdateOnLoad, long autoInterval, long autoMaxCount, double autoSkipRadius,
@@ -501,7 +501,7 @@ public abstract class TrackMap
         out.write("// Calendar vars \n");
         if (this.showFromCalendar) {
             //Print.logInfo("Writing 'From' Calendar JavaScript var ...");
-            Calendar.writeNewCalendar(out, CALENDAR_FROM, null/*formID*/, i18n.getString("TrackMap.dateFrom","From"), reqState.getEventDateFrom()); 
+            Calendar.writeNewCalendar(out, CALENDAR_FROM, null/*formID*/, i18n.getString("TrackMap.dateFrom","From"), reqState.getEventDateFrom());
             out.write(CALENDAR_FROM+".setYearAdvanceSelection(false);\n");
         } else {
             JavaScriptTools.writeJSVar(out, CALENDAR_FROM, null);
@@ -520,13 +520,13 @@ public abstract class TrackMap
             DeviceChooser.isDeviceChooserUseTable(privLabel)) {
             JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef(ReportPresentation.SORTTABLE_JS), request);
         }
-        
+
     }
 
     // ------------------------------------------------------------------------
 
     public void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         String pageMsg)
         throws IOException
     {
@@ -591,7 +591,7 @@ public abstract class TrackMap
             // -- unlikely - no "ping" if device is null
             commandMap = null;
             deviceSupportsPing = false;
-        } else 
+        } else
         if (ListTools.containsIgnoreCase(SHOW_PING_FALSE,showLocateNow)) {
             // -- explicit "false"
             commandMap = null;
@@ -608,9 +608,9 @@ public abstract class TrackMap
         }
 
         /* device link */
-        final boolean showDeviceLink = !isFleet && Device.supportsLinkURL() && 
+        final boolean showDeviceLink = !isFleet && Device.supportsLinkURL() &&
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showDeviceLink,true);
-            
+
         /* battery level */
         final int showBatteryLevel; // 0=no, 1=icon, 2=percent
         if (isFleet) {
@@ -674,7 +674,7 @@ public abstract class TrackMap
                 tzStr = currAcct.getTimeZone();
             }
             if (StringTools.isBlank(tzStr)) {
-                // -- make sure we have a timezone 
+                // -- make sure we have a timezone
                 // -  (unecessary, since Account/User will return a timezone)
                 tzStr = Account.GetDefaultTimeZone();
             }
@@ -688,7 +688,7 @@ public abstract class TrackMap
 
         /* range 'from' [keywords: frDate, startDate, dateRange] */
         // -- "YYYY/MM[/DD[/hh[:mm[:ss]]]]"  ie "YYYY/MM/DD/hh:mm:ss"
-        // -  NOTE: the "From" date may be overridden in "TrackMap.js" (see "trackMapOnLoad") 
+        // -  NOTE: the "From" date may be overridden in "TrackMap.js" (see "trackMapOnLoad")
         // -  if property "Domain.Properties.trackMap.calendarDateOnLoad=last" has been set.
         DateTime dateFr; // initialized below
         String rangeFrFld[] = !StringTools.isBlank(rangeFr)? StringTools.parseStringArray(rangeFr, "/:") : null;
@@ -733,7 +733,7 @@ public abstract class TrackMap
 
         /* range 'to'  [keywords: toDate, endDate, dateRange] */
         // -- "YYYY/MM[/DD[/hh[:mm[:ss]]]]"  ie "YYYY/MM/DD/hh:mm:ss"
-        // -  NOTE: the "From" date may be overridden in "TrackMap.js" (see "trackMapOnLoad") 
+        // -  NOTE: the "From" date may be overridden in "TrackMap.js" (see "trackMapOnLoad")
         // -  if property "Domain.Properties.trackMap.calendarDateOnLoad=last" has been set.
         DateTime dateTo; // initialized below
         String rangeToFld[] = !StringTools.isBlank(rangeTo)? StringTools.parseStringArray(rangeTo, "/:") : null;
@@ -767,8 +767,8 @@ public abstract class TrackMap
         }
 
         /* save from/to dates */
-        if ((dateFr != null) && dateFr.isAfter(dateTo)) { 
-            dateFr = dateTo; 
+        if ((dateFr != null) && dateFr.isAfter(dateTo)) {
+            dateFr = dateTo;
         }
         if (this.showFromCalendar) {
             reqState.setEventDateFrom(dateFr);
@@ -827,8 +827,8 @@ public abstract class TrackMap
                 long perDevLimit = (!StringTools.isBlank(cmdArg) && cmdArg.equals("last"))? 1L : -1L;
                 Collection<Device> devList = reqState.getMapEventsByDevice(perDevLimit); // [KML] does not return null
                 CommonServlet.setResponseContentType(response, HTMLTools.MIME_KML());
-                GoogleKML.getInstance().writeEvents(out, 
-                    currAcct, devList, 
+                GoogleKML.getInstance().writeEvents(out,
+                    currAcct, devList,
                     privLabel);
             } catch (DBException dbe) {
                 Print.logException("Error reading Events", dbe);
@@ -919,7 +919,7 @@ public abstract class TrackMap
             autoSkipRadius      = 0.0;
         } else
         if (_autoIntrv > 0L) {
-            // -- overridden 
+            // -- overridden
             autoUpdateEnabled   = true;
             autoUpdateOnLoad    = true;
             autoInterval        = _autoIntrv;
@@ -961,22 +961,22 @@ public abstract class TrackMap
         final boolean replayEnable              = !isFleet && mapProvider.getReplayEnabled();
         final boolean showPushpinReplay         = replayEnable &&
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showPushpinReplay,true);
-        final boolean showUpdateAll             = 
+        final boolean showUpdateAll             =
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showUpdateAll,true);
-        final boolean showUpdateLast            = !isFleet && 
-            mapProvider.isFeatureSupported(MapProvider.FEATURE_CENTER_ON_LAST) && 
+        final boolean showUpdateLast            = !isFleet &&
+            mapProvider.isFeatureSupported(MapProvider.FEATURE_CENTER_ON_LAST) &&
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showUpdateLast,false);
-        final boolean mapSupportsCursorLocation = 
+        final boolean mapSupportsCursorLocation =
             mapProvider.isFeatureSupported(MapProvider.FEATURE_LATLON_DISPLAY) &&
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showCursorLocation,true);
-        final boolean mapSupportsDistanceRuler  = 
+        final boolean mapSupportsDistanceRuler  =
             mapProvider.isFeatureSupported(MapProvider.FEATURE_DISTANCE_RULER) &&
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showDistanceRuler,true);
-        final boolean mapControlsOnLeft         = 
+        final boolean mapControlsOnLeft         =
             ListTools.containsIgnoreCase(CONTROLS_ON_LEFT,this.getStringProperty(privLabel,PrivateLabel.PROP_TrackMap_mapControlLocation,""));
-        final boolean collapsibleControls       = 
+        final boolean collapsibleControls       =
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_mapControlCollapsible,false);
-        final boolean showLocationDetails       = 
+        final boolean showLocationDetails       =
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showLocationDetails,true);
         final boolean showDeviceLastEventTime   =
             this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_showDeviceLastEventTime,true);
@@ -1014,8 +1014,8 @@ public abstract class TrackMap
                     devicePushpinNdx = EventData._getPushpinIconIndex(devIcon, iconMap, -1);
                 }
                 String kmlName = !StringTools.isBlank(deviceID)? deviceID : RequestProperties.TRACK_BASE_URI();
-                TrackMap.this.writeJS_MapUpdate(reqState, out, 
-                    //EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),pageName,COMMAND_MAP_UPDATE ), 
+                TrackMap.this.writeJS_MapUpdate(reqState, out,
+                    //EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),pageName,COMMAND_MAP_UPDATE ),
                     privLabel.getWebPageURL(reqState,pageName,COMMAND_MAP_UPDATE ),
                     //EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),pageName,COMMAND_DEVICE_PING),
                     privLabel.getWebPageURL(reqState,pageName,COMMAND_DEVICE_PING),
@@ -1032,7 +1032,7 @@ public abstract class TrackMap
                 String pageName = TrackMap.this.getPageName();
 
                 // -- Command Form
-                // -  This entire form is 'hidden'.  It's used by JS functions to submit specific commands 
+                // -  This entire form is 'hidden'.  It's used by JS functions to submit specific commands
                 String actionURL = Track.GetBaseURL(reqState); // EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI());
                 out.println("\n<!-- Command form -->");
                 out.println("<form id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+actionURL+"\" target='_self'>"); // target='_top'
@@ -1166,7 +1166,7 @@ public abstract class TrackMap
                 out.write("</tr></table>\n"); // ]
                 out.write("</form>\n");
                 out.write("</td>\n");
- 
+
                 // -- Find Address
                 if (TrackMap.this.getBooleanProperty(privLabel,PrivateLabel.PROP_TrackMap_enableGeocode,false)) {
                     GeocodeProvider gcp = privLabel.getGeocodeProvider();
@@ -1217,10 +1217,10 @@ public abstract class TrackMap
                 }
 
                 out.println("</tr></tbody></table>"); // ]
-                
+
                 out.println("</td>");
                 out.println("</tr>");
-    
+
                 // -- start of map/calendar row
                 out.println("<tr>");
                 // -  start map/control
@@ -1262,7 +1262,7 @@ public abstract class TrackMap
                 out.println("\n");
                 if (TrackMap.this.showFromCalendar) {
                     out.println("<!-- 'From/To' Calendars -->");
-                    out.println("<tr><td style='font-size:9pt; font-weight:bold; border-top: solid #CCCCCC 1px;'>"+i18n.getString("TrackMap.selectDates","Select Date Range:")+"</td></tr>");
+                    out.println("<tr><td style=''>"+i18n.getString("TrackMap.selectDates","Select Date Range:")+"</td></tr>");
                     out.println("<tr><td align='center' valign='top'>\n");
                     out.println("<div   id='"+Calendar.ID_CAL_DIV+"' class='"+Calendar.CLASS_CAL_DIV+"' style='margin-top: 3px;'>");
                     out.println(  "<div id='"+CALENDAR_FROM+"' style='width:100%;'></div>");
@@ -1272,7 +1272,7 @@ public abstract class TrackMap
                     out.println("</td></tr>\n");
                 } else {
                     out.println("<!-- 'To' Calendar -->");
-                    out.println("<tr><td style='font-size:9pt; font-weight:bold; border-top: solid #CCCCCC 1px;'>"+i18n.getString("TrackMap.selectToDate","Select 'To' Date:")+"</td></tr>");
+                    out.println("<tr><td style=''>"+i18n.getString("TrackMap.selectToDate","Select 'To' Date:")+"</td></tr>");
                     out.println("<tr><td valign='top'>");
                     out.println("<div   id='"+Calendar.ID_CAL_DIV+"' class='"+Calendar.CLASS_CAL_DIV+"' style='margin-top: 3px;'>");
                     out.println(  "<div id='"+CALENDAR_TO+"' class='"+Calendar.CLASS_CAL_DIV+"'></div>");
@@ -1290,9 +1290,9 @@ public abstract class TrackMap
                     String noopAction = "javascript:true;";
                     out.println("\n<!-- Timezone select -->");
                     out.println("<form id='"+FORM_SELECT_TIMEZONE+"' name='"+FORM_SELECT_TIMEZONE+"' method='get' action=\""+noopAction+"\" target='_self'>"); // target='_top'
-                    out.println("<span style='font-size:8pt;'><b>"+i18n.getString("TrackMap.timeZone","TimeZone:")+"</b></span><br>");
+                    out.println("<h5>"+i18n.getString("TrackMap.timeZone","TimeZone:")+"</h5>");
                     out.println("<div style='height:18px;'>");
-                    out.println("<select name='"+Calendar.PARM_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+Calendar.PARM_TIMEZONE[0]+".value)\">");
+                    out.println("<select class='form-control' name='"+Calendar.PARM_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+Calendar.PARM_TIMEZONE[0]+".value)\">");
                     String timeZone = reqState.getTimeZoneString(null);
                     java.util.List _tzList = reqState.getTimeZonesList();
                     for (Iterator i = _tzList.iterator(); i.hasNext();) {
@@ -1313,19 +1313,19 @@ public abstract class TrackMap
                 out.println("<form id='UpdateMap' name='UpdateMap' method='get' target='_self'>"); // target='_top'
                 if (showUpdateAll) {
                     out.println("<!-- 'Update All' -->");
-                    out.print  ("<input class='formButton' id='"+ID_MAP_UPDATE_BTN+"' type='button' name='update' value='"+i18nUpdateBtn+"' title=\""+i18nUpdateTip+"\" onclick=\"javascript:trackMapClickedUpdateAll();\">");
+                    out.print  ("<input class='btn btn-success' id='"+ID_MAP_UPDATE_BTN+"' type='button' name='update' value='"+i18nUpdateBtn+"' title=\""+i18nUpdateTip+"\" onclick=\"javascript:trackMapClickedUpdateAll();\">");
                 }
                 if (showUpdateLast) {
                     String i18nLastBtn = i18n.getString("TrackMap.updateLast","Last");
                     String i18nLastTip = i18n.getString("TrackMap.updateLast.tooltip","Click to update last location");
                     out.println("<!-- 'Update Last' -->");
-                    out.print  ("<input class='formButton' id='"+ID_MAP_LAST_BTN+"' type='button' name='update' value='"+i18nLastBtn+"' title=\""+i18nLastTip+"\" onclick=\"javascript:trackMapClickedUpdateLast();\">");
+                    out.print  ("<input class='btn btn-success' id='"+ID_MAP_LAST_BTN+"' type='button' name='update' value='"+i18nLastBtn+"' title=\""+i18nLastTip+"\" onclick=\"javascript:trackMapClickedUpdateLast();\">");
                 }
                 if (autoUpdateEnabled) {
                     String i18nAutoBtn = i18n.getString("TrackMap.startAutoUpdate","Auto");
                     String i18nAutoTip = i18n.getString("TrackMap.startAutoUpdate.tooltip","Click to start/stop auto-update");
                     out.println("<!-- 'Auto Update' -->");
-                    out.print  ("<input class='formButton' id='"+ID_MAP_AUTOUPDATE_BTN+"' type='button' name='autoUpdate' value='"+i18nAutoBtn+"' title=\""+i18nAutoTip+"\" onclick=\"javascript:trackMapClickedAutoUpdate();\">");
+                    out.print  ("<input class='btn btn-default' id='"+ID_MAP_AUTOUPDATE_BTN+"' type='button' name='autoUpdate' value='"+i18nAutoBtn+"' title=\""+i18nAutoTip+"\" onclick=\"javascript:trackMapClickedAutoUpdate();\">");
                 }
                 out.println("</form>");
 
@@ -1349,12 +1349,12 @@ public abstract class TrackMap
                     String i18nReplayBtn = i18n.getString("TrackMap.replayMap","Replay");
                     String i18nReplayTip = i18n.getString("TrackMap.replayMap.tooltip","Click to start/pause map pushpin 'Replay'");
                     String i18nInfoText  = i18n.getString("TrackMap.showInfoBox","InfoBox");
-                    String i18nInfoTip   = i18n.getString("TrackMap.showInfoBox.tooltip","Select to show Info-Box during replay"); 
+                    String i18nInfoTip   = i18n.getString("TrackMap.showInfoBox.tooltip","Select to show Info-Box during replay");
                     out.println("<!-- 'Replay Map' -->");
                     out.println("<form id='ReplayMap' name='ReplayMap' method='get' action=\"javascript:trackMapClickedReplay(document.getElementById('ReplayMap')."+ID_MAP_SHOW_INFO+".checked);\" target='_self'>"); // target='_top'
                     out.print  (  "<table cellpadding='0' cellspacing='0' border='0' style='margin-top: 2px;'><tr>"); // {
                     out.print  (    "<td valign='center' style='padding-right: 3px'><b>"+i18nReplayBtn+"</b></td>");
-                    out.print  (    "<td valign='center'><input id='"+ID_MAP_REPLAY_BTN+"' type='image' name='replayMap' src='images/Play20.png' title=\""+i18nReplayTip+"\"></td>");
+                    out.print  (    "<td valign='center'><input id='"+ID_MAP_REPLAY_BTN+"' type='image' name='replayMap' src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Play20.png' title=\""+i18nReplayTip+"\"></td>");
                     out.print  (    "<td valign='center' style='padding-left: 3px'>");
                     out.print  (       "<span title=\""+i18nInfoTip+"\">");
                     out.print  (         "<label for='"+ID_MAP_SHOW_INFO+"'>"+i18nInfoText+"</label>&nbsp;" + Form_CheckBox(ID_MAP_SHOW_INFO,ID_MAP_SHOW_INFO,true,false,null,null));
@@ -1416,7 +1416,7 @@ public abstract class TrackMap
                                 }
                                 return dft;
                             }
-                        }, null/*valueFilter*/, 
+                        }, null/*valueFilter*/,
                         keyStart,keyEnd,StringTools.ARG_DELIM,StringTools.DFT_DELIM);
                         // currAcct
                         out.println("<!-- begin legend -->");
@@ -1583,7 +1583,7 @@ public abstract class TrackMap
                 if (showLocationDetails && mapProvider.isFeatureSupported(MapProvider.FEATURE_DETAIL_REPORT)) {
                     out.write("\n<!-- Detail report -->\n");
                     out.write("<tr>\n");
-                    out.write("<td colspan='"+colspan+"' align='center' style='padding-top:2px; border-top:1px solid #555555; font-size:9pt;'>\n");
+                    out.write("<td colspan='"+colspan+"' align='center' style=''>\n");
                     out.write("<a class='trackMapDetailLocationControl' id='"+MapProvider.ID_DETAIL_CONTROL+"' href=\"javascript:mapProviderToggleDetails()\">");
                     out.write(i18n.getString("TrackMap.showLocationDetails","Show Location Details"));
                     out.write("</a>");

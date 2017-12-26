@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@
 //  2007/07/27  Martin D. Flynn
 //     -Added 'getNavigationTab(...)'
 //  2007/12/13  Martin D. Flynn
-//     -The current "<PrivateLabel>.getDomainName()" name is now used to set the 
+//     -The current "<PrivateLabel>.getDomainName()" name is now used to set the
 //      temporary Account 'privateLabelName' field (previously it was left blank).
 // ----------------------------------------------------------------------------
 package org.opengts.war.track.page;
@@ -61,7 +61,7 @@ public class NewAccount
     public  static      boolean OFFLINE                     = false;
 
     // ------------------------------------------------------------------------
-    
+
     public  static final String COMMAND_EMAIL_SUBMIT        = "e_submit";
 
     public  static final String PARM_EMAIL_SUBMIT           = "e_submit";
@@ -99,7 +99,7 @@ public class NewAccount
         //I18N i18n = privLabel.getI18N(NewAccount.class);
         return super._getMenuDescription(reqState,"");
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         //PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -124,9 +124,9 @@ public class NewAccount
     }
 
     // ------------------------------------------------------------------------
-    
+
     private void offline(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         final String pageMsg)
         throws IOException
     {
@@ -136,7 +136,7 @@ public class NewAccount
         /* Style */
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
-                WebPageAdaptor.writeCssLink(out, reqState, "NewAccount.css", null);
+                //WebPageAdaptor.writeCssLink(out, reqState, "NewAccount.css", null);
             }
         };
 
@@ -169,8 +169,8 @@ public class NewAccount
         String acm = privLabel.getStringProperty(PrivateLabel.PROP_NewAccount_authCodeMask,null);
         return !StringTools.isBlank(acm);
     }
-    
-    private Tuple.Pair<Integer,String> checkAuthorization(PrivateLabel privLabel, 
+
+    private Tuple.Pair<Integer,String> checkAuthorization(PrivateLabel privLabel,
         String name, String email, String auth)
     {
 
@@ -230,13 +230,13 @@ public class NewAccount
     private void createNewAccount(
         String tempAccountID, int tempExpireDays,
         String contactEmail, String contactName,
-        RequestProperties reqState, 
+        RequestProperties reqState,
         final String pageMsg)
         throws IOException
     {
         final PrivateLabel privLabel = reqState.getPrivateLabel();
         final I18N i18n = privLabel.getI18N(NewAccount.class);
-        
+
         Print.logInfo("EMail address submitted: '" + contactName + "' : " + contactEmail);
         Account account = null;
         Device device = null;
@@ -266,7 +266,7 @@ public class NewAccount
             acctDecPass = Account.createRandomPassword(Account.TEMP_PASSWORD_LENGTH);
             account = Account.createTemporaryAccount(
                 tempAccountID, tempExpireDays, Account.encodePassword(privLabel,acctDecPass),
-                contactName, contactEmail, 
+                contactName, contactEmail,
                 tempPrivateLabelName);
             if (account == null) {
                 // unable to assign an account
@@ -306,10 +306,10 @@ public class NewAccount
         // after which time the account and data will no longer be available.   Also note
         // that this free service may become unavailable from time to time and may be
         // discontinued at any time without advance notice.
-        // 
+        //
         // You must login within the next 6 hours to confirm your new account registration.
         // You will then be able to change your password, and other account information.
-        // 
+        //
         // Thank you.
         //
         String expd = reqState.formatDateTime(account.getExpirationTime());
@@ -350,26 +350,26 @@ public class NewAccount
             String cc   = null;
             String bcc  = null;
             EMail.send(from, to, cc, bcc, subj, body, smtpProps);
-            Track.writeMessageResponse(reqState, 
+            Track.writeMessageResponse(reqState,
                 i18n.getString("NewAccount.emailSent","An email was sent to the specified email address with your new account information."));
         } else {
-            Track.writeMessageResponse(reqState, 
+            Track.writeMessageResponse(reqState,
                 i18n.getString("NewAccount.emailError","Due to an internal error, we were unable to email your new account information."));
         }
 
     }
-    
+
     // ------------------------------------------------------------------------
-        
+
     public void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         String pageMsg)
         throws IOException
     {
         final PrivateLabel privLabel = reqState.getPrivateLabel();
         final I18N i18n = privLabel.getI18N(NewAccount.class);
         String m = pageMsg;
-        
+
         /* offline */
         if (OFFLINE) {
             this.offline(reqState, pageMsg);
@@ -404,8 +404,8 @@ public class NewAccount
                         String tempAcctID  = a.b;
                         this.createNewAccount(
                             tempAcctID, tempExpDays,
-                            EMail.getEMailAddress(email), name, 
-                            reqState, 
+                            EMail.getEMailAddress(email), name,
+                            reqState,
                             pageMsg);
                         return;
                     }
@@ -417,7 +417,7 @@ public class NewAccount
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
                 String cssDir = NewAccount.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "NewAccount.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "NewAccount.css", cssDir);
             }
         };
 
@@ -437,7 +437,7 @@ public class NewAccount
                 out.println("  <hr>");
                 out.println("  <span class='"+CSS_NEW_ACCOUNT_INSTRUCT+"'>");
                 out.println(StringTools.replace(i18n.getString("NewAccount.instructions",
-                    "To create a temporary account, enter your contact information below\n" + 
+                    "To create a temporary account, enter your contact information below\n" +
                     "(and authorization code if required).\n" +
                     "Login information will be sent to you via email."),"\n","<br>"));
                 out.println("  </span>");
@@ -484,7 +484,7 @@ public class NewAccount
     }
 
     // ------------------------------------------------------------------------
-    
+
     private static final String ARG_PRIVLABEL[]     = new String[] { "bpl", "pl" };
     private static final String ARG_ACCOUNT[]       = new String[] { "account", "acct", "a" };
     private static final String ARG_EXPIRE[]        = new String[] { "expire", "exp", "e" };
@@ -587,5 +587,5 @@ public class NewAccount
         }
 
     }
-    
+
 }

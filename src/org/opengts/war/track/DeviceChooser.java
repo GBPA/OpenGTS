@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,7 @@ public class DeviceChooser
             return privLabel.getBooleanProperty(PrivateLabel.PROP_DeviceChooser_singleItemTextField,false);
         }
     }
-    
+
     // ------------------------------------------------------------------------
 
     public static IDDescription.SortBy getSortBy(PrivateLabel privLabel)
@@ -153,11 +153,11 @@ public class DeviceChooser
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // write Style
-    
+
     public static void writeStyle(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
-        WebPageAdaptor.writeCssLink(out, reqState, "DeviceChooser.css", null);
+        //WebPageAdaptor.writeCssLink(out, reqState, "DeviceChooser.css", null);
     }
 
     // ------------------------------------------------------------------------
@@ -211,7 +211,7 @@ public class DeviceChooser
             reqState.createDeviceIDDescriptionList(false/*inclInactv*/, sortBy);
         if (!ListTools.isEmpty(idList)) {
             // The 'deviceID'/'groupID' is unique, but the description may not be.
-            for (Iterator<IDDescription> i = idList.iterator(); i.hasNext();) { 
+            for (Iterator<IDDescription> i = idList.iterator(); i.hasNext();) {
                 IDDescription dd = i.next();
                 String dgn  = _escapeText(dd.getID());            // won't contain quotes anyway
                 String desc = _escapeText(dd.getDescription());   //
@@ -221,7 +221,7 @@ public class DeviceChooser
                 out.write("\n");
             }
         }
-        
+
         /* debug extra entries? */
         int extraCount = (int)privLabel.getLongProperty(PrivateLabel.PROP_DeviceChooser_extraDebugEntries,0L);
         if (extraCount > 0) {
@@ -243,7 +243,7 @@ public class DeviceChooser
     }
 
     // ------------------------------------------------------------------------
-    
+
     private static String ID_CHOOSER_VIEW             = "devChooserView";
     private static String ID_SEARCH_FORM              = "devSearchForm";
     public  static String ID_SEARCH_TEXT              = "devSearchText";
@@ -293,13 +293,13 @@ public class DeviceChooser
         /* begin table HTML */
         StringBuffer html = new StringBuffer();
         append(html,"<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+"' cellspacing='0' cellpadding='0' border='1'>\n");
-    
+
         // table header
         append(html,"<thead>\n");
         append(html,"<tr class='"+CLASS_DEVSELECT_ROW_HEADER+"'>");
         if (DeviceChooserIDPosition == IDPOS_NONE) {
             append(html,"<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>");
-        } else 
+        } else
         if (DeviceChooserIDPosition == IDPOS_LAST) {
             append(html,"<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>");
             append(html,"<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+idWidth+"' valign='center'>"+DEVICE_TEXT_ID+"</th>");
@@ -309,7 +309,7 @@ public class DeviceChooser
         }
         append(html,"</tr>\n");
         append(html,"</thead>\n");
-    
+
         // table body
         int extraCount = (int)privLabel.getLongProperty(PrivateLabel.PROP_DeviceChooser_extraDebugEntries,0L);
         append(html,"<tbody>\n");
@@ -318,8 +318,8 @@ public class DeviceChooser
             String desc  = (d < list.length)? list[d].getDescription() : (String.valueOf(d - list.length + 1) + " asset");
 
             /* omit items not matched */
-            //if (!StringTools.isBlank(searchVal) && !desc.toLowerCase().startsWith(searchVal.toLowerCase())) { 
-            //    continue; 
+            //if (!StringTools.isBlank(searchVal) && !desc.toLowerCase().startsWith(searchVal.toLowerCase())) {
+            //    continue;
             //}
             String dsTxt = StringTools.htmlFilter(desc, StringTools.HTMLFilterType.TEXT);
             String dsVal = StringTools.htmlFilter(desc, StringTools.HTMLFilterType.VALUE).toLowerCase();
@@ -331,7 +331,7 @@ public class DeviceChooser
             append(html,"<tr idVal='"+idVal+"' dsVal='"+dsVal+"' selNdx='"+selNdx+"' class='"+CLASS_DEVSELECT_ROW_DATA+"'>");
             if (DeviceChooserIDPosition == IDPOS_NONE) {
                 append(html,"<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
-            } else 
+            } else
             if (DeviceChooserIDPosition == IDPOS_LAST) {
                 append(html,"<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
                 append(html,"<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+idWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ idVal +"</td>");
@@ -340,13 +340,13 @@ public class DeviceChooser
                 append(html,"<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
             }
             append(html,"</tr>\n");
-    
+
         }
         append(html,"</tbody>\n");
-    
+
         append(html,"</table>\n");
         return html.toString();
-    
+
     }
 
     public static void writeChooserDIV(PrintWriter out, RequestProperties reqState, IDDescription list[], String searchVal)
@@ -368,7 +368,7 @@ public class DeviceChooser
         out.write("<!-- begin DeviceChooser DIV -->\n");
         out.write("<div id='"+ID_CHOOSER_VIEW+"' class='"+CLASS_DEVSELECT_DIV_HIDDEN+"'>\n");
 
-        /* form */   
+        /* form */
         if (DeviceChooser.isSearchEnabled(privLabel)) {
             out.write("<form id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='GET' action=\"javascript:true;\" target='_self' style='padding-left:5px; background-color:#dddddd;'>\n"); // target='_top'
             out.write("<b>"+DEVICE_TEXT_Search+": </b>\n");
@@ -379,13 +379,13 @@ public class DeviceChooser
         /* begin table */
         out.write("<div id='"+ID_DIV_TABLE+"' class='"+CLASS_DEVSELECT_DIV_TABLE+"'>\n"); // FIX
         out.write("<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+"' cellspacing='0' cellpadding='0' border='1'>\n");
-    
+
         // table header
         out.write("<thead>\n");
         out.write("<tr class='"+CLASS_DEVSELECT_ROW_HEADER+"'>");
         if (idPos == IDPOS_NONE) {
             out.write("<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>");
-        } else 
+        } else
         if (idPos == IDPOS_LAST) {
             out.write("<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>");
             out.write("<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+idWidth+"' valign='center'>"+DEVICE_TEXT_ID+"</th>");
@@ -395,7 +395,7 @@ public class DeviceChooser
         }
         out.write("</tr>\n");
         out.write("</thead>\n");
-    
+
         // table body
         int extraCount = (int)privLabel.getLongProperty(PrivateLabel.PROP_DeviceChooser_extraDebugEntries,0L);
         out.write("<tbody>\n");
@@ -404,8 +404,8 @@ public class DeviceChooser
             String desc  = (d < list.length)? list[d].getDescription() : (String.valueOf(d - list.length + 1) + " asset");
 
             /* omit items not matched */
-            //if (!StringTools.isBlank(searchVal) && !desc.toLowerCase().startsWith(searchVal.toLowerCase())) { 
-            //    continue; 
+            //if (!StringTools.isBlank(searchVal) && !desc.toLowerCase().startsWith(searchVal.toLowerCase())) {
+            //    continue;
             //}
             String dsTxt = StringTools.htmlFilter(desc, StringTools.HTMLFilterType.TEXT);
             String dsVal = StringTools.htmlFilter(desc, StringTools.HTMLFilterType.VALUE).toLowerCase();
@@ -417,7 +417,7 @@ public class DeviceChooser
             out.write("<tr idVal='"+idVal+"' dsVal='"+dsVal+"' selNdx='"+selNdx+"' class='"+CLASS_DEVSELECT_ROW_DATA+"'>");
             if (idPos == IDPOS_NONE) {
                 out.write("<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
-            } else 
+            } else
             if (idPos == IDPOS_LAST) {
                 out.write("<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
                 out.write("<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+idWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ idVal +"</td>");
@@ -426,14 +426,14 @@ public class DeviceChooser
                 out.write("<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected("+selNdx+")\">"+ dsTxt +"</td>");
             }
             out.write("</tr>\n");
-    
+
         }
         out.write("</tbody>\n");
-    
+
         /* end table */
         out.write("</table>\n");
         out.write("</div>\n");
-   
+
         /* end DIV */
         out.write("</div>\n");
         if (DeviceChooser.isSearchEnabled(privLabel)) {

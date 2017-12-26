@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -116,10 +116,10 @@ public class Leaflet
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    /* Leaflet instance */ 
-    public Leaflet(String name, String key) 
+    /* Leaflet instance */
+    public Leaflet(String name, String key)
     {
-        super(name, key); 
+        super(name, key);
         this.addSupportedFeature(FEATURE_LATLON_DISPLAY);
         this.addSupportedFeature(FEATURE_DISTANCE_RULER);
         this.addSupportedFeature(FEATURE_GEOZONES);
@@ -145,7 +145,7 @@ public class Leaflet
         if (StringTools.isBlank(useSSLStr)) {
             // -- default: follow parent URL secure protocol
             useSSL = reqState.isSecure()? true : false;
-        } else 
+        } else
         if (useSSLStr.equalsIgnoreCase("auto")) {
             // -- auto: follow parent URL secure protocol
             useSSL = reqState.isSecure()? true : false;
@@ -206,12 +206,12 @@ public class Leaflet
 
     /* write css to stream */
     public void writeStyle(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
         super.writeStyle(out, reqState);
         String cssURLs[] = this._getLeafletCSS(reqState);
         for (int i = 0; i < cssURLs.length; i++) {
-            WebPageAdaptor.writeCssLink(out, reqState, cssURLs[i], null);
+            //WebPageAdaptor.writeCssLink(out, reqState, cssURLs[i], null);
         }
     }
 
@@ -245,8 +245,8 @@ public class Leaflet
         }
     }
 
-    /* write mapping support JS to stream */ 
-    protected void writeJSVariables(PrintWriter out, RequestProperties reqState) 
+    /* write mapping support JS to stream */
+    protected void writeJSVariables(PrintWriter out, RequestProperties reqState)
         throws IOException
     {
         PrivateLabel privLabel   = reqState.getPrivateLabel();
@@ -318,7 +318,7 @@ public class Leaflet
     // ------------------------------------------------------------------------
 
     protected void writeJSIncludes(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
         Vector<String> jsURLs = new Vector<String>();
         jsURLs.add(JavaScriptTools.qualifyJSFileRef("maps/jsmap.js"));

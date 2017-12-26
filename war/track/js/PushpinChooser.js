@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -89,9 +89,9 @@ function ppcShowPushpinChooser(elemNameID)
 
     /* begin table HTML */
     var html = "";
-    html += "<table class='"+CLASS_ICONSELECT_TABLE+"' cellspacing='0' cellpadding='0' border='1'>\n";
+    html += "<table class='"+CLASS_ICONSELECT_TABLE+"' cellspacing='0' cellpadding='0' border='0'>\n";
     html += "<tbody>\n";
-    
+
     /* single table row */
     var maxIconsPerRow = 6;
     var columnCount = 0;
@@ -127,7 +127,7 @@ function ppcShowPushpinChooser(elemNameID)
         }
     }
     html += "</tr>\n";
-    
+
     /* end table */
     html += "</tbody>\n";
     html += "</table>\n";

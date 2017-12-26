@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,9 +55,9 @@ public class IconMenu
     // -- write Style
 
     public static void writeStyle(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
-        WebPageAdaptor.writeCssLink(out, reqState, "IconMenu.css", null);
+        //WebPageAdaptor.writeCssLink(out, reqState, "IconMenu.css", null);
 
         // -- overrides below
         PrivateLabel pl = reqState.getPrivateLabel();
@@ -242,7 +242,7 @@ public class IconMenu
                 String url       = wp.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());
 
                 /* skip login page */
-                if (menuName.equalsIgnoreCase(Constants.PAGE_LOGIN)) { 
+                if (menuName.equalsIgnoreCase(Constants.PAGE_LOGIN)) {
                     //Print.logInfo("Skipping Login menu item: " + menuName);
                     continue; // omit login
                 }
@@ -255,7 +255,7 @@ public class IconMenu
 
                 /* skip pages that are not ok to display */
                 if (!wp.isOkToDisplay(reqState)) {
-                    continue; 
+                    continue;
                 }
 
                 /* start menu group */
@@ -266,7 +266,7 @@ public class IconMenu
                     out.write("<tr class='"+groupTitleClass+"'><td class='"+groupTitleClass+"' width='100%'>"+mg.getTitle(locale)+"</td></tr>\n");
                     out.write("<tr class='"+groupIconsClass+"'><td class='"+groupIconsClass+"' width='100%'>\n");
                     // --
-                    //out.write("<table class='"+menuItemTable+"' border='0'>\n"); //cellspacing='0' cellpadding='0' 
+                    //out.write("<table class='"+menuItemTable+"' border='0'>\n"); //cellspacing='0' cellpadding='0'
                     //out.write("<tr class='"+menuItemRow+"'>\n");
                     out.write("<div class='"+menuItemRow+"'>\n");
                 }
@@ -330,7 +330,7 @@ public class IconMenu
                 rowIconCount++;
 
             }
-                
+
             /* end menu group */
             if (didDisplayGroup) {
                 //out.write("</tr>\n");
@@ -342,7 +342,7 @@ public class IconMenu
             }
 
         }
-        
+
         /* end of menu */
         out.write("</table>\n");
 
@@ -372,7 +372,7 @@ public class IconMenu
         }
         return sb.toString(); // StringTools.replace(s, " ", "<BR>");
     }
-    
+
     // ------------------------------------------------------------------------
 
 }
