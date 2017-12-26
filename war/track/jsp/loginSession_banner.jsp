@@ -111,7 +111,7 @@
                         <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-bar-chart"></i> &nbsp;Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="/dashboard/Track?page=menu.rpt.devDetail">Device Detail</a> </li>
-                            <li> <a href="/dashboard/Track?page=menu.rpt.grpDetail">Group Detail</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.grpDetail">Vehicle Detail</a> </li>
                             <li> <a href="/dashboard/Track?page=menu.rpt.grpSummary">Group Summary</a> </li>
                             <li> <a href="/dashboard/Track?page=menu.rpt.devPerf">Device Performance</a> </li>
                             <li> <a href="/dashboard/Track?page=menu.rpt.drvrPerf">Operator Performance</a> </li>
@@ -122,7 +122,7 @@
                         <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-power-off"></i> &nbsp; Manage<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="/dashboard/Track?page=user.info">Users</a> </li>
-                            <li> <a href="/dashboard/Track?page=dev.info">Devices</a> </li>
+                            <li> <a href="/dashboard/Track?page=dev.info">Vehicles</a> </li>
                             <li> <a href="/dashboard/Track?page=group.info">Fleets</a> </li>
                             <li> <a href="/dashboard/Track?page=driver.info">Operators</a> </li>
                             <li> <a href="/dashboard/Track?page=zone.info">Geozones</a> </li>

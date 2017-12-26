@@ -183,13 +183,13 @@ public class DeviceCmd_gtsdmtp
         out.println("</table>");
 
         /* end of form */
-        out.write("<hr style='margin-bottom:5px;'>\n");
+      
         if (editProps) {
-            out.write("<input type='submit' name='"+PARM_SUBMIT_QUE+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.queue","Queue")+"'>\n");
+            out.write("<input type='submit' class='btn btn-primary' name='"+PARM_SUBMIT_QUE+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.queue","Queue")+"'>\n");
             out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-            out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.cancel","Cancel")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
+            out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.cancel","Cancel")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
         } else {
-            out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.back","Back")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
+            out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceCmd_gtsdmtp.back","Back")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
         }
         out.write("</form>\n");
         return true;

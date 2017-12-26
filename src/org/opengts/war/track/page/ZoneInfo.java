@@ -742,7 +742,7 @@ public class ZoneInfo
                     mapProvider.writeStyle(out, reqState);
                 }
                 String cssDir = ZoneInfo.this.getCssDirectory();
-                WebPageAdaptor.writeCssLink(out, reqState, "ZoneInfo.css", cssDir);
+                //WebPageAdaptor.writeCssLink(out, reqState, "ZoneInfo.css", cssDir);
             }
         };
 
@@ -833,10 +833,9 @@ public class ZoneInfo
                         i18n.getString("ZoneInfo.list.viewEditZone","View/Edit Geozone Information") :
                         i18n.getString("ZoneInfo.list.viewZone","View Geozone Information");
                     out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
-                    out.write("<hr>\n");
 
                     // -- Geozone selection table (Select, Zone ID, Zone Name)
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+FilterText(i18n.getString("ZoneInfo.list.selectZone","Select a Geozone"))+":</h1>\n");
+                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+FilterText(i18n.getString("ZoneInfo.list.selectZone","Select a Geozone"))+":</h3>\n");
                     out.write("<div style='margin-left:25px;'>\n");
                     out.write("<form class='form-horizontal' name='"+FORM_ZONE_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
@@ -956,17 +955,17 @@ public class ZoneInfo
                     out.write("<tr>\n");
                     if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("ZoneInfo.list.view","View")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("ZoneInfo.list.view","View")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("ZoneInfo.list.edit","Edit")+"'>");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("ZoneInfo.list.edit","Edit")+"'>");
                         out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("ZoneInfo.list.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
+                        out.write("<input type='submit' class='btn btn-danger' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("ZoneInfo.list.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
                         out.write("&nbsp;");
                     }
@@ -975,11 +974,11 @@ public class ZoneInfo
                     out.write("</table>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
 
                     /* new Geozone */
                     if (_allowNew) {
-                        out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+FilterText(i18n.getString("ZoneInfo.list.createNewZone","Create a new Geozone"))+":</h1>\n");
+                        out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+FilterText(i18n.getString("ZoneInfo.list.createNewZone","Create a new Geozone"))+":</h3>\n");
                         out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                         out.write("<form class='form-horizontal' name='"+FORM_ZONE_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                         out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
@@ -1001,10 +1000,10 @@ public class ZoneInfo
                             // only POINT_RADIUS supported
                         }
                         out.write("<br>\n");
-                        out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("ZoneInfo.list.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                        out.write(" <input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("ZoneInfo.list.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                         out.write("</form>\n");
                         out.write("</div>\n");
-                        out.write("<hr>\n");
+
                     }
 
                 } else {
@@ -1022,7 +1021,7 @@ public class ZoneInfo
                     String frameTitle = _editZone?
                         i18n.getString("ZoneInfo.map.editZone","Edit Geozone") :
                         i18n.getString("ZoneInfo.map.viewZone","View Geozone");
-                    out.print  ("<span style='font-size:9pt; font-weight:bold;'>"+frameTitle+" &nbsp;</span>");
+                    out.print  ("<span style=' font-weight:bold;'>"+frameTitle+" &nbsp;</span>");
                     out.print  (Form_TextField(PARM_ZONE_SELECT, false, _selZoneID, 16, 20));
                     out.write("</td>");
                     out.write("<td nowrap style=\"width:100%; text-align:right;\">");
@@ -1211,7 +1210,7 @@ public class ZoneInfo
                     }
 
                     // -- geozone points section
-                    out.println("<hr>");
+
 
                     /* notes */
                     if (_editZone && mapSupportsGeozones) {
@@ -1263,7 +1262,7 @@ public class ZoneInfo
                     if (_editZone && mapSupportsGeozones) {
                         String i18nResetBtn = i18n.getString("ZoneInfo.map.reset","Reset Map");
                         String i18nResetTooltip = i18n.getString("ZoneInfo.map.reset.tooltip", "Click to update the map with the specified radius/latitude/longitude");
-                        out.print("<input class='formButton' type='button' name='reset' value='"+i18nResetBtn+"' title=\""+i18nResetTooltip+"\" onclick=\"javascript:_zoneReset();\">");
+                        out.print("<input class='btn btn-warning' type='button' name='reset' value='"+i18nResetBtn+"' title=\""+i18nResetTooltip+"\" onclick=\"javascript:_zoneReset();\">");
                     }
                     out.println("<br>");
                     out.println("<div style='height:200px; overflow-y:auto;'>"); // beginning of vertice list
@@ -1294,7 +1293,7 @@ public class ZoneInfo
                         Account.SpeedUnits speedUnit = Account.getSpeedUnits(currAcct); // not null
                         double kphLimit = (_selZone != null)? _selZone.getSpeedLimitKPH() : 0.0;
                         double speedLimit = speedUnit.convertFromKPH(kphLimit);
-                        out.print("<hr>\n");
+
                         out.println("<div class='zoneSpeedLimit' title=\""+""+"\">");
                         out.println("<b>"+i18n.getString("ZoneInfo.speedLimit","Speed Limit ({0})",speedUnit.toString(locale))+":</b>");
                         out.println(Form_TextField(PARM_SPEED_LIMIT, PARM_SPEED_LIMIT, _editZone, String.valueOf(speedLimit), 5, 5));
@@ -1305,7 +1304,7 @@ public class ZoneInfo
                         String purpID = (_selZone != null)? _selZone.getZonePurposeID() : "";
                         String Pstr   = privLabel.getStringProperty(PrivateLabel.PROP_ZoneInfo_zonePurposeList,null);
                         String P[]    = !StringTools.isBlank(Pstr)? StringTools.split(Pstr,',') : null;
-                        out.print("<hr>\n");
+
                         out.println("<div class='zonePurposeID' title=\""+""+"\">");
                         out.println("<b>"+i18n.getString("ZoneInfo.purposeID","Purpose")+":</b> ");
                         if (!ListTools.isEmpty(P)) {
@@ -1320,7 +1319,7 @@ public class ZoneInfo
                     // GeoCorridor
                     if (showCorridorIDs && !selZoneIsPOI) {
                         String corrID = (_selZone != null)? _selZone.getCorridorID() : "";
-                        out.print("<hr>\n");
+
                         out.println("<div class='zoneCorridorID' title=\""+""+"\">");
                         out.println("<b>"+i18n.getString("ZoneInfo.corridorID","Corridor ID")+":</b>");
                         out.println("<br>");
@@ -1341,16 +1340,16 @@ public class ZoneInfo
                             }
                             String i18nZipTooltip = i18n.getString("ZoneInfo.map.geocode.tooltip", "Click to reset Geozone to spcified Address/ZipCode");
                             String rgZipCode_text = "rgZipCode";
-                            out.print("<hr>\n");
+
                           //out.print("<br>");
-                            out.print("<input class='formButton' type='button' name='tozip' value='"+i18nZipBtn+"' title=\""+i18nZipTooltip+"\" onclick=\"javascript:_zoneGotoAddr(jsmGetIDValue('"+rgZipCode_text+"'),'"+dftCountryCode+"');\">");
+                            out.print("<input class='btn btn-primary' type='button' name='tozip' value='"+i18nZipBtn+"' title=\""+i18nZipTooltip+"\" onclick=\"javascript:_zoneGotoAddr(jsmGetIDValue('"+rgZipCode_text+"'),'"+dftCountryCode+"');\">");
                             out.print("<br>");
                             out.println(Form_TextField(rgZipCode_text, rgZipCode_text, _editZone, "",  27, 60));
                         }
                     }
                     out.println("</div>");
 
-                    out.println("<hr>");
+
                     out.println("<div class='zoneInstructions'>");
                     out.println("<b>"+i18n.getString("ZoneInfo.map.notes.header","Geozone Notes/Instructions")+":</b><br>");
                     if (_editZone && mapSupportsGeozones) {
@@ -1365,7 +1364,7 @@ public class ZoneInfo
                     }
                     out.println("- " + i18n.getString("ZoneInfo.map.notes.lengthInMeters", "Distances are always in meters.") + "<br>");
 
-                    out.println("<hr>");
+
                     if (mapSupportsCursorLocation || mapSupportsDistanceRuler) {
                         if (mapSupportsCursorLocation) {
                             out.println("<b>"+i18n.getString("ZoneInfo.map.cursorLoc","Cursor")+"</b>:");
@@ -1376,7 +1375,7 @@ public class ZoneInfo
                             out.println("<b>"+i18n.getString("ZoneInfo.map.distanceRuler","Distance")+"</b>:");
                             out.println("<span id='"+MapProvider.ID_DISTANCE_DISPLAY+"' style='margin-left:6px;'>0 "+GeoPoint.DistanceUnits.METERS.toString(locale)+"</span>");
                         }
-                        out.println("<hr>");
+
                     }
 
                     out.println("</div>");
@@ -1384,11 +1383,11 @@ public class ZoneInfo
                     out.write("<div width='100%'>\n");
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_editZone) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("ZoneInfo.map.change","Change")+"'>\n");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("ZoneInfo.map.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                        out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("ZoneInfo.map.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("ZoneInfo.map.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     } else {
-                        out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("ZoneInfo.map.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("ZoneInfo.map.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     }
                     out.write("</div>\n");
 

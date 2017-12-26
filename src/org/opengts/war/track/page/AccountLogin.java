@@ -214,7 +214,7 @@ public class AccountLogin
     {
         final PrivateLabel privLabel = reqState.getPrivateLabel();
         final I18N i18n = privLabel.getI18N(AccountLogin.class);
-        final String HR = "<hr style='height:3px;margin-right:5px;'/>";
+        final String HR = "";
 
         /* custom login banner image (roughly 300px wide) */
         final String  banner300Image;
@@ -513,7 +513,7 @@ public class AccountLogin
                     out.println("  <input type='hidden' name='"+Constants.PARM_ACCOUNT  +"' value='"+reqState.getDemoAccountID()+"'/>");
                     out.println("  <input type='hidden' name='"+Constants.PARM_USER     +"' value=''/>");
                     out.println("  <input type='hidden' name='"+Constants.PARM_PASSWORD +"' value=''/>");
-                    out.println("  <span style='font-size:9pt;padding-right:5px;'>"+i18n.getString("AccountLogin.freeDemo","Click here for a Demo")+"</span>");
+                    out.println("  <span style=';padding-right:5px;'>"+i18n.getString("AccountLogin.freeDemo","Click here for a Demo")+"</span>");
                     out.println("  <input type='submit' name='submit' value='"+i18n.getString("AccountLogin.demo","Demo")+"'>");
                     out.println("</form>");
                     //out.println("<br/>");

@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,8 +23,8 @@
 //  2006/03/26  Martin D. Flynn
 //     -Initial release
 //  2006/04/11  Martin D. Flynn
-//     -Decimal formatting now explicitly uses "Locale.US" symbols.  This fixes 
-//      a problem that caused values such as Latitude "37,1234" from appearing 
+//     -Decimal formatting now explicitly uses "Locale.US" symbols.  This fixes
+//      a problem that caused values such as Latitude "37,1234" from appearing
 //      in CSV files.
 //  2006/05/11  Martin D. Flynn
 //     -Replaced deprecated 'Character.isSpace' with 'Character.isWhitespace'
@@ -40,7 +40,7 @@
 //     -Fixed 'insertKeyValues' to properly account for the length of the beginning
 //      and ending delimiter lengths.
 //  2008/02/04  Martin D. Flynn
-//     -Added 'parseFloat'/'parseDouble' method for decoding 32-bit and 64-bit 
+//     -Added 'parseFloat'/'parseDouble' method for decoding 32-bit and 64-bit
 //      IEEE 754 floating-point values.
 //     -Validate 'blockLen' argument in 'formatHexString'.
 //  2008/02/27  Martin D. Flynn
@@ -56,12 +56,12 @@
 //  2008/07/20  Martin D. Flynn
 //     -Added key/value separator option to 'parseProperties'
 //  2008/07/27  Martin D. Flynn
-//     -Added 'isDouble', 'isFloat', 'isInt', 'isLong', 'isBoolean' methods that 
+//     -Added 'isDouble', 'isFloat', 'isInt', 'isLong', 'isBoolean' methods that
 //      accept an 'Object' data type.
 //  2009/01/01  Martin D. Flynn
 //     -Added 'isAlphaNumeric'
 //  2009/01/28  Martin D. Flynn
-//     -Changed 'insertKeyValues' to allow recursive variable replacement within 
+//     -Changed 'insertKeyValues' to allow recursive variable replacement within
 //      default replacement value.
 //  2009/07/28  Martin D. Flynn
 //     -'setProperties' now allow specifying multiple key=val separators.
@@ -138,20 +138,20 @@ public class StringTools
     public static final char   NEW_LINE                 = '\n';
     public static final char   CARRIAGE_RETURN          = '\r';
     public static final char   TAB                      = '\t';
-    
+
     public static final String WhitespaceChars          = " \t\b\f\r\n";
 
     public static final char   KeyValSeparatorEQUAL     = '=';
     public static final char   KeyValSeparatorCOLON     = ':';
     public static final char   KeyValSeparatorChar      = KeyValSeparatorEQUAL;
     public static final char   KeyValSeparatorChars[]   = new char[] { KeyValSeparatorEQUAL, KeyValSeparatorCOLON };
-    
+
     public static final char   PropertySeparatorSPACE   = ' ';
     public static final char   PropertySeparatorSEMIC   = ';';
     public static final char   PropertySeparatorChar    = PropertySeparatorSPACE;
 
     // ------------------------------------------------------------------------
-    
+
     public  static final String STRING_TRUE             = "true";
     public  static final String STRING_FALSE            = "false";
 
@@ -180,7 +180,7 @@ public class StringTools
     *** Validates and returns an offset that fits within the specified length
     *** @param ofs     The offset to validate.
     *** @param length  The length used to constrain the offset (assumed to be valid)
-    *** @return The constrained offset value 
+    *** @return The constrained offset value
     **/
     private static int _constrainOffset(int ofs, int length)
     {
@@ -199,7 +199,7 @@ public class StringTools
     *** @param ofs     The offset within 'length' (assumed to be valid)
     *** @param len     The length to validate/constrain
     *** @param length  The length used to constrain the specified <code>len</code> (assumed to be valid)
-    *** @return The constrained length value 
+    *** @return The constrained length value
     **/
     private static int _constrainLength(int ofs, int len, int length)
     {
@@ -217,7 +217,7 @@ public class StringTools
     // ------------------------------------------------------------------------
 
     //private static String charEncoding = DefaultCharEncoding;
-    
+
     //**
     //*** Sets the character encoding used to encode/decode Strings
     //*** @param charEnc  The character encoding
@@ -226,7 +226,7 @@ public class StringTools
     //{
     //    StringTools.charEncoding = !StringTools.isBlank(charEnc)? charEnc : DefaultCharEncoding;
     //}
-    
+
     /**
     *** Gets the character encoding used to encode/decode Strings
     *** @return  The character encoding
@@ -259,7 +259,7 @@ public class StringTools
     }
 
     /**
-    *** Returns the default character set 
+    *** Returns the default character set
     *** @return The default character set
     **/
     /*
@@ -273,8 +273,8 @@ public class StringTools
             case 0:
                 // not cross-plateform safe
                 charSet = System.getProperty("file.encoding");
-                // Note: Setting this property will not change the default character encoding for 
-                // the current Java process.  In order to change the character encoding, this 
+                // Note: Setting this property will not change the default character encoding for
+                // the current Java process.  In order to change the character encoding, this
                 // property must be set on the start-up command line. (IE. "-Dfile.encoding=UTF-8")
                 break;
             case 1:
@@ -301,9 +301,9 @@ public class StringTools
     {
         return (s != null)? s.length() : 0;
     }
-    
+
     /**
-    *** Truncates the specified string to the specified length.  Returns the 
+    *** Truncates the specified string to the specified length.  Returns the
     *** String as-is if the length of the String is already less than the specified length
     *** @param s        The String
     *** @param maxLen   The maximum length
@@ -323,7 +323,7 @@ public class StringTools
             return s;
         }
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
@@ -337,7 +337,7 @@ public class StringTools
     }
 
     /**
-    *** Converts the specified byte array to an array of chars.  
+    *** Converts the specified byte array to an array of chars.
     *** This method converts a single byte to a single character.  Multibyte character
     *** conversions are not supported.
     *** @param b The array of bytes to convert to characters
@@ -347,8 +347,8 @@ public class StringTools
     {
         if (b != null) {
             char c[] = new char[b.length];
-            for (int i = 0; i < b.length; i++) { 
-                c[i] = (char)((int)b[i] & 0xFF); 
+            for (int i = 0; i < b.length; i++) {
+                c[i] = (char)((int)b[i] & 0xFF);
             }
             return c;
         } else {
@@ -391,7 +391,7 @@ public class StringTools
     }
 
     /**
-    *** Converts the specified char array into a byte array.  Character are converted 
+    *** Converts the specified char array into a byte array.  Character are converted
     *** as 1 byte per character.  Multibyte conversions are not supported by this method.
     *** @param c  The char array which will be converted to a byte array
     *** @return The byte array representation of the specified char array
@@ -520,7 +520,7 @@ public class StringTools
             return StringTools.isNumeric(s, inclHex);
         }
     }
-    
+
     // --------------------------------
 
     /**
@@ -532,7 +532,7 @@ public class StringTools
     {
         return StringTools.isNumeric(s, false);
     }
-    
+
     /**
     *** Returns true if the specified String contains only numeric characters
     *** @param s        The String tested for numeric characters
@@ -866,7 +866,7 @@ public class StringTools
             }
         }
     }
-    
+
     /**
     *** Converts the specified byte array to a String based on the default character set.
     *** @param b    The byte array to convert to a String, based on the default character set.
@@ -941,7 +941,7 @@ public class StringTools
         } else
         if (v instanceof char[]) {
             return StringTools.toString((char[])v);
-        } else 
+        } else
         if (v.getClass().isArray()) {
             char delim = ',';
             boolean alwaysQuote = false;
@@ -1306,7 +1306,7 @@ public class StringTools
                         int hndx = hexIndex(u.charAt(i));
                         if (hndx < 0) {
                             break;
-                        }                        
+                        }
                         val = (val << 4) | hndx;
                     }
                     sb.append((char)val);
@@ -1427,7 +1427,7 @@ public class StringTools
     }
 
     /**
-    *** Returns true if the specified argument is null, or the "toString" value contains 0 or 
+    *** Returns true if the specified argument is null, or the "toString" value contains 0 or
     *** more whitespace characters.
     *** @param s  The Object to test for blank.
     *** @return True if the specified argument is blank, or null.
@@ -1461,7 +1461,7 @@ public class StringTools
             return !StringTools.isBlank(t)? t : dft;
         }
     }
-    
+
     /**
     *** Returns the specified String if not blank, or the default String if the specified String is blank
     *** @param target  The specified target String
@@ -1485,7 +1485,7 @@ public class StringTools
     {
         return (target == null)? dft : target.toString();
     }
-    
+
     /**
     *** Returns the specified String if not null, or the default String if the specified String is null
     *** @param target  The specified target String
@@ -1909,34 +1909,34 @@ public class StringTools
     **/
     public static double parseDouble(byte b[], int ofs, boolean isBigEndian, double dft)
     {
-        
+
         /* valid byte array */
         if ((b == null) || ((ofs + 8) > b.length)) {
             return dft;
         }
-        
+
         /* parse IEEE 754 double */
         int i = ofs;
         long doubleLong = 0L;
         if (isBigEndian) {
-            doubleLong = 
-                (((long)b[i+0] & 0xFF) << (7*8)) + 
-                (((long)b[i+1] & 0xFF) << (6*8)) + 
-                (((long)b[i+2] & 0xFF) << (5*8)) + 
-                (((long)b[i+3] & 0xFF) << (4*8)) + 
-                (((long)b[i+4] & 0xFF) << (3*8)) + 
-                (((long)b[i+5] & 0xFF) << (2*8)) + 
-                (((long)b[i+6] & 0xFF) << (1*8)) + 
+            doubleLong =
+                (((long)b[i+0] & 0xFF) << (7*8)) +
+                (((long)b[i+1] & 0xFF) << (6*8)) +
+                (((long)b[i+2] & 0xFF) << (5*8)) +
+                (((long)b[i+3] & 0xFF) << (4*8)) +
+                (((long)b[i+4] & 0xFF) << (3*8)) +
+                (((long)b[i+5] & 0xFF) << (2*8)) +
+                (((long)b[i+6] & 0xFF) << (1*8)) +
                  ((long)b[i+7] & 0xFF);
         } else {
-            doubleLong = 
-                (((long)b[i+7] & 0xFF) << (7*8)) + 
-                (((long)b[i+6] & 0xFF) << (6*8)) + 
-                (((long)b[i+5] & 0xFF) << (5*8)) + 
-                (((long)b[i+4] & 0xFF) << (4*8)) + 
-                (((long)b[i+3] & 0xFF) << (3*8)) + 
-                (((long)b[i+2] & 0xFF) << (2*8)) + 
-                (((long)b[i+1] & 0xFF) << (1*8)) + 
+            doubleLong =
+                (((long)b[i+7] & 0xFF) << (7*8)) +
+                (((long)b[i+6] & 0xFF) << (6*8)) +
+                (((long)b[i+5] & 0xFF) << (5*8)) +
+                (((long)b[i+4] & 0xFF) << (4*8)) +
+                (((long)b[i+3] & 0xFF) << (3*8)) +
+                (((long)b[i+2] & 0xFF) << (2*8)) +
+                (((long)b[i+1] & 0xFF) << (1*8)) +
                  ((long)b[i+0] & 0xFF);
         }
         return Double.longBitsToDouble(doubleLong);
@@ -2034,7 +2034,7 @@ public class StringTools
     *** Return true if the specified String contains a valid double value
     *** @param data  The String to test
     *** @param strict True to test for a strict double value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid double value
     **/
@@ -2055,7 +2055,7 @@ public class StringTools
     *** Return true if the specified Object contains a valid double value
     *** @param data   The Object to test
     *** @param strict True to test for a strict double value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid double value
     **/
@@ -2113,32 +2113,32 @@ public class StringTools
     **/
     public static float parseFloat(byte b[], int ofs, boolean isBigEndian, float dft)
     {
-        
+
         /* valid byte array */
         if ((b == null) || ((ofs + 4) > b.length)) {
             return dft;
         }
-        
+
         /* parse IEEE 754 float */
         int i = ofs;
         int floatInt = 0;
         if (isBigEndian) {
-            floatInt = 
-                (((int)b[i+0] & 0xFF) << (3*8)) + 
-                (((int)b[i+1] & 0xFF) << (2*8)) + 
-                (((int)b[i+2] & 0xFF) << (1*8)) + 
+            floatInt =
+                (((int)b[i+0] & 0xFF) << (3*8)) +
+                (((int)b[i+1] & 0xFF) << (2*8)) +
+                (((int)b[i+2] & 0xFF) << (1*8)) +
                  ((int)b[i+3] & 0xFF);
         } else {
-            floatInt = 
-                (((int)b[i+3] & 0xFF) << (3*8)) + 
-                (((int)b[i+2] & 0xFF) << (2*8)) + 
-                (((int)b[i+1] & 0xFF) << (1*8)) + 
+            floatInt =
+                (((int)b[i+3] & 0xFF) << (3*8)) +
+                (((int)b[i+2] & 0xFF) << (2*8)) +
+                (((int)b[i+1] & 0xFF) << (1*8)) +
                  ((int)b[i+0] & 0xFF);
         }
         return Float.intBitsToFloat(floatInt);
 
     }
-    
+
     /**
     *** Parse the specified object into a float value
     *** @param data  The object to parse
@@ -2211,7 +2211,7 @@ public class StringTools
     *** Return true if the specified String contains a valid float value
     *** @param data   The String to test
     *** @param strict True to test for a strict float value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid float value
     **/
@@ -2232,7 +2232,7 @@ public class StringTools
     *** Return true if the specified Object contains a valid float value
     *** @param data   The Object to test
     *** @param strict True to test for a strict float value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid float value
     **/
@@ -2377,7 +2377,7 @@ public class StringTools
     *** Return true if the specified String contains a valid long value
     *** @param data   The String to test
     *** @param strict True to test for a strict long value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid long value
     **/
@@ -2395,7 +2395,7 @@ public class StringTools
     *** Return true if the specified Object contains a valid long value
     *** @param data   The Object to test
     *** @param strict True to test for a strict long value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid long value
     **/
@@ -2468,7 +2468,7 @@ public class StringTools
     /**
     *** Parse the specified Object array into a int array
     *** @param data     The Object array to parse
-    *** @param dftList  The int array from which default values are used if unable to 
+    *** @param dftList  The int array from which default values are used if unable to
     ***                 parse a specific entry in the Object array
     *** @return The parsed int array
     **/
@@ -2579,7 +2579,7 @@ public class StringTools
     *** Return true if the specified String contains a valid int value
     *** @param data   The String to test
     *** @param strict True to test for a strict int value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid int value
     **/
@@ -2592,12 +2592,12 @@ public class StringTools
             return fn.isValid(strict);
         }
     }
-    
+
     /**
     *** Return true if the specified Object contains a valid int value
     *** @param data   The Object to test
     *** @param strict True to test for a strict int value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid int value
     **/
@@ -2714,7 +2714,7 @@ public class StringTools
     *** Return true if the specified String contains a valid short value
     *** @param data   The String to test
     *** @param strict True to test for a strict short value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid short value
     **/
@@ -2727,12 +2727,12 @@ public class StringTools
             return fn.isValid(strict);
         }
     }
-    
+
     /**
     *** Return true if the specified Object contains a valid short value
     *** @param data   The Object to test
     *** @param strict True to test for a strict short value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid short value
     **/
@@ -2849,7 +2849,7 @@ public class StringTools
     *** Return true if the specified String contains a valid BigInteger value
     *** @param data   The String to test
     *** @param strict True to test for a strict BigInteger value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid BigInteger value
     **/
@@ -2867,7 +2867,7 @@ public class StringTools
     *** Return true if the specified Object contains a valid BigInteger value
     *** @param data   The Object to test
     *** @param strict True to test for a strict BigInteger value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid BigInteger value
     **/
@@ -2995,7 +2995,7 @@ public class StringTools
     *** Return true if the specified String contains a valid BigDecimal value
     *** @param data   The String to test
     *** @param strict True to test for a strict BigDecimal value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid BigDecimal value
     **/
@@ -3013,7 +3013,7 @@ public class StringTools
     *** Return true if the specified Object contains a valid BigDecimal value
     *** @param data   The Object to test
     *** @param strict True to test for a strict BigDecimal value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid BigDecimal value
     **/
@@ -3080,7 +3080,7 @@ public class StringTools
             int vlen = v.length();
 
             /* Float/Double "NaN"? */
-            if ((type != null) && 
+            if ((type != null) &&
                 (Float.class.isAssignableFrom(type) || Double.class.isAssignableFrom(type) || BigDecimal.class.isAssignableFrom(type)) &&
                 ((s + 3) < vlen) && (v.charAt(s+0)=='N') && (v.charAt(s+1)=='a') && (v.charAt(s+2)=='N')) {
                 int p = s + 3;
@@ -3128,8 +3128,8 @@ public class StringTools
                 num = v.substring(s, p);
             } else
             if ((type != null) && (
-                Long.class.isAssignableFrom(type)       || 
-                Integer.class.isAssignableFrom(type)    || 
+                Long.class.isAssignableFrom(type)       ||
+                Integer.class.isAssignableFrom(type)    ||
                 Short.class.isAssignableFrom(type)      ||
                 Byte.class.isAssignableFrom(type)       ||
                 BigInteger.class.isAssignableFrom(type)
@@ -3165,63 +3165,63 @@ public class StringTools
             if ((this.numStr != null) && (this.type != null) && (ct != null)) {
                 if (this.type.isAssignableFrom(ct)) {
                     // -- check for exact type (Double/Float/BigInteger/Long/Integer/Short/Byte)
-                    return true; 
+                    return true;
                 }
                 // -- types are not the same, check for valid promotions
                 if (Short.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Byte.class);       // ct is 'Short', check for promotion from 'Byte'
-                    return 
+                    return
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (Integer.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Short.class);      // ct is 'Integer', check for promotion from 'Short'
-                    return 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (Long.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Integer.class);    // ct is 'Long', check for promotion from 'Integer'
-                    return 
-                        this.type.isAssignableFrom(Integer.class)    || 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(Integer.class)    ||
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (BigInteger.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Long.class);       // ct is 'BigInteger', check for promotion from 'Long'
-                    return 
-                        this.type.isAssignableFrom(Long.class)       || 
-                        this.type.isAssignableFrom(Integer.class)    || 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(Long.class)       ||
+                        this.type.isAssignableFrom(Integer.class)    ||
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (Float.class.isAssignableFrom(ct)) {
                     //return this.supportsType(BigInteger.class); // ct is 'Float', check for promotion from 'BigInteger'
-                    return 
-                        this.type.isAssignableFrom(BigInteger.class) || 
-                        this.type.isAssignableFrom(Long.class)       || 
-                        this.type.isAssignableFrom(Integer.class)    || 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(BigInteger.class) ||
+                        this.type.isAssignableFrom(Long.class)       ||
+                        this.type.isAssignableFrom(Integer.class)    ||
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (Double.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Float.class);      // ct is 'Double', check for promotion from 'Float'
-                    return 
-                        this.type.isAssignableFrom(Float.class)      || 
-                        this.type.isAssignableFrom(BigInteger.class) || 
-                        this.type.isAssignableFrom(Long.class)       || 
-                        this.type.isAssignableFrom(Integer.class)    || 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(Float.class)      ||
+                        this.type.isAssignableFrom(BigInteger.class) ||
+                        this.type.isAssignableFrom(Long.class)       ||
+                        this.type.isAssignableFrom(Integer.class)    ||
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 } else
                 if (BigDecimal.class.isAssignableFrom(ct)) {
                     //return this.supportsType(Long.class);       // ct is 'BigDecimal', check for promotion from 'Double'
-                    return 
-                        this.type.isAssignableFrom(Double.class)     || 
-                        this.type.isAssignableFrom(Float.class)      || 
-                        this.type.isAssignableFrom(BigInteger.class) || 
-                        this.type.isAssignableFrom(Long.class)       || 
-                        this.type.isAssignableFrom(Integer.class)    || 
-                        this.type.isAssignableFrom(Short.class)      || 
+                    return
+                        this.type.isAssignableFrom(Double.class)     ||
+                        this.type.isAssignableFrom(Float.class)      ||
+                        this.type.isAssignableFrom(BigInteger.class) ||
+                        this.type.isAssignableFrom(Long.class)       ||
+                        this.type.isAssignableFrom(Integer.class)    ||
+                        this.type.isAssignableFrom(Short.class)      ||
                         this.type.isAssignableFrom(Byte.class);
                 }
             }
@@ -3427,7 +3427,7 @@ public class StringTools
     *** Return true if the specified String contains a valid boolean value
     *** @param data  The String to test
     *** @param strict True to test for a strict boolean value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid boolean value
     **/
@@ -3455,7 +3455,7 @@ public class StringTools
     *** Return true if the specified String contains a valid boolean value
     *** @param data  The String to test
     *** @param strict True to test for a strict boolean value (ie. does not contain
-    ***               any other superfluous trailing characters), false to allow for 
+    ***               any other superfluous trailing characters), false to allow for
     ***               other non-critical trailing characters.
     *** @return True if the specified String contains a valid boolean value
     **/
@@ -3587,7 +3587,7 @@ public class StringTools
         return (HEX.indexOf(Character.toUpperCase(ch)) >= 0);
     }
 
-    /** 
+    /**
     *** Returns the value of the specified hex character
     *** @param ch  The hex character to return the value
     *** @return The value of the specified hex character, or -1 if the specified
@@ -3868,7 +3868,7 @@ public class StringTools
             return (e > s);
         }
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
@@ -3899,7 +3899,7 @@ public class StringTools
     *** showing the contained bytes with corresponding displayed printable characters.
     *** @param b  The byte array to convert to a String representation
     *** @param blockLen  The number of bytes display on a single row
-    *** @param sb        The destination ouput StringBuffer 
+    *** @param sb        The destination ouput StringBuffer
     *** @return The hex representation in the form of a StringBuffer
     **/
     public static StringBuffer formatHexString(byte b[], int blockLen, StringBuffer sb)
@@ -3914,8 +3914,8 @@ public class StringTools
     *** @param bOfs      The starting index where the byte array contents will be dipsplayed
     *** @param bLen      The number of byte to display from the specified byte array
     *** @param blockLen  The number of bytes display on a single row
-    *** @param showAscii True to display the 
-    *** @param sb        The destination ouput StringBuffer 
+    *** @param showAscii True to display the
+    *** @param sb        The destination ouput StringBuffer
     *** @return The hex representation in the form of a StringBuffer
     **/
     public static StringBuffer formatHexString(byte b[], int bOfs, int bLen, int blockLen, boolean showAscii, StringBuffer sb)
@@ -4000,7 +4000,7 @@ public class StringTools
             }
             sb.append("\n");
         }
-        
+
         sb.append(count).append(" bytes\n");
         return sb;
     }
@@ -4158,7 +4158,7 @@ public class StringTools
             if (bitLen <= 0) {
                 bitLen = 8;
             }
-        } else 
+        } else
         if (bitLen > 64) {
             bitLen = 64;
         }
@@ -4232,7 +4232,7 @@ public class StringTools
         } else {
             // Double/Float?
             return StringTools.toHexString(val.longValue());
-        } 
+        }
     }
 
     /**
@@ -4249,7 +4249,7 @@ public class StringTools
             return StringTools.toHexString(val, bitLen);
         } else {
             return StringTools.toHexString(val.longValue(), bitLen);
-        } 
+        }
     }
 
     // ------------------------------------------------------------------------
@@ -4402,7 +4402,7 @@ public class StringTools
     {
         return StringTools.toBinaryString(i, -1, sb);
     }
-    
+
     /**
     *** Converts the specified int to a String binary representation
     *** @param i  The 'long' to convert to a String binary representation
@@ -4524,7 +4524,7 @@ public class StringTools
         if (t.length < p.length()) {
             return false;
         }
-        
+
         /* case-insensitive compare */
         for (int i = 0; i < p.length(); i++) {
             char ct = Character.toLowerCase((char)t[i]);
@@ -4725,7 +4725,7 @@ public class StringTools
     }
 
     /**
-    *** Returns true if the specified target String ends with one of the pattern Strings in 
+    *** Returns true if the specified target String ends with one of the pattern Strings in
     *** the specified array, without regard to case.
     *** @param t  The test String
     *** @param ap An array of pattern Strings
@@ -4839,7 +4839,7 @@ public class StringTools
         } else
         if ((n < 0) || (n >= t.length())) {
             return -1; // invalid starting point
-        } 
+        }
 
         /* test all pattern Strings */
         //t = t.toLowerCase();
@@ -5507,7 +5507,7 @@ public class StringTools
         if (list instanceof Object[]) {
             // standard Object array
             return StringTools.encodeArray((Object[])list, ofs, max, delim, alwaysQuote);
-        } else 
+        } else
         if (list.getClass().isArray()) {
             // assume a primitive array
             StringBuffer sb = new StringBuffer();
@@ -5548,7 +5548,7 @@ public class StringTools
     public static String encodeArray(java.util.List<Object> list, char delim, boolean alwaysQuote)
     {
         return StringTools.encodeArray(ListTools.toArray(list), delim, alwaysQuote);
-    }                                          
+    }
 
     /**
     *** Encodes a list of Strings/Objects into a single String, using the "," character
@@ -5613,7 +5613,7 @@ public class StringTools
 
     /**
     *** Encodes an array of Strings into a single String, using the "," character
-    *** as the String field delimiter. 
+    *** as the String field delimiter.
     *** @param list  The array containing the Strings to encode
     *** @param alwaysQuote  True to always quote each String field.  If false, a String field
     ***                     will only be quoted if it contains embedded spaces or other characters
@@ -5691,7 +5691,7 @@ public class StringTools
     *** If the input String is non-null, this method returns an array with at-least one entry.
     *** If the input String is null, an empty (non-null) String array is returned.<br>
     *** @param value  The String to parse
-    *** @param sdelim The character delimiters (all characters in this String are considered 
+    *** @param sdelim The character delimiters (all characters in this String are considered
     ***               individual delimiter candidates)
     *** @return The array of parse Strings
     **/
@@ -5722,7 +5722,7 @@ public class StringTools
     *** If the input String is non-null, this method returns an array with at-least one entry.
     *** If the input String is null, an empty (non-null) String array is returned.<br>
     *** @param value  The StringBuffer to parse
-    *** @param sdelim The character delimiters (all characters in this String are considered 
+    *** @param sdelim The character delimiters (all characters in this String are considered
     ***               individual delimiter candidates)
     *** @return The array of parse Strings
     **/
@@ -5740,7 +5740,7 @@ public class StringTools
     *** If the input String is non-null, this method returns an array with at-least one entry.
     *** If the input String is null, an empty (non-null) String array is returned.<br>
     *** @param value  The StringBuffer to parse
-    *** @param sdelim The character delimiters (all characters in this String are considered 
+    *** @param sdelim The character delimiters (all characters in this String are considered
     ***               individual delimiter candidates)
     *** @param trim   True to trim leading/trailing spaces
     *** @return The array of parse Strings
@@ -5759,7 +5759,7 @@ public class StringTools
     *** If the input String is non-null, this method returns an array with at-least one entry.
     *** If the input String is null, an empty (non-null) String array is returned.<br>
     *** @param value  The String to parse
-    *** @param sdelim The character delimiters (all characters in this String are considered 
+    *** @param sdelim The character delimiters (all characters in this String are considered
     ***               individual delimiter candidates)
     *** @param trim   True to trim leading/trailing spaces
     *** @return The array of parse Strings
@@ -5923,7 +5923,7 @@ public class StringTools
 
     // ------------------------------------------------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** character as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input String array
@@ -5948,7 +5948,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** character as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input String array
@@ -5961,7 +5961,7 @@ public class StringTools
         return StringTools.join(val, ofs, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** character as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input String array
@@ -5973,7 +5973,7 @@ public class StringTools
         return StringTools.join(val, 0, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input String array
@@ -5986,7 +5986,7 @@ public class StringTools
         return StringTools.join(val, ofs, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input String array
@@ -6011,7 +6011,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input String array
@@ -6025,7 +6025,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input Object array
@@ -6050,7 +6050,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input Object array
@@ -6063,7 +6063,7 @@ public class StringTools
         return StringTools.join(val, ofs, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input Object array
@@ -6075,7 +6075,7 @@ public class StringTools
         return StringTools.join(val, 0, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input Object array
@@ -6100,7 +6100,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val    The input Object array
@@ -6113,7 +6113,7 @@ public class StringTools
         return StringTools.join(val, ofs, -1, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified String array into a single String using the specified
     *** String as the delimiter.  Null elements in the input String array are skipped.
     *** @param val  The input Object array
@@ -6127,7 +6127,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6154,7 +6154,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6166,7 +6166,7 @@ public class StringTools
         return StringTools.join(list, 0, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6193,7 +6193,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6207,7 +6207,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6234,7 +6234,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6246,7 +6246,7 @@ public class StringTools
         return StringTools.join(list, 0, delim);
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6273,7 +6273,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified List objects into a single String using the specified
     *** String as the delimiter.  Null elements in the input list are skipped.
     *** @param list   The input object list
@@ -6287,7 +6287,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified int array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input int array
@@ -6306,7 +6306,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified int array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input int array
@@ -6327,7 +6327,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified long array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input long array
@@ -6346,7 +6346,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified long array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input long array
@@ -6367,7 +6367,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified double array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input double array
@@ -6386,7 +6386,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified double array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input double array
@@ -6407,7 +6407,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Concatenates the specified float array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input float array
@@ -6426,7 +6426,7 @@ public class StringTools
         return sb.toString();
     }
 
-    /** 
+    /**
     *** Concatenates the specified float array into a single String using the specified
     *** String as the delimiter.
     *** @param val    The input float array
@@ -6484,7 +6484,7 @@ public class StringTools
         return -1;
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
     *** by whitespace.  Neither the property keys, or values may contain whitespace.
@@ -6493,29 +6493,29 @@ public class StringTools
     **/
     public static Map<String,String> parseProperties(String props)
     {
-        return StringTools.parseProperties(props, 
-            StringTools.PropertySeparatorChar, StringTools.KeyValSeparatorChars, 
+        return StringTools.parseProperties(props,
+            StringTools.PropertySeparatorChar, StringTools.KeyValSeparatorChars,
             (Map<String,String>)null);
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
-    *** by the specified property separator character.  Neither the property keys, or values may 
+    *** by the specified property separator character.  Neither the property keys, or values may
     *** contain the specified property separator character.
     *** @param props  The String containing the list of properties
     *** @param propSep  The property separator charactor (ie. ' ', or ';')
     *** @return The map containing the parsed property list
     **/
-    public static Map<String,String> parseProperties(String props, 
+    public static Map<String,String> parseProperties(String props,
         char propSep)
     {
-        return StringTools.parseProperties(props, 
-            propSep, StringTools.KeyValSeparatorChars, 
+        return StringTools.parseProperties(props,
+            propSep, StringTools.KeyValSeparatorChars,
             (Map<String,String>)null);
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
     *** by whitespace.  Neither the property keys, or values may contain whitespace.
@@ -6524,18 +6524,18 @@ public class StringTools
     ***                    map object will be created.
     *** @return The map containing the parsed property list
     **/
-    public static Map<String,String> parseProperties(String props, 
+    public static Map<String,String> parseProperties(String props,
         Map<String,String> properties)
     {
-        return StringTools.parseProperties(props, 
-            StringTools.PropertySeparatorChar, StringTools.KeyValSeparatorChars, 
+        return StringTools.parseProperties(props,
+            StringTools.PropertySeparatorChar, StringTools.KeyValSeparatorChars,
             properties);
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
-    *** by the specified property separator character.  Neither the property keys, or values may 
+    *** by the specified property separator character.  Neither the property keys, or values may
     *** contain the specified property separator character.
     *** @param props       The String containing the list of properties
     *** @param propSep     The property separator charactor (ie. ' ', or ';')
@@ -6543,37 +6543,37 @@ public class StringTools
     ***                    map object will be created.
     *** @return The map containing the parsed property list
     **/
-    public static Map<String,String> parseProperties(String props, 
-        char propSep, 
+    public static Map<String,String> parseProperties(String props,
+        char propSep,
         Map<String,String> properties)
     {
-        return StringTools.parseProperties(props, 
-            propSep, StringTools.KeyValSeparatorChars, 
+        return StringTools.parseProperties(props,
+            propSep, StringTools.KeyValSeparatorChars,
             properties);
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
-    *** by the specified property separator character.  Neither the property keys, or values may 
+    *** by the specified property separator character.  Neither the property keys, or values may
     *** contain the specified property separator character.
     *** @param props       The String containing the list of properties
     *** @param propSep     The property separator charactor (ie. ' ', or ';')
     *** @param keyValSep   The key/value separator char (ie. '=' or ':')
     *** @return The map containing the parsed property list
     **/
-    public static Map<String,String> parseProperties(String props, 
+    public static Map<String,String> parseProperties(String props,
         char propSep, char keyValSep[])
     {
-        return StringTools.parseProperties(props, 
-            propSep, keyValSep, 
+        return StringTools.parseProperties(props,
+            propSep, keyValSep,
             (Map<String,String>)null);
     }
 
-    /** 
+    /**
     *** Parses a series of properties in the specified String into a property map.  Properties
     *** are specified as "key=value" pairs, and are separated from other property specifications
-    *** by the specified property separator character.  Neither the property keys, or values may 
+    *** by the specified property separator character.  Neither the property keys, or values may
     *** contain the specified property separator character.
     *** @param props       The String containing the list of properties
     *** @param propSep     The property separator charactor (ie. ' ', or ';')
@@ -6582,15 +6582,15 @@ public class StringTools
     ***                    map object will be created.
     *** @return The map containing the parsed property list
     **/
-    public static Map<String,String> parseProperties(String props, 
-        char propSep, char keyValSep[], 
+    public static Map<String,String> parseProperties(String props,
+        char propSep, char keyValSep[],
         Map<String,String> properties)
     {
         boolean spacePropSep = (propSep == 0) || (propSep == ' ');
 
         /* new properties? */
-        if (properties == null) { 
-            properties = new OrderedMap<String,String>(); 
+        if (properties == null) {
+            properties = new OrderedMap<String,String>();
         }
 
         /* init */
@@ -6727,7 +6727,7 @@ public class StringTools
     *** Strips the specified character from the input String
     *** @param src  The input String from which the character will be removed
     *** @param ch The character which will be removed from the input String
-    *** @param stripType May be either STRIP_INCLUDE to include only the specified character, 
+    *** @param stripType May be either STRIP_INCLUDE to include only the specified character,
     ***                  or STRIP_EXCLUDE to exclude the specified character.
     *** @return The stripped String
     **/
@@ -6773,7 +6773,7 @@ public class StringTools
     *** Strips the specified characters from the input String
     *** @param src   The input String from which the characters will be removed
     *** @param chars The list of characters which will be removed from the input String
-    *** @param stripType May be either STRIP_INCLUDE to include only the specified characters, 
+    *** @param stripType May be either STRIP_INCLUDE to include only the specified characters,
     ***                  or STRIP_EXCLUDE to exclude the specified characters.
     *** @return The stripped String
     **/
@@ -6836,7 +6836,7 @@ public class StringTools
 
     // ------------------------------------------------------------------------
 
-    /** 
+    /**
     *** Replaces specific characters in the input String with the specified replacement character
     *** @param src  The input String
     *** @param ch   The character to replace
@@ -6848,7 +6848,7 @@ public class StringTools
         return StringTools.replaceChars(src, String.valueOf(ch), String.valueOf(repChar));
     }
 
-    /** 
+    /**
     *** Replaces specific characters in the input String with the specified replacement character
     *** @param src     The input String
     *** @param chars   The characters to replace (any character found in this String will be replaced)
@@ -6860,7 +6860,7 @@ public class StringTools
         return StringTools.replaceChars(src, chars, String.valueOf(repChar));
     }
 
-    /** 
+    /**
     *** Replaces specific characters in the input String with the specified replacement String
     *** @param src    The input String
     *** @param chars  The characters to replace (any character found in this String will be replaced)
@@ -6875,7 +6875,7 @@ public class StringTools
                 char ch = src.charAt(i);
                 if (chars.indexOf(ch) >= 0) {
                     if (repStr != null) {
-                        sb.append(repStr); 
+                        sb.append(repStr);
                     }
                 } else {
                     sb.append(ch);
@@ -6968,11 +6968,11 @@ public class StringTools
     *** @param text The text containing the "${key}" fields
     *** @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
     **/
-    public static String replaceKeys(String text, 
+    public static String replaceKeys(String text,
         KeyValueMap keyMap)
     {
-        return replaceKeys(text, 
-            keyMap, null/*ValueFilter*/, 
+        return replaceKeys(text,
+            keyMap, null/*ValueFilter*/,
             null/*keyStart*/, null/*keyEnd*/, null/*argDelim*/, null/*dftDelim*/);
     }
 
@@ -6982,11 +6982,11 @@ public class StringTools
     *** @param text The text containing the "${key}" fields
     *** @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
     **/
-    public static String replaceKeys(String text, 
+    public static String replaceKeys(String text,
         KeyValueMap keyMap, ValueFilter filter)
     {
-        return replaceKeys(text, 
-            keyMap, filter, 
+        return replaceKeys(text,
+            keyMap, filter,
             null/*keyStart*/, null/*keyEnd*/, null/*argDelim*/, null/*dftDelim*/);
     }
 
@@ -6996,7 +6996,7 @@ public class StringTools
     *** @param text The text containing the "${key}" fields
     *** @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
     **/
-    public static String replaceKeys(String text, 
+    public static String replaceKeys(String text,
         KeyValueMap keyMap, ValueFilter filter,
         String keyStart, String keyEnd, String argDelim, String dftDelim)
     {
@@ -7009,7 +7009,7 @@ public class StringTools
 
         /* start replacing keys */
         StringBuffer repText = StringTools.replaceKeys(
-            new StringBuffer(text), 
+            new StringBuffer(text),
             keyMap, filter,
             keyStart, keyEnd, argDelim, dftDelim,
             true/*replaceEsc*/);
@@ -7024,7 +7024,7 @@ public class StringTools
     *** @param repText The text containing the "${key}" fields
     *** @param keyMap  The KeyValueMap object used to retrieve values for the specific 'keys'
     **/
-    public static StringBuffer replaceKeys(StringBuffer repText, 
+    public static StringBuffer replaceKeys(StringBuffer repText,
         KeyValueMap keyMap, ValueFilter filter,
         String keyStart, String keyEnd, String argDelim, String dftDelim,
         boolean replaceEsc)
@@ -7040,7 +7040,7 @@ public class StringTools
             // no replacement keys in this string
             return repText;
         }
-        
+
         /* KeyValueMap_SBIndex instance? */
         boolean inclSBNdx = (keyMap instanceof KeyValueMap_SBIndex)? true : false;
 
@@ -7148,7 +7148,7 @@ public class StringTools
 
     /**
     *** Pads the input String on the right with specified number of pad characters.  If the
-    *** length of the String is equal-to, or greater-than, the specified length, the the 
+    *** length of the String is equal-to, or greater-than, the specified length, the the
     *** input String is returned as-is.
     *** @param s  The input String
     *** @param padChar  The pad character
@@ -7169,7 +7169,7 @@ public class StringTools
 
     /**
     *** Pads the input String on the right with specified number of ' ' characters.  If the
-    *** length of the String is equal-to, or greater-than, the specified length, the the 
+    *** length of the String is equal-to, or greater-than, the specified length, the the
     *** input String is returned as-is.
     *** @param s  The input String
     *** @param len The length up to which ' ' characters will be appended
@@ -7192,7 +7192,7 @@ public class StringTools
 
     /**
     *** Pads the input String on the left with specified number of pad characters.  If the
-    *** length of the String is equal-to, or greater-than, the specified length, the the 
+    *** length of the String is equal-to, or greater-than, the specified length, the the
     *** input String is returned as-is.
     *** @param s  The input String
     *** @param padChar  The pad character
@@ -7213,7 +7213,7 @@ public class StringTools
 
     /**
     *** Pads the input String on the left with specified number of ' ' characters.  If the
-    *** length of the String is equal-to, or greater-than, the specified length, the the 
+    *** length of the String is equal-to, or greater-than, the specified length, the the
     *** input String is returned as-is.
     *** @param s  The input String
     *** @param len The length up to which ' ' characters will be pre-pended
@@ -7234,7 +7234,7 @@ public class StringTools
 
     /**
     *** Pads the input Long on the left with specified number of ' ' characters.  If the
-    *** length of the Long is equal-to, or greater-than, the specified length, the the 
+    *** length of the Long is equal-to, or greater-than, the specified length, the the
     *** input String/Ling is returned as-is.
     *** @param s  The input Long value
     *** @param len The length up to which ' ' characters will be pre-pended
@@ -7287,7 +7287,7 @@ public class StringTools
 
     public static final String ESCAPED_NEWLINE  = "\\n";
 
-    /** 
+    /**
     *** Remove all '\r', and replace all '\n' with the specified newline escape sequence.
     *** @param txt    The input String
     *** @param encNL  The escaped newline string which will replace '\n'
@@ -7316,7 +7316,7 @@ public class StringTools
         }
     }
 
-    /** 
+    /**
     *** Remove all '\r', and replace all '\n' with "\\n".
     *** @param txt    The input String
     *** @return The NL encoded String
@@ -7326,7 +7326,7 @@ public class StringTools
         return StringTools.encodeNewline(txt, ESCAPED_NEWLINE);
     }
 
-    /** 
+    /**
     *** Remove all '\r', and replace all '\n' with "\\n".
     *** @param sb  The input StringBuffer
     *** @return The NL encoded StringBuffer
@@ -7344,7 +7344,7 @@ public class StringTools
 
     // --------------------------------
 
-    /** 
+    /**
     *** Replace all "\\n" with "\n".
     *** @param txt  The input String
     *** @param encNL  The escaped newline string to replace with '\n'
@@ -7359,7 +7359,7 @@ public class StringTools
                 if (ch == encNL.charAt(0)) {
                     boolean match = true;
                     for (int x = 1; x < encNL.length(); x++) {
-                        if ((c + x) >= txt.length()) { 
+                        if ((c + x) >= txt.length()) {
                             match = false;
                             break;
                         }
@@ -7386,7 +7386,7 @@ public class StringTools
         }
     }
 
-    /** 
+    /**
     *** Replace all "\\n" with "\n".
     *** @param txt  The input String
     *** @return The NL decoded String
@@ -7400,7 +7400,7 @@ public class StringTools
         return decTxt;
     }
 
-    /** 
+    /**
     *** Replace all "\\n" with "\n".
     *** @param txt  The input StringBuffer
     *** @return The NL decoded StringBuffer
@@ -7527,7 +7527,7 @@ public class StringTools
     // ------------------------------------------------------------------------
 
     /**
-    *** Within the input 'text' String, replaces all occurances of the 'key' 
+    *** Within the input 'text' String, replaces all occurances of the 'key'
     *** String with the 'val' String.
     *** @param text  The input String
     *** @param key   The key pattern String
@@ -7544,7 +7544,7 @@ public class StringTools
     }
 
     /**
-    *** Within the input 'sb' StringBuffer, replaces all occurances of the 'key' 
+    *** Within the input 'sb' StringBuffer, replaces all occurances of the 'key'
     *** String with the 'val' String.
     *** @param sb    The input StringBuffer
     *** @param key   The key pattern String
@@ -7669,8 +7669,8 @@ public class StringTools
         if (regNdx == null) {
             return null;
         } else
-        if (regNdx.getMatcher() == null) { 
-            return null; 
+        if (regNdx.getMatcher() == null) {
+            return null;
         } else
         if (regNdx.getMatcher().find()) {
             return regNdx;
@@ -7729,11 +7729,11 @@ public class StringTools
     *** @param rep  An array containing key/value pairs
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         String rep[][])
     {
-        return StringTools.insertKeyValues(text, 
+        return StringTools.insertKeyValues(text,
             startDelim, endDelim, dftDelim,
             rep, false);
     }
@@ -7748,7 +7748,7 @@ public class StringTools
     *** @param htmlFilter True to encode the resulting key value for display within an html context
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         String rep[][], boolean htmlFilter)
     {
@@ -7758,7 +7758,7 @@ public class StringTools
                 if ((rep[i] == null) || (rep[i].length < 2)) { continue; }
                 repMap.put(rep[i][0], rep[i][1]);
             }
-            return insertKeyValues(text, 
+            return insertKeyValues(text,
                 startDelim, endDelim, dftDelim,
                 repMap, htmlFilter);
         } else {
@@ -7775,11 +7775,11 @@ public class StringTools
     *** @param map  A map containing key/value pairs
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         Map<String,String> map)
     {
-        return StringTools.insertKeyValues(text, 
+        return StringTools.insertKeyValues(text,
             startDelim, endDelim, dftDelim,
             map, false);
     }
@@ -7794,7 +7794,7 @@ public class StringTools
     *** @param htmlFilter True to encode the resulting key value for display within an html context
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         final Map<String,String> map, boolean htmlFilter)
     {
@@ -7805,7 +7805,7 @@ public class StringTools
                     return (val != null)? val.toString() : dft;
                 }
             };
-            return insertKeyValues(text, 
+            return insertKeyValues(text,
                 startDelim, endDelim, dftDelim,
                 rm, htmlFilter);
         } else {
@@ -7822,11 +7822,11 @@ public class StringTools
     *** @param rmap  A StringTools.KeyValueMap (previously ReplacementMap) containing key/value pairs
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         StringTools.KeyValueMap rmap) // ReplacementMap
     {
-        return StringTools.insertKeyValues(text, 
+        return StringTools.insertKeyValues(text,
             startDelim, endDelim, dftDelim,
             rmap, false);
     }
@@ -7841,7 +7841,7 @@ public class StringTools
     *** @param htmlFilter True to encode the resulting key value for display within an html context
     *** @return The String containing the replaced key variables
     **/
-    public static String insertKeyValues(String text, 
+    public static String insertKeyValues(String text,
         String startDelim, String endDelim, String dftDelim,
         StringTools.KeyValueMap rmap, boolean htmlFilter) // ReplacementMap
     {
@@ -7991,15 +7991,15 @@ public class StringTools
     *** Expands the specified String format to include the items found in the array.
     *** The format String may contain one or more of the following formatted items:<br>
     ***  - {i[:f][=d]}  Where <b>i</b> refers to the numeric index of the item in the replacement array,
-    ***                 <b>:f</b> refers to the field size in which the item will be placed 
-    ***                 (<b>f</b> may be negative for right-aligned fields), 
-    ***                 and <b>=d</b> refers to the default value placed in the field if 
+    ***                 <b>:f</b> refers to the field size in which the item will be placed
+    ***                 (<b>f</b> may be negative for right-aligned fields),
+    ***                 and <b>=d</b> refers to the default value placed in the field if
     ***                 the array item is not defined.<br>
-    ***  - {C:#}        Where <b>C</b> is the literal "C" to represent a "column" specification, 
-    ***                 <b>#</b> refers to the column index where the next item should be placed.  
+    ***  - {C:#}        Where <b>C</b> is the literal "C" to represent a "column" specification,
+    ***                 <b>#</b> refers to the column index where the next item should be placed.
     ***                 <b>#</b> may also include a prefixing "+" to indicate a relative index position
     ***                 based on the previous column index.<br>
-    ***  Any other ascii characters values will be included in the formatted String as-is. 
+    ***  Any other ascii characters values will be included in the formatted String as-is.
     *** @param fmt  The String format
     *** @param v    The array of replacement items
     *** @return The formatted String
@@ -8014,7 +8014,7 @@ public class StringTools
                 if (StringTools.isBlank(key)) {
                     return dft;
                 } else
-                if (Character.isDigit(key.charAt(0))) { 
+                if (Character.isDigit(key.charAt(0))) {
                     // replacement string
                     int ndx = StringTools.parseInt(key,-1);
                     if ((ndx >= 0) && (ndx < v.length)) {
@@ -8056,12 +8056,12 @@ public class StringTools
                         return "";
                     }
                 } else {
-                    // unknown 
+                    // unknown
                     return dft;
                 }
             }
         };
-        StringTools.replaceKeys(repText, 
+        StringTools.replaceKeys(repText,
             kvm, null/*ValueFilter*/,
             "{", KEY_END, ARG_DELIM, DFT_DELIM,
             false/*replaceEsc*/).toString();
@@ -8108,7 +8108,7 @@ public class StringTools
                     for (;(p > s) && (target.charAt(p) != ' '); p--);
                     if (p > s) {
                         // -- found space at 'p'
-                        b = p; 
+                        b = p;
                         // -- find last non-blank on line prior to break
                         for (;(b > s) && (target.charAt(b-1) == ' '); b--);
                         // -- (target.charAt(b) == ' ')
@@ -8154,7 +8154,7 @@ public class StringTools
     ***   "5.22" > "5.9"<br>
     ***   "3.4-B9" < "3.4-B12"<br>
     *** This comparison method makes the general assumption that "a", "b", "c", etc. (above)
-    *** contain only numeric characters.  If they contain any alpha characters, then this 
+    *** contain only numeric characters.  If they contain any alpha characters, then this
     *** comparison method may not produce the desired results.
     *** @param V1  The first version string of the form "a.b.c-B##"
     *** @param V2  The second version string of the form "a.b.c-B##"
@@ -8166,7 +8166,7 @@ public class StringTools
         /* check for nulls? */
         if ((V1 == null) && (V2 != null)) {
             return -1;
-        } else 
+        } else
         if ((V1 == null) && (V2 == null)) {
             return 0;
         } else
@@ -8193,14 +8193,14 @@ public class StringTools
             int b = V1.indexOf("-");
             if (b >= 0) {
                 B1 = V1.substring(b+1);
-                V1 = V1.substring(0,b); 
+                V1 = V1.substring(0,b);
             }
         }
         { // -- Version #2: local scope
             int b = V2.indexOf("-");
-            if (b >= 0) { 
+            if (b >= 0) {
                 B2 = V2.substring(b+1);
-                V2 = V2.substring(0,b); 
+                V2 = V2.substring(0,b);
             }
         }
 
@@ -8253,7 +8253,7 @@ public class StringTools
         if ((B1 != null) && (B2 == null)) {
             // -- "1.2.3-B01" < "1.2.3"
             return -1;
-        } else 
+        } else
         if ((B1 == null) && (B2 == null)) {
             // -- "1.2.3" == "1.2.3"
             return 0;
@@ -8293,7 +8293,7 @@ public class StringTools
     {
         return StringTools.compare(b1, b2, -1);
     }
-    
+
     /**
     *** Compares byte arrays for equality
     *** @param b1  First byte array
@@ -8316,9 +8316,9 @@ public class StringTools
             int n1 = b1.length, n2 = b2.length, i = 0;
             if (len < 0) { len = (n1 >= n2)? n1 : n2; }
             for (i = 0; (i < n1) && (i < n2) && (i < len); i++) {
-                if (b1[i] != b2[i]) { 
+                if (b1[i] != b2[i]) {
                     // return comparison of differing bytes
-                    return b1[i] - b2[i]; 
+                    return b1[i] - b2[i];
                 }
             }
             return (i < len)? (n1 - n2) : 0;
@@ -8329,7 +8329,7 @@ public class StringTools
     *** Compares byte arrays for equality
     *** @param b1  First byte array
     *** @param s   Second String value
-    *** @return 0 if the byte array is equal to the specified String, < 0 if the first non-matching 
+    *** @return 0 if the byte array is equal to the specified String, < 0 if the first non-matching
     ***         byte is less than the correspoinding character/byte in the String, > 0 if
     ***         the first non-matching byte is greater than the correspoinding character/byte in the String
     **/
@@ -8363,7 +8363,7 @@ public class StringTools
     *** @param b2  Second byte array
     *** @return True if the byte arrays are equals, false otherwise
     **/
-    public static boolean compareEquals(byte b1[], byte b2[]) 
+    public static boolean compareEquals(byte b1[], byte b2[])
     {
         return StringTools.compareEquals(b1, b2, -1);
     }
@@ -8382,7 +8382,7 @@ public class StringTools
     // ------------------------------------------------------------------------
 
     /**
-    *** Compares the first specified Object to the second.  
+    *** Compares the first specified Object to the second.
     *** If the objects are not of the same class, the Object of the lower class will
     *** be promoted to the higher class according to the following order:<br>
     ***   String,Boolean,Byte,Short,Integer,Long,BigInteger,Float,Double,BigDecimal
@@ -8395,7 +8395,7 @@ public class StringTools
     ***   6) Unparsable String Number values are greater-than their parseble Number counterpart.
     *** @param val1  The first Object
     *** @param val2  The second Object
-    *** @return 
+    *** @return
     ***    -1 if the first Object is less-than the second
     ***     0 if the Objects are equal
     ***     1 if the first Object is greater-than the second
@@ -8495,7 +8495,7 @@ public class StringTools
         }
 
         /* Long/Integer/Short/Byte? (compare as Long) */
-        if ((val1 instanceof Long) || (val1 instanceof Integer) || (val1 instanceof Short) || (val1 instanceof Byte)) { 
+        if ((val1 instanceof Long) || (val1 instanceof Integer) || (val1 instanceof Short) || (val1 instanceof Byte)) {
             long V1 = ((Number)val1).longValue();
             long V2 = StringTools.parseLong(val2,Long.MAX_VALUE);
             return (V1 < V2)? -1 : (V1 > V2)? 1 : 0;
@@ -8507,19 +8507,19 @@ public class StringTools
         }
 
         /* AccumulatorLong/AccumulatorInteger? (compare as Long) */
-        if ((val1 instanceof AccumulatorLong) || (val1 instanceof AccumulatorInteger)) { 
+        if ((val1 instanceof AccumulatorLong) || (val1 instanceof AccumulatorInteger)) {
             long V1 = ((Number)val1).longValue();
             long V2 = StringTools.parseLong(val2,Long.MAX_VALUE);
             return (V1 < V2)? -1 : (V1 > V2)? 1 : 0;
         } else
-        if ((val2 instanceof AccumulatorLong) || (val2 instanceof AccumulatorInteger)) { 
+        if ((val2 instanceof AccumulatorLong) || (val2 instanceof AccumulatorInteger)) {
             long V1 = StringTools.parseLong(val1,Long.MAX_VALUE);
             long V2 = ((Number)val2).longValue();
             return (V1 < V2)? -1 : (V1 > V2)? 1 : 0;
         }
 
         /* AtomicLong/AtomicInteger? (compare as Long) */
-        if ((val1 instanceof java.util.concurrent.atomic.AtomicLong) || (val1 instanceof java.util.concurrent.atomic.AtomicInteger)) { 
+        if ((val1 instanceof java.util.concurrent.atomic.AtomicLong) || (val1 instanceof java.util.concurrent.atomic.AtomicInteger)) {
             long V1 = ((Number)val1).longValue();
             long V2 = StringTools.parseLong(val2,Long.MAX_VALUE);
             return (V1 < V2)? -1 : (V1 > V2)? 1 : 0;
@@ -8593,9 +8593,9 @@ public class StringTools
             int n1 = s1.length(), n2 = s2.length(), i = 0;
             if (len < 0) { len = (n1 >= n2)? n1 : n2; } // larger of two lengths
             for (i = 0; (i < n1) && (i < n2) && (i < len); i++) {
-                if (s1.charAt(i) != s2.charAt(i)) { 
+                if (s1.charAt(i) != s2.charAt(i)) {
                     // return index of differing characters
-                    return i; 
+                    return i;
                 }
             }
             return (i < len)? i : -1;
@@ -8631,9 +8631,9 @@ public class StringTools
             int n1 = b1.length, n2 = b2.length, i = 0;
             if (len < 0) { len = (n1 >= n2)? n1 : n2; } // larger of two lengths
             for (i = 0; (i < n1) && (i < n2) && (i < len); i++) {
-                if (b1[i] != b2[i]) { 
+                if (b1[i] != b2[i]) {
                     // return index of differing bytes
-                    return i; 
+                    return i;
                 }
             }
             return (i < len)? i : -1;
@@ -8691,7 +8691,7 @@ public class StringTools
         if (fmt.startsWith("%")) {
             try {
                 s = String.format(fmt, new Object[] { val });
-            } catch (Throwable th) { 
+            } catch (Throwable th) {
                 // IllegalFormatPrecisionException, IllegalFormatConversionException
                 Print.logException("Format exception [" + fmt + "]", th);
                 s = String.valueOf(val);
@@ -8955,7 +8955,7 @@ public class StringTools
                 sb.append(":");
                 sb.append(StringTools.format(m,"00"));
                 } break;
-            
+
             case ELAPSED_FORMAT_HHHhh : {
                 double h = ((double)elapsedSec / (60.0 * 60.0));   // Hours
                 sb.append(StringTools.format(h,"0.00"));
@@ -8965,7 +8965,7 @@ public class StringTools
                 double h = ((double)elapsedSec / (60.0 * 60.0));   // Hours
                 sb.append(StringTools.format(h,"0.0"));
                 } break;
-            
+
             case ELAPSED_FORMAT_MMMSS : {
                 int m = (int)(elapsedSec / 60L);    // Minutes
                 int s = (int)(elapsedSec % 60L);    // Seconds
@@ -8992,7 +8992,7 @@ public class StringTools
     /**
     *** Returns the class name for the specified object.  Does not return null.
     *** @param c  The object for which the class name is returned
-    *** @return The class name of the specified object.  If the specified object is a Class object, 
+    *** @return The class name of the specified object.  If the specified object is a Class object,
     ***         then 'getName()' is used on the object to return the class name directly.
     **/
     public static String className(Object c)
@@ -9097,7 +9097,7 @@ public class StringTools
     private static String BASE_DIGITS =  "0123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ()[]{}<>!@#&-=_+:~";
     private static int    BASE_LEN    = BASE_DIGITS.length();
 
-    /** 
+    /**
     *** Obfuscate the specified long value into a String
     *** @param num The long value to obfuscate
     *** @return The obfuscated long String
@@ -9107,7 +9107,7 @@ public class StringTools
         return compressDigits(num, BASE_DIGITS);
     }
 
-    /** 
+    /**
     *** Compress/Obfuscate the specified long value into a String using the specified alphabet
     *** (Note: In this context "compress" means the length of the String representation, and not
     *** the number of byte required to represent the long value).
@@ -9125,7 +9125,7 @@ public class StringTools
         return sb.reverse().toString();
     }
 
-    /** 
+    /**
     *** Decompress/Unobfuscate the specified String into a long value.
     *** @param str The String from which the long value will be decompressed/unobfuscated
     *** @return The decompressed/unobfuscated long value
@@ -9135,7 +9135,7 @@ public class StringTools
         return decompressDigits(str, BASE_DIGITS);
     }
 
-    /** 
+    /**
     *** Decompress/Unobfuscate the specified String into a long value using the specified
     *** alphabet (this must be the same alphabet used to encode the long value)
     *** @param str The String from which the long value will be decompressed/unobfuscated
@@ -9172,10 +9172,10 @@ public class StringTools
     public static final String HTML_SINGLE_QUOTE    = HTML_APOS;
     public static final String HTML_br              = "<br>";
     public static final String HTML_BR              = "<BR>";
-    public static final String HTML_HR              = "<HR>";
+    public static final String HTML_HR              = "";
 
     /**
-    *** Encode special HTML character string for attibute specification "value='xxx'" 
+    *** Encode special HTML character string for attibute specification "value='xxx'"
     *** (NOT for URL parameter use.  See "URIArg.encodeArg" for encoding URL arg characters)
     *** @param text The Object to encode [via 'toString()' method]
     *** @return     The encoded string.
@@ -9209,9 +9209,9 @@ public class StringTools
         if (s.length() == 0) {
             return "";
         }
-        
+
         /* single space */
-        if (s.equals(" ")) { 
+        if (s.equals(" ")) {
             return HTML_SP;
         }
 
@@ -9241,7 +9241,7 @@ public class StringTools
         for (int i = 0; i < ch.length; i++) {
             if ((i == 0) && (ch[i] == ' ')) {
                 sb.append(HTML_SP); // first character is a space
-            } else 
+            } else
             if ((i == (ch.length - 1)) && (ch[i] == ' ')) {
                 sb.append(HTML_SP); // last character is a space
             } else {
@@ -9270,7 +9270,7 @@ public class StringTools
     public static String RANDOM_ALPHANUMERIC = "0123456789" + RANDOM_ALPHA;
     public static String RANDOM_CHARS        = RANDOM_ALPHANUMERIC + ".!@#&-=_+";
 
-    /** 
+    /**
     *** Creates a random String value with the specified length
     *** @param len  The resulting length of the returned String
     *** @return The String containing the random characters
@@ -9280,7 +9280,7 @@ public class StringTools
         return StringTools.createRandomString(len, RANDOM_CHARS);
     }
 
-    /** 
+    /**
     *** Creates a random String value with the specified length
     *** @param len  The resulting length of the returned String
     *** @param alpha The random characters will be pulled from this alphabet
@@ -9322,7 +9322,7 @@ public class StringTools
 
         /* display current CharacterSet */
         //if (RTConfig.hasProperty("charset")) {
-        //    Print.sysPrintln("Character Set: %s", StringTools.getCharacterEncoding());                
+        //    Print.sysPrintln("Character Set: %s", StringTools.getCharacterEncoding());
         //    System.exit(0);
         //}
 
@@ -9333,7 +9333,7 @@ public class StringTools
             byte b[] = StringTools.parseHex(hex, null);
             if (b != null) {
 
-                // ASCII 
+                // ASCII
                 byte sb[] = new byte[b.length];
                 for (int i = 0; i < b.length; i++) {
                     if ((b[i] < ' ') || (b[i] > '~')) {

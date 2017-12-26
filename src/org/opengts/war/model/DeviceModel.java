@@ -2628,7 +2628,7 @@ public class DeviceModel
                         out.write("<form name='"+FORM_DEVICE_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                         out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW_DEVICE+"'/>");
                         out.write(i18n.getString("DeviceModel.deviceID","{0} ID",devTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
-                        out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DeviceModel.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                        out.write(" <input type='submit'  name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DeviceModel.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                         */
                     }
 
@@ -3502,14 +3502,14 @@ public class DeviceModel
                     out.write("</div>\n");
 
                     /* end of form */
-                    out.write("<hr style='margin-bottom:5px;'>\n");
+                    
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_uiEdit) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DeviceModel.change","Change")+"'>\n");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DeviceModel.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                        out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceModel.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' 'btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceModel.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     } else {
-                        out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceModel.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' 'btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceModel.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     }
                     out.write("</form>\n");
 

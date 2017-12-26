@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -106,7 +106,7 @@ public class Track
 {
 
     // ------------------------------------------------------------------------
-    // TODO: 
+    // TODO:
     //  - HttpSessionBindingListener (interface) // Only applicable to HttpSession setAttribute/removeAttribute
     //      void valueBound(HttpSessionBindingEvent event)
     //      void valueUnbound(HttpSessionBindingEvent event)
@@ -144,7 +144,7 @@ public class Track
 
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
-    // Debug: display incoming request 
+    // Debug: display incoming request
 
     private static boolean _DISPLAY_REQUEST = false;
 
@@ -158,7 +158,7 @@ public class Track
     }
 
     /**
-    *** Gets the flags whether the incoming request URL should be 
+    *** Gets the flags whether the incoming request URL should be
     *** printed to the log file.
     **/
     public static boolean DisplayRequest()
@@ -284,8 +284,8 @@ public class Track
         }
 
         /* remove prefixing '/' from filename */
-        if (fileName.startsWith("/")) { 
-            fileName = fileName.substring(1); 
+        if (fileName.startsWith("/")) {
+            fileName = fileName.substring(1);
         }
 
         /* assemble file path */
@@ -299,7 +299,7 @@ public class Track
         return filePath;
 
     }
-    
+
     /* write the specified file to the output stream */
     protected static void _writeFile(HttpServletResponse response, File file)
         throws IOException
@@ -321,7 +321,7 @@ public class Track
             if (input != null) { try{input.close();}catch(IOException err){/*ignore*/} }
         }
         output.close();
-        
+
     }
 
     // ------------------------------------------------------------------------
@@ -526,7 +526,7 @@ public class Track
             // -- get previous host properties
             hostProps = (RTProperties)AttributeTools.getSessionAttribute(request, CommonServlet.HOST_PROPERTIES, null);
         } else
-        if (hostPropID.equalsIgnoreCase(CommonServlet.DEFAULT_HOST_PROPERTIES_ID) || 
+        if (hostPropID.equalsIgnoreCase(CommonServlet.DEFAULT_HOST_PROPERTIES_ID) ||
             hostPropID.equalsIgnoreCase("x") ) {
             // -- explicit reset to default
             hostProps = null;
@@ -573,8 +573,8 @@ public class Track
                 RTConfig.pushThreadProperties(hostProps);
             }
             this._doWork(
-                isPost, request, 
-                response, 
+                isPost, request,
+                response,
                 privLabelDisplay, privLabelRestrict,
                 userAgent);
         } finally {
@@ -589,8 +589,8 @@ public class Track
 
     /* handle POST/GET request */
     private void _doWork(
-        boolean isPost, HttpServletRequest request, 
-        HttpServletResponse response, 
+        boolean isPost, HttpServletRequest request,
+        HttpServletResponse response,
         PrivateLabel privLabelDisplay, PrivateLabel privLabelRestrict,
         UserAgent userAgent)
         throws ServletException, IOException
@@ -691,7 +691,7 @@ public class Track
         }
 
         /* response character set */
-        ////response.setCharacterEncoding("UTF-8");         
+        ////response.setCharacterEncoding("UTF-8");
 
         /* action request */
         String pageName     = AttributeTools.getRequestString(request, CommonServlet.PARM_PAGE    , ""); // query only
@@ -793,13 +793,13 @@ public class Track
         /* check for file resource requests */
         String servletPath = request.getServletPath();
         if ((servletPath != null) && (
-             servletPath.startsWith(DIRECTORY_CSS)          || 
-             servletPath.startsWith(DIRECTORY_JS)           || 
+             servletPath.startsWith(DIRECTORY_CSS)          ||
+             servletPath.startsWith(DIRECTORY_JS)           ||
              servletPath.startsWith(DIRECTORY_IMAGES)       ||
-             servletPath.startsWith(DIRECTORY_OPT)   
+             servletPath.startsWith(DIRECTORY_OPT)
              )) {
             // -- If this occurs, it means that the servlet context redirected a request
-            // -  for a file resource to this servlet.  We attempt here to find the requested 
+            // -  for a file resource to this servlet.  We attempt here to find the requested
             // -  file, and write it to the output stream.
             File filePath = Track._resolveFile(servletPath);
             if (filePath != null) {
@@ -816,7 +816,7 @@ public class Track
             return;
         }
 
-        // -- initialize the RequestProperties 
+        // -- initialize the RequestProperties
         RequestProperties reqState = new RequestProperties();
         reqState.setBaseURI(RequestProperties.TRACK_BASE_URI());
         reqState.setHttpServletResponse(response);
@@ -868,7 +868,7 @@ public class Track
         long nowTimeSec = DateTime.getCurrentTimeSec();
 
         /* authentication request */
-        boolean authRequest = (pageName.equals(PAGE_AUTHENTICATE) && 
+        boolean authRequest = (pageName.equals(PAGE_AUTHENTICATE) &&
             privLabelDisplay.getBooleanProperty(PrivateLabel.PROP_Track_enableAuthenticationService,false));
 
         /* display Version info */
@@ -901,11 +901,11 @@ public class Track
         }
 
         /* reload PrivateLabel XML */
-        // -- This allow making changes directly within the "$CATALINA_HOME/webapps/track/" 
-        // -  to various 'private.xml' or runtime config files (ie. custom.conf, etc), then 
+        // -- This allow making changes directly within the "$CATALINA_HOME/webapps/track/"
+        // -  to various 'private.xml' or runtime config files (ie. custom.conf, etc), then
         // -  force a reload of the changes without having to start/stop Tomcat. Any currently
         // -  logged-in users will still remain logged-in.
-        // -- WARNING: This has been known to fail in some cases and not properly reload the 
+        // -- WARNING: This has been known to fail in some cases and not properly reload the
         // -  runtime configuration files.  This should only be used for development purposes.
         /*
         if (pageName.equals(PAGE_RELOAD)) {
@@ -935,7 +935,7 @@ public class Track
         }
 
         /* special "loginFrame" request */
-        if (requestURL.endsWith(RequestProperties._HTML_LOGIN_FRAME) || 
+        if (requestURL.endsWith(RequestProperties._HTML_LOGIN_FRAME) ||
             requestURL.endsWith(RequestProperties._HTML_LOGIN)       ||
             pageName.equalsIgnoreCase(PAGE_LOGINFRAME)                  ) {
             String indexJSP = "/jsp/loginFrame.jsp";
@@ -981,8 +981,8 @@ public class Track
                 if (iconPath != null) {
                     String frS  = AttributeTools.getRequestString(request, PushpinIcon.MARKER_ARG_FRAME, "");
                     String fs[] = StringTools.split(frS,',');
-                    int    fr[] = StringTools.parseInt(fs,0); 
-                    int    X    = ((fr != null) && (fr.length > 0) && (fr[0] > 0))? fr[0] :  0; // X-Offset [ 1] 
+                    int    fr[] = StringTools.parseInt(fs,0);
+                    int    X    = ((fr != null) && (fr.length > 0) && (fr[0] > 0))? fr[0] :  0; // X-Offset [ 1]
                     int    Y    = ((fr != null) && (fr.length > 1) && (fr[1] > 0))? fr[1] :  2; // Y-Offset [14]
                     int    W    = ((fr != null) && (fr.length > 2) && (fr[2] > 0))? fr[2] : 42; // Width    [29]
                     int    H    = ((fr != null) && (fr.length > 3) && (fr[3] > 0))? fr[3] : 13; // Height   [ 9]
@@ -1011,7 +1011,7 @@ public class Track
             }
             // -- render image with text
             String text  = AttributeTools.getRequestString(request, PushpinIcon.MARKER_ARG_TEXT , "");
-            double arrow = AttributeTools.getRequestDouble(request, PushpinIcon.MARKER_ARG_ARROW, -1.0); 
+            double arrow = AttributeTools.getRequestDouble(request, PushpinIcon.MARKER_ARG_ARROW, -1.0);
             RenderedImage image = imageTI.createImage(text, arrow);
             if (image != null) {
                 response.setContentType(HTMLTools.MIME_PNG());
@@ -1135,8 +1135,8 @@ public class Track
             try {
                 for (;;) {
                     // -- Originally logged-in from SysAdnin/Manager? (EXPERIMENTAL)
-                    // -  Used to support returning to the "System Accounts" page if the 
-                    // -  SysAdmin/Manager had logged-in to this account using the "Login" 
+                    // -  Used to support returning to the "System Accounts" page if the
+                    // -  SysAdmin/Manager had logged-in to this account using the "Login"
                     //-  button on the "System Accounts" page.
                     if (!saLogin) {
                         // -- not logged-in from SysAdmin/Manager
@@ -1177,7 +1177,7 @@ public class Track
                         }
                     }
                     // -- get password
-                    String saPasswd = (saUser != null)? 
+                    String saPasswd = (saUser != null)?
                         saUser.getDecodedPassword(null) :   // may be null
                         saAcct.getDecodedPassword(null);    // may be null
                     // -- construct URL
@@ -1196,8 +1196,8 @@ public class Track
                 Print.logError("Unable to dispatch to '"+saAcctID+"' login: " + th);
             }
             // -- standard logout
-            if (!loginAcctID.equals("")) { 
-                Print.logInfo("Logout: " + loginAcctID); 
+            if (!loginAcctID.equals("")) {
+                Print.logInfo("Logout: " + loginAcctID);
             }
             String pleaseLogin = i18n.getString("Track.pleaseLogin","Please Log In"); // UserErrMsg
             Track._displayLogin(reqState, pleaseLogin, false);
@@ -1287,7 +1287,7 @@ public class Track
                     Track._writeAuthenticateXML(response, false);
                 } else
                 if ((trackPage instanceof TrackMap)                 &&
-                    (cmdName.equals(TrackMap.COMMAND_MAP_UPDATE) || 
+                    (cmdName.equals(TrackMap.COMMAND_MAP_UPDATE) ||
                      cmdName.equals(TrackMap.COMMAND_DEVICE_PING)  )  ) {
                     // -- A map has requested an update, and the user is not logged-in
                     PrintWriter out = response.getWriter();
@@ -1444,8 +1444,8 @@ public class Track
         /* default to 'admin' user */
         if (StringTools.isBlank(userID)) {
             userID = account.getDefaultUser();
-            if (StringTools.isBlank(userID)) { 
-                userID = (privLabelDisplay != null)? privLabelDisplay.getDefaultLoginUser() : User.getAdminUserID(); 
+            if (StringTools.isBlank(userID)) {
+                userID = (privLabelDisplay != null)? privLabelDisplay.getDefaultLoginUser() : User.getAdminUserID();
             }
         }
 
@@ -1537,7 +1537,7 @@ public class Track
                         loginOK       = false;
                     }
                 }
-            } 
+            }
 
             /* invalid account, user, or password, displays the same error */
             if (!loginOK) {
@@ -1560,7 +1560,7 @@ public class Track
                     Track._displayLogin(reqState, invLoginText, true);
                 }
                 Print.logInfo("Login[Failed]: Domain="+bplName + " Account="+accountID + " User="+userID + " Time="+nowTimeSec + " IPAddr="+ipAddr);
-                // -- audit login failed 
+                // -- audit login failed
                 Audit.userLoginFailed(accountID, userID, ipAddr, bplName, requestURL);
                 // -- count login failures for possible suspension
                 if (failedUser != null) {
@@ -1703,7 +1703,7 @@ public class Track
         }
 
         /* Reverse Geocode */
-        if (pageName.equals(PAGE_REVERSEGEOCODE) && !reqState.isDemoAccount() && 
+        if (pageName.equals(PAGE_REVERSEGEOCODE) && !reqState.isDemoAccount() &&
             RTConfig.getBoolean("enableReverseGeocodeTest",false)) {
             String rgCache[] = null;
             ReverseGeocodeProvider rgp = privLabelDisplay.getReverseGeocodeProvider();
@@ -1808,7 +1808,7 @@ public class Track
             CommonServlet.setResponseContentType(response, HTMLTools.MIME_XML(), StringTools.CharEncoding_UTF_8);
             PrintWriter out = response.getWriter();
             out.println(
-                !StringTools.isBlank(gpXML)? gpXML : 
+                !StringTools.isBlank(gpXML)? gpXML :
                     ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                      "<geonames></geonames>\n"));
             out.close();
@@ -1990,8 +1990,8 @@ public class Track
         AttributeTools.setSessionAttribute(request, Constants.PARM_USER    , userID);
         AttributeTools.setSessionAttribute(request, Constants.PARM_ENCPASS , entEncPass);
 
-        /* save preferred/selected device/group */ 
-        AttributeTools.setSessionAttribute(request, Constants.PARM_GROUP   , groupID);  
+        /* save preferred/selected device/group */
+        AttributeTools.setSessionAttribute(request, Constants.PARM_GROUP   , groupID);
         AttributeTools.setSessionAttribute(request, Constants.PARM_DEVICE  , deviceID);
         AttributeTools.setSessionAttribute(request, Constants.PARM_DRIVER  , driverID);
 
@@ -2048,7 +2048,7 @@ public class Track
                 }
             }
 
-            // -- audit login successful 
+            // -- audit login successful
             Audit.userLoginOK(accountID, userID, ipAddr, bplName, requestURL);
 
         }
@@ -2136,7 +2136,7 @@ public class Track
                 I18N i18n = privLabel.getI18N(Track.class);
                 String baseURL = WebPageAdaptor.EncodeURL(reqState,new URIArg(RequestProperties.TRACK_BASE_URI()));
                 out.println(StringTools.replace(msg,"\n",StringTools.HTML_BR));
-                out.println("<hr>");
+              
                 out.println("<a href=\"" + baseURL + "\">" + i18n.getString("Track.back","Back") + "</a>");
             }
         };
@@ -2170,26 +2170,26 @@ public class Track
         throws IOException
     {
         //RTConfig.setCommandLineArgs(argv);
-        
+
         TimeZone tz = null;
         DateTime fr = new DateTime(tz, 2008, RTConfig.getInt("m",6), 1);
         DateTime to = new DateTime(tz, 2008, RTConfig.getInt("m",7), 1);
         String acctId = "opendmtp";
         String devId  = "mobile";
-        
+
         // OutputStream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintWriter out = new PrintWriter(baos);
-        
+
         //writePage_Map(
-        //  out, 
-        //  privLabel, 
-        //  acctId, 
-        //  devId, new String[] { devId }, 
-        //  fr, to, 
+        //  out,
+        //  privLabel,
+        //  acctId,
+        //  devId, new String[] { devId },
+        //  fr, to,
         //  Account.GetDefaultTimeZone(),
         //  lastEvent);
-        
+
         out.close(); // close (flush PrintWriter)
         String s = new String(baos.toByteArray());
         System.err.print(s);

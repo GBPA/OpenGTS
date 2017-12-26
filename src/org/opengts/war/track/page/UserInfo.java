@@ -992,7 +992,7 @@ public class UserInfo
                     out.write("</table>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
 
                     /* new user */
                     if (_allowNew) {
@@ -1241,7 +1241,7 @@ public class UserInfo
 
                     /* end table */
                     out.println("</table>");
-                    //out.write("<hr>\n");
+                
 
                     /* ACL entries (overrides) */
                     if (_showACLs && _viewAcls) {
@@ -1273,7 +1273,7 @@ public class UserInfo
                                     ComboOption accSel = (usrAcc != null)?
                                         privLabel.getEnumComboOption(usrAcc) :
                                         new ComboOption(ACL_DEFAULT, i18n.getString("UserInfo.default","Default"));
-                                    String  dftHtml  = i18n.getString("UserInfo.defaultIsAcl","[Default is ''{0}'']","<b>"+dftAcc.toString(locale)+"</b>");
+                                    String  dftHtml  = i18n.getString("UserInfo.defaultIsAcl","");
                                     out.write(FormRow_ComboBox(argKey, true , desc+":", accSel, aclOpt, "", 18, dftHtml) + "\n");
                                 } else {
                                     ComboOption accSel = (usrAcc != null)?
@@ -1288,14 +1288,14 @@ public class UserInfo
                     }
 
                     /* end of form */
-                    out.write("<hr style='margin-bottom:5px;'>\n");
+
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_editUser) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("UserInfo.change","Change")+"'>\n");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("UserInfo.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                        out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("UserInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("UserInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     } else {
-                        out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("UserInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("UserInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     }
                     out.write("</form>\n");
 

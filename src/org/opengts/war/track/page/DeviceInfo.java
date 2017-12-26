@@ -2412,10 +2412,10 @@ public class DeviceInfo
                 String cssDir = DeviceInfo.this.getCssDirectory();
                 //WebPageAdaptor.writeCssLink(out, reqState, "DeviceInfo.css", cssDir);
                 if (showDateCal)  {
-                    Calendar.writeStyle(out, reqState);
+                    //Calendar.writeStyle(out, reqState);
                 }
                 if (showPushpinChooser) {
-                    WebPageAdaptor.writeCssLink(out, reqState, "PushpinChooser.css", cssDir);
+                    //WebPageAdaptor.writeCssLink(out, reqState, "PushpinChooser.css", cssDir);
                 }
             }
         };
@@ -2577,7 +2577,7 @@ public class DeviceInfo
                         i18n.getString("DeviceInfo.viewDevice","View {0} Information", devTitles);
                     out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>&nbsp;\n");
                     out.write("<a href='"+refreshURL+"'><span class=''>"+i18n.getString("DeviceInfo.refresh","Refresh")+"</a>\n");
-                    out.write("<hr>\n");
+
 
                     // -- device selection table (Select, Device ID, Description, ...)
                     out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DeviceInfo.selectDevice","Select a {0}",devTitles)+":</h2>\n");
@@ -3686,14 +3686,14 @@ public class DeviceInfo
                     out.write("</div>\n");
 
                     /* end of form */
-                    out.write("<hr style='margin-bottom:5px;'>\n");
+
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_uiEdit) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DeviceInfo.change","Change")+"'>\n");
+                        out.write("<input type='submit' 'btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DeviceInfo.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                        out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     } else {
-                        out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     }
                     out.write("</form>\n");
 

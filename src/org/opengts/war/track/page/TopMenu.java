@@ -225,7 +225,7 @@ public class TopMenu
                     out.println("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+
                         i18n.getString("TopMenu.selectItem","Please select an item from the following menu:")+
                         "</p>");
-                  out.println("<hr/>");
+            
                 }
 
                 /* display menu */

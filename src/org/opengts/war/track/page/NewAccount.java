@@ -143,9 +143,9 @@ public class NewAccount
         HTMLOutput HTML_CONTENT = new HTMLOutput(CSS_NEW_ACCOUNT, pageMsg) {
             public void write(PrintWriter out) throws IOException {
                 out.println("<span class='"+CSS_NEW_ACCOUNT_TITLE+"'>"+i18n.getString("NewAccount.newTempAccountOffline","New Temporary Account")+"</span>");
-                out.println("<hr>");
+
                 out.println("<span class='"+CSS_NEW_ACCOUNT_OFFLINE+"'>"+i18n.getString("NewAccount.offline1","New account registration is temporarily offline,")+"<br>"+i18n.getString("NewAccount.offline2","Please check back soon.")+"</span>");
-                out.println("<hr>");
+
                 String baseURL = Track.GetBaseURL(reqState); // EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI());
                 out.println("<a href='"+baseURL+"'>Back</a>");
             }
@@ -434,14 +434,14 @@ public class NewAccount
                 //if (StringTools.isBlank(expireDate)) { expireDate = "n/a"; }
                 out.println("<form class='form-horizontal' name='AccountInfo' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
                 out.println("  <span class='"+CSS_NEW_ACCOUNT_TITLE+"'>"+i18n.getString("NewAccount.newTempAccount","New Temporary Account")+"</span>");
-                out.println("  <hr>");
+
                 out.println("  <span class='"+CSS_NEW_ACCOUNT_INSTRUCT+"'>");
                 out.println(StringTools.replace(i18n.getString("NewAccount.instructions",
                     "To create a temporary account, enter your contact information below\n" +
                     "(and authorization code if required).\n" +
                     "Login information will be sent to you via email."),"\n","<br>"));
                 out.println("  </span>");
-                out.println("  <hr>");
+
 
                 out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
                 out.println(FormRow_TextField(PARM_CONTACT_NAME , true, i18n.getString("NewAccount.enterYourName" ,"Your Name")+":"         , cn, 30, 30));
@@ -451,23 +451,14 @@ public class NewAccount
                 }
                 out.println("</table>");
 
-                /*
-                out.println("  <span style='font-size:9pt'>"+i18n.getString("NewAccount.enterYourName","Your Name")+":</span><br>");
-                out.println("    <input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_CONTACT_NAME +"' value='"+cn+"' maxlength='30' size='30'><br>");
-                out.println("  <span style='font-size:9pt'>"+i18n.getString("NewAccount.enterYourEMail","Your Email Address")+":</span><br>");
-                out.println("    <input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_CONTACT_EMAIL+"' value='"+ce+"' maxlength='36' size='36'><br>");
-                if (NewAccount.this.isAuthCodeRequired(privLabel)) {
-                out.println("  <span style='font-size:9pt'>"+i18n.getString("NewAccount.enterAuthCode","Authorization Code (required)")+":</span><br>");
-                out.println("    <input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_AUTH_CODE+"' value='"+ac+"' maxlength='40' size='40'><br>");
-                }
-                */
 
-                out.println("  <input type='submit' name='"+PARM_EMAIL_SUBMIT+"' value='"+i18n.getString("NewAccount.submit","Submit")+"'><br>");
+
+                out.println("  <input type='submit' class='btn btn-success' name='"+PARM_EMAIL_SUBMIT+"' value='"+i18n.getString("NewAccount.submit","Submit")+"'><br>");
                 out.println("</form>");
-                out.println("<hr>");
+
                 out.println("<span class='"+CSS_NEW_ACCOUNT_EXPIRE+"'>"+i18n.getString("NewAccount.willExpire","Temporary accounts are temporary, and do have an expiry date.")+"<br>");
                 //out.println(i18n.getString("NewAccount.expireOnDate","Accounts created now will expire {0}",expireDate)+"</span>");
-                out.println("<hr>");
+            
                 out.println("<a href='"+menuURL+"'>"+i18n.getString("NewAccount.back","Back")+"</a>");
             }
         };

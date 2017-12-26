@@ -253,7 +253,7 @@ public abstract class WebPageAdaptor
         /* description */
         sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"' valign='top' nowrap>"+d+"</td>");
         /* separator */
-        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"'><hr></td>");
+        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"'></td>");
         /* end row */
         sb.append("</tr>");
         /* return result */
@@ -266,9 +266,9 @@ public abstract class WebPageAdaptor
         /* start row */
         sb.append("<tr>");
         /* separator */
-        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'><hr></td>");
+        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'></td>");
         /* separator */
-        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"'><hr></td>");
+        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"'></td>");
         /* end row */
         sb.append("</tr>");
         /* return result */
@@ -281,7 +281,7 @@ public abstract class WebPageAdaptor
         /* start row */
         sb.append("<tr>");
         /* separator */
-        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'><hr style='border:0; height:1px; color:#BBBBBB; background-color:#BBBBBB;'></td>");
+        sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'></td>");
         /* separator */
         sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"'>&nbsp;</td>");
         /* end row */

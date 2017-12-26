@@ -1058,7 +1058,7 @@ public abstract class TrackMap
                 out.println("<table class='table' border='0' cellspacing='0' cellpadding='0' style='width:100%;'><tbody><tr>"); // [
 
                 // -- Device/Group selection
-                out.println("<td nowrap align='left' style='font-size:9pt; height:19px;'>");
+                out.println("<td nowrap align='left' style=' height:19px;'>");
                 out.println("<form class='form-horizontal' id='"+FORM_SELECT_DEVICE+"' name='"+FORM_SELECT_DEVICE+"' method='post' target='_self'>"); // target='_top'
                 out.println("<input type='hidden' name='"+PARM_PAGE                 +"' value='" + FilterValue(pageName) + "'/>");
                 out.println("<input type='hidden' name='"+Calendar.PARM_RANGE_FR[0] +"' value=''/>");
@@ -1203,12 +1203,12 @@ public abstract class TrackMap
                     String _date = (dt != null)? dt.format(currAcct.getDateFormat(),tz) : "";
                     String _time = (dt != null)? dt.format(currAcct.getTimeFormat()) : i18n.getString("TrackMap.unavailable","unavailable");
                     String _tmz  = (dt != null)? dt.format("zzz",tz) : "";
-                    out.println("<td nowrap style='width:100%; font-size:8pt;'>");
-                    out.print  ("<span style='width:100%; text-align:right;'> (");
+                    out.println("<td nowrap style='width:100%;'>");
+                    out.print  ("<span class='text-muted' style='width:100%; text-align:right;'> (");
                     out.print  (i18n.getString("TrackMap.lastGpsEvent","Last Event:") + "&nbsp;");
                     String dateTooltip = i18n.getString("TrackMap.lastGpsDate.tooltip", "Click to reset calendars to this date");
                     String dateOnclick = "javascript:trackMapGotoLastEventDate();";
-                    String dateStyle   = "color: #0000CC; cursor: pointer;";
+                    String dateStyle   = "cursor: pointer;";
                     out.print  ("<span id='"+MapProvider.ID_LATEST_EVENT_DATE+"' onclick=\""+dateOnclick+"\" title='"+dateTooltip+"' style='"+dateStyle+"'>"+_date+"</span>&nbsp;");
                     out.print  ("<span id='"+MapProvider.ID_LATEST_EVENT_TIME+"'>"+_time+"</span>&nbsp;");
                     out.print  ("<span id='"+MapProvider.ID_LATEST_EVENT_TMZ +"'>"+_tmz +"</span>");
@@ -1305,7 +1305,7 @@ public abstract class TrackMap
                     out.println("</form>");
                 }
 
-                out.println("<hr>");
+
 
                 // -- "Update All"
                 String i18nUpdateBtn = i18n.getString("TrackMap.updateAll","Update");
@@ -1313,19 +1313,19 @@ public abstract class TrackMap
                 out.println("<form class='form-horizontal' id='UpdateMap' name='UpdateMap' method='get' target='_self'>"); // target='_top'
                 if (showUpdateAll) {
                     out.println("<!-- 'Update All' -->");
-                    out.print  ("<input class='btn btn-success' id='"+ID_MAP_UPDATE_BTN+"' type='button' name='update' value='"+i18nUpdateBtn+"' title=\""+i18nUpdateTip+"\" onclick=\"javascript:trackMapClickedUpdateAll();\">");
+                    out.print  ("<input class='btn btn-primary' id='"+ID_MAP_UPDATE_BTN+"' type='button' name='update' value='"+i18nUpdateBtn+"' title=\""+i18nUpdateTip+"\" onclick=\"javascript:trackMapClickedUpdateAll();\">");
                 }
                 if (showUpdateLast) {
                     String i18nLastBtn = i18n.getString("TrackMap.updateLast","Last");
                     String i18nLastTip = i18n.getString("TrackMap.updateLast.tooltip","Click to update last location");
                     out.println("<!-- 'Update Last' -->");
-                    out.print  ("<input class='btn btn-success' id='"+ID_MAP_LAST_BTN+"' type='button' name='update' value='"+i18nLastBtn+"' title=\""+i18nLastTip+"\" onclick=\"javascript:trackMapClickedUpdateLast();\">");
+                    out.print  ("<input class='btn btn-info' id='"+ID_MAP_LAST_BTN+"' type='button' name='update' value='"+i18nLastBtn+"' title=\""+i18nLastTip+"\" onclick=\"javascript:trackMapClickedUpdateLast();\">");
                 }
                 if (autoUpdateEnabled) {
                     String i18nAutoBtn = i18n.getString("TrackMap.startAutoUpdate","Auto");
                     String i18nAutoTip = i18n.getString("TrackMap.startAutoUpdate.tooltip","Click to start/stop auto-update");
                     out.println("<!-- 'Auto Update' -->");
-                    out.print  ("<input class='btn btn-default' id='"+ID_MAP_AUTOUPDATE_BTN+"' type='button' name='autoUpdate' value='"+i18nAutoBtn+"' title=\""+i18nAutoTip+"\" onclick=\"javascript:trackMapClickedAutoUpdate();\">");
+                    out.print  ("<input class='btn btn-success' id='"+ID_MAP_AUTOUPDATE_BTN+"' type='button' name='autoUpdate' value='"+i18nAutoBtn+"' title=\""+i18nAutoTip+"\" onclick=\"javascript:trackMapClickedAutoUpdate();\">");
                 }
                 out.println("</form>");
 
@@ -1370,7 +1370,7 @@ public abstract class TrackMap
                 out.println("\n<!-- Cursor Location / Distance Ruler -->");
                 out.println("<tr>");
                 out.println("<td valign='top'>");
-                out.println("<hr>");
+
                 if (mapSupportsCursorLocation || mapSupportsDistanceRuler) {
                     if (mapSupportsCursorLocation) {
                         out.println(" <b>"+i18n.getString("TrackMap.map.cursorLoc","Cursor Location")+":</b>");
@@ -1380,7 +1380,7 @@ public abstract class TrackMap
                         out.println(" <b>"+i18n.getString("TrackMap.map.distance","Distance (ctrl-drag)")+":</b>");
                         out.println(" <div id='"+MapProvider.ID_DISTANCE_DISPLAY+"' style='margin-left:10px;'>0.00 "+reqState.getDistanceUnits().toString(locale)+"</div>");
                     }
-                    out.println("<hr>");
+
                 }
                 out.println("</td>");
                 out.println("</tr>");
@@ -1423,7 +1423,7 @@ public abstract class TrackMap
                         out.println("<tr>");
                         out.println("<td valign='top'>");
                         out.println(legendHtml.trim()); // remove trailing "\n"
-                        out.println("<hr>");
+
                         out.println("</td>");
                         out.println("</tr>");
                         out.println("<!-- end legend -->");
@@ -1451,7 +1451,7 @@ public abstract class TrackMap
                         out.println("<form class='form-horizontal' id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(document.getElementById('"+cmdID+"').value);\" target='_self'>"); // target='_top'
                         out.println("<div style='margin-bottom:4px;'>");
                         out.println(Form_ComboBox(cmdID, cmdID, true, cmdMap, cmdSel, null, -1));
-                        out.println("<input id='"+ID_PING_DEVICE_BTN+"' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
+                        out.println("<input id='"+ID_PING_DEVICE_BTN+"' class='btn btn-warning' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
                         out.println("</div>");
                         out.println("</form>");
                     } else {
@@ -1470,7 +1470,7 @@ public abstract class TrackMap
                         }
                         out.println("<form class='form-horizontal' id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(null);\" target='_self'>"); // target='_top'
                         out.println("<div style='margin-bottom:4px;'>");
-                        out.println("<input id='"+ID_PING_DEVICE_BTN+"' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
+                        out.println("<input id='"+ID_PING_DEVICE_BTN+"' class='btn btn-warning' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
                         out.println("</div>");
                         out.println("</form>");
                     }
@@ -1584,9 +1584,11 @@ public abstract class TrackMap
                     out.write("\n<!-- Detail report -->\n");
                     out.write("<tr>\n");
                     out.write("<td colspan='"+colspan+"' align='center' style=''>\n");
+                    /*
                     out.write("<a class='trackMapDetailLocationControl' id='"+MapProvider.ID_DETAIL_CONTROL+"' href=\"javascript:mapProviderToggleDetails()\">");
                     out.write(i18n.getString("TrackMap.showLocationDetails","Show Location Details"));
                     out.write("</a>");
+                    */
                     out.write("<div id='"+MapProvider.ID_DETAIL_TABLE+"' style='width:100%;'></div>\n");
                     out.write("</td>\n");
                     out.write("</tr>\n");

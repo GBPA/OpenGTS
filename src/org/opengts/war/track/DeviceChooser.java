@@ -366,12 +366,12 @@ public class DeviceChooser
         /* top DIV */
         out.write("\n");
         out.write("<!-- begin DeviceChooser DIV -->\n");
-        out.write("<div id='"+ID_CHOOSER_VIEW+"' class='"+CLASS_DEVSELECT_DIV_HIDDEN+"'>\n");
+        out.write("<div id='"+ID_CHOOSER_VIEW+"' class='"+CLASS_DEVSELECT_DIV_HIDDEN+"' style='padding: 10px; background-color: #fff;'>\n");
 
         /* form */
         if (DeviceChooser.isSearchEnabled(privLabel)) {
             out.write("<form class='form-horizontal' id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='GET' action=\"javascript:true;\" target='_self' style=''>\n"); // target='_top'
-            out.write("<b>"+DEVICE_TEXT_Search+": </b>\n");
+          
             out.write("<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+" form-control' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>\n");
             out.write("</form>\n");
         }

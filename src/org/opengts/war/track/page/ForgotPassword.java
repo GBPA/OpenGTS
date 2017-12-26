@@ -525,7 +525,7 @@ public class ForgotPassword
                               "Login information and Contact Email Address "+
                               "(must match email address on file):") +
                             "</span>");
-                out.println("<hr/>");
+
                 out.println("<form class='form-horizontal' name='Passwd_Email' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
                 out.println("<table class='table'>");
                 out.println("  <tr><td>"+i18n.getString("ForgotPassword.accountID","Account ID:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' name='"+PARM_EMAIL_ACCOUNT+"' value='' size='24' maxlength='32'></td></tr>");
@@ -534,13 +534,13 @@ public class ForgotPassword
                 }
                 out.println("  <tr><td>"+i18n.getString("ForgotPassword.contactEMail","Contact Email:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' name='"+PARM_EMAIL_ADDRESS+"' value='' size='40' maxlength='64'></td></tr>");
                 out.println("</table>");
-                out.println("<input type='submit' name='"+PARM_EMAIL_SUBMIT+"' value='"+i18n.getString("ForgotPassword.submit","Submit")+"'>");
+                out.println("<input type='submit' class='btn btn-success' name='"+PARM_EMAIL_SUBMIT+"' value='"+i18n.getString("ForgotPassword.submit","Submit")+"'>");
                 out.println("</form>");
-                out.println("<hr>");
+
                 if (SEND_ACCOUNT_LIST) {
-                    out.println("<span style='font-size:8pt'>"+i18n.getString("ForgotPassword.accountHelp1","To have a list of your managed accounts emailed to you,")+"<br>");
+                    out.println("<span style=''>"+i18n.getString("ForgotPassword.accountHelp1","To have a list of your managed accounts emailed to you,")+"<br>");
                     out.println(i18n.getString("ForgotPassword.accountHelp2","leave the 'Account ID' field blank.")+"</span>");
-                    out.println("<hr>");
+                
                 }
                 out.println("<a href='"+menuURL+"'>"+i18n.getString("ForgotPassword.cancel","Cancel")+"</a>");
             }

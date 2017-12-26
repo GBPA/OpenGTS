@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,7 @@
 //   JSDrawRoute(JSMapPoint points[])
 //   JSDrawGeozone(int type, boolean editable, double radius, JSMapPoint points[], int primaryIndex)
 //   JSShowPushpin(JSMapPushpin pushPin)
-//   JSUnload() 
+//   JSUnload()
 // ----------------------------------------------------------------------------
 // Change History:
 //  2008/07/08  Martin D. Flynn
@@ -73,15 +73,15 @@ public class JSMap
 
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
- 
-    /* JSMap instance */ 
-    public JSMap(String name, String key) 
+
+    /* JSMap instance */
+    public JSMap(String name, String key)
     {
-        super(name, key); 
+        super(name, key);
     }
 
-    // ------------------------------------------------------------------------ 
- 
+    // ------------------------------------------------------------------------
+
     /* get map element ID */
     public String getMapID()
     {
@@ -177,16 +177,16 @@ public class JSMap
 
     /* write css to stream */
     public void writeStyle(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
-        WebPageAdaptor.writeCssLink(out, reqState, "JSMap.css", null);
+        //WebPageAdaptor.writeCssLink(out, reqState, "JSMap.css", null);
     }
 
     // ------------------------------------------------------------------------
 
-    /* write mapping support JS to stream */ 
-    protected void writeJSVariables(PrintWriter out, RequestProperties reqState) 
-        throws IOException 
+    /* write mapping support JS to stream */
+    protected void writeJSVariables(PrintWriter out, RequestProperties reqState)
+        throws IOException
     {
         // -- This var initializations must not use any functions defined in 'jsmap.js'
         PrivateLabel privLabel    = reqState.getPrivateLabel();
@@ -221,8 +221,8 @@ public class JSMap
                 String val[] = StringTools.parseStringArray(rtp.getProperty(key,"").toString(), '\n');
                 String propVar = "PROP_" + key.toString().replace('.','_').replace('-','_');
                 if (val.length == 1) {
-                    if (StringTools.isDouble(val[0],true) || 
-                        StringTools.isLong(val[0],true)   || 
+                    if (StringTools.isDouble(val[0],true) ||
+                        StringTools.isLong(val[0],true)   ||
                         StringTools.isBoolean(val[0],true)  ) {
                         JavaScriptTools.writeJSVar(out, propVar, val[0], false);
                     } else {
@@ -334,13 +334,13 @@ public class JSMap
         JavaScriptTools.writeJSVar(out, "TEXT_TIMEOUT"              , i18n.getString("JSMap.sessionTimeout" , "Your session has timed-out.\nPlease login ..."));
         JavaScriptTools.writeJSVar(out, "TEXT_PING_OK"              , i18n.getString("JSMap.pingDevice.ok"  , "A command request has been sent.\nThe {0} should respond shortly ...",devTitles));
         JavaScriptTools.writeJSVar(out, "TEXT_PING_ERROR"           , i18n.getString("JSMap.pingDevice.err" , "The command request failed.\nThe {0} may not support this feature ...",devTitles));
-        JavaScriptTools.writeJSVar(out, "TEXT_MAXPUSHPINS_ALERT"    , i18n.getString("JSMap.maxPushpins.err", 
-            "The maximum number of allowed pushpins has been exceeded.\n" + 
+        JavaScriptTools.writeJSVar(out, "TEXT_MAXPUSHPINS_ALERT"    , i18n.getString("JSMap.maxPushpins.err",
+            "The maximum number of allowed pushpins has been exceeded.\n" +
             " [max={0}] Not all pushpins may be displayed on this map.\n" +
             "Adjust the 'From' time to see remaining pushpins",
             String.valueOf(maxPushpins)));
         JavaScriptTools.writeJSVar(out, "TEXT_MAXPUSHPINS_MSG"      , i18n.getString("JSMap.maxPushpins.msg",
-            "Only partial data displayed.  The maximum allowed pushpins has been reached.<BR>" + 
+            "Only partial data displayed.  The maximum allowed pushpins has been reached.<BR>" +
             "Adjust the Date/Time range accordingly to view the remaining pushpins."));
         JavaScriptTools.writeJSVar(out, "TEXT_UNAVAILABLE"          , i18n.getString("JSMap.unavailable","unavailable"));
         JavaScriptTools.writeJSVar(out, "TEXT_showLocationDetails"  , i18n.getString("JSMap.showLocationDetails","Show Location Details"));
@@ -410,9 +410,9 @@ public class JSMap
 
     }
 
-    /* write mapping support JS to stream */ 
-    public static void writePushpinArray(PrintWriter out, RequestProperties reqState) 
-        throws IOException 
+    /* write mapping support JS to stream */
+    public static void writePushpinArray(PrintWriter out, RequestProperties reqState)
+        throws IOException
     {
         MapProvider mapProv = reqState.getMapProvider();
         out.write("// Icon URLs\n");
@@ -470,25 +470,25 @@ public class JSMap
 
     // ------------------------------------------------------------------------
 
-    protected void writeJSIncludes(PrintWriter out, RequestProperties reqState, String jsMapURLs[]) 
-        throws IOException 
+    protected void writeJSIncludes(PrintWriter out, RequestProperties reqState, String jsMapURLs[])
+        throws IOException
     {
         HttpServletRequest request = reqState.getHttpServletRequest();
         JavaScriptTools.writeJSIncludes(out, jsMapURLs, request);
     }
 
     protected void writeJSIncludes(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
         // override only
     }
 
     // ------------------------------------------------------------------------
 
-    /* write JS to stream */ 
-    public void writeJavaScript(PrintWriter out, RequestProperties reqState) 
-        throws IOException 
-    { 
+    /* write JS to stream */
+    public void writeJavaScript(PrintWriter out, RequestProperties reqState)
+        throws IOException
+    {
 
         /* prefetch map "Loading" image */
         if (this.getProperties().getBoolean(PROP_MAP_LOADING,false)) {
@@ -500,7 +500,7 @@ public class JSMap
 
         /* JSMap variables */
         JavaScriptTools.writeStartJavaScript(out);
-        this.writeJSVariables(out, reqState); 
+        this.writeJSVariables(out, reqState);
         JavaScriptTools.writeEndJavaScript(out);
 
         /* Subclass JavaScript includes */
@@ -518,20 +518,20 @@ public class JSMap
             out.write("// --- Inline Javascript ["+this.getName()+"]\n");
             out.write(jsMapInline);
             out.write("\n");
-            JavaScriptTools.writeEndJavaScript(out); 
+            JavaScriptTools.writeEndJavaScript(out);
         }
 
         /* event CSV parsing code */
         PrivateLabel privLabel = reqState.getPrivateLabel();
         boolean      isFleet   = reqState.isFleet();
         Locale       locale    = reqState.getLocale();
-        JavaScriptTools.writeStartJavaScript(out); 
+        JavaScriptTools.writeStartJavaScript(out);
         out.write(EventUtil.getInstance().getParseMapEventJS(privLabel,isFleet,locale));
         JavaScriptTools.writeEndJavaScript(out);
 
-    } 
+    }
 
-    // ------------------------------------------------------------------------ 
+    // ------------------------------------------------------------------------
 
     /* update request for map points */
     public void writeMapUpdate(
@@ -544,6 +544,6 @@ public class JSMap
             reqState);
     }
 
-    // ------------------------------------------------------------------------ 
- 
-} 
+    // ------------------------------------------------------------------------
+
+}

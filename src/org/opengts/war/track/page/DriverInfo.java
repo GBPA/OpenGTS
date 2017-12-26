@@ -565,17 +565,17 @@ public class DriverInfo
                     out.write("<tr>\n");
                     if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DriverInfo.view","View")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("DriverInfo.view","View")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DriverInfo.edit","Edit")+"'>");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("DriverInfo.edit","Edit")+"'>");
                         out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("DriverInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
+                        out.write("<input type='submit' class='btn btn-danger' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("DriverInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
                         out.write("&nbsp;");
                     }
@@ -584,7 +584,7 @@ public class DriverInfo
                     out.write("</table>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
 
                     /* new Driver */
                     if (_allowNew) {
@@ -593,10 +593,10 @@ public class DriverInfo
                     out.write("<form class='form-horizontal' name='"+FORM_DRIVER_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
                     out.write(i18n.getString("DriverInfo.driverID","Driver ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
-                    out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DriverInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                    out.write(" <input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DriverInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
                     }
 
                 }
@@ -620,7 +620,7 @@ public class DriverInfo
                         i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
                     out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
-                    out.write("<hr>\n");
+                  
 
                     /* start of form */
                     out.write("<form class='form-horizontal' name='"+FORM_DRIVER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
@@ -659,14 +659,14 @@ public class DriverInfo
                     out.println("</table>");
 
                     /* end of form */
-                    out.write("<hr style='margin-bottom:5px;'>\n");
+
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_uiEdit) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DriverInfo.change","Change")+"'>\n");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("DriverInfo.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                        out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DriverInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_top');\">\n");
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DriverInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_top');\">\n");
                     } else {
-                        out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DriverInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_top');\">\n");
+                        out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DriverInfo.back","Back")+"' onclick=\"javascript:openURL('"+editURL+"','_top');\">\n");
                     }
                     out.write("</form>\n");
 

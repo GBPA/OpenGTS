@@ -931,7 +931,7 @@ public class ReportMenu
                 // -- frame header
                 out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+i18n.getString("ReportMenu.gpsReports","GPS Tracking Reports")+"</span><br/>\n");
                 out.write("<span class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+i18n.getString("ReportMenu.selectReport","Please select a report from the following menu:")+"</span><br/>\n");
-                out.write("<hr/>\n");
+
 
                 /* begin calendar/report-selection table */
                 out.write("<table height='90%' class='table' border='0' cellspacing='0' cellpadding='0'>\n"); // {
@@ -1165,7 +1165,7 @@ public class ReportMenu
                     out.println("<!-- Timezone select -->");
                     out.println("<div style='padding-top: 5px; text-align: left;'>");
                     out.println(  "<form class='form-horizontal' id='TimeZoneSelect' name='TimeZoneSelect' method='get' action=\"javascript:true;\" target='_self'>"); // target='_top'
-                    out.println(  "<span style='font-size:8pt;'><b>"+i18n.getString("ReportMenu.timeZone","TimeZone:")+"</b></span><br>");
+                    out.println(  "<span style=''><b>"+i18n.getString("ReportMenu.timeZone","TimeZone:")+"</b></span><br>");
                     out.println(  "<select class='form-control' name='"+parm_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+parm_TIMEZONE[0]+".value)\">");
                     String timeZone = reqState.getTimeZoneString(null);
                     java.util.List _tzList = reqState.getTimeZonesList();
@@ -1260,7 +1260,7 @@ public class ReportMenu
                 out.write(" <!-- Begin Report Submit -->\n");
                 out.write(" <tr>\n");
                 out.write("  <td valign='bottom' style='text-align: left;'>\n");
-                out.write("    <hr>\n");
+      
                 out.write("    <form class='form-horizontal' id='"+FORM_GET_REPORT+"' name='"+FORM_GET_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
                 out.write("    <span style='padding-left: 5px;'><b>"+i18n.getString("ReportMenu.format","Format:")+"</b></span>\n");
                 out.write("    <select id='"+PARM_FORMAT[0]+"' class='form-control' name='"+PARM_FORMAT[0]+"' onchange=\"javascript:rptmFormatChanged();\">\n");

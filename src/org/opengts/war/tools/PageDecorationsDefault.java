@@ -87,24 +87,7 @@ public class PageDecorationsDefault
         if (this.pageStyle == null) {
             StringBuffer sb = new StringBuffer();
             sb.append("<style type='text/css'>\n");
-            sb.append("  a:hover { color:#00CC00; }\n");
-            sb.append("  h1 {  white-space:pre; }\n");
-            sb.append("  h2 {  white-space:pre; }\n");
-            sb.append("  h3 {  white-space:pre; }\n");
-            sb.append("  h4 {  white-space:pre; }\n");
-            sb.append("  form { margin-top:0px; margin-bottom:0px; }\n");
-            sb.append("  body { font-size:8pt; font-family:verdena,sans-serif; }\n");
-            sb.append("  td { font-size:8pt; font-family:verdena,sans-serif; }\n");
-            sb.append("  input { font-size:8pt; font-family:verdena,sans-serif; }\n");
-            sb.append("  input:focus { background-color: #FFFFC9; }\n");
-            sb.append("  select { font-size:7pt; font-family:verdena,sans-serif; }\n");
-            sb.append("  select:focus { background-color: #FFFFC9; }\n");
-            sb.append("  textarea { font-size:8pt; font-family:verdena,sans-serif; }\n");
-            sb.append("  textarea:focus { background-color: #FFFFC9; }\n");
-            sb.append("  ."+CommonServlet.CSS_TEXT_INPUT+" { border-width:2px; border-style:inset; border-color:#DDDDDD #EEEEEE #EEEEEE #DDDDDD; padding-left:2px; background-color:#FFFFFF; }\n");
-            sb.append("  ."+CommonServlet.CSS_TEXT_READONLY+" { border-width:2px; border-style:inset; border-color:#DDDDDD #EEEEEE #EEEEEE #DDDDDD; padding-left:2px; background-color:#E7E7E7; }\n");
-            sb.append("  ."+CommonServlet.CSS_CONTENT_FRAME[1]+" { padding:5px; width:300px; border-style:double; border-color:#555555; background-color:white; }\n");
-            sb.append("  ."+CommonServlet.CSS_CONTENT_MESSAGE+" { padding-top:5px; font-style:oblique; text-align:center; }\n");
+
             sb.append("</style>\n");
             this.pageStyle = sb.toString();
         }
@@ -134,7 +117,7 @@ public class PageDecorationsDefault
             StringBuffer sb = new StringBuffer();
             sb.append("<center>");
             sb.append("<span style=''><b>" + title + "</b></span>");
-            sb.append("<hr>");
+
             sb.append("</center>");
             this.pageHeader = sb.toString();
         }
@@ -184,7 +167,7 @@ public class PageDecorationsDefault
             String copyright = (this.privateLabel != null)? this.privateLabel.getCopyright() : "";
             StringBuffer sb = new StringBuffer();
             sb.append("<center>");
-            sb.append("<hr><span style='font-size:7pt;'>" + copyright + "</span>");
+            sb.append("<span style=''>" + copyright + "</span>");
             sb.append("</center>");
             this.pageFooter = sb.toString();
         }

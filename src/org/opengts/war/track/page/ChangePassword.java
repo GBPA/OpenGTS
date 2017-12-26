@@ -232,7 +232,7 @@ public class ChangePassword
                 out.write("  <tr><td>"+i18n.getString("ChangePassword.confirmNew","Confirm New:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_NEW2_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
                 out.write("  </table>\n");
                 out.write("  <input type='submit' class='btn btn-success' name='"+PARM_PWD_SUBMIT+"' value='"+i18n.getString("ChangePassword.change","Change")+"'>\n");
-                //out.write("  <hr style='margin: 5px 0px 5px 0px;'>\n");
+        
               //out.write("  <a href='"+menuURL+"'>"+i18n.getString("ChangePassword.cancel","Cancel")+"</a>\n");
                 out.write("  <input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("ChangePassword.cancel","Cancel")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
                 out.write("</form>\n");

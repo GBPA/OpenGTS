@@ -363,13 +363,13 @@ public class DeviceCmd_SMS
         out.println("</table>");
 
         /* end of form */
-        out.write("<hr style='margin-bottom:5px;'>\n");
+        
         if (editProps) {
-            out.write("<input type='submit' name='"+PARM_SUBMIT_SEND+"' value='"+i18n.getString("DeviceCmd_SMS.send","Send")+"'>\n");
+            out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_SEND+"' value='"+i18n.getString("DeviceCmd_SMS.send","Send")+"'>\n");
             out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-            out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceCmd_SMS.cancel","Cancel")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
+            out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("DeviceCmd_SMS.cancel","Cancel")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
         } else {
-            out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceCmd_SMS.back","Back")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
+            out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("DeviceCmd_SMS.back","Back")+"' onclick=\"javascript:openURL('"+actionURL+"','_self');\">\n");
         }
         out.write("</form>\n");
         return true;
