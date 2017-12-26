@@ -42,12 +42,9 @@
                 <!-- Toggle icon for mobile view -->
                 <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
                 <!-- Logo -->
-                <div class="top-left-part">
+                <div class="top-left-part" style="padding-left: 2em;">
                     <a class="logo" href="/dashboard/Track?page=menu.top">
-                        <!-- Logo icon image, you can use font-icon also -->
-                        <img src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/images/agileadmin-logo.png" alt="home" />
-
-                        <span class="hidden-xs"><img src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/images/agileadmin-text.png" alt="home" /></span>
+                        <h2 style="color:#FFF; "><i class="fa fa-map-marker text-primary" style="font-size: 95%;"></i> gbpa<span style="font-weight: 500;">gts</span></h2>
                     </a>
                 </div>
                 <!-- /Logo -->
