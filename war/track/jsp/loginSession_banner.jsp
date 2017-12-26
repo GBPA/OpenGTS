@@ -42,7 +42,7 @@
                 <!-- Toggle icon for mobile view -->
                 <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
                 <!-- Logo -->
-                <div class="top-left-part" style="padding-left: 2em;">
+                <div class="top-left-part" style="padding-left: 3em;">
                     <a class="logo" href="/dashboard/Track?page=menu.top">
                         <h2 style="color:#FFF; "><i class="fa fa-map-marker text-primary" style="font-size: 95%;"></i> gbpa<span style="font-weight: 500;">gts</span></h2>
                     </a>
