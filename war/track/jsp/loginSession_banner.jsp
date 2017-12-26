@@ -62,7 +62,7 @@
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <!-- .user dropdown -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><gts:var ifKey="isLoggedIn" value="true">${accountDesc} <i class="fa fa-user"></i></gts:var></a>
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><gts:var ifKey="isLoggedIn" value="true">${accountDesc} &nbsp;<i class="fa fa-user"></i>&nbsp;</gts:var></a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li><a href="/dashboard/Track?page=acct.info"><i class="ti-user"></i> &nbsp;My Account</a></li>
                             <li><a href="/dashboard/Track?page=passwd"><i class="ti-settings"></i> &nbsp;My Password</a></li>
@@ -141,7 +141,7 @@
                     <div class="col-md-12">
                         <div class="white-box">
 
-                            <p class="text-warning"><gts:track section="content.message"/></p>
+                            <p class="text-warning" style="font-weight: 500; padding-left: 1em;"><gts:track section="content.message"/></p>
                             <gts:track section="content.body"/>
 
 

@@ -219,13 +219,14 @@ public class TopMenu
 
                 /* frame header */
                 if (showHeader) {
+                  /*
                     out.println("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+
                         i18n.getString("TopMenu.mainMenu","Main Menu")+
                         "</h1>");
                     out.println("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+
                         i18n.getString("TopMenu.selectItem","Please select an item from the following menu:")+
                         "</p>");
-
+                        */
                 }
 
                 /* display menu */
