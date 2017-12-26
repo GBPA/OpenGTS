@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,7 @@ public class DeviceCmd_gtsdmtp
 {
 
     // ------------------------------------------------------------------------
-  
+
     /* device code */
     public static final String  DEVICE_CODE                 = DCServerFactory.OPENDMTP_NAME;
 
@@ -79,7 +79,7 @@ public class DeviceCmd_gtsdmtp
   //public  static final String PARM_GET_PROPERT_STATE      = "p_getProps";
 
     // ------------------------------------------------------------------------
-    
+
     private String              serverID    = DEVICE_CODE;
 
     /* DeviceCommand constructor */
@@ -87,7 +87,7 @@ public class DeviceCmd_gtsdmtp
     {
         //
     }
-    
+
     // ------------------------------------------------------------------------
 
     /* DCS id */
@@ -109,18 +109,18 @@ public class DeviceCmd_gtsdmtp
     {
         return DCServerFactory.getServerConfigDescription(this.getServerID());
     }
-    
+
     // ------------------------------------------------------------------------
 
     /* true if this UI supports the specified device */
     public boolean deviceSupportsCommands(Device dev)
     {
-        
+
         /* null device specified? */
         if (dev == null) {
             return false;
         }
-        
+
         /* check serverID */
         String serverID = dev.getDeviceCode();
         if (StringTools.isBlank(serverID)) {
@@ -129,7 +129,7 @@ public class DeviceCmd_gtsdmtp
         if (!serverID.equalsIgnoreCase(this.getServerID())) {
             return false;
         }
-        
+
         /* check for DMTP support */
         if (!dev.getSupportsDMTP()) {
             Print.logWarn("Device with serverID '"+serverID+"' indicates 'supportsDMTP=false'");
@@ -139,7 +139,7 @@ public class DeviceCmd_gtsdmtp
         }
 
     }
-    
+
     // ------------------------------------------------------------------------
 
     /* write the command form html */
@@ -152,7 +152,7 @@ public class DeviceCmd_gtsdmtp
         if ((out == null) || (reqState == null) || (selDev == null)) {
             return false;
         }
-        
+
         /* supported device? */
         if (!this.deviceSupportsCommands(selDev)) {
             return false;
@@ -165,7 +165,7 @@ public class DeviceCmd_gtsdmtp
         String       devTitles[] = reqState.getDeviceTitles();
 
         /* start of form */
-        out.write("<form name='"+FORM_PROPERTY_EDIT+"' method='POST' action='"+actionURL+"' target='_self'>\n"); // target='_top'
+        out.write("<form class='form-horizontal' name='"+FORM_PROPERTY_EDIT+"' method='POST' action='"+actionURL+"' target='_self'>\n"); // target='_top'
         out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_PROPS+"'/>\n");
 
         /* Device fields */
@@ -195,11 +195,11 @@ public class DeviceCmd_gtsdmtp
         return true;
 
     }
-    
+
     // ------------------------------------------------------------------------
-    
+
     /* encode a PendingPacket.SetPropertyPacket, and add it to the property change list */
-    private static boolean _addPropertyPacket(HttpServletRequest request, String reqAttr, int propCode, 
+    private static boolean _addPropertyPacket(HttpServletRequest request, String reqAttr, int propCode,
         java.util.List<PendingPacket.SetPropertyPacket> propList)
     {
 
@@ -291,7 +291,7 @@ public class DeviceCmd_gtsdmtp
         if (!_addPropertyPacket(request,PARM_PROP_EXCESS_SPEED,PropertyKey.PROP_MOTION_EXCESS_SPEED,propList)) {
             return i18n.getString("DeviceCmd_gtsdmtp.invalidExcessSpeed","Invalid 'Excess Speed' property");
         }
-        
+
         // PARM_GET_PROPERT_STATE
         /*
         if (!_addPropertyPacket(request,PARM_GET_PROPERT_STATE,-1,propList)) {
@@ -330,4 +330,3 @@ public class DeviceCmd_gtsdmtp
     // ------------------------------------------------------------------------
 
 }
-

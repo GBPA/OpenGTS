@@ -1035,7 +1035,7 @@ public abstract class TrackMap
                 // -  This entire form is 'hidden'.  It's used by JS functions to submit specific commands
                 String actionURL = Track.GetBaseURL(reqState); // EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI());
                 out.println("\n<!-- Command form -->");
-                out.println("<form id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+actionURL+"\" target='_self'>"); // target='_top'
+                out.println("<form class='form-horizontal' id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+actionURL+"\" target='_self'>"); // target='_top'
                 out.println("  <input type='hidden' name='"+PARM_PAGE                 +"' value=''/>");
                 out.println("  <input type='hidden' name='"+PARM_COMMAND              +"' value=''/>");
                 out.println("  <input type='hidden' name='"+PARM_ARGUMENT             +"' value=''/>");
@@ -1047,7 +1047,7 @@ public abstract class TrackMap
 
                 // -- start of map/date table (2 columns)
                 String tableStyle = "width:100%;" + (mapAutoSize?" height:100%;":"");
-                out.println("<table border='0' cellspacing='0' cellpadding='0' style='"+tableStyle+"'>"); // [
+                out.println("<table class='table' border='0' cellspacing='0' cellpadding='0' style='"+tableStyle+"'>"); // [
 
                 // -- Account/Device header
                 // -  TODO: this should have references to CSS clases
@@ -1055,16 +1055,16 @@ public abstract class TrackMap
                 out.println("\n<!-- Device/Group selection row -->");
                 out.println("<tr>");
                 out.println("<td colspan='"+colspan+"' style='width:100%; height:16px; padding:0px 0px 5px 0px;'>");
-                out.println("<table border='0' cellspacing='0' cellpadding='0' style='width:100%;'><tbody><tr>"); // [
+                out.println("<table class='table' border='0' cellspacing='0' cellpadding='0' style='width:100%;'><tbody><tr>"); // [
 
                 // -- Device/Group selection
                 out.println("<td nowrap align='left' style='font-size:9pt; height:19px;'>");
-                out.println("<form id='"+FORM_SELECT_DEVICE+"' name='"+FORM_SELECT_DEVICE+"' method='post' target='_self'>"); // target='_top'
+                out.println("<form class='form-horizontal' id='"+FORM_SELECT_DEVICE+"' name='"+FORM_SELECT_DEVICE+"' method='post' target='_self'>"); // target='_top'
                 out.println("<input type='hidden' name='"+PARM_PAGE                 +"' value='" + FilterValue(pageName) + "'/>");
                 out.println("<input type='hidden' name='"+Calendar.PARM_RANGE_FR[0] +"' value=''/>");
                 out.println("<input type='hidden' name='"+Calendar.PARM_RANGE_TO[0] +"' value=''/>");
                 out.println("<input type='hidden' name='"+Calendar.PARM_TIMEZONE[0] +"' value=''/>");
-                out.write("<table cellspacing='0' cellpadding='0' border='0'><tr>\n"); // [
+                out.write("<table class='table' cellspacing='0' cellpadding='0' border='0'><tr>\n"); // [
                 String mapTypeTitle = TrackMap.this.getStringProperty(privLabel,PROP_mapTypeTitle,null);
                 if (StringTools.isBlank(mapTypeTitle)) {
                     mapTypeTitle = TrackMap.this.getNavigationTab(reqState); // likely returns non-blank
@@ -1081,26 +1081,26 @@ public abstract class TrackMap
                 IDDescription.SortBy dcSortBy = DeviceChooser.getSortBy(privLabel);
                 if (DeviceChooser.isDeviceChooserUseTable(privLabel)) {
                     out.write("<td nowrap>");
-                    String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; border:1px solid gray;";
+                    String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; ";
                     String chooserOnclick = "javascript:trackMapShowSelector()";
                     switch (dcSortBy) {
                         case DESCRIPTION : {
                             String selDesc = FilterValue(isFleet?reqState.getDeviceGroupDescription(selId,false):reqState.getDeviceDescription(selId,false));
                             out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' type='hidden' value='"+selId+"'>");
-                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+selDesc+"' readonly size='20' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' class='form-control' value='"+selDesc+"' readonly size='20' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                             } break;
                         case NAME : {
                             String selName = FilterValue(isFleet?reqState.getDeviceGroupDescription(selId,true ):reqState.getDeviceDescription(selId,true ));
                             out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' type='hidden' value='"+selId+"'>");
-                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+selName+"' readonly size='20' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' class='form-control' value='"+selName+"' readonly size='20' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                             } break;
                         case ID :
                         default : {
-                            out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' type='text' value='"+selId  +"' readonly size='14' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                            out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' type='text' class='form-control' value='"+selId  +"' readonly size='14' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                             } break;
                     }
                     out.write("</td>");
-                    out.write("<td><img src='images/Pulldown.png' height='17' style='cursor:pointer;' onclick='javascript:trackMapShowSelector()'></td>");
+                    out.write("<td><img src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Pulldown.png' height='17' style='cursor:pointer;' onclick='javascript:trackMapShowSelector()'></td>");
                     out.write("<td style='padding-left:12px;'>&nbsp;</td>");
                 } else {
                     OrderedSet<String> dgList = isFleet? reqState.getDeviceGroupIDList(true) : reqState.getDeviceIDList(false);
@@ -1110,19 +1110,19 @@ public abstract class TrackMap
                         String dgDesc = FilterValue("?");
                         out.write("<td nowrap>");
                         out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp    +"' type='hidden' value='"+id+"'>");
-                        out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='16' maxlength='32' value='"+dgDesc+"'>");
+                        out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='16' maxlength='32' value='"+dgDesc+"'>");
                         out.write("</td>\n");
                     } else
                     if (DeviceChooser.showSingleItemTextField(privLabel) && (dgList.size() == 1)) {
                         String id = dgList.get(0);
                         out.write("<td nowrap>");
                         if (dcSortBy.equals(IDDescription.SortBy.ID)) {
-                            out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='16' maxlength='32' value='"+id+"'>");
+                            out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='16' maxlength='32' value='"+id+"'>");
                         } else {
                             boolean rtnDispName = dcSortBy.equals(IDDescription.SortBy.NAME);
                             String desc = FilterValue(isFleet?reqState.getDeviceGroupDescription(id,rtnDispName):reqState.getDeviceDescription(id,rtnDispName));
                             out.write("<input id='"+ID_DEVICE_ID   +"' name='"+parmDevGrp     +"' type='hidden' value='"+id+"'>");
-                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='16' maxlength='32' value='"+desc+"'>");
+                            out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='16' maxlength='32' value='"+desc+"'>");
                         }
                         out.write("</td>\n");
                     } else {
@@ -1135,7 +1135,7 @@ public abstract class TrackMap
                         }
                         IDDescription.SortList(sortList, rtnDispName? IDDescription.SortBy.DESCRIPTION : dcSortBy);
                         out.print("<td nowrap>");
-                        out.print("<select id='"+ID_DEVICE_ID+"' name='"+parmDevGrp+"' onchange=\"javascript:trackMapSelectDevice()\">");
+                        out.print("<select id='"+ID_DEVICE_ID+"' name='"+parmDevGrp+"' class='form-control' onchange=\"javascript:trackMapSelectDevice()\">");
                         for (IDDescription dd : sortList) {
                             String id   = dd.getID();
                             String desc = dd.getDescription();
@@ -1151,7 +1151,7 @@ public abstract class TrackMap
                 if (!ListTools.isEmpty(zoomRegions)) { // EXPERIMENTAL
                     out.write("<td nowrap>");
                     out.write("<span style='padding-left:20px;'><b>"+i18n.getString("TrackMap.region" ,"Region") + ": </b></span>\n");
-                    out.write("<select id='regionSelector' name='"+PARM_REGION+"' onchange=\"javascript:trackMapSelectRegion()\">\n");
+                    out.write("<select class='form-control' id='regionSelector' name='"+PARM_REGION+"' onchange=\"javascript:trackMapSelectRegion()\">\n");
                     boolean firstRegion = true;
                     for (String rid : zoomRegions.keySet()) {
                         String id   = FilterValue(rid);
@@ -1181,7 +1181,7 @@ public abstract class TrackMap
                     } else {
                         String noopAction = "javascript:true;";
                         out.println("<td nowrap align='left' style='width:100%; font-size:9pt;'>");
-                        out.println("<form id='"+FORM_GOTO_ADDRESS+"' name='"+FORM_GOTO_ADDRESS+"' method='get' action=\""+noopAction+"\" onsubmit=\"javascript:false;\" target='_self'>"); // target='_top'
+                        out.println("<form class='form-horizontal' id='"+FORM_GOTO_ADDRESS+"' name='"+FORM_GOTO_ADDRESS+"' method='get' action=\""+noopAction+"\" onsubmit=\"javascript:false;\" target='_self'>"); // target='_top'
                         String addrTitles[] = currAcct.getAddressTitles(locale);
                         String i18nGotoBtn = !StringTools.isBlank(addrTitles[0])?
                             i18n.getString("TrackMap.gotoAddressTitle","Find {0}", addrTitles) :
@@ -1226,7 +1226,7 @@ public abstract class TrackMap
                 // -  start map/control
                 String mapCalTableStyle = "width:100%;" + (mapAutoSize?" height:100%;":"");
                 out.println("<td style='"+mapCalTableStyle+"'>");
-                out.println("<table cellspacing='0' cellpadding='0' border='0' style='width:100%; height:100%;'>");
+                out.println("<table class='table' cellspacing='0' cellpadding='0' border='0' style='width:100%; height:100%;'>");
                 out.println("<tr>");
 
                 // -- Map cell on left, controls on right
@@ -1256,7 +1256,7 @@ public abstract class TrackMap
                 //String prevMoURL, nextMoURL;
                 out.println("\n<!-- Begin Map Controls -->");
                 out.println("<td id='"+ID_MAP_CONTROL+"' class='mapControlCell' align='left' valign='top' style='"+controlCellPaddingStye+"'>"); // style='height:100%;'>");
-                out.println("<table border='0' cellspacing='0' cellpadding='0'>"); //  style='height:100%;'>"); // {
+                out.println("<table class='table' border='0' cellspacing='0' cellpadding='0'>"); //  style='height:100%;'>"); // {
 
                 // -- Calendars
                 out.println("\n");
@@ -1289,7 +1289,7 @@ public abstract class TrackMap
                 if (showTimezoneSelect) {
                     String noopAction = "javascript:true;";
                     out.println("\n<!-- Timezone select -->");
-                    out.println("<form id='"+FORM_SELECT_TIMEZONE+"' name='"+FORM_SELECT_TIMEZONE+"' method='get' action=\""+noopAction+"\" target='_self'>"); // target='_top'
+                    out.println("<form class='form-horizontal' id='"+FORM_SELECT_TIMEZONE+"' name='"+FORM_SELECT_TIMEZONE+"' method='get' action=\""+noopAction+"\" target='_self'>"); // target='_top'
                     out.println("<h5>"+i18n.getString("TrackMap.timeZone","TimeZone:")+"</h5>");
                     out.println("<div style='height:18px;'>");
                     out.println("<select class='form-control' name='"+Calendar.PARM_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+Calendar.PARM_TIMEZONE[0]+".value)\">");
@@ -1310,7 +1310,7 @@ public abstract class TrackMap
                 // -- "Update All"
                 String i18nUpdateBtn = i18n.getString("TrackMap.updateAll","Update");
                 String i18nUpdateTip = i18n.getString("TrackMap.updateAll.tooltip","Click to update map points");
-                out.println("<form id='UpdateMap' name='UpdateMap' method='get' target='_self'>"); // target='_top'
+                out.println("<form class='form-horizontal' id='UpdateMap' name='UpdateMap' method='get' target='_self'>"); // target='_top'
                 if (showUpdateAll) {
                     out.println("<!-- 'Update All' -->");
                     out.print  ("<input class='btn btn-success' id='"+ID_MAP_UPDATE_BTN+"' type='button' name='update' value='"+i18nUpdateBtn+"' title=\""+i18nUpdateTip+"\" onclick=\"javascript:trackMapClickedUpdateAll();\">");
@@ -1335,7 +1335,7 @@ public abstract class TrackMap
                     String i18nLastPoint = i18n.getString("TrackMap.updateLast","Last");
                     String i18nLastTip   = i18n.getString("TrackMap.updateLast.tooltip","Click to update last location");
                     out.println("<!-- 'Update Last' -->");
-                    out.println("<form id='"+ID_CENTER_LAST_POINT_FORM+"' name='"+ID_CENTER_LAST_POINT_FORM+"' method='get' target='_self' style='margin-top:5px'>"); // target='_top'
+                    out.println("<form class='form-horizontal' id='"+ID_CENTER_LAST_POINT_FORM+"' name='"+ID_CENTER_LAST_POINT_FORM+"' method='get' target='_self' style='margin-top:5px'>"); // target='_top'
                     out.print  (  "<span title=\""+i18nLastTip+"\">");
                     out.print  (    "<label for='centerLastPoint'>"+i18nLastPoint+"</label>&nbsp;");
                     out.print  (        Form_CheckBox("centerLastPoint","centerLastPoint",true,false,null,"javascript:trackMapClickedUpdateLast()"));
@@ -1351,8 +1351,8 @@ public abstract class TrackMap
                     String i18nInfoText  = i18n.getString("TrackMap.showInfoBox","InfoBox");
                     String i18nInfoTip   = i18n.getString("TrackMap.showInfoBox.tooltip","Select to show Info-Box during replay");
                     out.println("<!-- 'Replay Map' -->");
-                    out.println("<form id='ReplayMap' name='ReplayMap' method='get' action=\"javascript:trackMapClickedReplay(document.getElementById('ReplayMap')."+ID_MAP_SHOW_INFO+".checked);\" target='_self'>"); // target='_top'
-                    out.print  (  "<table cellpadding='0' cellspacing='0' border='0' style='margin-top: 2px;'><tr>"); // {
+                    out.println("<form class='form-horizontal' id='ReplayMap' name='ReplayMap' method='get' action=\"javascript:trackMapClickedReplay(document.getElementById('ReplayMap')."+ID_MAP_SHOW_INFO+".checked);\" target='_self'>"); // target='_top'
+                    out.print  (  "<table class='table' cellpadding='0' cellspacing='0' border='0' style='margin-top: 2px;'><tr>"); // {
                     out.print  (    "<td valign='center' style='padding-right: 3px'><b>"+i18nReplayBtn+"</b></td>");
                     out.print  (    "<td valign='center'><input id='"+ID_MAP_REPLAY_BTN+"' type='image' name='replayMap' src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Play20.png' title=\""+i18nReplayTip+"\"></td>");
                     out.print  (    "<td valign='center' style='padding-left: 3px'>");
@@ -1448,7 +1448,7 @@ public abstract class TrackMap
                         String      cmdID    = "DevCommand";
                         ComboMap    cmdMap   = new ComboMap(commandMap);
                         ComboOption cmdSel   = cmdMap.getFirstComboOption();
-                        out.println("<form id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(document.getElementById('"+cmdID+"').value);\" target='_self'>"); // target='_top'
+                        out.println("<form class='form-horizontal' id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(document.getElementById('"+cmdID+"').value);\" target='_self'>"); // target='_top'
                         out.println("<div style='margin-bottom:4px;'>");
                         out.println(Form_ComboBox(cmdID, cmdID, true, cmdMap, cmdSel, null, -1));
                         out.println("<input id='"+ID_PING_DEVICE_BTN+"' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
@@ -1468,7 +1468,7 @@ public abstract class TrackMap
                         if (StringTools.isBlank(sendText)) {
                             sendText = i18n.getString("TrackMap.locateDevice","Locate {0}", devTitles);
                         }
-                        out.println("<form id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(null);\" target='_self'>"); // target='_top'
+                        out.println("<form class='form-horizontal' id='"+FORM_PING_DEVICE+"' name='"+FORM_PING_DEVICE+"' method='post' action=\"javascript:trackMapPingDevice(null);\" target='_self'>"); // target='_top'
                         out.println("<div style='margin-bottom:4px;'>");
                         out.println("<input id='"+ID_PING_DEVICE_BTN+"' type='submit' name='ping' value='" + FilterValue(sendText) + "'/>");
                         out.println("</div>");
@@ -1485,23 +1485,23 @@ public abstract class TrackMap
                     if (showBatteryLevel == 2) {
                         // -- percent
                         if (battLvl <= 0) {
-                            battIcon = "images/Batt000.png";
+                            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt000.png";
                         } else {
                             if (battLvl > 99) { battLvl = 99; }
                             battIcon = "Marker?icon=/images/Batt000.png&fr=5,2,25,12,10&text="+battLvl+"%25";
                         }
                     } else {
                         // -- icon
-                        battIcon = "images/Batt100.png";
-                        if (battLvl <=  1) { battIcon = "images/Batt000.png"; } else
-                        if (battLvl <= 25) { battIcon = "images/Batt025.png"; } else
-                        if (battLvl <= 50) { battIcon = "images/Batt050.png"; } else
-                        if (battLvl <= 70) { battIcon = "images/Batt070.png"; } else
-                        if (battLvl <= 90) { battIcon = "images/Batt090.png"; }
+                        battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt100.png";
+                        if (battLvl <=  1) { battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt000.png"; } else
+                        if (battLvl <= 25) { battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt025.png"; } else
+                        if (battLvl <= 50) { battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt050.png"; } else
+                        if (battLvl <= 70) { battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt070.png"; } else
+                        if (battLvl <= 90) { battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt090.png"; }
                     }
                     out.println("\n<!-- Battery Level ["+showBatteryLevel+"] -->");
                     if (accLine > 0) { out.print("<br>"); }
-                    out.print("<table border='0' cellpadding='0' cellspacing='0'><tr>");
+                    out.print("<table class='table' border='0' cellpadding='0' cellspacing='0'><tr>");
                     out.print("<td style='vertical-align:middle;'><b>"+i18n.getString("TrackMap.batteryLevel","Battery Level")+":</b> &nbsp;</td>");
                     out.print("<td id='"+MapProvider.ID_LATEST_BATTERY+"'><img src=\"" + battIcon + "\"></td>");
                     out.print("</tr></table>\n");

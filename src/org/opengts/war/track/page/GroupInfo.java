@@ -598,15 +598,14 @@ public class GroupInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information", grpTitles) :
                         i18n.getString("GroupInfo.viewGroup","View {0} Information", grpTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     // group selection table (Select, Group ID, Group Description)
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.selectGroup","Select a {0}",grpTitles)+":</h1>\n");
+                    out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.selectGroup","Select a {0}",grpTitles)+":</h2>\n");
                     out.write("<div style='margin-left:25px;'>\n");
-                    out.write("<form name='"+FORM_GROUP_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_GROUP_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
-                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+"' cellspacing=0 cellpadding=0 border=0>\n");
+                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing=0 cellpadding=0 border=0>\n");
                     out.write(" <thead>\n");
                     out.write("  <tr class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_ROW+"'>\n");
                     out.write("   <th class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_COL_SEL+"' nowrap>"+i18n.getString("GroupInfo.select","Select")+"</th>\n");
@@ -653,26 +652,26 @@ public class GroupInfo
                     }
                     out.write(" </tbody>\n");
                     out.write("</table>\n");
-                    out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
+                    out.write("<table class='table' cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
                     if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("GroupInfo.view","View")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("GroupInfo.view","View")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("GroupInfo.edit","Edit")+"'>");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("GroupInfo.edit","Edit")+"'>");
                         out.write("</td>\n");
                     }
                     if (_allowProp  ) {
                         out.write("<td style='padding-left:5px;'>");
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("GroupInfo.properties","Properties")+"'>");
+                        out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_PROP+"' value='"+i18n.getString("GroupInfo.properties","Properties")+"'>");
                         out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("GroupInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
+                        out.write("<input type='submit' class='btn btn-danger' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("GroupInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
                         out.write("&nbsp;");
                     }
@@ -687,13 +686,13 @@ public class GroupInfo
                     if (_allowNew) {
                     out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.createNewGroup","Create a new {0}",grpTitles)+":</h1>\n");
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
-                    out.write("<form name='"+FORM_GROUP_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_GROUP_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
-                    out.write(i18n.getString("GroupInfo.groupID","{0} ID",grpTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                    out.write(i18n.getString("GroupInfo.groupID","{0} ID",grpTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
                     out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("GroupInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
                     }
 
                 }
@@ -719,17 +718,17 @@ public class GroupInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("GroupInfo.viewEditGroup","View/Edit {0} Information",grpTitles) :
                         i18n.getString("GroupInfo.viewGroup","View {0} Information",grpTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
                     out.write("<hr>\n");
 
                     // -- group view/edit form
 
                     /* start of form */
-                    out.write("<form name='"+FORM_GROUP_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_GROUP_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_GROUP+"'/>\n");
 
                     /* Group fields */
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                     out.println(FormRow_TextField(PARM_GROUP_SELECT, false     , i18n.getString("GroupInfo.groupID","{0} ID",grpTitles)+":" , _selGroupID, 20, 32));
                     out.println(FormRow_TextField(PARM_GROUP_DESC  , _editGroup, i18n.getString("GroupInfo.groupName","{0} Name",grpTitles)+":", (_selGroup!=null)?_selGroup.getDescription() :"", 60, 64));
                     out.println("</table>");
@@ -753,7 +752,7 @@ public class GroupInfo
                                 list.add(new IDDescription(devList.get(i),desc));
                             }
                             IDDescription.SortList(list, sortBy);
-                            out.write("<table cellspacing='0' cellpadding='0' border='1'>\n");
+                            out.write("<table cellspacing='0' class='table' cellpadding='0' border='0'>\n");
                             out.write("<thead>\n");
                             out.write("<tr class='"+CSS_DEVICES_HEADER_ROW+"'>\n");
                             out.write("<th class='"+CSS_DEVICES_HEADER_COL+"' nowrap width='25'  valign='center'>#</th>\n");
@@ -825,11 +824,11 @@ public class GroupInfo
                     String editURL    = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String selectURL  = GroupInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                     String frameTitle = i18n.getString("GroupInfo.setDeviceProperties","Set {0} Properties",grpTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
                     out.write("<hr>\n");
 
                     /* start of form */
-                    out.write("<form name='"+FORM_PROPERTY_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_PROPERTY_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("  <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_PROPS+"'/>\n");
 
                     /* Device fields */

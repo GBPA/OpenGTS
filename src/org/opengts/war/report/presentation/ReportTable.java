@@ -222,7 +222,7 @@ public class ReportTable
         I18N i18n = privLabel.getI18N(ReportTable.class);
 
         out.print("<center>\n");
-        out.print("<table cellspacing='0' cellpadding='0' border='0'>\n");
+        out.print("<table class='table' cellspacing='0' class='table' cellpadding='0' border='0'>\n");
 
         /* report title row */
         {
@@ -309,7 +309,7 @@ public class ReportTable
         out.print("<tr>\n");
         out.print("<td colSpan='3'>\n");
         String tableClass = rd.getReportFactory().isTableSortable()? CSS_CLASS_TABLE_SORT : CSS_CLASS_TABLE;
-        out.print("<table class='"+tableClass+"' width='100%' cellspacing='0' cellpadding='0' border='0'>\n");
+        out.print("<table class='"+tableClass+" table' width='100%' cellspacing='0' cellpadding='0' border='0'>\n");
         out.print("<!-- Report Header -->\n");
         this.rptHeader.writeHTML(out, level+1, rd);
         out.print("<!-- Report Data -->\n");

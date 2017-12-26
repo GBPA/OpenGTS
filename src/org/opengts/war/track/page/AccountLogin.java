@@ -509,7 +509,7 @@ public class AccountLogin
                 if (showDemo) {
                     out.println(HR);
                     //out.println("<br/>");
-                    out.println("<form name='"+FORM_DEMO+"' method='post' action='"+baseURL+"' target='"+target+"'>");
+                    out.println("<form class='form-horizontal' name='"+FORM_DEMO+"' method='post' action='"+baseURL+"' target='"+target+"'>");
                     out.println("  <input type='hidden' name='"+Constants.PARM_ACCOUNT  +"' value='"+reqState.getDemoAccountID()+"'/>");
                     out.println("  <input type='hidden' name='"+Constants.PARM_USER     +"' value=''/>");
                     out.println("  <input type='hidden' name='"+Constants.PARM_PASSWORD +"' value=''/>");

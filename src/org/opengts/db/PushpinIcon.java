@@ -355,32 +355,32 @@ public class PushpinIcon
 
     public static final TextIcon TextIconList[] = {
         new TextIcon("White_47x1"   ,
-            "images/pp/label47_fill.png",
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label47_fill.png",
             3, 2, 42, 13,   // Color frame
             3, 2, 42, 13,   // Text frame
             11, null),      // Font size, Font name
         new TextIcon("White_67x1"   ,
-            "images/pp/label67_fill.png"  ,
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label67_fill.png"  ,
             3, 2, 62, 13,   // Color frame
             3, 2, 62, 13,   // Text frame
             11, null),      // Font size, Font name
         new TextIcon("White_67x2"   ,
-            "images/pp/label67x2_fill.png",
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label67x2_fill.png",
             2, 2, 62, 26,   // Color frame
             2, 2, 62, 26,   // Text frame
             11, null),      // Font size, Font name
         new TextIcon("White_67x2_pp",
-            "images/pp/label67x2_fill.png",
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label67x2_fill.png",
             2, 2, 62, 26,   // Color frame
             5, 2, 59, 26,   // Text frame (room for PushPin)
             11, null),      // Font size, Font name
         new TextIcon("White_67x3"   ,
-            "images/pp/label67x3_fill.png",
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label67x3_fill.png",
             2, 2, 62, 38,   // Color frame
             2, 2, 62, 38,   // Text frame
             11, null),      // Font size, Font name
         new TextIcon("White_67x3_pp",
-            "images/pp/label67x3_fill.png",
+            "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/label67x3_fill.png",
             2, 2, 62, 38,   // Color frame
             5, 2, 59, 38,   // Text frame (room for PushPin)
             11, null),      // Font size, Font name

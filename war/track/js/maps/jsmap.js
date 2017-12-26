@@ -444,7 +444,7 @@ JSMapPushpin.prototype.getHTML = function()
     /* balloon text */
     var h = "";
     //h += "<div style='width:300px'>";
-    h += "<table class='infoBoxTable' cellspacing='1' cellpadding='1' border='0'>";
+    h += "<table class='infoBoxTable table' cellspacing='1' cellpadding='1' border='0'>";
     h += "<tr class='infoBoxRow'><td class='infoBoxCell'>[#"+ndx+"] &nbsp; <b>"+dev+" : "+code+"</b></td></tr>";
     h += "<tr class='infoBoxRow'><td class='infoBoxCell'><b>"+TEXT_INFO_DATE   +":</b> "+dtime+" ["+tmz+"]</td></tr>";
     h += "<tr class='infoBoxRow'><td class='infoBoxCell'><b>"+TEXT_INFO_GPS    +":</b> "+flat+" / "+flon+" "+gpsStr+"</td></tr>";
@@ -1653,7 +1653,7 @@ function jsmSetLoadingPointsState(state)
                 var Y = absLoc.top  + (absSiz.height/2) - 40;
                 jsmapLoadingView = createDivBox("mapLoadingView", X, Y, -1, -1);
                 var html = "";
-                html += "<table class='jsmapLoadingView' cellspacing='0' cellpadding='0' border='0'>\n";
+                html += "<table class='jsmapLoadingView table' cellspacing='0' cellpadding='0' border='0'>\n";
                 html += "<tbody>\n";
                 html += "<tr class='jsmapLoadingRow'>";
                 if (MAP_LOADING_IMAGE_URI) {
@@ -2095,7 +2095,7 @@ function jsmShowDetailReport()
     if (jsvPartialData) {
         var columns = 4 + (IS_FLEET?1:0) + (SHOW_ADDR?1:0) + (SHOW_SPEED?(COMBINE_SPEED_HEAD?1:2):0);
         html += "<tr class='"+CLASS_DETAILS_HEADER_ROW+"'>";
-        html += "<th class='"+CLASS_DETAILS_HEADER_COL+"' colSpan='"+columns+"' valign='center' style='color:red; border-bottom: 1px solid black;'>"+TEXT_MAXPUSHPINS_MSG+"</th>";
+        html += "<th class='"+CLASS_DETAILS_HEADER_COL+"' colSpan='"+columns+"' valign='center' style=''>"+TEXT_MAXPUSHPINS_MSG+"</th>";
         html += "</tr>\n";
     }
     html += "<tr class='"+CLASS_DETAILS_HEADER_ROW+"'>";
@@ -2285,14 +2285,14 @@ function jsmSetReplayState(state)
         if (btn) {
             if (state == REPLAY_RUNNING) {
                 // Replay is running, option is "Pause"
-                btn.src = "images/Pause20.png";
+                btn.src = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Pause20.png";
             } else
             if (state == REPLAY_PAUSED) {
                 // Replay is paused, option is "Continue"
-                btn.src = "images/Continue20.png";
+                btn.src = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Continue20.png";
             } else {
                 // Replay is stopped, option is "Play"
-                btn.src = "images/Play20.png";
+                btn.src = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Play20.png";
             }
         }
     } catch (e) {
@@ -2611,7 +2611,7 @@ function evSpeedMarkerURL(W,H,e)
 **/
 function evCurrentAgeMarkerURL(e)
 {
-    var ppImg = "images/pp/pin30";
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30";
     var nowTime  = (new Date()).getTime() / 1000;
     var deltaSec = (nowTime > e.timestamp)? (nowTime - e.timestamp) : 0;
     if (deltaSec <= (    15 * 60)) {    // <= 15 minutes
@@ -2642,7 +2642,7 @@ function evCurrentAgeMarkerURL(e)
 **/
 function evCreateAgeMarkerURL(e)
 {
-    var ppImg = "images/pp/pin30";
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30";
     var deltaSec = e.createAge;
     if (deltaSec <= (    15 * 60)) {    // <= 15 minutes
         // 0 < X <= 15min
@@ -2672,7 +2672,7 @@ function evCreateAgeMarkerURL(e)
 **/
 function evGpsAgeMarkerURL(e)
 {
-    var ppImg = "images/pp/pin30";
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30";
     var deltaSec = e.gpsAge;
     if (deltaSec <= (    15 * 60)) {    // <= 15 minutes
         // 0 < X <= 15min
@@ -2700,7 +2700,7 @@ function evGpsAgeMarkerURL(e)
 **/
 function evHeadingMarkerURL(e) // US
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     if ((MAX_CREATION_AGE_SEC > 0) && (e.createAge > MAX_CREATION_AGE_SEC)) {
         if ((e.stopped > 0) || (e.speedKPH < 5.0)) {
             return ppImg + "_black.png";
@@ -2741,7 +2741,7 @@ function evHeadingMarkerURL(e) // US
 **/
 function evHeadingMarkerURL_eu(e) // Europe
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     var speedMPH = e.speedKPH * 0.621371192; // 1/1.609344;
     if (e.stopped > 0) {
         // stopped
@@ -2779,7 +2779,7 @@ function evHeadingMarkerURL_eu(e) // Europe
 **/
 function evHeadingMarkerURL_ca(e) // Canada
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     if (e.stopped > 0) {
         // stopped
         if (e.stopped == 2) {
@@ -2818,7 +2818,7 @@ function evHeadingMarkerURL_ca(e) // Canada
 **/
 function evHeadingMarkerURL_CC(e) // Custom
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     var HEADING_MARKER_SPEED_RED     =  10.0; // <  10 km/h
     var HEADING_MARKER_SPEED_YELLOW  =  60.0; // <  60 km/h
     var HEADING_MARKER_SPEED_GREEN   =  90.0; // <  90 km/h
@@ -2862,18 +2862,18 @@ function evHeadingMiniDotURL_ar(e) // Argentina
     //} else
     if (e.stopped > 0) {
         // -- stopped
-        return "images/mini5/mini5_red.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/mini5/mini5_red.png";
     } else
     if (e.speedKPH <  30.0/*km/h*/) { //
         // X < 30
-        return "images/mini5/mini5_red.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/mini5/mini5_red.png";
     } else
     if (e.speedKPH < 100.0/*km/h*/) { //
         // 30 <= X < 100
-        return "images/mini5/mini5_yellow.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/mini5/mini5_yellow.png";
     } else {
         // 100 <= X
-        return "images/mini5/mini5_green.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/mini5/mini5_green.png";
     }
 };
 
@@ -2886,7 +2886,7 @@ function evHeadingMiniDotURL_ar(e) // Argentina
 **/
 function evHeadingYellowURL(e)
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     if ((MAX_CREATION_AGE_SEC > 0) && (e.createAge > MAX_CREATION_AGE_SEC)) {
         if (e.speedKPH < 1.0) {
             return ppImg + "_black.png";
@@ -2911,7 +2911,7 @@ function evHeadingYellowURL(e)
 **/
 function evHeadingGreenURL(e)
 {
-    var ppImg = "images/pp/pin30"; // "extra/images/pp/circle"
+    var ppImg = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30"; // "extra/images/pp/circle"
     if ((MAX_CREATION_AGE_SEC > 0) && (e.createAge > MAX_CREATION_AGE_SEC)) {
         if (e.speedKPH < 1.0) {
             return ppImg + "_black.png";
@@ -2960,9 +2960,9 @@ function evSpeedLastURL(e)
 function evGpioMarkerURL(I,e)
 {
     if ((e.gpioInput & (1 << I)) != 0) {
-        return "images/pp/pin30_green.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30_green.png";
     } else {
-        return "images/pp/pin30_red.png";
+        return "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/pp/pin30_red.png";
     }
 };
 
@@ -3213,7 +3213,7 @@ function jsmBatteryLevelIMG(lvl)
     if (battLevelType == 2) {
         // percent
         if (lvl <= 0.01) {
-            battIcon = "images/Batt000.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt000.png";
         } else {
             var battLvl = numParseInt(((lvl * 100.0) + 0.5), 0);
             if (battLvl > 99) { battLvl = 99; }
@@ -3222,19 +3222,19 @@ function jsmBatteryLevelIMG(lvl)
     } else {
         //icon
         if (lvl <= 0.01) {
-            battIcon = "images/Batt000.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt000.png";
         } else
         if (lvl <= 0.25) {
-            battIcon = "images/Batt025.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt025.png";
         } else
         if (lvl <= 0.50) {
-            battIcon = "images/Batt050.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt050.png";
         } else
         if (lvl <= 0.70) {
-            battIcon = "images/Batt070.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt070.png";
         } else
         if (lvl <= 0.90) {
-            battIcon = "images/Batt090.png";
+            battIcon = "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Batt090.png";
         } else {
             battIcon = "images/Batt100.png";
         }

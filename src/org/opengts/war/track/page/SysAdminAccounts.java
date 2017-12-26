@@ -944,7 +944,7 @@ public class SysAdminAccounts
                 String frameTitle = _allowNew?
                     i18n.getString("SysAdminAccounts.createDeleteAccounts","Create/Delete/Edit Accounts") :
                     i18n.getString("SysAdminAccounts.viewEditAccounts","View/Edit Accounts");
-                out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
+                out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
                 out.write("<hr>\n");
 
                 // account selection table (Select, Account ID, Account Description)
@@ -1079,7 +1079,7 @@ public class SysAdminAccounts
                     }
                     out.write(" </tbody>\n");
                     out.write("</table>\n");
-                    out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
+                    out.write("<table class='table' cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
                     if (_allowView) {
                         out.write("<td style='padding-left:5px;'>");
@@ -1115,7 +1115,7 @@ public class SysAdminAccounts
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<form name='"+FORM_ACCOUNT_NEW+"' method='post' action='"+newURL+"' target='_self'>");  // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
-                    out.write(i18n.getString("SysAdminAccounts.accountID","Account ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                    out.write(i18n.getString("SysAdminAccounts.accountID","Account ID")+": <input type='text form-control' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
                     out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("SysAdminAccounts.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
@@ -1186,7 +1186,7 @@ public class SysAdminAccounts
                     int totalPingCnt  = (_selAccount != null)? _selAccount.getTotalPingCount()  : 0;
                     String dcsPropsID = (_selAccount != null)? _selAccount.getDcsPropertiesID() : "";
 
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
 
                     long   createTS     = (_selAccount!=null)? _selAccount.getCreationTime()  : 0L;
                     String createStr    = reqState.formatDateTime(createTS   , "--");

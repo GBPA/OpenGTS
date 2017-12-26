@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,14 +87,14 @@ public class DeviceCmd_SMS
     public  static final String CSS_deviceCommandWithArg    = "deviceCommandWithArg";
     public  static final String CSS_deviceCommandSep        = "deviceCommandSep";
     public  static final String CSS_deviceCommandSpacer     = "deviceCommandSpacer";
-    
+
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
     /* get the current DCServerConfig */
     private static DCServerConfig getServerConfig(Device device, BasicPrivateLabel privLabel)
     {
-        if ((device != null) && (privLabel != null) && 
+        if ((device != null) && (privLabel != null) &&
             privLabel.getBooleanProperty(BasicPrivateLabel.PROP_DeviceInfo_SMS_useDeviceSMSCommands,false)) {
             String devCode = device.getDeviceCode();
             DCServerConfig dcs = DCServerFactory.getServerConfig(devCode);
@@ -105,7 +105,7 @@ public class DeviceCmd_SMS
         }
         return DCServerFactory.getServerConfig(DEVICE_CODE);
     }
-    
+
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
@@ -204,7 +204,7 @@ public class DeviceCmd_SMS
         if (!ListTools.isEmpty(cmdMap)) {
             return cmdMap;
         } else {
-            Print.logInfo("No DCS commands: "+dcs.getName()+ 
+            Print.logInfo("No DCS commands: "+dcs.getName()+
                 ", User="+User.getUserName(user)+ ", Type="+type);
             return null;
         }
@@ -223,11 +223,11 @@ public class DeviceCmd_SMS
             return null;
         }
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
-    *** True if this UI supports the specified device 
+    *** True if this UI supports the specified device
     **/
     public boolean deviceSupportsCommands(Device dev)
     {
@@ -258,11 +258,11 @@ public class DeviceCmd_SMS
         return true;
 
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
-    *** Writes the command form html 
+    *** Writes the command form html
     **/
     public boolean writeCommandForm(PrintWriter out, RequestProperties reqState, Device selDev,
         String actionURL, boolean editProps)
@@ -292,7 +292,7 @@ public class DeviceCmd_SMS
         out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_SMS+"'/>\n");
 
         //
-        out.println("<table border='0' cellpadding='0' cellspacing='0' width='100%'>");
+        out.println("<table class='table' border='0' cellpadding='0' cellspacing='0' width='100%'>");
 
         /* device id/description */
         out.println(DeviceInfo.FormRow_TextField(PARM_DEVICE        , false, i18n.getString("DeviceCmd_SMS.deviceID","{0} ID",devTitles)+":"            , selDevID, 30, 30));
@@ -316,7 +316,7 @@ public class DeviceCmd_SMS
         out.println("<tr class='deviceCommandList'>");
         out.println("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"' nowrap style=\"vertical-align:top; padding-top:5px;\">"+i18n.getString("DeviceCmd_SMS.commandSelect","Command Select")+":</td>");
         out.println("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_DATA+"' width='100%' style=\"padding-top:5px;\">");
-        out.println("<table border='0' cellpadding='0' cellspacing='0' width='100%'>");
+        out.println("<table class='table' border='0' cellpadding='0' cellspacing='0' width='100%'>");
 
         /* include configured commands */
         int cmdCount = 0;
@@ -327,7 +327,7 @@ public class DeviceCmd_SMS
                 dcs, privLabel, reqState.getCurrentUser(), selDev,
                 DCServerFactory.CMDTYPE_ADMIN);
             if (!ListTools.isEmpty(cmdMap_admin)) {
-                cmdCount += this._writeCommands(out, reqState, 
+                cmdCount += this._writeCommands(out, reqState,
                     i18n.getString("DeviceCmd_SMS.standardCommands","Standard Commands"),
                     cmdMap_admin, editProps, i18n);
             }
@@ -336,7 +336,7 @@ public class DeviceCmd_SMS
                 dcs, privLabel, reqState.getCurrentUser(), selDev,
                 DCServerFactory.CMDTYPE_SYSADMIN);
             if (!ListTools.isEmpty(cmdMap_sysadmin)) {
-                cmdCount += this._writeCommands(out, reqState, 
+                cmdCount += this._writeCommands(out, reqState,
                     i18n.getString("DeviceCmd_SMS.sysadminCommands","SysAdmin Commands"),
                     cmdMap_sysadmin, editProps, i18n);
             }
@@ -376,7 +376,7 @@ public class DeviceCmd_SMS
 
     }
 
-    private int _writeCommands(PrintWriter out, RequestProperties reqState, 
+    private int _writeCommands(PrintWriter out, RequestProperties reqState,
         String title,
         Map<String,DCServerConfig.Command> cmdMap, boolean editProps, I18N i18n)
     {
@@ -391,13 +391,13 @@ public class DeviceCmd_SMS
         if (!ListTools.isEmpty(cmdMap)) {
             for (DCServerConfig.Command cmd : cmdMap.values()) {
                 String cmdID = cmd.getName();
-                
+
                 /* make sure it is SMS */
                 if (!cmd.isCommandProtocolSMS()) {
                     Print.logWarn("Ignoring non-SMS command specification: " + cmdID);
                     continue;
                 }
-                
+
                 /* start command row */
                 String radioID   = RADIO_CMD_SEL_ + cmdID;
                 String radioDesc = cmd.getDescription();
@@ -407,7 +407,7 @@ public class DeviceCmd_SMS
                 out.print("<td class='"+cssClass+"' width='100%'>");
 
                 /* start command selection/args */
-                out.print("<table border='0' cellpadding='0' cellspacing='0' width='100%'>");
+                out.print("<table class='table' border='0' cellpadding='0' cellspacing='0' width='100%'>");
                 out.print("<tr>");
                 out.print("<td class='"+cssClass+"'>");
                 out.print("<input type='radio' name='"+PARM_COMMAND_SELECT+"' id='"+radioID+"' value='"+cmdID+"' onchange=\"javascript:devCommandRadioChanged();\">");
@@ -448,12 +448,12 @@ public class DeviceCmd_SMS
                 out.print("</td>");
                 out.print("</tr>");
                 out.print("</table>\n");
-                
+
                 /* end command row */
                 out.print("</td>");
                 out.print("</tr>\n");
                 cmdCount++;
-                
+
             }
         }
 
@@ -467,7 +467,7 @@ public class DeviceCmd_SMS
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Returns a result response message string
     **/
@@ -593,4 +593,3 @@ public class DeviceCmd_SMS
     // ------------------------------------------------------------------------
 
 }
-

@@ -910,7 +910,7 @@ public class UserInfo
                     // user selection table (Select, User ID, User Desc)
                     out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.selectUser","Select a User")+":</h3>\n");
                     out.write("<div style='margin-left:25px;'>\n");
-                    out.write("<form name='"+FORM_USER_SELECT+"' method='post' class='form-horizontal' action='"+selectURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_USER_SELECT+"' method='post' class='form-horizontal' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
                     out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing=0 cellpadding=0 border=0>\n");
                     out.write(" <thead>\n");
@@ -998,7 +998,7 @@ public class UserInfo
                     if (_allowNew) {
                     out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.createNewUser","Create a new user")+":</h3\n");
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
-                    out.write("<form name='"+FORM_USER_NEW+"' method='post' class='form-horizontal' action='"+newURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_USER_NEW+"' method='post' class='form-horizontal' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
                     out.write(i18n.getString("UserInfo.userID","User ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
                     out.write(" <input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("UserInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
@@ -1011,7 +1011,7 @@ public class UserInfo
                     // user view/edit form
 
                     /* start of form */
-                    out.write("<form name='"+FORM_USER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_USER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("  <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPDATE+"'/>\n");
 
                     /* password */

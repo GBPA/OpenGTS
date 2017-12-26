@@ -432,7 +432,7 @@ public class NewAccount
                 String emailURL   = NewAccount.this.encodePageURL(reqState, COMMAND_EMAIL_SUBMIT);
                 //String expireDate = reqState.formatDateTime(DateTime.getCurrentTimeSec() + Account.DFT_EXPIRATION_SEC);
                 //if (StringTools.isBlank(expireDate)) { expireDate = "n/a"; }
-                out.println("<form name='AccountInfo' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
+                out.println("<form class='form-horizontal' name='AccountInfo' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
                 out.println("  <span class='"+CSS_NEW_ACCOUNT_TITLE+"'>"+i18n.getString("NewAccount.newTempAccount","New Temporary Account")+"</span>");
                 out.println("  <hr>");
                 out.println("  <span class='"+CSS_NEW_ACCOUNT_INSTRUCT+"'>");

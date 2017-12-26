@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@
 //  - http://maps.huge.info/examples.htm
 //      - http://maps.huge.info/dragcircle2.htm
 //      - http://maps.huge.info/dragpoly.htm
-//  - http://wolfpil.googlepages.com/polygon.html 
+//  - http://wolfpil.googlepages.com/polygon.html
 //  - http://maps.forum.nu/gm_plot.html
 //  - http://wolfpil.googlepages.com/switch-polies.html
 // Google Pushpins:
@@ -132,8 +132,8 @@ public class GoogleMaps
     private String apiVersion   = null;
     private String mapOptions   = null;
 
-    /* GoogleMaps instance */ 
-    public GoogleMaps(String name, String key) 
+    /* GoogleMaps instance */
+    public GoogleMaps(String name, String key)
     {
         super(name, key);
         this.addSupportedFeature(FEATURE_LATLON_DISPLAY);
@@ -155,7 +155,7 @@ public class GoogleMaps
     {
         if (this.apiVersion == null) {
             // -- "maps/GoogleMapsV2.js"
-            // -- "maps/GoogleMapsV3.js" 
+            // -- "maps/GoogleMapsV3.js"
             String apiV = this.getProperties().getString(PROP_version,"").trim().toLowerCase();
             if (StringTools.isBlank(apiV)) {
                 apiV = "3"; // assume default V3 [2.6.0-B73]
@@ -164,7 +164,7 @@ public class GoogleMaps
         }
         return this.apiVersion;
     }
-    
+
     /**
     *** Return true if API version matches specified string
     **/
@@ -243,7 +243,7 @@ public class GoogleMaps
 
     /**
     *** Called after initialization of this MapProvider.  This allows the MapProvider
-    *** to perform any required initialization after all attributes have been set 
+    *** to perform any required initialization after all attributes have been set
     **/
     public void postInit()
     {
@@ -273,7 +273,7 @@ public class GoogleMaps
                 Print.logError("Invalid Google Map key specified");
                 return false;
             }
-        } else 
+        } else
         if (this.isVersion3()) {
             //
         } else
@@ -304,7 +304,7 @@ public class GoogleMaps
         /* write places-search/autocomplete */
         RTProperties rtp = this.getProperties();
         if (rtp.getBoolean(PROP_addPlacesSearch,false)) { //  GOOGLE_PLACES_SEARCH
-            // -- sections of this HTML may be extracted from the "div" below and used 
+            // -- sections of this HTML may be extracted from the "div" below and used
             // -  separately in the "GoogleMapsV3.js" module.
             boolean includeTypes = false;
             I18N i18n = reqState.getPrivateLabel().getI18N(GoogleMaps.class);
@@ -315,7 +315,7 @@ public class GoogleMaps
             out.println("    <tbody>");
             out.println("    <tr>");
             out.println("      <td class='searchPlaceTextTD'>");
-            out.println("        <input id='pac-input' class='pacInputText' type='text' placeholder='" + i18n.getString("GoogleMaps.searchLocation","Search Location ...") + "' autocomplete='off'>"); 
+            out.println("        <input id='pac-input' class='pacInputText form-control' type='text' placeholder='" + i18n.getString("GoogleMaps.searchLocation","Search Location ...") + "' autocomplete='off'>"); 
             out.println("      </td>");
             if (includeTypes) {
             out.println("      <td class='searchPlaceTypesTD'>");
@@ -343,9 +343,9 @@ public class GoogleMaps
     // ------------------------------------------------------------------------
 
     /**
-    *** Writes mapping support JS to stream 
+    *** Writes mapping support JS to stream
     **/
-    protected void writeJSVariables(PrintWriter out, RequestProperties reqState) 
+    protected void writeJSVariables(PrintWriter out, RequestProperties reqState)
         throws IOException
     {
         PrivateLabel privLabel   = reqState.getPrivateLabel();
@@ -384,9 +384,9 @@ public class GoogleMaps
         } else
         if (StringTools.isBlank(nearbyTypesS)) {
             // -- use default types
-            nearbyTypes = new String[] { 
+            nearbyTypes = new String[] {
                 // -- "food,gas_station,lodging,movie_theater,police,post_office,store"
-                "food","gas_station","lodging","movie_theater","police","post_office","store" 
+                "food","gas_station","lodging","movie_theater","police","post_office","store"
             };
         } else {
             // -- use configured types
@@ -444,7 +444,7 @@ public class GoogleMaps
     *** Writes the JavaScript required for this map provider
     **/
     protected void writeJSIncludes(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
 
         /* map provider properties */
@@ -466,7 +466,7 @@ public class GoogleMaps
             if (StringTools.isBlank(useSSLStr)) {
                 // -- default: follow parent URL secure protocol
                 useSSL = reqState.isSecure()? true : false;
-            } else 
+            } else
             if (useSSLStr.equalsIgnoreCase("auto")) {
                 // -- auto: follow parent URL secure protocol
                 useSSL = reqState.isSecure()? true : false;
@@ -502,7 +502,7 @@ public class GoogleMaps
             if (mrtp != null) {
                 StringBuffer libs = new StringBuffer();
                 // -- weather/cloud (no longer supported by Google)
-                //if (mrtp.getBoolean(PROP_addWeatherOverlay,false) || 
+                //if (mrtp.getBoolean(PROP_addWeatherOverlay,false) ||
                 //    mrtp.getBoolean(PROP_addCloudOverlay  ,false)   ) {
                 //    if (libs.length() > 0) { libs.append(","); }
                 //    libs.append("weather");
@@ -605,14 +605,14 @@ public class GoogleMaps
     {
         I18N i18n = I18N.getI18N(GoogleMaps.class, loc);
         if (type == Geozone.GeozoneType.POINT_RADIUS.getIntValue()) {
-            return new String[] { 
+            return new String[] {
                 i18n.getString("GoogleMaps.geozoneNotes.1", "Click to reset center."),
                 i18n.getString("GoogleMaps.geozoneNotes.2", "Click-drag center to move."),
                 i18n.getString("GoogleMaps.geozoneNotes.3", "Click-drag radius to resize."),
             };
         } else
         if (type == Geozone.GeozoneType.POLYGON.getIntValue()) {
-            return new String[] { 
+            return new String[] {
                 i18n.getString("GoogleMaps.geozoneNotes.1", "Click to reset center."),
                 i18n.getString("GoogleMaps.geozoneNotes.2", "Click-drag center to move."),
                 i18n.getString("GoogleMaps.geozoneNotes.4", "Click-drag corner to resize."),

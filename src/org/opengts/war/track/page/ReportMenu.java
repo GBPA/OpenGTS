@@ -901,7 +901,7 @@ public class ReportMenu
                 // -- This entire form is 'hidden'.  It's used by JS functions to submit specific commands
                 String pageTarget = "_self"; // change to "_blank" to open reports in a separate page  // target='_top'
                 out.write("\n");
-                out.write("<form id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+reportURL+"\" target='"+pageTarget+"'>\n");
+                out.write("<form class='form-horizontal' id='"+FORM_COMMAND+"' name='"+FORM_COMMAND+"' method='post' action=\""+reportURL+"\" target='"+pageTarget+"'>\n");
                 out.write(" <input type='hidden' name='"+PARM_PAGE              +"' value=''/>\n");
                 out.write(" <input type='hidden' name='"+PARM_COMMAND           +"' value=''/>\n");
                 out.write(" <input type='hidden' name='"+PARM_ARGUMENT          +"' value=''/>\n");
@@ -934,12 +934,12 @@ public class ReportMenu
                 out.write("<hr/>\n");
 
                 /* begin calendar/report-selection table */
-                out.write("<table height='90%' border='0' cellspacing='0' cellpadding='0'>\n"); // {
+                out.write("<table height='90%' class='table' border='0' cellspacing='0' cellpadding='0'>\n"); // {
                 out.write("<tr>\n");
                 out.write("<td valign='top' height='100%' style='padding-right:3px; border-right: 3px double black;'>\n");
 
                 /* device[group] list */
-                out.write("<form id='"+FORM_DEVICE_GROUP+"' name='"+FORM_DEVICE_GROUP+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
+                out.write("<form class='form-horizontal' id='"+FORM_DEVICE_GROUP+"' name='"+FORM_DEVICE_GROUP+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
                 IDDescription.SortBy sortBy = DeviceChooser.getSortBy(privLabel);
                 if (isGroup) {
                     // -- fleet group selection
@@ -947,28 +947,28 @@ public class ReportMenu
                     String grpTitles[] = reqState.getDeviceGroupTitles();
                     out.write("<b>"+i18n.getString("ReportMenu.deviceGroup","{0}:",grpTitles)+"</b><br>\n");
                     if (DeviceChooser.isDeviceChooserUseTable(privLabel)) { // Fleet
-                        out.write("<table cellspacing='0' cellpadding='0' border='0'><tr>");
+                        out.write("<table cellspacing='0' class='table' cellpadding='0' border='0'><tr>");
                         out.write("<td>");
-                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; border:1px solid gray;";
+                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer;";
                         String chooserOnclick = "javascript:rptmShowSelector()";
                         String chooserLen     = "16";
                         switch (sortBy) {
                             case DESCRIPTION : {
                                 String grDesc = FilterValue(reqState.getDeviceGroupDescription(_groupID,false));
                                 out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' type='hidden' value='"+_groupID+"'>");
-                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+grDesc+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='form-control' type='text' value='"+grDesc+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                             case NAME : {
                                 String grName = FilterValue(reqState.getDeviceGroupDescription(_groupID,true));
                                 out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' type='hidden' value='"+_groupID+"'>");
-                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+grName+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='form-control' type='text' value='"+grName+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                             default : {
-                                out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' type='text' value='"+_groupID+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"'class='form-control' type='text' value='"+_groupID+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                         }
                         out.write("</td>");
-                        out.write("<td><img src='images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
+                        out.write("<td><img src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
                         out.write("</tr></table>\n");
                     } else {
                         OrderedSet<String> groupList = reqState.getDeviceGroupIDList(true); // non-null, length > 0
@@ -977,17 +977,17 @@ public class ReportMenu
                             String id   = DeviceGroup.DEVICE_GROUP_NONE;
                             String desc = FilterValue("?");
                             out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' type='hidden' value='"+id+"'>");
-                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                         } else
                         if (DeviceChooser.showSingleItemTextField(privLabel) && (groupList.size() == 1)) {
                             String id   = groupList.get(0);
                             if (sortBy.equals(IDDescription.SortBy.ID)) {
-                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
+                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
                             } else {
                                 boolean rtnDispName = sortBy.equals(IDDescription.SortBy.NAME);
                                 String desc = FilterValue(reqState.getDeviceGroupDescription(id,rtnDispName));
                                 out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_GROUP_ID  +"' type='hidden' value='"+id+"'>");
-                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                             }
                         } else {
                             java.util.List<IDDescription> sortList = new Vector<IDDescription>();
@@ -997,7 +997,7 @@ public class ReportMenu
                                 sortList.add(new IDDescription(id,desc));
                             }
                             IDDescription.SortList(sortList, rtnDispName? IDDescription.SortBy.DESCRIPTION : sortBy);
-                            out.write("<select id='"+ID_DEVICE_ID+"' name='"+PARM_GROUP_ID+"'>\n");
+                            out.write("<select class='form-control' id='"+ID_DEVICE_ID+"' name='"+PARM_GROUP_ID+"'>\n");
                             for (IDDescription dd : sortList) {
                                 String id   = dd.getID();
                                 String desc = dd.getDescription();
@@ -1016,26 +1016,26 @@ public class ReportMenu
                     if (DeviceChooser.isDeviceChooserUseTable(privLabel)) { // Device
                         out.write("<table cellspacing='0' cellpadding='0' border='0'><tr>");
                         out.write("<td>");
-                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; border:1px solid gray;";
+                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; ";
                         String chooserOnclick = "javascript:rptmShowSelector()";
                         String chooserLen     = "16";
                         switch (sortBy) {
                             case DESCRIPTION : {
                                 String dvDesc = FilterValue(reqState.getDeviceDescription(_deviceID,false));
                                 out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' type='hidden' value='"+_deviceID+"'>");
-                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+dvDesc   +"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='form-control' type='text' value='"+dvDesc   +"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                             case NAME : {
                                 String dvName = FilterValue(reqState.getDeviceDescription(_deviceID,true));
                                 out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' type='hidden' value='"+_deviceID+"'>");
-                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' type='text' value='"+dvName   +"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='form-control' type='text' value='"+dvName   +"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                             default : {
-                                out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' type='text' value='"+_deviceID+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
+                                out.write("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"'class='form-control' type='text' value='"+_deviceID+"' readonly size='"+chooserLen+"' style='"+chooserStyle+"' onclick=\""+chooserOnclick+"\">");
                                 } break;
                         }
                         out.write("</td>");
-                        out.write("<td><img src='images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
+                        out.write("<td><img src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
                         out.write("</tr></table>\n");
                     } else {
                         OrderedSet<String> devList = reqState.getDeviceIDList(false/*inclInactv*/);
@@ -1043,17 +1043,17 @@ public class ReportMenu
                             String id   = DeviceGroup.DEVICE_GROUP_NONE;
                             String desc = FilterValue("?");
                             out.println("<input id='"+ID_DEVICE_ID+"' name='"+PARM_DEVICE_ID+"' type='hidden' value='"+id+"'>");
-                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                         } else
                         if (DeviceChooser.showSingleItemTextField(privLabel) && (devList.size() == 1)) {
                             String id   = devList.get(0);
                             if (sortBy.equals(IDDescription.SortBy.ID)) {
-                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
+                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
                             } else {
                                 boolean rtnDispName = sortBy.equals(IDDescription.SortBy.NAME);
                                 String desc = FilterValue(reqState.getDeviceDescription(id,rtnDispName));
                                 out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DEVICE_ID +"' type='hidden' value='"+id+"'>");
-                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                             }
                         } else {
                             java.util.List<IDDescription> sortList = new Vector<IDDescription>();
@@ -1063,7 +1063,7 @@ public class ReportMenu
                                 sortList.add(new IDDescription(id,desc));
                             }
                             IDDescription.SortList(sortList, rtnDispName? IDDescription.SortBy.DESCRIPTION : sortBy);
-                            out.write("<select id='"+ID_DEVICE_ID+"' name='"+PARM_DEVICE_ID+"'>\n");
+                            out.write("<select class='form-control' id='"+ID_DEVICE_ID+"' name='"+PARM_DEVICE_ID+"'>\n");
                             for (IDDescription dd : sortList) {
                                 String id   = dd.getID();
                                 String desc = dd.getDescription();
@@ -1081,7 +1081,7 @@ public class ReportMenu
                     if (DeviceChooser.isDeviceChooserUseTable(privLabel)) { // Driver
                         out.write("<table cellspacing='0' cellpadding='0' border='0'><tr>");
                         out.write("<td>");
-                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; border:1px solid gray;";
+                        String chooserStyle   = "height:17px; padding:0px 0px 0px 3px; margin:0px 0px 0px 3px; cursor:pointer; ";
                         String chooserOnclick = "javascript:rptmShowSelector()";
                         String chooserLen     = "16";
                         switch (sortBy) {
@@ -1100,7 +1100,7 @@ public class ReportMenu
                                 } break;
                         }
                         out.write("</td>");
-                        out.write("<td><img src='images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
+                        out.write("<td><img src='https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Pulldown.png' height='17' style='cursor:pointer;' onclick='"+chooserOnclick+"'></td>");
                         out.write("</tr></table>\n");
                     } else {
                         OrderedSet<String> drvList = reqState.getDriverIDList();
@@ -1108,17 +1108,17 @@ public class ReportMenu
                             String id   = "n/a";
                             String desc = FilterValue("?");
                             out.println("<input id='"+ID_DEVICE_ID+"' name='"+PARM_DRIVER_ID+"' type='hidden' value='"+id+"'>");
-                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                            out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                         } else
                         if (DeviceChooser.showSingleItemTextField(privLabel) && (drvList.size() == 1)) {
                             String id   = drvList.get(0);
                             if (sortBy.equals(IDDescription.SortBy.ID)) {
-                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DRIVER_ID +"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
+                                out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DRIVER_ID +"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+id+"'>");
                             } else {
                                 boolean rtnDispName = sortBy.equals(IDDescription.SortBy.NAME);
                                 String desc = FilterValue(reqState.getDeviceDescription(id,rtnDispName));
                                 out.println("<input id='"+ID_DEVICE_ID   +"' name='"+PARM_DRIVER_ID +"' type='hidden' value='"+id+"'>");
-                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+"' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
+                                out.println("<input id='"+ID_DEVICE_DESCR+"' name='"+ID_DEVICE_DESCR+"' class='"+CommonServlet.CSS_TEXT_READONLY+" form-control' type='text' readonly size='14' maxlength='32' value='"+desc+"'>");
                             }
                         } else {
                             java.util.List<IDDescription> sortList = new Vector<IDDescription>();
@@ -1128,7 +1128,7 @@ public class ReportMenu
                                 sortList.add(new IDDescription(id,desc));
                             }
                             IDDescription.SortList(sortList, rtnDispName? IDDescription.SortBy.DESCRIPTION : sortBy);
-                            out.write("<select id='"+ID_DEVICE_ID+"' name='"+PARM_DRIVER_ID+"'>\n");
+                            out.write("<select class='form-control' id='"+ID_DEVICE_ID+"' name='"+PARM_DRIVER_ID+"'>\n");
                             for (IDDescription dd : sortList) {
                                 String id   = dd.getID();
                                 String desc = dd.getDescription();
@@ -1164,9 +1164,9 @@ public class ReportMenu
                 if (showTimezoneSelect) {
                     out.println("<!-- Timezone select -->");
                     out.println("<div style='padding-top: 5px; text-align: left;'>");
-                    out.println(  "<form id='TimeZoneSelect' name='TimeZoneSelect' method='get' action=\"javascript:true;\" target='_self'>"); // target='_top'
+                    out.println(  "<form class='form-horizontal' id='TimeZoneSelect' name='TimeZoneSelect' method='get' action=\"javascript:true;\" target='_self'>"); // target='_top'
                     out.println(  "<span style='font-size:8pt;'><b>"+i18n.getString("ReportMenu.timeZone","TimeZone:")+"</b></span><br>");
-                    out.println(  "<select name='"+parm_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+parm_TIMEZONE[0]+".value)\">");
+                    out.println(  "<select class='form-control' name='"+parm_TIMEZONE[0]+"' onchange=\"javascript:calSelectTimeZone(document.TimeZoneSelect."+parm_TIMEZONE[0]+".value)\">");
                     String timeZone = reqState.getTimeZoneString(null);
                     java.util.List _tzList = reqState.getTimeZonesList();
                     for (Iterator i = _tzList.iterator(); i.hasNext();) {
@@ -1198,7 +1198,7 @@ public class ReportMenu
                 out.write("<table width='100%'>\n"); // {
                 out.write("<tr>\n");
                 out.write("<td valign='top' style='margin-top: 8px; padding-left: 5px;'>\n");
-                out.write("<form id='"+FORM_SELECT_REPORT+"' name='"+FORM_SELECT_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
+                out.write("<form class='form-horizontal' id='"+FORM_SELECT_REPORT+"' name='"+FORM_SELECT_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
                 boolean checked = false;
                 int rptSel = 0;
                 for (int t = 0; t < ReportFactory.REPORT_TYPES.length; t++) {
@@ -1261,9 +1261,9 @@ public class ReportMenu
                 out.write(" <tr>\n");
                 out.write("  <td valign='bottom' style='text-align: left;'>\n");
                 out.write("    <hr>\n");
-                out.write("    <form id='"+FORM_GET_REPORT+"' name='"+FORM_GET_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
+                out.write("    <form class='form-horizontal' id='"+FORM_GET_REPORT+"' name='"+FORM_GET_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
                 out.write("    <span style='padding-left: 5px;'><b>"+i18n.getString("ReportMenu.format","Format:")+"</b></span>\n");
-                out.write("    <select id='"+PARM_FORMAT[0]+"' name='"+PARM_FORMAT[0]+"' onchange=\"javascript:rptmFormatChanged();\">\n");
+                out.write("    <select id='"+PARM_FORMAT[0]+"' class='form-control' name='"+PARM_FORMAT[0]+"' onchange=\"javascript:rptmFormatChanged();\">\n");
                 if (outFormat_HTML) {
                     out.write("      <option value='"+ReportURL.FORMAT_HTML +"' selected>HTML</option>\n");
                 }

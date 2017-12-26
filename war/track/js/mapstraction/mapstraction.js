@@ -3790,7 +3790,7 @@ Marker.prototype.toFreeEarth = function() {
   if (this.iconUrl) {
     feicon = new FE.Icon(this.iconUrl);
   } else {
-    feicon = new FE.Icon("http://freeearth.poly9.com/images/bullmarker.png");
+    feicon = new FE.Icon("https://freeearth.poly9.com/images/bullmarker.png");
   }
   var femarker = new FE.Pushpin( this.location.toFreeEarth(), feicon);
 

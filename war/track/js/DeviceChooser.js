@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +59,7 @@ var PREDEFINED_CHOOSER_HTML     = true;
 // ----------------------------------------------------------------------------
 // external variable definitions
 
-//var DEVICE_LIST_URL             = 
+//var DEVICE_LIST_URL             =
 //var DeviceChooserIDPosition     = 2    // 0=false, 1=first, 2=last
 //var DeviceChooserEnableSearch   = true
 //var DeviceChooserMatchContains  = true
@@ -119,9 +119,9 @@ function deviceShowChooserList(elemNameID, elemNameDesc, list)
     var absSiz  = getElementSize(locElem);
     var posTop  = absLoc.left;
     var posLeft = absLoc.top + absSiz.height + 2;
-    
+
     if (PREDEFINED_CHOOSER_HTML) {
-        
+
         deviceSelectorView = document.getElementById(ID_CHOOSER_VIEW);
         if (deviceSelectorView != null) {
             deviceSelectorView.className      = CLASS_DEVSELECT_DIV_VISIBLE;
@@ -145,22 +145,22 @@ function deviceShowChooserList(elemNameID, elemNameDesc, list)
 
         /* include search */
         if (DeviceChooserEnableSearch) {
-            html += "<form id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='get' action=\"javascript:true;\" target='_top' style='padding-left:5px; background-color:#dddddd;'>";
+            html += "<form id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='get' action=\"javascript:true;\" target='_top' style=''>";
             html += "<b>"+DEVICE_TEXT_Search+": </b>";
-            html += "<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+"' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>";
+            html += "<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+" form-control' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>";
             html += "</form>\n";
         }
-        
+
         /* table */
         html += "<div id='"+ID_DIV_TABLE+"'>\n";
         html += deviceGetTableHTML(list, "");
         html += "</div>\n";
-            
+
         /* make selection table visible */
         deviceSelectorView.innerHTML = html;
         document.body.appendChild(deviceSelectorView);
         deviceSelectorVisible = true;
-        
+
         // make table that we just added sortable
         var tableID = document.getElementById(ID_DEVSELECT_TABLE);
         if (sorttable && tableID) {
@@ -186,7 +186,7 @@ function deviceShowChooserList(elemNameID, elemNameDesc, list)
             return true;
         }
     };
-        
+
     /* focus on search text area */
     if (DeviceChooserEnableSearch) {
         //document.devSearchForm.devSearchText.focus();
@@ -238,13 +238,13 @@ function deviceGetTableHTML(list, searchVal)
     if (searchTableHeaderHtml == null) {
         var h = "";
         // begin table HTML
-        h += "<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+"' cellspacing='0' cellpadding='0' border='1'>\n";
+        h += "<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n";
         // table header
         h += "<thead>\n";
         h += "<tr class='"+CLASS_DEVSELECT_ROW_HEADER+"'>";
         if (DeviceChooserIDPosition == IDPOS_NONE) {
             h += "<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>";
-        } else 
+        } else
         if (DeviceChooserIDPosition == IDPOS_LAST) {
             h += "<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+dsWidth+"' valign='center'>"+DEVICE_TEXT_Description+"</th>";
             h += "<th nowrap class='"+CLASS_DEVSELECT_COL_HEADER+"' width='"+idWidth+"' valign='center'>"+DEVICE_TEXT_ID+"</th>";
@@ -257,7 +257,7 @@ function deviceGetTableHTML(list, searchVal)
         searchTableHeaderHtml = h;
     }
     var html = searchTableHeaderHtml;
-    
+
     /* pre-build TD html */
     var TD_idCell = "<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+idWidth+"' onclick=\"javascript:deviceSelected(";
     var TD_dsCell = "<td nowrap class='"+CLASS_DEVSELECT_COL_DATA+"' width='"+dsWidth+"' onclick=\"javascript:deviceSelected(";
@@ -269,12 +269,12 @@ function deviceGetTableHTML(list, searchVal)
     for (var d = 0; d < list.length; d++) {
 
         /* omit items not matched */
-        if ((searchVal != "") && !list[d].desc.toLowerCase().startsWith(searchVal)) { 
-            continue; 
+        if ((searchVal != "") && !list[d].desc.toLowerCase().startsWith(searchVal)) {
+            continue;
         }
         var idVal = list[d].id;
         var dsVal = escapeText(list[d].desc);
-        
+
         /* save first item */
         if (chooserFirstDeviceNdx < 0) {
             chooserFirstDeviceNdx = d;
@@ -287,7 +287,7 @@ function deviceGetTableHTML(list, searchVal)
         html += "<tr class='" + CLASS_DEVSELECT_ROW_DATA + "'>";
         if (DeviceChooserIDPosition == IDPOS_NONE) {
             html += TD_dsCell + selNdx + ")\">" + dsVal + "</td>";
-        } else 
+        } else
         if (DeviceChooserIDPosition == IDPOS_LAST) {
             html += TD_dsCell + selNdx + ")\">" + dsVal + "</td>";
             html += TD_idCell + selNdx + ")\">" + idVal + "</td>";
@@ -355,7 +355,7 @@ function deviceSearch(event)
         chooserFirstDeviceNdx = -1;
         var tableID = document.getElementById(ID_DEVSELECT_TABLE);
         if (PREDEFINED_CHOOSER_HTML) {
-            
+
             if (tableID) {
                 for (var i = 0; i < tableID.rows.length; i++) {
                     var row    = tableID.rows[i];
@@ -386,13 +386,13 @@ function deviceSearch(event)
             } else {
                 alert("Table not found: " + ID_DEVSELECT_TABLE);
             }
-            
+
         } else {
-    
+
             /* html */
             var tableHtml = deviceGetTableHTML(chooserDeviceList, searchVal);
             tableDiv.innerHTML = tableHtml;
-        
+
         }
 
     }
@@ -417,7 +417,7 @@ function deviceCloseChooser()
 
 // ----------------------------------------------------------------------------
 
-function deviceLoadList(elemNameID, elemNameDesc, deviceListURL) 
+function deviceLoadList(elemNameID, elemNameDesc, deviceListURL)
 {
     try {
         var req = jsmGetXMLHttpRequest();
@@ -446,7 +446,7 @@ function deviceLoadList(elemNameID, elemNameDesc, deviceListURL)
     }
 };
 
-function deviceParseList(elemNameID, elemNameDesc, data) 
+function deviceParseList(elemNameID, elemNameDesc, data)
 {
     // TODO: parse 'data'
     var list = new Array();
@@ -490,7 +490,7 @@ function deviceSelected(x)
     // set id
     var idElem  = chooserRelativeElementID? document.getElementById(chooserRelativeElementID) : null;
     if (idElem != null) { idElem.value = selID; }
-    
+
     // set description
     var dsElem  = chooserRelativeElementDesc? document.getElementById(chooserRelativeElementDesc) : null;
     if (dsElem != null) { dsElem.value = selDesc; }
@@ -498,7 +498,7 @@ function deviceSelected(x)
     /* device delected */
     deviceCloseChooser();
     deviceDeviceChanged();
-    
+
 };
 
 // ----------------------------------------------------------------------------

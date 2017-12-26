@@ -89,7 +89,7 @@ function ppcShowPushpinChooser(elemNameID)
 
     /* begin table HTML */
     var html = "";
-    html += "<table class='"+CLASS_ICONSELECT_TABLE+"' cellspacing='0' cellpadding='0' border='0'>\n";
+    html += "<table class='"+CLASS_ICONSELECT_TABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n";
     html += "<tbody>\n";
 
     /* single table row */

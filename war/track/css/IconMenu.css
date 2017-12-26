@@ -1,34 +1,34 @@
 
 /* icon menu */
-#iconMenu { 
-    font: normal 9pt sans-serif; 
+#iconMenu {
+    font: normal 9pt sans-serif;
     text-align: left;
 }
 
 #iconMenu .iconMenuTable {
 }
 
-#iconMenu TR.menuGroupTitle { 
-    font: normal 9pt sans-serif; 
+#iconMenu TR.menuGroupTitle {
+    font: normal 9pt sans-serif;
     text-align: left;
     background-color: #EFEFEF;
 }
 
-#iconMenu TD.menuGroupTitle { 
-    font: normal 12pt sans-serif; 
+#iconMenu TD.menuGroupTitle {
+    font: normal 12pt sans-serif;
     text-align: left;
     border-bottom: 1px solid black;
     padding-top: 9px;
     padding-bottom: 0px;
 }
 
-#iconMenu TR.menuGroupIcons { 
-    font: normal 9pt sans-serif; 
+#iconMenu TR.menuGroupIcons {
+    font: normal 9pt sans-serif;
     text-align: left;
 }
 
-#iconMenu TD.menuGroupIcons { 
-    font: normal 9pt sans-serif; 
+#iconMenu TD.menuGroupIcons {
+    font: normal 9pt sans-serif;
     text-align: left;
     padding-top: 1px; /* 2px */
 }
@@ -57,7 +57,7 @@
     vertical-align: top;
     width: 90px;
     height: 100px;
-    /* background: url('../images/MenuBtnH.png') no-repeat; */
+    /* background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtnH.png') no-repeat; */
     cursor: pointer;
 }
 
@@ -67,7 +67,7 @@
     vertical-align: top;
     width: 90px;
     height: 100px;
-    /* background: url('../images/MenuBtn.png') no-repeat; */
+    /* background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtn.png') no-repeat; */
     cursor: pointer;
 }
 
@@ -78,10 +78,10 @@
 
 /* ---------------------------------------------- */
 
-#iconMenu SPAN.menuItemText  { 
+#iconMenu SPAN.menuItemText  {
     text-decoration: none;
     /* color: black; */
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     text-shadow: #666666 5px 5px 5px;
 }
 
@@ -93,7 +93,7 @@
     vertical-align: middle;
     width: 90px;
     height: 100px;
-    background: url('../images/MenuBtnH.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtnH.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -104,7 +104,7 @@
     vertical-align: middle;
     width: 90px;
     height: 100px;
-    background: url('../images/MenuBtn.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtn.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -118,7 +118,7 @@
     vertical-align: middle;
     width: 90px;
     height: 100px;
-    background: url('../images/MenuBtnH.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtnH.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -130,7 +130,7 @@
     vertical-align: middle;
     width: 90px;
     height: 100px;
-    background: url('../images/MenuBtn.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtn.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -143,7 +143,7 @@
     vertical-align: middle;
     width: 100px;
     height: 100px;
-    background: url('../images/MenuBtnH_lg.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtnH_lg.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -154,7 +154,7 @@
     vertical-align: middle;
     width: 100px;
     height: 100px;
-    background: url('../images/MenuBtn_lg.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtn_lg.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -168,7 +168,7 @@
     vertical-align: middle;
     width: 100px;
     height: 100px;
-    background: url('../images/MenuBtnH_lg.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtnH_lg.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -180,7 +180,7 @@
     vertical-align: middle;
     width: 100px;
     height: 100px;
-    background: url('../images/MenuBtn_lg.png') no-repeat;
+    background: url('https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/MenuBtn_lg.png') no-repeat;
     cursor: pointer;
     color: black;
 }
@@ -193,20 +193,19 @@
 
 /* ---------------------------------------------- */
 
-#iconMenu P.shadowText  { 
-    position: relative; 
-    display: block; 
-    color: #FFFFFF; 
+#iconMenu P.shadowText  {
+    position: relative;
+    display: block;
+    color: #FFFFFF;
 }
-#iconMenu P.shadowText span { 
-    position: absolute; 
-    display: block; 
+#iconMenu P.shadowText span {
+    position: absolute;
+    display: block;
     top: 0px;
 }
-#iconMenu P.shadowText:before { 
-    display: block; 
-    padding: 2px 0px 0px 3px; 
-    content: attr(title); 
+#iconMenu P.shadowText:before {
+    display: block;
+    padding: 2px 0px 0px 3px;
+    content: attr(title);
     color:#333333;
-} 
-
+}

@@ -2582,7 +2582,7 @@ public class DeviceInfo
                     // -- device selection table (Select, Device ID, Description, ...)
                     out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DeviceInfo.selectDevice","Select a {0}",devTitles)+":</h2>\n");
                     out.write("<div style='margin-left:25px;'>\n");
-                    out.write("<form name='"+FORM_DEVICE_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DEVICE_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SEL_DEVICE+"'/>");
                     out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n");
                     out.write(" <thead>\n");
@@ -2765,7 +2765,7 @@ public class DeviceInfo
                     out.write("</table>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
-                    out.write("<hr>\n");
+
 
                     /* new device */
                     if (_allowNew && (_overDevLimit <= 0)) {
@@ -2956,11 +2956,11 @@ public class DeviceInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("DeviceInfo.viewEditDevice","View/Edit {0} Information", devTitles) :
                         i18n.getString("DeviceInfo.viewDevice","View {0} Information", devTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
+
 
                     /* start of form */
-                    out.write("<form name='"+FORM_DEVICE_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DEVICE_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_DEVICE+"'/>\n");
 
                     /* Device fields */
@@ -2969,7 +2969,7 @@ public class DeviceInfo
                     String firmVers  = (_selDev!=null)? _selDev.getCodeVersion() : "";
                     long   createTS  = (_selDev!=null)? _selDev.getCreationTime() : 0L;
                     String createStr = reqState.formatDateTime(createTS, "--");
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                     out.println(FormRow_TextField(PARM_DEVICE           , false      , i18n.getString("DeviceInfo.deviceID","{0} ID",devTitles)+":"        , _selDevID, 32, 32));
                     out.println(FormRow_TextField(PARM_CREATE_DATE      , false      , i18n.getString("DeviceInfo.creationDate","Creation Date")+":"       , createStr, 30, 30));
                     String deviceCode = (_selDev != null)? DCServerFactory.getServerConfigDescription(_selDev.getDeviceCode()) : "";
@@ -3661,7 +3661,7 @@ public class DeviceInfo
                     out.write("<span style='margin-left:4px; margin-top:10px; font-weight:bold;'>");
                     out.write(  i18n.getString("DeviceInfo.groupMembership","{0} Membership:",grpTitles));
                     out.write(  "</span>\n");
-                    out.write("<div style='border: 1px solid black; margin: 2px 20px 5px 10px; height:80px; width:400px; overflow-x: hidden; overflow-y: scroll;'>\n");
+                    out.write("<div style=' margin: 2px 20px 5px 10px; height:80px; width:400px; overflow-x: hidden; overflow-y: scroll;'>\n");
                     out.write("<table>\n");
                     for (int g = 0; g < grpList.size(); g++) {
                         String grpID = grpList.get(g);
@@ -3711,8 +3711,7 @@ public class DeviceInfo
                     /* frame title */
                     String frameTitle = i18n.getString("DeviceInfo.setDeviceProperties","({0}) Set {1} Properties",
                         _dcHandler.getServerDescription(), devTitles[0]);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     /* Device Command/Properties content */
                     String editURL = DeviceInfo.this.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());
@@ -3731,8 +3730,7 @@ public class DeviceInfo
                     /* frame title */
                     String frameTitle = i18n.getString("DeviceInfo.setDeviceSMS","({0}) Send {1} SMS",
                         _dcHandler.getServerDescription(), devTitles[0]);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     /* Device Command/Properties content */
                     String editURL = DeviceInfo.this.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());

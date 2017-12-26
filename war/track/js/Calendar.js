@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,20 +43,20 @@ var calImageBaseDir = ".";
 
 // ----------------------------------------------------------------------------
 
-var CLASS_CAL_DIV               = "calDiv";                     
-var CLASS_CAL_TABLE             = "calTable";                   
-var CLASS_CAL_EXPAND_BAR        = "calExpandBar";               
-var CLASS_CAL_COLLAPSE_BAR      = "calCollapseBar";             
-var CLASS_CAL_TITLE_DATE_CELL   = "calTitleDateCell";           
-var CLASS_CAL_TITLE_TABLE       = "calTitleTable";              
-var CLASS_CAL_TITLE_FIELD_EXP   = "calTitleFieldExpanded";      
-var CLASS_CAL_DATE_TIME_EXP     = "calDateTimeFieldExpanded";   
-var CLASS_CAL_DATE_FIELD        = "calDateField";               
-var CLASS_CAL_TIME_EXP          = "calTimeFieldExpanded";       
-var CLASS_CAL_TIME_EXP_COLON    = "calTimeFieldExpandedColon";  
-var CLASS_CAL_TITLE_FIELD_COLL  = "calTitleFieldCollapsed";     
-var CLASS_CAL_DATE_TIME_COLL    = "calDateTimeFieldCollapsed";  
-var CLASS_CAL_TIME_COLL         = "calTimeFieldCollapsed";      
+var CLASS_CAL_DIV               = "calDiv";
+var CLASS_CAL_TABLE             = "calTable";
+var CLASS_CAL_EXPAND_BAR        = "calExpandBar";
+var CLASS_CAL_COLLAPSE_BAR      = "calCollapseBar";
+var CLASS_CAL_TITLE_DATE_CELL   = "calTitleDateCell";
+var CLASS_CAL_TITLE_TABLE       = "calTitleTable";
+var CLASS_CAL_TITLE_FIELD_EXP   = "calTitleFieldExpanded";
+var CLASS_CAL_DATE_TIME_EXP     = "calDateTimeFieldExpanded";
+var CLASS_CAL_DATE_FIELD        = "calDateField";
+var CLASS_CAL_TIME_EXP          = "calTimeFieldExpanded";
+var CLASS_CAL_TIME_EXP_COLON    = "calTimeFieldExpandedColon";
+var CLASS_CAL_TITLE_FIELD_COLL  = "calTitleFieldCollapsed";
+var CLASS_CAL_DATE_TIME_COLL    = "calDateTimeFieldCollapsed";
+var CLASS_CAL_TIME_COLL         = "calTimeFieldCollapsed";
 var CLASS_CAL_TIME_DISABLED     = "calTimeFieldDisabled";
 var CLASS_CAL_MONTH_ADVANCE     = "calMonthAdvance";
 var CLASS_CAL_MONTH_ADV_CLICK   = "calMonthAdvanceClick";
@@ -92,7 +92,7 @@ function calShowCalendar(calVar)
 /**
 *** Sets the selected timezone
 **/
-function calSelectTimeZone(tmz) 
+function calSelectTimeZone(tmz)
 {
     calSelectedTMZ = tmz;
 };
@@ -202,7 +202,7 @@ var FADE_INTERVAL_MS    = 1;
 *** Create Calendar object
 *** @param calVarName  The name of the variable holding this calendar objects.  This is
 ***                    needed for self referencing when creating the calendar HTML.
-*** @param calFormID   The form element that is to contain the selected date/time.  This 
+*** @param calFormID   The form element that is to contain the selected date/time.  This
 ***                    value is lazily evaluated to determine the form element.
 *** @param year        The starting year
 *** @param month1      The starting month
@@ -462,7 +462,7 @@ Calendar.prototype.getArgDate = function()
     var YY = this.year;
     var MM = (this.month1  <= 9)? ("0" + this.month1 ) : this.month1;
     var DD = (this.selDay  <= 9)? ("0" + this.selDay ) : this.selDay;
-    return YY + '/' + MM + '/' + DD; 
+    return YY + '/' + MM + '/' + DD;
 };
 
 /**
@@ -472,7 +472,7 @@ Calendar.prototype.getArgDateTime = function()
 {
     var hh = (this.selHour <= 9)? ('0' + this.selHour) : this.selHour;
     var mm = (this.selMin  <= 9)? ("0" + this.selMin)  : this.selMin;
-    return this.getArgDate() + "/" + hh + ":" + mm; 
+    return this.getArgDate() + "/" + hh + ":" + mm;
 };
 
 /**
@@ -488,29 +488,29 @@ Calendar.prototype.setFormDate = function()
 
     /* date */
     var dfld = document.getElementById(this.calID + CAL_ID_DATE);
-    if (dfld != null) { 
-        dfld.innerHTML = calFormatDisplayDate(YY,MM,DD) ; 
+    if (dfld != null) {
+        dfld.innerHTML = calFormatDisplayDate(YY,MM,DD) ;
     }
 
     /* time */
     var tfld = document.getElementById(this.calID + CAL_ID_TIME);
     if (tfld != null) {
-        tfld.innerHTML = hh + ":" + mm; 
+        tfld.innerHTML = hh + ":" + mm;
     } else {
         var hhfld = document.getElementById(this.calID + CAL_ID_TIME_HH);
-        if (hhfld != null) { 
+        if (hhfld != null) {
             if (calTextTimeEntry) {
-                hhfld.value = hh; 
+                hhfld.value = hh;
             } else {
-                hhfld.innerHTML = hh; 
+                hhfld.innerHTML = hh;
             }
         }
         var mmfld = document.getElementById(this.calID + CAL_ID_TIME_MM);
-        if (mmfld != null) { 
+        if (mmfld != null) {
             if (calTextTimeEntry) {
-                mmfld.value = mm; 
+                mmfld.value = mm;
             } else {
-                mmfld.innerHTML = mm; 
+                mmfld.innerHTML = mm;
             }
         }
     }
@@ -518,7 +518,7 @@ Calendar.prototype.setFormDate = function()
     /* form */
     if (this.calFormID != null) {
         var formElem = eval("document."+this.calFormID);
-        formElem.value = YY + '/' + MM + '/' + DD + "/" + hh + ":" + mm; 
+        formElem.value = YY + '/' + MM + '/' + DD + "/" + hh + ":" + mm;
     }
 
 };
@@ -774,8 +774,8 @@ Calendar.prototype._fadeCalendar = function(expand)
         var thisRows = expand? this.fadeLines : (4 - this.fadeLines);
         var othrRows = 4 - thisRows;
         this._writeCalendar(true, thisRows);
-        if (otherCal) { 
-            otherCal._writeCalendar(true, othrRows); 
+        if (otherCal) {
+            otherCal._writeCalendar(true, othrRows);
         }
         this.fadeLines++;
         setTimeout(this.calVarName+"._fadeCalendar("+expand+")",FADE_INTERVAL_MS);
@@ -783,7 +783,7 @@ Calendar.prototype._fadeCalendar = function(expand)
         this.expanded = expand;
         this.writeCalendar();
         if (otherCal) {
-            otherCal.setExpanded(!this.expanded, false/*fade*/); 
+            otherCal.setExpanded(!this.expanded, false/*fade*/);
         }
     }
 };
@@ -982,7 +982,7 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
 
     /* start calendar HTML */
     var calendarHTML = "";
-    calendarHTML += "<table id='"+tableID+"' class='"+CLASS_CAL_TABLE+"' cellspacing='0' cellpadding='0'>\n";
+    calendarHTML += "<table id='"+tableID+"' class='"+CLASS_CAL_TABLE+" table' cellspacing='0' cellpadding='0'>\n";
 
     /* collapse/expand bar */
     var clickExpand = "";
@@ -1007,9 +1007,9 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
             }
             var dirImage = null
             if (this.drawDivBox) {
-                dirImage = expanded? "/images/arrowUp3.png" : "/images/arrowDn3.png";
+                dirImage = expanded? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "/images/arrowDn3.png";
             } else {
-                dirImage = (hasPrior != expanded)? "/images/arrowUp3.png" : "/images/arrowDn3.png";
+                dirImage = (hasPrior != expanded)? "https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/arrowUp3.png" : "/images/arrowDn3.png";
             }
             calendarHTML += "<img src=\"" + calImageBaseDir + dirImage + "\" height='5'>";
         }
@@ -1019,7 +1019,7 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
 
     /* calendar title (ie "From   2008/08/08 | 00:00") */
     calendarHTML += "<tr><td class='"+CLASS_CAL_TITLE_DATE_CELL+"'>\n";
-    calendarHTML += "<table class='"+CLASS_CAL_TITLE_TABLE+"' cellspacing='0' cellpadding='0'>\n";
+    calendarHTML += "<table class='"+CLASS_CAL_TITLE_TABLE+" table' cellspacing='0' cellpadding='0'>\n";
     calendarHTML += "<tr>\n";
     if (expanded || this.drawFixedExpanded) {
         // display as expanded (or collapsible not allowed)
@@ -1038,12 +1038,12 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
             var tw = 13; // pixel width: 12 for FF
             calendarHTML += "<input class='"+CLASS_CAL_TIME_EXP+"' id='"+hourID+"' title='"+TOOLTIP_SET_HOUR+"'" +
                 "onkeypress=\"javascript:return "+this.calVarName+".timeDigitKey(event,0);\" " +
-                "onchange=\"javascript:"+this.calVarName+".setInputHour();\" " + 
+                "onchange=\"javascript:"+this.calVarName+".setInputHour();\" " +
                 "size='2' maxlength='2' style='border:0; margin:0; padding:0; width:"+tw+"px;'></input>";
             calendarHTML += "<span class='"+CLASS_CAL_TIME_EXP_COLON+"'>:</span>";
             calendarHTML += "<input class='"+CLASS_CAL_TIME_EXP+"' id='"+minuteID+"' title='"+TOOLTIP_SET_MINUTE+"'" +
                 "onkeypress=\"javascript:return "+this.calVarName+".timeDigitKey(event,1);\" " +
-                "onchange=\"javascript:"+this.calVarName+".setInputMinute();\" " + 
+                "onchange=\"javascript:"+this.calVarName+".setInputMinute();\" " +
                 "size='2' maxlength='2' style='border:0; margin:0; padding:0; width:"+tw+"px;'></input>";
         } else {
             calendarHTML += "<a class='"+CLASS_CAL_TIME_EXP+"' id='"+hourID+"' href=\"javascript:"+this.calVarName+".advanceHour(1);\" title='"+TOOLTIP_SET_HOUR+"'></a>";
@@ -1076,7 +1076,7 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
 
         /* calendar month header */
         calendarBODY += "<tr><td>\n";
-        calendarBODY += "<table class='"+CLASS_CAL_MONTH_HEADER_TBL+"' cellspacing='0' cellpadding='0'>\n";
+        calendarBODY += "<table class='"+CLASS_CAL_MONTH_HEADER_TBL+" table' cellspacing='0' cellpadding='0'>\n";
         calendarBODY += "<tr>\n";
         var prevYY   = "&#9669;"; // left-arrow year
         var prevMM   = "&#9668;"; // left-arrow month
@@ -1143,7 +1143,7 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
 
         /* calendar days */
         calendarBODY += "<tr><td class='"+CLASS_CAL_MONTH_DAYS_CELL+"'>\n";
-        calendarBODY += "<table class='"+CLASS_CAL_MONTH_DAYS_TBL+"' cellspacing='0' cellpadding='0'>\n";
+        calendarBODY += "<table class='"+CLASS_CAL_MONTH_DAYS_TBL+" table' cellspacing='0' cellpadding='0'>\n";
         calendarBODY += "<tr>\n";
         for (var wdx = 0; wdx < 7; wdx++) {
             var wd = (wdx + calFirstDOW) % 7;
@@ -1182,7 +1182,7 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
         calendarBODY += "</td></tr>\n";
 
     }
-    
+
     if (this.drawDivBox) {
 
         /* base HTML */
@@ -1196,8 +1196,8 @@ Calendar.prototype._writeCalendar = function(expanded, calRows)
             var absLoc = getElementPosition(calElem);
             var absSiz = getElementSize(calElem);
             this.divCalView = createDivBox(CLASS_CAL_DIV, absLoc.left + 1, absLoc.top + absSiz.height + 1, -1, -1);
-            this.divCalView.innerHTML = 
-                "<table class='"+CLASS_CAL_TABLE+"' cellspacing='0' cellpadding='0'>\n" +
+            this.divCalView.innerHTML =
+                "<table class='"+CLASS_CAL_TABLE+" table' cellspacing='0' cellpadding='0'>\n" +
                 calendarBODY +
                 "</table>\n";
             document.body.appendChild(this.divCalView);
@@ -1255,11 +1255,11 @@ Calendar.prototype._divCloseCalendar = function()
 /* return true if this event represents an Digit key (0..9) */
 Calendar.prototype.timeDigitKey = function(event, isMin)
 {
-    
+
     if (!this.enabled) {
         return true; // pass through
     }
-    
+
     var code = getKeyCode(event);
     if ((code >= 0x30) && (code <= 0x39)) { // digit
         return true; // pass through
@@ -1275,12 +1275,12 @@ Calendar.prototype.timeDigitKey = function(event, isMin)
     } else
     if ((code == 38) || (code == 33) || (code == 117) || (code == 85)) { // UpArrow("&"), PageUp("!"), "u", "U"
         var inc = ((code == 33) || event.ctrlKey || event.shiftKey)? 10 : 1;
-        if (isMin) { 
+        if (isMin) {
             this.setInputMinute();
-            this.advanceMinute(inc); 
-        } else { 
+            this.advanceMinute(inc);
+        } else {
             this.setInputHour();
-            this.advanceHour(inc); 
+            this.advanceHour(inc);
         }
         return false;
     } else
@@ -1288,28 +1288,28 @@ Calendar.prototype.timeDigitKey = function(event, isMin)
         var dec = ((code == 34) || event.ctrlKey || event.shiftKey)? -10 : -1;
         if (isMin) {
             this.setInputMinute();
-            this.advanceMinute(dec); 
-        } else { 
+            this.advanceMinute(dec);
+        } else {
             this.setInputHour();
-            this.advanceHour(dec); 
+            this.advanceHour(dec);
         }
         return false;
     } else
     if ((code == 36) || (code == 104) || (code == 72)) { // Home("$"), "h", "H"
-        if (isMin) { 
+        if (isMin) {
             this.selMin = 0;
             this.setFormDate();
-        } else { 
+        } else {
             this.selHour = 0;
             this.setFormDate();
         }
         return false;
     } else
     if ((code == 35) || (code == 101) || (code == 69)) { // End("#"), "e", "E"
-        if (isMin) { 
+        if (isMin) {
             this.selMin = 59;
             this.setFormDate();
-        } else { 
+        } else {
             this.selHour = 23;
             this.setFormDate();
         }

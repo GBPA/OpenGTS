@@ -154,7 +154,7 @@ public class ExpandMenu
                     didDisplayGroup = true;
                     out.write("<li class='"+groupClass+"'>" + mg.getTitle(locale) + "\n");
                     if (showInline) {
-                        out.write("<br><table cellpadding='0' cellspacing='0' border='0'><tr>\n");
+                        out.write("<br><table class='table' cellpadding='0' cellspacing='0' border='0'><tr>\n");
                     } else {
                         out.write("<ul>\n"); // <-- start menu sub group
                     }
@@ -216,7 +216,7 @@ public class ExpandMenu
                         // this section may not appear as expected on IE
 
                         /* start table */
-                        out.write("<table class='"+leafClass+"' cellpadding='0' cellspacing='0'>");
+                        out.write("<table class='"+leafClass+" table' cellpadding='0' cellspacing='0'>");
                         out.write("<tr>");
 
                         /* menu icon */

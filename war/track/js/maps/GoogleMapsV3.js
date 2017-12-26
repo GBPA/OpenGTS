@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@
 //   JSDrawGeozone(int type, double radius, JSMapPoint points[], String color, int primaryIndex)
 //   JSShowPushpin(JSMapPushpin pushPin, boolean center)
 //   JSPauseReplay(int replay)
-//   JSUnload() 
+//   JSUnload()
 // ----------------------------------------------------------------------------
 // Change History:
 //  2008/07/08  Martin D. Flynn
@@ -138,16 +138,16 @@ google.maps.Map.prototype.initGTS = function()
             this.setMapTypeId(google.maps.MapTypeId.SATELLITE);
         } else
         if (DEFAULT_VIEW == "hybrid") {
-            this.setMapTypeId(google.maps.MapTypeId.HYBRID); 
+            this.setMapTypeId(google.maps.MapTypeId.HYBRID);
         } else
         if (DEFAULT_VIEW == "terrain") {
-            this.setMapTypeId(google.maps.MapTypeId.TERRAIN); 
+            this.setMapTypeId(google.maps.MapTypeId.TERRAIN);
         } else
         if ((DEFAULT_VIEW == "road") || (DEFAULT_VIEW == "normal") || (DEFAULT_VIEW == "default")) {
-            this.setMapTypeId(google.maps.MapTypeId.ROADMAP); 
+            this.setMapTypeId(google.maps.MapTypeId.ROADMAP);
         } else
         if (DEFAULT_VIEW == "") {
-            this.setMapTypeId(google.maps.MapTypeId.ROADMAP); 
+            this.setMapTypeId(google.maps.MapTypeId.ROADMAP);
         } else {
             this.setMapTypeId(DEFAULT_VIEW);
         }
@@ -216,10 +216,10 @@ google.maps.Map.prototype.initGTS = function()
     this.weatherLayer = null;
     /*
     if (GOOGLE_WEATHER_OVERLAY) {
-        var tempUnits = (WEATHER_TEMPU == "F")? 
+        var tempUnits = (WEATHER_TEMPU == "F")?
             google.maps.weather.TemperatureUnit.FAHRENHEIT :
             google.maps.weather.TemperatureUnit.CELSIUS;
-        var windspeedUnits = (WEATHER_SPEEDU == "MPH")? 
+        var windspeedUnits = (WEATHER_SPEEDU == "MPH")?
             google.maps.weather.WindSpeedUnit.MILES_PER_HOUR :
             google.maps.weather.WindSpeedUnit.KILOMETERS_PER_HOUR;
         this.weatherLayer = new google.maps.weather.WeatherLayer({
@@ -386,10 +386,10 @@ google.maps.Map.prototype.addPushpinMarker = function(pp/*JSMapPushpin*/)
 
     /* info-balloon 'click' listener */
     var self = this;
-    google.maps.event.addListener(pp.marker, 'click', function(event) { 
+    google.maps.event.addListener(pp.marker, 'click', function(event) {
         self.showPushpinPopup(pp);
     });
-    
+
 };
 
 /* remove all pushpins from map */
@@ -664,7 +664,7 @@ function jsNewGLatLngBounds()
 /**
 *** Create GSize()
 **/
-function jsNewGSize(W, H) 
+function jsNewGSize(W, H)
 {
     return new google.maps.Size(W, H);
 };
@@ -672,7 +672,7 @@ function jsNewGSize(W, H)
 /**
 *** Create GPoint()
 **/
-function jsNewGPoint(X, Y) 
+function jsNewGPoint(X, Y)
 {
     return new google.maps.Point(X, Y);
 };
@@ -680,7 +680,7 @@ function jsNewGPoint(X, Y)
 /**
 *** Create GPolyline()
 **/
-function jsNewGPolyline(latLonList, 
+function jsNewGPolyline(latLonList,
     borderColor, borderWidth, borderOpacity)
 {
     return new google.maps.Polyline({
@@ -694,8 +694,8 @@ function jsNewGPolyline(latLonList,
 /**
 *** Create GPolygon()
 **/
-function jsNewGPolygon(latLonList/*GLatLng[]*/, 
-    borderColor, borderWidth, borderOpacity, 
+function jsNewGPolygon(latLonList/*GLatLng[]*/,
+    borderColor, borderWidth, borderOpacity,
     fillColor, fillOpacity)
 {
     return new google.maps.Polygon({
@@ -713,7 +713,7 @@ function jsNewGPolygon(latLonList/*GLatLng[]*/,
 **/
 function jsNewGCircle(
     latLonCenter/*GLatLng*/, radiusM,
-    borderColor, borderWidth, borderOpacity, 
+    borderColor, borderWidth, borderOpacity,
     fillColor, fillOpacity)
 {
     try {
@@ -739,13 +739,13 @@ function jsNewGCircle(
 *** Create Pushpin Marker()
 **/
 function jsNewImageMarker(
-    point/*GLatLng*/, 
-    image, iconSize, iconAnchor, 
-    shadow, shadowSize, 
+    point/*GLatLng*/,
+    image, iconSize, iconAnchor,
+    shadow, shadowSize,
     infoWindowAnchor,
     draggable,
     zIndex
-    ) 
+    )
 {
     var iconImage = new google.maps.MarkerImage(
         image,                          // imageURL
@@ -797,7 +797,7 @@ function JSMap(element)
             },
             panControl: true, /* new */
             draggable: true,
-            draggableCursor: "auto", 
+            draggableCursor: "auto",
             draggingCursor: "move" ,
             disableDoubleClickZoom: !GOOGLE_DOUBLE_CLICK_ZOOM, // true,
             overviewMapControl: true,
@@ -982,7 +982,7 @@ function JSMap(element)
         // - http://userscripts.org/scripts/review/84975
         this.gmapGoogleMap.mapTypes.set('bing', new google.maps.ImageMapType({
             name: "Bing", // Bing/VirtualEarth
-            getTileUrl: function(C, Z) { 
+            getTileUrl: function(C, Z) {
                 var sid = (((C.y&1)<<1)+(C.x&1));
                 var URL = "http://ecn.t"+sid+".tiles.virtualearth.net/tiles/r";
                 for (var i = Z-1; i>=0; i--) { URL += (((((C.y>>i)&1)<<1)+((C.x>>i)&1))); }
@@ -1016,7 +1016,7 @@ function JSMap(element)
         var APP_CD = GOOGLE_NOKIAHERE_APPCODE;
         this.gmapGoogleMap.mapTypes.set('here', new google.maps.ImageMapType({
             name: "Here", // NokiaHere
-            getTileUrl: function(C, Z) { 
+            getTileUrl: function(C, Z) {
                 return NH_URL+"/"+Z+"/"+C.x+"/"+C.y+"/256/png8?lg=ENG&app_id="+APP_ID+"&app_code="+APP_CD;
             },
             tileSize: new google.maps.Size(256, 256),
@@ -1382,8 +1382,8 @@ JSMap.prototype._startReplayTimer = function(replay, interval)
 **/
 JSMap.prototype._stopReplayTimer = function()
 {
-    if (this.replayTimer != null) { 
-        clearTimeout(this.replayTimer); 
+    if (this.replayTimer != null) {
+        clearTimeout(this.replayTimer);
         this.replayTimer = null;
     }
     jsmSetReplayState(this.replayInProgress? REPLAY_PAUSED : REPLAY_STOPPED);
@@ -1500,11 +1500,11 @@ JSMap.prototype.JSDrawPushpins = function(pushPins, recenterMode, replay)
         try {
             if (pointCount <= 0) {
                 this.JSSetCenter(DEFAULT_CENTER, DEFAULT_ZOOM);
-            } else 
+            } else
             if (recenterMode == RECENTER_LAST) { // center on last point
                 var pp = drawPushpins[drawPushpins.length - 1];
                 this.JSSetCenter(new JSMapPoint(pp.lat, pp.lon));
-            } else 
+            } else
             if (recenterMode == RECENTER_PAN) { // pan to last point
                 var pp = drawPushpins[drawPushpins.length - 1];
                 this.JSSetCenter(new JSMapPoint(pp.lat, pp.lon));
@@ -1671,7 +1671,7 @@ JSMap.prototype._replayPushpins = function(replay)
             continue; // goto next point
         }
         // -- skip nearby points?
-        if ((AutoSkipRadius > 0.0) && (this.replayIndex > 0) && 
+        if ((AutoSkipRadius > 0.0) && (this.replayIndex > 0) &&
             ((this.replayIndex + 1) < this.replayPushpins.length)) {
             var lastPP = this.replayPushpins[this.replayIndex - 1];
             if (geoIsValid(lastPP.lat,lastPP.lon)) {
@@ -1755,7 +1755,7 @@ JSMap.prototype.JSDrawRoute = function(points, color)
     }
 
     /* snap-to-road? */
-    // -- this attempts to use the "Directions" API to perform a "SnapToRoad", 
+    // -- this attempts to use the "Directions" API to perform a "SnapToRoad",
     // -  however this does not work as well as might be expected.  If a waypoint
     // -  lat/lon is off by a few feet into the oncoming traffic area, it will
     // -  route you through the next available u-turn or freeway overpass to get
@@ -1796,13 +1796,13 @@ JSMap.prototype.JSDrawRoute = function(points, color)
                     polyLine.setMap(gmap); // this.gmapGoogleMap.addOverlay(polyLine); // "#003399"
                     gmap.addRouteMarker(polyLine);
                     if (ROUTE_LINE_ARROWS) {
-                        self.midArrows(LL); 
+                        self.midArrows(LL);
                     }
                     didDrawRoute = true;
                 } else
                 if (status == MAX_WAYPOINTS_EXCEEDED) {
                     // Too many DirectionsWaypoints were provided in the DirectionsRequest
-                    // Max waypoints is 8 (23 for premier), plus origin and destination. 
+                    // Max waypoints is 8 (23 for premier), plus origin and destination.
                     didDrawRoute = false;
                 } else {
                     // OVER_QUERY_LIMIT : The webpage has gone over the requests limit in too short a period of time
@@ -1860,7 +1860,7 @@ JSMap.prototype.bearing = function(from, to) { // google.maps.LatLng
 
     return angle;
 };
-       
+
 // [Juan Carlos Argueta]  A function to create the arrow head at the end of the polyline ===
 //  http://www.google.com/intl/en_ALL/mapfiles/dir_0.png
 //  http://www.google.com/intl/en_ALL/mapfiles/dir_3.png
@@ -1875,7 +1875,7 @@ JSMap.prototype.arrowHead = function(points) {	  // GLatLng[]
     var dir = this.bearing(p2,p1);
     dir = Math.round(dir/3) * 3;
     while (dir >= 120) { dir -= 120; }
-    // ----- use the corresponding triangle marker 
+    // ----- use the corresponding triangle marker
     var arrowMarker = jsNewImageMarker( // arrowhead marker
         p1,                                                             // GLatLng
         "http://www.google.com/intl/en_ALL/mapfiles/dir_"+dir+".png",   // image
@@ -1890,18 +1890,18 @@ JSMap.prototype.arrowHead = function(points) {	  // GLatLng[]
     // ----- add arrow marker
     arrowMarker.setMap(this.gmapGoogleMap);  // this.gmapGoogleMap.addOverlay(arrowMarker);
 };
-      
+
 // [Juan Carlos Argueta]  A function to put arrow heads at intermediate points
-JSMap.prototype.midArrows = function(points) {	// GLatLng[]	  
+JSMap.prototype.midArrows = function(points) {	// GLatLng[]
     if (!points || (points.length < 2)) { return; }
-    for (var i = 1; i < points.length - 1; i++) {  
+    for (var i = 1; i < points.length - 1; i++) {
         var p1 = points[i-1];
         var p2 = points[i+1];
         // ----- round it to a multiple of 3 and cast out 120s
         var dir = this.bearing(p1,p2);
         dir = Math.round(dir/3) * 3;
         while (dir >= 120) { dir -= 120; }
-        // ----- use the corresponding triangle marker 
+        // ----- use the corresponding triangle marker
         var arrowMarker = jsNewImageMarker( // route arrow marker
             points[i],                                                      // GLatLng
             "http://www.google.com/intl/en_ALL/mapfiles/dir_"+dir+".png",   // image
@@ -1922,7 +1922,7 @@ JSMap.prototype.midArrows = function(points) {	// GLatLng[]
 // ----------------------------------------------------------------------------
 
 /**
-*** Remove previously drawn shapes 
+*** Remove previously drawn shapes
 **/
 JSMap.prototype._removeShapes = function()
 {
@@ -1955,9 +1955,9 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
     }
 
     /* clear existing shapes? */
-    if (type.startsWith("!")) { 
+    if (type.startsWith("!")) {
         this._removeShapes();
-        type = type.substr(1); 
+        type = type.substr(1);
     }
 
     /* no geopoints? */
@@ -2005,12 +2005,12 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
                 var pt270 = geoRadiusPoint(jPT.lat, jPT.lon, radiusM, 270.0);
                 mapBounds.extend(jsNewGLatLng(pt270.lat,pt270.lon));
             }
-            
+
         }
 
     } else
     if (type == "rectangle") { // ZONE_BOUNDED_RECT
-        
+
         if (verticePts.length >= 2) {
 
             /* create rectangle */
@@ -2021,7 +2021,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             var BL    = jsNewGLatLng(((vp0.lat<vp1.lat)?vp0.lat:vp1.lat),((vp0.lon<vp1.lon)?vp0.lon:vp1.lon));
             var BR    = jsNewGLatLng(((vp0.lat<vp1.lat)?vp0.lat:vp1.lat),((vp0.lon>vp1.lon)?vp0.lon:vp1.lon));
             var crPts = [ TL, TR, BR, BL, TL ];
-    
+
             /* draw rectangle */
             var crPoly = jsNewGPolygon(crPts, color, 2, 0.9, color, 0.1);
             crPoly.setMap(this.gmapGoogleMap); // this.gmapGoogleMap.addOverlay(crPoly);
@@ -2029,15 +2029,15 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             didDrawShape = true;
 
             /* map bounds */
-            if (mapBounds) { 
-                for (var b = 0; b < crPts.length; b++) { mapBounds.extend(crPts[b]); } 
+            if (mapBounds) {
+                for (var b = 0; b < crPts.length; b++) { mapBounds.extend(crPts[b]); }
             }
 
         }
 
     } else
     if (type == "polygon") { // ZONE_POLYGON
-        
+
         if (verticePts.length >= 3) {
 
             /* accumulate polygon vertices */
@@ -2060,8 +2060,8 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
     } else
     if (type == "corridor") { // ZONE_SWEPT_POINT_RADIUS
 
-        // TODO: 
-        
+        // TODO:
+
     } else
     if (type == "center") {
 
@@ -2098,7 +2098,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
         ppMarker.setInfoWindowHTML(
             "<div class='geozoneMarker'>"+desc+"&nbsp;&nbsp;</div>"
         );
-        google.maps.event.addListener(ppMarker, 'click', function(event) { 
+        google.maps.event.addListener(ppMarker, 'click', function(event) {
             ppMarker.openPushpinPopup();
             ppMarker.infoWindowOpen = false; // local hack to allow re-opening
         });
@@ -2252,7 +2252,7 @@ JSMap.prototype.JSDrawGeozone = function(type, radiusM, points, color, primNdx)
     } else {
 
         alert("Geozone type not supported: " + type);
-        
+
     }
 
     /* center on geozone */
@@ -2313,10 +2313,10 @@ function PointRadiusGeozone(gMap, zNdx,
         /* create draggable center marker */
         this.centerMarker = jsNewImageMarker(
             this.centerPoint,                                               // GLatLng
-            "http://labs.google.com/ridefinder/images/mm_20_blue.png",      // image
+            "https://labs.google.com/ridefinder/images/mm_20_blue.png",      // image
             jsNewGSize(12,20),                                              // iconSize
             jsNewGPoint(6,20),                                              // iconAnchor
-            "http://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
+            "https://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
             jsNewGSize(22,20),                                              // shadowSize
             null,                                                           // infoWindowAnchor
             true,                                                           // draggable
@@ -2331,7 +2331,7 @@ function PointRadiusGeozone(gMap, zNdx,
             var newRP = self.calcRadiusPoint(geoHeading(oldCP.lat(),oldCP.lng(),oldRP.lat(),oldRP.lng()));
             self.centerPoint = newCP;  // GLatLng
             self.radiusMarker.setPosition(newRP);
-            self.drawCircle(); 
+            self.drawCircle();
             jsmSetPointZoneValue(newCP.lat(), newCP.lng(), self.radiusMeters);
         });
 
@@ -2339,10 +2339,10 @@ function PointRadiusGeozone(gMap, zNdx,
         this.radiusPoint  = this.calcRadiusPoint(/*Global*/pointRadiusRadiusHeading); // GLatLng
         this.radiusMarker = jsNewImageMarker(
             this.radiusPoint,                                               // GLatLng
-            "http://labs.google.com/ridefinder/images/mm_20_gray.png",      // image
+            "https://labs.google.com/ridefinder/images/mm_20_gray.png",      // image
             jsNewGSize(12,20),                                              // iconSize
             jsNewGPoint(6,20),                                              // iconAnchor
-            "http://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
+            "https://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
             jsNewGSize(22,20),                                              // shadowSize
             null,                                                           // infoWindowAnchor
             true,                                                           // draggable
@@ -2470,15 +2470,15 @@ function PolygonGeozone(gMap, points/*JSMapPoint[]*/, color, edit)
 
         /* vertice Icon/marker */
         var vertPoint = jsNewGLatLng(p.lat, p.lon);
-        var vertPushpin = (count == 0)? 
-            "http://labs.google.com/ridefinder/images/mm_20_green.png" :
-            "http://labs.google.com/ridefinder/images/mm_20_blue.png";
+        var vertPushpin = (count == 0)?
+            "https://labs.google.com/ridefinder/images/mm_20_green.png" :
+            "https://labs.google.com/ridefinder/images/mm_20_blue.png";
         var vertMarker = jsNewImageMarker( // polygon vertice
             vertPoint,                                                      // GLatLng
             vertPushpin,                                                    // image
             jsNewGSize(12,20),                                              // iconSize
             jsNewGPoint(6,20),                                              // iconAnchor
-            "http://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
+            "https://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
             jsNewGSize(22,20),                                              // shadowSize
             null,                                                           // infoWindowAnchor
             this.editable,                                                  // draggable
@@ -2512,10 +2512,10 @@ function PolygonGeozone(gMap, points/*JSMapPoint[]*/, color, edit)
         var center = bounds.getCenter();
         this.centerMarker = jsNewImageMarker( // polygon center
             center,                                                         // GLatLng
-            "http://labs.google.com/ridefinder/images/mm_20_red.png",       // image
+            "https://labs.google.com/ridefinder/images/mm_20_red.png",       // image
             jsNewGSize(12,20),                                              // iconSize
             jsNewGPoint(6,20),                                              // iconAnchor
-            "http://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
+            "https://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
             jsNewGSize(22,20),                                              // shadowSize
             null,                                                           // infoWindowAnchor
             true,                                                           // draggable
@@ -2548,7 +2548,7 @@ function PolygonGeozone(gMap, points/*JSMapPoint[]*/, color, edit)
         } else {
             this.centerMarker.isVisible = false;    // polygon center
         }
-        
+
     }
 
     /* draw polygon */
@@ -2567,7 +2567,7 @@ PolygonGeozone.prototype._polygonVerticeDrag = function(marker, iNdx)
         var point = vertMarker.getPosition();
         zoneMapSetIndex(vNdx, false);
         _jsmSetPointZoneValue(vNdx, point.lat(), point.lng(), 0);
-        self.drawPolygon(); 
+        self.drawPolygon();
         self.polyBounds = jsNewGLatLngBounds();
         for (var x = 0; x < self.verticeMarkers.length; x++) {
             var vpt = self.verticeMarkers[x].getPosition();
@@ -2595,7 +2595,7 @@ PolygonGeozone.prototype.drawPolygon = function()
     if (this.verticeMarkers.length > 0) {
         for (var i = 0; i < this.verticeMarkers.length; i++) {
             var vm  = this.verticeMarkers[i];
-            var vpt = vm.getPosition(); 
+            var vpt = vm.getPosition();
             if (vm.isVisible) { // polygon vertice
                 vm.setMap(null);
                 vm.isVisible = false;  // polygon vertice
@@ -2641,7 +2641,7 @@ PolygonGeozone.prototype.drawPolygon = function()
             this.polygon.setPath(points);
         }
         this.polygon.setMap(this.googleMap);
-    } else 
+    } else
     if (this.polygon != null) {
         this.polygon.setMap(null);
         this.polygon = null;
@@ -2697,10 +2697,10 @@ function CorridorGeozone(gMap, points, radiusM, color, editable)
         var vertPoint  = jsNewGLatLng(p.lat, p.lon);
         var vertMarker = jsNewImageMarker( // corridor vertice
             vertPoint,                                                      // GLatLng
-            "http://labs.google.com/ridefinder/images/mm_20_blue.png",      // image
+            "https://labs.google.com/ridefinder/images/mm_20_blue.png",      // image
             jsNewGSize(12,20),                                              // iconSize
             jsNewGPoint(6,20),                                              // iconAnchor
-            "http://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
+            "https://labs.google.com/ridefinder/images/mm_20_shadow.png",    // shadow
             jsNewGSize(22,20),                                              // shadowSize
             null,                                                           // infoWindowAnchor
             editable,                                                       // draggable
@@ -2728,9 +2728,9 @@ function CorridorGeozone(gMap, points, radiusM, color, editable)
         for (var i = 0; i < this.verticeMarkers.length; i++) {
             this._corridorVerticeDrag(this.verticeMarkers[i], i);
         }
-        
+
     }
-    
+
     /* draw corridor */
     this.drawCorridor();
 
@@ -2751,10 +2751,10 @@ CorridorGeozone.prototype._corridorVerticeDrag = function(marker, iNdx)
         var point = vertMarker.getPosition();  // GLatLng
         zoneMapSetIndex(vNdx, false);
         _jsmSetPointZoneValue(vNdx, point.lat(), point.lng(), self.radiusMeters);
-        self.drawCorridor(); 
+        self.drawCorridor();
         //self.corrBounds = jsNewGLatLngBounds();
         //for (var i = 0; i < self.verticeMarkers.length; i++) {
-        //    var vpt = self.verticeMarkers[i].getPosition(); 
+        //    var vpt = self.verticeMarkers[i].getPosition();
         //    if (geoIsValid(vpt.lat(),vpt.lng())) {
         //        self.corrBounds.extend(vpt);
         //    }
@@ -2791,7 +2791,7 @@ CorridorGeozone.prototype.drawCorridor = function()
             this.corridor.push(circle);
             circle.setMap(this.googleMap); // this.googleMap.addOverlay(circlePoly);
             bounds.extend(vPT);
-            
+
             /* draw connecting corridor */
             if (lastPT != null) {
                 var ptA = lastPT; // GLatLng
@@ -2812,7 +2812,7 @@ CorridorGeozone.prototype.drawCorridor = function()
                 rectPoly.setMap(this.googleMap); // this.googleMap.addOverlay(rectPoly);
             }
             lastPT = vPT; // GLatLng
-            
+
         }
     }
 

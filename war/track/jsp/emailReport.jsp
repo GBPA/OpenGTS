@@ -46,13 +46,13 @@ response.setDateHeader("EXPIRES"  , 0         );
 
   <!-- local style -->
   <style type="text/css">
-    BODY { 
+    BODY {
         direction: <gts:var>${localeDirection}</gts:var>;
     }
     TD.titleText {
       font-family: Arial;
       font-size: 18pt;
-      font-weight: bold; 
+      font-weight: bold;
       text-align: center;
       color: #000000;
     }
@@ -129,7 +129,7 @@ response.setDateHeader("EXPIRES"  , 0         );
 
   <!-- Begin Page footer ======================================== -->
   <tr>
-    <td style="font-size: 7pt; border-bottom: 1px solid #888888;">&nbsp;</td>
+    <td style="">&nbsp;</td>
   </tr>
   <tr>
   <td>

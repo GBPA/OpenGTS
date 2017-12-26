@@ -1,30 +1,30 @@
 
 /* ----------------------------------- */
 /* fixed menu */
-#topMenuFixed { 
-    font: normal 9pt sans-serif; 
+#topMenuFixed {
+    font: normal 9pt sans-serif;
     text-align: left;
 }
-#topMenuFixed UL { 
-    font: normal 9pt sans-serif; 
+#topMenuFixed UL {
+    font: normal 9pt sans-serif;
     text-align: left;
     margin: 0px;
     padding: 0px;
 }
 #topMenuFixed LI.menuGroup {
-    padding: 5px 0px 0px 0px; 
+    padding: 5px 0px 0px 0px;
 }
 #topMenuFixed LI.itemLeaf {
-    list-style-type: none; 
-    background: url(../images/Leaf.png); 
+    list-style-type: none;
+    background: url(https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/images/Leaf.png); 
     background-position: 15px 8px;
     background-repeat: no-repeat;
-    padding: 4px 0px 0px 36px; 
+    padding: 4px 0px 0px 36px;
     vertical-align: middle;
     /* display: inline; */
 }
 #topMenuFixed TABLE.itemLeaf {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     /* border: 1px solid red; */
 }
 #topMenuFixed TD.itemLeafIcon {
@@ -37,17 +37,17 @@
     vertical-align: middle;
 }
 #topMenuFixed TD.itemLeafDesc {
-    border: 0px; 
+    border: 0px;
 }
 #topMenuFixed SPAN.itemLeafDesc {
     /**/
 }
 #topMenuFixed SPAN.itemLeafHelp {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     padding: 3px 0px 0px 0px;
 }
 #topMenuFixed SPAN.itemLeafHelpPad {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     padding: 3px 0px 0px 0px; /* top, right, bottom, left */
 }
 
@@ -56,13 +56,13 @@
 #topMenuExpand {
     margin: 0px 0px 0px 0px;
     padding: 8px 0px 0px 0px;
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     text-align: left;
 }
 #topMenuExpand UL {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     text-align: left;
 }
 #topMenuExpand LI {
@@ -73,10 +73,10 @@
 #topMenuExpand LI.menuGroup {
     /* margin: 3 0 0 2; */
     /* padding: 0; */
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
 }
 #topMenuExpand .subNode {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
 }
 #topMenuExpand .symbols { /* name referenced in 'ExpandMenu.js' */
     margin: 0px 4px 0px 0px;
@@ -98,17 +98,17 @@
     vertical-align: middle;
 }
 #topMenuExpand TD.itemLeafDesc {
-    border: 0px; 
+    border: 0px;
 }
 #topMenuExpand SPAN.itemLeafDesc {
     /**/
 }
 #topMenuExpand SPAN.itemLeafHelp {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 10px;
 }
 #topMenuExpand SPAN.itemLeafHelpPad {
-    font: normal 9pt sans-serif; 
+    font: normal 9pt sans-serif;
     padding: 0px 0px 0px 20px; /* top, right, bottom, left */
 }

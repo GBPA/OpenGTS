@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -162,7 +162,7 @@ public class MenuBar
 
         /* MenuBar.js */
         JavaScriptTools.writeJSInclude(out, JavaScriptTools.qualifyJSFileRef("MenuBar.js"), request);
-        
+
         /* include anchor link */
         boolean inclAnchor = privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_includeTextAnchor,false);
 
@@ -202,7 +202,7 @@ public class MenuBar
                             }
                         }
                         out.write("<td class='"+CSS_MENU_CELL+"' height='\"+itemHeight+\"' onclick=\\\"javascript:"+onclick+";\\\" title=\\\""+help+"\\\">");
-                        if (inclAnchor) { 
+                        if (inclAnchor) {
                             // "menuBar.includeTextAnchor"
                             out.write("<a class='"+CSS_MENU_LINK+"'");
                             if (target.startsWith("_")) {
@@ -229,10 +229,10 @@ public class MenuBar
             }
         }
         out.println("    break; // error");
-        out.println("  }");	
-        out.println("  if (mbSubMenuObj) { document.body.appendChild(mbSubMenuObj); }");	
-        out.println("  return mbSubMenuObj;");	
-        out.println("}");	
+        out.println("  }");
+        out.println("  if (mbSubMenuObj) { document.body.appendChild(mbSubMenuObj); }");
+        out.println("  return mbSubMenuObj;");
+        out.println("}");
         JavaScriptTools.writeEndJavaScript(out);
 
     }
@@ -255,11 +255,11 @@ public class MenuBar
         out.write("\n");
         out.write("<!-- Begin Menu Bar -->\n");
         out.write("<td nowrap class='"+CSS_MENU_BAR+"'>\n");
-        out.write("<table border='0' cellpadding='0' cellspacing='0'>");
+        out.write("<table class='table' border='0' cellpadding='0' cellspacing='0'>");
         out.write("<tr style='margin-bottom:0px; padding-bottom:0px'>\n");
 
         if (privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_usePullDownMenus,DFT_USE_PULL_DOWN_MENUS)) {
-            
+
             Map<String,MenuGroup> menuMap = privLabel.getMenuGroupMap();
             boolean openOnMouseOver = privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_openOnMouseOver,false);
             for (String mgn : menuMap.keySet()) {
@@ -274,7 +274,7 @@ public class MenuBar
                     out.write("</td>\n");
                 }
             }
-        
+
         } else {
 
             /* explicitly add main menu */
@@ -290,7 +290,7 @@ public class MenuBar
                     out.write(" <td class='"+CSS_MENU_TAB_SEL+"'>"+desc+"</td>\n");
                 }
             }
-        
+
             /* add all other menu items (except logout) */
             Map<String,MenuGroup> menuMap = privLabel.getMenuGroupMap();
             for (String mgn : menuMap.keySet()) {
@@ -318,9 +318,9 @@ public class MenuBar
                     }
                 }
             }
-            
+
         }
-        
+
         out.write("</tr>\n");
         out.write("</table>\n");
         out.write("</td>\n");
@@ -336,7 +336,7 @@ public class MenuBar
         boolean inclAnchor = privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_includeTextAnchor,false);
 
         if (privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_usePullDownMenus,DFT_USE_PULL_DOWN_MENUS)) {
-            
+
             Map<String,MenuGroup> menuMap = privLabel.getMenuGroupMap();
             boolean openOnMouseOver = privLabel.getBooleanProperty(PrivateLabel.PROP_MenuBar_openOnMouseOver,false);
             for (String mgn : menuMap.keySet()) {
@@ -344,7 +344,7 @@ public class MenuBar
                 /* MenuGroup */
                 MenuGroup mg = menuMap.get(mgn);
                 if (!mg.showInMenuBar()) {
-                    // -- skip this menu 
+                    // -- skip this menu
                     continue;
                 }
 
@@ -375,9 +375,9 @@ public class MenuBar
                 }
 
             }
-                    
+
         }
-        
+
     }
 
     // ------------------------------------------------------------------------

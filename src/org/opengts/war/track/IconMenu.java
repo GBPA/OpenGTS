@@ -222,7 +222,7 @@ public class IconMenu
         String menuIconImage     = "menuIconImage";
 
         /* start menu */
-        out.println("<table id='"+topMenuID+"' class='"+menuTableClass+"' cellpadding='0' cellspacing='0' border='0' width='100%'>");
+        out.println("<table id='"+topMenuID+"' class='"+menuTableClass+" table' cellpadding='0' cellspacing='0' border='0' width='100%'>");
 
         /* iterate through menu groups */
         Map<String,MenuGroup> menuMap = privLabel.getMenuGroupMap();

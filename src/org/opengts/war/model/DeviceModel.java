@@ -2627,7 +2627,7 @@ public class DeviceModel
                         out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+createText+":</h1>\n");
                         out.write("<form name='"+FORM_DEVICE_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                         out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW_DEVICE+"'/>");
-                        out.write(i18n.getString("DeviceModel.deviceID","{0} ID",devTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                        out.write(i18n.getString("DeviceModel.deviceID","{0} ID",devTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
                         out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DeviceModel.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                         */
                     }
@@ -2801,11 +2801,10 @@ public class DeviceModel
                     String frameTitle = _allowEdit?
                         i18n.getString("DeviceModel.viewEditDevice","View/Edit {0} Information", devTitles) :
                         i18n.getString("DeviceModel.viewDevice","View {0} Information", devTitles);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     /* start of form */
-                    out.write("<form name='"+FORM_DEVICE_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DEVICE_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_DEVICE+"'/>\n");
 
                     /* Device fields */
@@ -2814,7 +2813,7 @@ public class DeviceModel
                     String firmVers  = (_selDev!=null)? _selDev.getCodeVersion() : "";
                     long   createTS  = (_selDev!=null)? _selDev.getCreationTime() : 0L;
                     String createStr = reqState.formatDateTime(createTS, "--");
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='table' class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
                     out.println(FormRow_TextField(PARM_DEVICE           , false      , i18n.getString("DeviceModel.deviceID","{0} ID",devTitles)+":"        , _selDevID, 32, 32));
                     out.println(FormRow_TextField(PARM_CREATE_DATE      , false      , i18n.getString("DeviceModel.creationDate","Creation Date")+":"       , createStr, 30, 30));
                     String deviceCode = (_selDev != null)? DCServerFactory.getServerConfigDescription(_selDev.getDeviceCode()) : "";
@@ -3478,7 +3477,7 @@ public class DeviceModel
                     out.write("<span style='margin-left:4px; margin-top:10px; font-weight:bold;'>");
                     out.write(  i18n.getString("DeviceModel.groupMembership","{0} Membership:",grpTitles));
                     out.write(  "</span>\n");
-                    out.write("<div style='border: 1px solid black; margin: 2px 20px 5px 10px; height:80px; width:400px; overflow-x: hidden; overflow-y: scroll;'>\n");
+                    out.write("<div style=' margin: 2px 20px 5px 10px; height:80px; width:400px; overflow-x: hidden; overflow-y: scroll;'>\n");
                     out.write("<table>\n");
                     for (int g = 0; g < grpList.size(); g++) {
                         String grpID = grpList.get(g);
@@ -3528,8 +3527,7 @@ public class DeviceModel
                     /* frame title */
                     String frameTitle = i18n.getString("DeviceModel.setDeviceProperties","({0}) Set {1} Properties",
                         _dcHandler.getServerDescription(), devTitles[0]);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     /* Device Command/Properties content */
                     String editURL = DeviceModel.this.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());
@@ -3548,8 +3546,7 @@ public class DeviceModel
                     /* frame title */
                     String frameTitle = i18n.getString("DeviceModel.setDeviceSMS","({0}) Send {1} SMS",
                         _dcHandler.getServerDescription(), devTitles[0]);
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     /* Device Command/Properties content */
                     String editURL = DeviceModel.this.encodePageURL(reqState);//, RequestProperties.TRACK_BASE_URI());

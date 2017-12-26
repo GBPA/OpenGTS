@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -65,7 +65,7 @@ public class ForgotPassword
 
     // ------------------------------------------------------------------------
 
-    // setting to 'false' may allow a would-be hacker to glean information such as valid 
+    // setting to 'false' may allow a would-be hacker to glean information such as valid
     // account and user ids.  While they may not be able to obtain the account/user password,
     // knowing a valid account/user id may provide the hacker additional critical information
     // for hacking in to the system.  It is definately recommended that this value remain 'true'
@@ -83,9 +83,9 @@ public class ForgotPassword
     // ------------------------------------------------------------------------
 
     private static final long    MIN_PASS_QUERY_DELTA_SEC   = DateTime.MinuteSeconds(5L);
-    
+
     public  static final String  COMMAND_EMAIL              = "email";
-    
+
     public  static final String  PARM_EMAIL_SUBMIT          = "email_submit";
     public  static final String  PARM_EMAIL_ACCOUNT         = "email_acct";
     public  static final String  PARM_EMAIL_USER            = "email_user";
@@ -95,7 +95,7 @@ public class ForgotPassword
 
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public ForgotPassword()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -117,7 +117,7 @@ public class ForgotPassword
         I18N i18n = privLabel.getI18N(ForgotPassword.class);
         return super._getMenuDescription(reqState,i18n.getString("ForgotPassword.menuDesc","Forgot your Password?"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -142,7 +142,7 @@ public class ForgotPassword
     }
 
     // ------------------------------------------------------------------------
-    
+
     private static String sendAccountsForContactEMail(
         PrivateLabel privLabel,
         String contactEmail)
@@ -155,7 +155,7 @@ public class ForgotPassword
         /* invalid ContactEmail? */
         if (StringTools.isBlank(contactEmail)) {
             Print.logWarn("No Contact Email specified");
-            return SECURE_RESPONSE? invalidError : 
+            return SECURE_RESPONSE? invalidError :
                 i18n.getString("ForgotPassword.noContactEmailSpecified","No contact email specified.");
         }
 
@@ -165,12 +165,12 @@ public class ForgotPassword
             acctID = Account.getAccountIDsForContactEmail(contactEmail);
             if (ListTools.isEmpty(acctID)) {
                 Print.logWarn("No Accounts owned by specified Contact Email");
-                return SECURE_RESPONSE? invalidError : 
+                return SECURE_RESPONSE? invalidError :
                     i18n.getString("ForgotPassword.noAccountsForContactEmail","No Account listed for this contact email.");
             }
         } catch (DBException dbe) {
             Print.logException("Error reading Account", dbe);
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.errorReadingAccount","Internal error reading Account.");
         }
 
@@ -184,7 +184,7 @@ public class ForgotPassword
             body.append(i18n.getString("ForgotPassword.accountNamesText","Here are the account names managed by your contact email address:"));
             body.append("\n");
         }
-        for (String A : acctID) { 
+        for (String A : acctID) {
             body.append("   "+i18n.getString("ForgotPassword.account","Account:")+" ");
             body.append(A);
             body.append("\n");
@@ -203,12 +203,12 @@ public class ForgotPassword
         String to   = contactEmail;
         if (StringTools.isBlank(from)) {
             Print.logError("No 'From' email address specified");
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.missingFromAddress","Internal email configuration error ['From'].");
         } else
         if (StringTools.isBlank(to)) {
             Print.logError("No 'To' email address specified");
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.missingToAddress","Internal email configuration error ['To'].");
         } else {
             String cc   = null;
@@ -306,12 +306,12 @@ public class ForgotPassword
             account = Account.getAccount(accountID);
             if (account == null) {
                 Print.logWarn("Account doesn't exist: " + accountID);
-                return SECURE_RESPONSE? invalidError : 
+                return SECURE_RESPONSE? invalidError :
                     i18n.getString("ForgotPassword.accountNotExist","Specified Account does not exist.");
             }
         } catch (Throwable t) {
             Print.logWarn("Error reading Account: " + accountID);
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.errorReadingAccount","Internal error reading Account.");
         }
 
@@ -334,12 +334,12 @@ public class ForgotPassword
                 } else {
                     // -- User not found, and not "admin", return error
                     Print.logWarn("User doesn't exist: " + userID);
-                    return SECURE_RESPONSE? invalidError : 
+                    return SECURE_RESPONSE? invalidError :
                         i18n.getString("ForgotPassword.userNotExist","Specified User does not exist.");
                 }
             } catch (Throwable t) {
                 Print.logWarn("Error reading User: " + userID);
-                return SECURE_RESPONSE? internError : 
+                return SECURE_RESPONSE? internError :
                     i18n.getString("ForgotPassword.errorReadingUser","Internal error reading User.");
             }
         }
@@ -349,7 +349,7 @@ public class ForgotPassword
         long deltaSinceLastQuery = DateTime.getCurrentTimeSec() - passwdQueryTime;
         if (deltaSinceLastQuery < MIN_PASS_QUERY_DELTA_SEC) {
             Print.logWarn("Too soon since last password query: " + accountID);
-            return /* SECURE_RESPONSE? invalidError : */ 
+            return /* SECURE_RESPONSE? invalidError : */
                 i18n.getString("ForgotPassword.requestTooSoon","Too soon since last password request.");
         }
 
@@ -357,12 +357,12 @@ public class ForgotPassword
         String emailAddress = (user != null)? user.getContactEmail() : account.getContactEmail();
         if (StringTools.isBlank(emailAddress)) {
             Print.logWarn("No contact email address on file");
-            return SECURE_RESPONSE? invalidError : 
+            return SECURE_RESPONSE? invalidError :
                 i18n.getString("ForgotPassword.noContactEmailOnFile","No contact email address on file for this account.\\nPlease contact the system administrator for assistance");
         } else
         if (!contactEmail.equals(emailAddress)) {
             Print.logWarn("Invalid contact email address: " + contactEmail + " [" + emailAddress + "]");
-            return SECURE_RESPONSE? invalidError : 
+            return SECURE_RESPONSE? invalidError :
                 i18n.getString("ForgotPassword.invalidContactEmail","Specified contact email does not match email on file.");
         }
 
@@ -381,7 +381,7 @@ public class ForgotPassword
             } catch (DBException dbe) {
                 // -- unable to save reset password
                 Print.logException("Unable to reset/save password", dbe);
-                decodedPass = "?"; 
+                decodedPass = "?";
             }
         }
 
@@ -390,8 +390,8 @@ public class ForgotPassword
 
         /* email subject/body */
         String gtsIdName = DBConfig.getServiceAccountName("GPS Tracking");
-        String subj = (user != null)? 
-            i18n.getString("ForgotPassword.userLogin","User Login ...") : 
+        String subj = (user != null)?
+            i18n.getString("ForgotPassword.userLogin","User Login ...") :
             i18n.getString("ForgotPassword.accountLogin","Account Login ...");
         String body = i18n.getString("ForgotPassword.emailBody",
             "Here is your requested password, please keep it in a safe place:\n"+
@@ -400,7 +400,7 @@ public class ForgotPassword
             "Please do not respond to this email.\n"+
             "If you are not the intended recipient, Please disregard this email.\n"+
             "\n"+
-            "Thank you.\n", 
+            "Thank you.\n",
             decodedPass);
 
         /* send password */
@@ -409,12 +409,12 @@ public class ForgotPassword
         String to   = emailAddress;
         if (StringTools.isBlank(from)) {
             Print.logError("No 'From' email address specified");
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.missingFromAddress","Internal email configuration error ['From'].");
         } else
         if (StringTools.isBlank(to)) {
             Print.logError("No 'To' email address specified");
-            return SECURE_RESPONSE? internError : 
+            return SECURE_RESPONSE? internError :
                 i18n.getString("ForgotPassword.missingToAddress","Internal email configuration error ['To'].");
         } else {
             String cc   = null;
@@ -443,7 +443,7 @@ public class ForgotPassword
 
 
     }
-        
+
     // ------------------------------------------------------------------------
 
     public void writePage(
@@ -467,7 +467,7 @@ public class ForgotPassword
                 if (StringTools.isBlank(emailAddr)) {
                     m = i18n.getString("ForgotPassword.enterEMail","Please enter your contact email address"); // UserErrMsg
                     error = true;
-                } else 
+                } else
                 if (!EMail.validateAddress(emailAddr)) {
                     m = i18n.getString("ForgotPassword.invalidEMail","An invalid email address was entered"); // UserErrMsg
                     error = true;
@@ -476,11 +476,11 @@ public class ForgotPassword
                     if (SEND_ACCOUNT_LIST) {
                         String errMsg = sendAccountsForContactEMail(privLabel, EMail.getEMailAddress(emailAddr));
                         if (!StringTools.isBlank(errMsg)) {
-                            //Track.writeMessageResponse(reqState, 
+                            //Track.writeMessageResponse(reqState,
                             m = i18n.getString("ForgotPassword.unableToSendAccountEmail","Unable to send account list email for the following reason:") + "\n" + errMsg; // UserErrMsg
                             error = true;
                         } else {
-                            Track.writeMessageResponse(reqState, 
+                            Track.writeMessageResponse(reqState,
                                 i18n.getString("ForgotPassword.sentAccounts","The Account list has been sent to the contact email on file."));
                             return;
                         }
@@ -491,11 +491,11 @@ public class ForgotPassword
                  } else {
                     String errMsg = sendAccountPassword(privLabel, accountID, userID, EMail.getEMailAddress(emailAddr));
                     if (!StringTools.isBlank(errMsg)) {
-                        //Track.writeMessageResponse(reqState, 
+                        //Track.writeMessageResponse(reqState,
                         m = i18n.getString("ForgotPassword.unableToSendPasswordEmail","Unable to send password email for the following reason:") + "\n" + errMsg; // UserErrMsg
                         error = true;
                     } else {
-                        Track.writeMessageResponse(reqState, 
+                        Track.writeMessageResponse(reqState,
                             i18n.getString("ForgotPassword.sentPassword","The password has been sent to the contact email on file."));
                         return;
                     }
@@ -509,7 +509,7 @@ public class ForgotPassword
         /* Style */
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
-                String cssDir = ForgotPassword.this.getCssDirectory(); 
+                String cssDir = ForgotPassword.this.getCssDirectory();
                 WebPageAdaptor.writeCssLink(out, reqState, "ForgotPassword.css", cssDir);
             }
         };
@@ -520,19 +520,19 @@ public class ForgotPassword
                 String menuURL   = privLabel.getWebPageURL(reqState, PAGE_MENU_TOP);
                 String emailURL  = privLabel.getWebPageURL(reqState, PAGE_PASSWD_EMAIL, COMMAND_EMAIL);
                 boolean usrLogin = privLabel.getUserLogin();
-                out.println("<span style='font-size:10pt; margin-bottom:7px;'>"+i18n.getString("ForgotPassword.instructions",
+                out.println("<span style='margin-bottom:7px;'>"+i18n.getString("ForgotPassword.instructions",
                               "To have your password sent to you, please enter your "+
                               "Login information and Contact Email Address "+
                               "(must match email address on file):") +
                             "</span>");
                 out.println("<hr/>");
-                out.println("<form name='Passwd_Email' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
-                out.println("<table>");
-                out.println("  <tr><td>"+i18n.getString("ForgotPassword.accountID","Account ID:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_EMAIL_ACCOUNT+"' value='' size='24' maxlength='32'></td></tr>");
+                out.println("<form class='form-horizontal' name='Passwd_Email' method='post' action='"+emailURL+"' target='_self'>"); // target='_top'
+                out.println("<table class='table'>");
+                out.println("  <tr><td>"+i18n.getString("ForgotPassword.accountID","Account ID:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' name='"+PARM_EMAIL_ACCOUNT+"' value='' size='24' maxlength='32'></td></tr>");
                 if (usrLogin) {
-                    out.println("  <tr><td>"+i18n.getString("ForgotPassword.userID","User ID:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_EMAIL_USER+"' value='' size='24' maxlength='32'></td></tr>");
+                    out.println("  <tr><td>"+i18n.getString("ForgotPassword.userID","User ID:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' name='"+PARM_EMAIL_USER+"' value='' size='24' maxlength='32'></td></tr>");
                 }
-                out.println("  <tr><td>"+i18n.getString("ForgotPassword.contactEMail","Contact Email:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='text' name='"+PARM_EMAIL_ADDRESS+"' value='' size='40' maxlength='64'></td></tr>");
+                out.println("  <tr><td>"+i18n.getString("ForgotPassword.contactEMail","Contact Email:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' name='"+PARM_EMAIL_ADDRESS+"' value='' size='40' maxlength='64'></td></tr>");
                 out.println("</table>");
                 out.println("<input type='submit' name='"+PARM_EMAIL_SUBMIT+"' value='"+i18n.getString("ForgotPassword.submit","Submit")+"'>");
                 out.println("</form>");

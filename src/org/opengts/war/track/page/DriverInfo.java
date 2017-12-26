@@ -508,15 +508,14 @@ public class DriverInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
-                    out.write("<hr>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
 
                     // DriverInfo selection table (Select, DriverInfo ID, DriverInfo Name)
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DriverInfo.selectDriver","Select a Driver")+":</h1>\n");
+                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DriverInfo.selectDriver","Select a Driver")+":</h3>\n");
                     out.write("<div style='margin-left:25px;'>\n");
-                    out.write("<form name='"+FORM_DRIVER_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DRIVER_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
-                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+"' cellspacing=0 cellpadding=0 border=0>\n");
+                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing=0 cellpadding=0 border=0>\n");
                     out.write(" <thead>\n");
                     out.write("  <tr class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_ROW+"'>\n");
                     out.write("   <th class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_COL_SEL+"' nowrap>"+i18n.getString("DriverInfo.select"     ,"Select")+"</th>\n");
@@ -562,7 +561,7 @@ public class DriverInfo
                     }
                     out.write(" </tbody>\n");
                     out.write("</table>\n");
-                    out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
+                    out.write("<table class='table' cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
                     if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
@@ -589,11 +588,11 @@ public class DriverInfo
 
                     /* new Driver */
                     if (_allowNew) {
-                    out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DriverInfo.createNewDriver","Create a new Driver")+":</h1>\n");
+                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("DriverInfo.createNewDriver","Create a new Driver")+":</h3>\n");
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
-                    out.write("<form name='"+FORM_DRIVER_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DRIVER_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
-                    out.write(i18n.getString("DriverInfo.driverID","Driver ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+"' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
+                    out.write(i18n.getString("DriverInfo.driverID","Driver ID")+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
                     out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("DriverInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
@@ -620,15 +619,15 @@ public class DriverInfo
                     String frameTitle = _allowEdit?
                         i18n.getString("DriverInfo.viewEditDriver","View/Edit Driver Information") :
                         i18n.getString("DriverInfo.viewDriver","View Driver Information");
-                    out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
+                    out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>\n");
                     out.write("<hr>\n");
 
                     /* start of form */
-                    out.write("<form name='"+FORM_DRIVER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
+                    out.write("<form class='form-horizontal' name='"+FORM_DRIVER_EDIT+"' method='post' action='"+editURL+"' target='_self'>\n"); // target='_top'
                     out.write("  <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPDATE+"'/>\n");
 
                     /* Driver fields */
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                     out.println(FormRow_TextField(PARM_DRIVER_SELECT  , false  , i18n.getString("DriverInfo.driverID","Driver ID")+":"              , _selDriverID, 8, 8));
                     out.println(FormRow_TextField(PARM_DRIVER_NAME    , _uiEdit, i18n.getString("DriverInfo.driverName","Driver Name")+":"          , (_selDriver!=null)?_selDriver.getDescription()  :"", 50, 80));
                     out.println(FormRow_TextField(PARM_INFORMAL_NAME  , _uiEdit, i18n.getString("DriverInfo.informalName","Nickname")+":"           , (_selDriver!=null)?_selDriver.getDisplayName()  :"", 15, 40));

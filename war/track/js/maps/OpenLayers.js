@@ -2,29 +2,29 @@
 // Copyright(C) 2007-2016 GeoTelematic Solutions, Inc.
 // ----------------------------------------------------------------------------
 // To provide some additional features for OpenLayers, portions of the OpenLayers support
-// have been copied from 'mapstraction.js' [www.mapstraction.com] which includes the 
+// have been copied from 'mapstraction.js' [www.mapstraction.com] which includes the
 // copyright included below.
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // The following Copyright applies to portions of this source module.
 // Copyright (c) 2006-7, Tom Carden, Steve Coast, Mikel Maron, Andrew Turner, Henri Bergius
 // All rights reserved.
-// Redistribution and use in source and binary forms, with or without modification, are  
+// Redistribution and use in source and binary forms, with or without modification, are
 // permitted provided that the following conditions are met:
-// * Redistributions of source code must retain the above copyright notice, this list of  
+// * Redistributions of source code must retain the above copyright notice, this list of
 //   conditions and the following disclaimer.
-// * Redistributions in binary form must reproduce the above copyright notice, this list of  
-//   conditions and the following disclaimer in the documentation and/or other materials 
+// * Redistributions in binary form must reproduce the above copyright notice, this list of
+//   conditions and the following disclaimer in the documentation and/or other materials
 //   provided with the distribution.
-// * Neither the name of the Mapstraction nor the names of its contributors may be used to  
-//   endorse or promote products derived from this software without specific prior written 
+// * Neither the name of the Mapstraction nor the names of its contributors may be used to
+//   endorse or promote products derived from this software without specific prior written
 //   permission.
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
-// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
-// COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
-// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF  
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+// COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ----------------------------------------------------------------------------
@@ -48,7 +48,7 @@
 //  - "/Safari/.test(navigator.userAgent)"
 // ----------------------------------------------------------------------------
 // References:
-//  - http://openlayers.org/dev/examples/
+//  - https://openlayers.org/dev/examples/
 //      OpenLayers Modify Feature Example
 //      Popup Matrix
 //      Drawing Simple Vector Features Example
@@ -117,7 +117,7 @@ var GEOZONE_STYLE = [
     new OpenLayersColorStyle("#CC1111", 0.80, "#11CC22", 0.28), /* primary */
     new OpenLayersColorStyle("#11CC11", 0.80, "#11CC22", 0.18)
     ];
-    
+
 function GetGeozoneStyle(isPrimary, fillColor)
 {
     var s = GEOZONE_STYLE[isPrimary? 0 : 1];
@@ -129,7 +129,7 @@ function GetGeozoneStyle(isPrimary, fillColor)
         return s;
     }
 };
-    
+
 //var DRAW_ZONE_POINT_RADIUS_POLYGON = false;
 
 // ----------------------------------------------------------------------------
@@ -161,8 +161,8 @@ function JSMap(mapElement)
 
     /* disable double-click zoom */
     // this seems to also disable the shift-drag zoom.
-    var nav = new OpenLayers.Control.Navigation({ 
-        defaultDblClick: function(e) {/*no-op*/} 
+    var nav = new OpenLayers.Control.Navigation({
+        defaultDblClick: function(e) {/*no-op*/}
     });
     this.openLayersMap.addControl(nav);
 
@@ -170,10 +170,10 @@ function JSMap(mapElement)
     /*
     this.openLayersMap.addLayers([
         new OpenLayers.Layer.OSM("Cabg", "./tiles/${z}/${x}/${y}.png", {numZoomLevels: 19, displayInLayerSwitcher: true }),
-        new OpenLayers.Layer.TMS( "Mapa General", "http://tile.openstreetmap.org/",
-          { 
-            type: 'png', getURL: osm_getTileURL, displayOutsideMaxExtent: true, attribution: 'Map data &copy; <a href="http://www.openstreetmap.org/">OpenStreetMap</a> and contributors <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            opacity: 0.5, isBaseLayer: false, visibility: false, numZoomLevels:19 
+        new OpenLayers.Layer.TMS( "Mapa General", "https://tile.openstreetmap.org/",
+          {
+            type: 'png', getURL: osm_getTileURL, displayOutsideMaxExtent: true, attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> and contributors <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            opacity: 0.5, isBaseLayer: false, visibility: false, numZoomLevels:19
           } )
         ]);
         */
@@ -181,18 +181,18 @@ function JSMap(mapElement)
     /* OpenSeaMap layer [EXPERIMENTAL] */
     if (OPENSEAMAP_showOverlay) {
         // References:
-        //    http://wiki.openseamap.org/wiki/OpenSeaMap_in_Website#Tile-Server
-        //    http://wiki.openseamap.org/wiki/De:OpenSeaMap_in_Website#OpenLayers_3
+        //    https://wiki.openseamap.org/wiki/OpenSeaMap_in_Website#Tile-Server
+        //    https://wiki.openseamap.org/wiki/De:OpenSeaMap_in_Website#OpenLayers_3
         // JavaScript:
-        //    http://map.openseamap.org/javascript/harbours.js
-        //    http://map.openseamap.org/javascript/map_utils.js
-        //    http://map.openseamap.org/javascript/utilities.js
+        //    https://map.openseamap.org/javascript/harbours.js
+        //    https://map.openseamap.org/javascript/map_utils.js
+        //    https://map.openseamap.org/javascript/utilities.js
         /*
         if (OPENLAYERS_VERSION) {
             // -- OpenLayers-3
             this.seamarkOverlay = new OpenLayers.Layer.Tile({
                 source: new ol.source.XYZ({
-                    url: 'http://t1.openseamap.org/seamark/{z}/{x}/{y}.png',
+                    url: 'https://t1.openseamap.org/seamark/{z}/{x}/{y}.png',
                     crossOrigin: null
                 } )
             } );
@@ -201,11 +201,11 @@ function JSMap(mapElement)
         */
             // -- SeaMark overlay
             this.seamarkOverlay = new OpenLayers.Layer.TMS(
-                "OpenSeaMap", 
-                "http://tiles.openseamap.org/seamark/",  // "http://t1.openseamap.org/seamark/"
+                "OpenSeaMap",
+                "https://tiles.openseamap.org/seamark/",  // "https://t1.openseamap.org/seamark/"
                  {
-                    numZoomLevels: 18, 
-                    type: 'png', 
+                    numZoomLevels: 18,
+                    type: 'png',
                     getURL: function (bounds) {
                         var _map = this.map; // this.openLayersMap
                         var res = _map.getResolution();
@@ -224,16 +224,16 @@ function JSMap(mapElement)
                             }
                             return url+path;
                         }
-                    }, 
-                    isBaseLayer: false, 
+                    },
+                    isBaseLayer: false,
                     displayOutsideMaxExtent: true
                  } );
             this.openLayersMap.addLayer(this.seamarkOverlay);
             // -- Harbours overlay
-            this.seaHarbours = new OpenLayers.Layer.Vector("Harbors", 
-                { 
-                    projection: new OpenLayers.Projection("EPSG:4326"), 
-                    visibility: true, 
+            this.seaHarbours = new OpenLayers.Layer.Vector("Harbors",
+                {
+                    projection: new OpenLayers.Projection("EPSG:4326"),
+                    visibility: true,
                     displayOutsideMaxExtent: true
                 } );
 			this.seaHarbours.setOpacity(0.8);
@@ -292,7 +292,7 @@ function JSMap(mapElement)
     } catch (e) {
         //alert("Error: " + e);
     }
-    
+
     /* "click" handler to recenter geozones */
     try {
         this.openLayersMap.events.register("click", this, this._event_OnClick);
@@ -336,13 +336,13 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
          20037508.34,  20037508.34
     );
 
-    /* see "http://wiki.openstreetmap.org/index.php/OpenLayers_Simple_Example" */
-    this.openLayersMap = new OpenLayers.Map(mapElement.id, 
+    /* see "https://wiki.openstreetmap.org/index.php/OpenLayers_Simple_Example" */
+    this.openLayersMap = new OpenLayers.Map(mapElement.id,
         {
-            maxExtent:     bounds, 
-            maxResolution: 156543, 
-            numZoomLevels: 18, 
-            units:         "meters", 
+            maxExtent:     bounds,
+            maxResolution: 156543,
+            numZoomLevels: 18,
+            units:         "meters",
             projection:    "EPSG:41001",
             controls: [
               //new OpenLayers.Control.MousePosition(),
@@ -362,39 +362,39 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
     if (OPENLAYERS_VERSION) {
         // -- OpenLayers-2
         this.openLayersMap.addLayer(new OpenLayers.Layer.OSM("Mapnik OSM", [
-            "http://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
-            "http://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
-            "http://c.tile.openstreetmap.org/${z}/${x}/${y}.png"
+            "https://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
+            "https://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
+            "https://c.tile.openstreetmap.org/${z}/${x}/${y}.png"
         ]));
     } else {
         // -- legacy base layer method
         this.openLayersMap.addLayer(new OpenLayers.Layer.TMS(
-            "Mapnik OSM", 
+            "Mapnik OSM",
             [
-                "http://a.tile.openstreetmap.org/",
-                "http://b.tile.openstreetmap.org/",
-                "http://c.tile.openstreetmap.org/"
+                "https://a.tile.openstreetmap.org/",
+                "https://b.tile.openstreetmap.org/",
+                "https://c.tile.openstreetmap.org/"
             ],
             {
-                type: 'png', 
+                type: 'png',
                 getURL: function (bounds) {
                     var res = this.map.getResolution();
                     var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
                     var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
                     var z = this.map.getZoom();
-                    var limit = Math.pow(2, z);    
+                    var limit = Math.pow(2, z);
                     if ((y < 0) || (y >= limit)) {
                         return null;
                     } else {
                         x = ((x % limit) + limit) % limit;
-                        var path = z + "/" + x + "/" + y + "." + this.type; 
+                        var path = z + "/" + x + "/" + y + "." + this.type;
                         var url = this.url;
                         if (url instanceof Array) {
                             url = this.selectUrl(path, url);
                         }
                         return url + path;
                     }
-                }, 
+                },
                 displayOutsideMaxExtent: true
             }
         ));
@@ -404,10 +404,10 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
     /* Mapquest OSM (no longer supported by Mapquest) */
     if (MAPQUEST_showOSMLayer) {
         this.openLayersMap.addLayer(new OpenLayers.Layer.OSM("MapQuest OSM", [
-            "http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
-            "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
-            "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
-            "http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"
+            "https://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
+            "https://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
+            "https://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
+            "https://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"
         ]));
         baseLayerCount++;
     }
@@ -415,36 +415,36 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
     /* Mapquest Aerial (no longer supported by Mapquest) */
     if (MAPQUEST_showAerialLayer) {
         this.openLayersMap.addLayer(new OpenLayers.Layer.OSM("MapQuest Aerial", [
-            "http://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
-            "http://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
-            "http://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
-            "http://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg"
+            "https://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
+            "https://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
+            "https://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg",
+            "https://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.jpg"
         ]));
         baseLayerCount++;
     }
 
     /* Nokia-Here [EXPERIMENTAL - not fully supported] */
     // -- NOTE: may not conform to Nokia-Here terms and conditions
-    // -  http://scn.sap.com/docs/DOC-43903
+    // -  https://scn.sap.com/docs/DOC-43903
     if (NOKIAHERE_showLayer) {
         // -- standard map tile servers: {N}=1,2,3,4
-        // -    http://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day
+        // -    https://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day
         // -- satellite map tile servers:
-        // -    http://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day
+        // -    https://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day
         // -- hybrid map tile servers:
-        // -    http://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day
+        // -    https://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day
         // -- terrain map tile servers:
-        // -    http://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day
-        var nhURL   = "http://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day";
+        // -    https://{N}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day
+        var nhURL   = "https://1.base.maps.api.here.com/maptile/2.1/maptile/newest/normal.day";
         var appID   = NOKIAHERE_appID;
         var appCode = NOKIAHERE_appCode;
         this.openLayersMap.addLayer(new OpenLayers.Layer.XYZ(
-            "Nokia-Here", 
+            "Nokia-Here",
             [
                 nhURL+"/${z}/${x}/${y}/256/png8?lg=ENG&app_id="+appID+"&app_code="+appCode
             ],
             {
-                attribution: "&copy; 2013-2016 Nokia</span>&nbsp;<a href='http://maps.nokia.com/services/terms' target='_blank' title='Terms of Use' style='color:#333;text-decoration: underline;'>Terms of Use</a></div> <img src='http://api.maps.nokia.com/2.2.4/assets/ovi/mapsapi/by_here.png' border='0'>",
+                attribution: "&copy; 2013-2016 Nokia</span>&nbsp;<a href='https://maps.nokia.com/services/terms' target='_blank' title='Terms of Use' style='color:#333;text-decoration: underline;'>Terms of Use</a></div> <img src='https://api.maps.nokia.com/2.2.4/assets/ovi/mapsapi/by_here.png' border='0'>",
                 transitionEffect: "resize"
             }
         ));
@@ -459,32 +459,32 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
     // OSM (obsolete)
     /*
     this.openLayersMap.addLayer(new OpenLayers.Layer.TMS(
-        "OSM", 
-        [    
-            "http://a.tah.openstreetmap.org/Tiles/tile.php/",
-            "http://b.tah.openstreetmap.org/Tiles/tile.php/",
-            "http://c.tah.openstreetmap.org/Tiles/tile.php/"
-        ], 
+        "OSM",
+        [
+            "https://a.tah.openstreetmap.org/Tiles/tile.php/",
+            "https://b.tah.openstreetmap.org/Tiles/tile.php/",
+            "https://c.tah.openstreetmap.org/Tiles/tile.php/"
+        ],
         {
-            type: 'png', 
+            type: 'png',
             getURL: function (bounds) {
                 var res = this.map.getResolution();
                 var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
                 var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
                 var z = this.map.getZoom();
-                var limit = Math.pow(2, z);    
+                var limit = Math.pow(2, z);
                 if ((y < 0) || (y >= limit)) {
                     return null;
                 } else {
                     x = ((x % limit) + limit) % limit;
-                    var path = z + "/" + x + "/" + y + "." + this.type; 
+                    var path = z + "/" + x + "/" + y + "." + this.type;
                     var url = this.url;
                     if (url instanceof Array) {
                         url = this.selectUrl(path, url);
                     }
                     return url + path;
                 }
-            }, 
+            },
             displayOutsideMaxExtent: true
         }
     ));
@@ -527,7 +527,7 @@ JSMap.prototype._initOpenStreetMaps = function(mapElement)
 JSMap.prototype._initGeoServerCustom = function(mapElement)
 {
     var GEOMAP_TITLE    = GEOSERVER_title;
-    var GEOMAP_URL      = GEOSERVER_url;            // "http://localhost:8085/geoserver/wms";
+    var GEOMAP_URL      = GEOSERVER_url;            // "https://localhost:8085/geoserver/wms";
     var GEOMAP_RESOLUTN = GEOSERVER_maxResolution;  // 0.0007907421875;
     var GEOMAP_WIDTH    = GEOSERVER_size.width;     // "431";
     var GEOMAP_HEIGHT   = GEOSERVER_size.height;    // "550";
@@ -543,7 +543,7 @@ JSMap.prototype._initGeoServerCustom = function(mapElement)
 
     /* map */
     this.openLayersMap = new OpenLayers.Map(
-        mapElement.id, 
+        mapElement.id,
         {
             maxExtent:      MAP_BOUNDS,
             maxResolution:  GEOMAP_RESOLUTN,
@@ -557,11 +557,11 @@ JSMap.prototype._initGeoServerCustom = function(mapElement)
             ]
         }
     );
-    
+
     /* simple layer */
     if (LAYER_TYPE == "simple") {
         this.openLayersMap.addLayer(new OpenLayers.Layer.WMS(
-            GEOMAP_TITLE, 
+            GEOMAP_TITLE,
             GEOMAP_URL,
             {
                 layers:     DATA_LAYERS
@@ -584,9 +584,9 @@ JSMap.prototype._initGeoServerCustom = function(mapElement)
                 tiled:       TILE_STATE,
                 tilesOrigin: TILE_ORIGIN
             },
-            { 
-                buffer: 0 
-            } 
+            {
+                buffer: 0
+            }
         ));
     }
 
@@ -603,13 +603,13 @@ JSMap.prototype._initGeoServerCustom = function(mapElement)
                 srs:    PROJECTION,
                 format: TILE_FORMAT
             },
-            { 
-                singleTile: true, 
-                ratio:      1 
-            } 
+            {
+                singleTile: true,
+                ratio:      1
+            }
         ));
     }
-    
+
     /* initial zoom */
     this.openLayersMap.zoomToExtent(MAP_BOUNDS);
 
@@ -801,8 +801,8 @@ JSMap.prototype._startReplayTimer = function(replay, interval)
 **/
 JSMap.prototype._stopReplayTimer = function()
 {
-    if (this.replayTimer !== null) { 
-        clearTimeout(this.replayTimer); 
+    if (this.replayTimer !== null) {
+        clearTimeout(this.replayTimer);
         this.replayTimer = null;
     }
     jsmSetReplayState(this.replayInProgress? REPLAY_PAUSED : REPLAY_STOPPED);
@@ -936,7 +936,7 @@ JSMap.prototype._drawFeatures = function(clear, features)
         //this.drawLayer[0].display(true);
         //this.drawLayer[0].drawFeature(this.drawFeatures[0]);
     }
-    
+
 };
 
 // ----------------------------------------------------------------------------
@@ -1016,12 +1016,12 @@ JSMap.prototype.JSDrawPushpins = function(pushPins, recenterMode, replay)
                 var centerPt   = this._toOpenLayerPoint(DEFAULT_CENTER);
                 var zoomFactor = DEFAULT_ZOOM;
                 this.openLayersMap.setCenter(centerPt, zoomFactor);
-            } else 
+            } else
             if (recenterMode == RECENTER_LAST) { // center on last point
                 var pp         = drawPushpins[drawPushpins.length - 1];
                 var centerPt   = this._toOpenLayerPoint(pp);
                 this.openLayersMap.setCenter(centerPt);
-            } else 
+            } else
             if (recenterMode == RECENTER_PAN) { // pan to last point
                 var pp         = drawPushpins[drawPushpins.length - 1];
                 var centerPt   = this._toOpenLayerPoint(pp);
@@ -1061,7 +1061,7 @@ JSMap.prototype.JSDrawPushpins = function(pushPins, recenterMode, replay)
             if (pushpinErr === null) { pushpinErr = e; }
         }
     }
-    try { 
+    try {
         this.openLayersMap.addLayer(this.markerLayer);  // must re-add layer
         //this.markerLayer.display(true);
     } catch (e) {
@@ -1097,7 +1097,7 @@ JSMap.prototype.JSDrawPOI = function(pushPins)
                 if (pushpinErr === null) { pushpinErr = e; }
             }
         }
-        try { 
+        try {
             this.openLayersMap.addLayer(this.poiLayer);  // must re-add layer
             //this.poiLayer.display(true);
         } catch (e) {
@@ -1128,7 +1128,7 @@ JSMap.prototype._addPushpin = function(pp, layer)
             var iIcon   = new OpenLayers.Icon(pp.iconUrl, iSize, iAnchor);
             ppMarker    = new OpenLayers.Marker(this._toOpenLayerPoint(pp), iIcon);
         }
-        
+
         var bgMarker = null;
         if (pp.bgUrl) {
             var bSize   = new OpenLayers.Size(pp.bgSize[0], pp.bgSize[1]);
@@ -1181,7 +1181,7 @@ JSMap.prototype._addPushpin = function(pp, layer)
 				this.popups.push(pp.popup);
             }
         }
-        
+
         if (bgMarker) {
             pp.bgMarker = bgMarker;
             layer.addMarker(bgMarker);
@@ -1238,7 +1238,7 @@ JSMap.prototype._replayPushpins = function(replay)
             continue; // goto next point
         }
         // -- skip nearby points?
-        if ((AutoSkipRadius > 0.0) && (this.replayIndex > 0) && 
+        if ((AutoSkipRadius > 0.0) && (this.replayIndex > 0) &&
             ((this.replayIndex + 1) < this.replayPushpins.length)) {
             var lastPP = this.replayPushpins[this.replayIndex - 1];
             if (geoIsValid(lastPP.lat,lastPP.lon)) {
@@ -1393,7 +1393,7 @@ JSMap.prototype._createRouteFeature = function(points, color) // JSMapPoint
 // ----------------------------------------------------------------------------
 
 /**
-*** Remove previously drawn shapes 
+*** Remove previously drawn shapes
 **/
 JSMap.prototype._removeShapes = function()
 {
@@ -1422,9 +1422,9 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
     }
 
     /* clear existing shapes? */
-    if (type.startsWith("!")) { 
+    if (type.startsWith("!")) {
         this._removeShapes();
-        type = type.substr(1); 
+        type = type.substr(1);
     }
 
     /* no geopoints? */
@@ -1452,7 +1452,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             var jsPt    = verticePts[p]; // JSMapPoint
             var center  = this._toOpenLayerPoint(jsPt); // OpenLayers.LonLat
             var circleF = this._createCircleFeature(center, radiusM, colorStyle);
-            if (mapBounds) { 
+            if (mapBounds) {
                 mapBounds.extend(center);
                 mapBounds.extend(this._toOpenLayerPoint(this._calcRadiusPoint(jsPt, radiusM,   0.0)));
                 mapBounds.extend(this._toOpenLayerPoint(this._calcRadiusPoint(jsPt, radiusM,  90.0)));
@@ -1465,8 +1465,8 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             this._drawFeatures(false, this.drawShapes);
             didDrawShape = true;
         }
-            
-    } else 
+
+    } else
     if (type == "rectangle") { // ZONE_BOUNDED_RECT
 
         if (verticePts.length >= 2) {
@@ -1486,10 +1486,10 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             didDrawShape = true;
 
         }
-            
-    } else 
+
+    } else
     if (type == "polygon") { // ZONE_POLYGON
-       
+
         if (verticePts.length >= 3) {
 
             var crPts = [];
@@ -1508,7 +1508,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
     } else
     if (type == "corridor") { // ZONE_SWEPT_POINT_RADIUS
 
-        // TODO: 
+        // TODO:
 
     } else
     if (type == "center") {
@@ -1605,7 +1605,7 @@ JSMap.prototype._JSDrawGeozone = function(type, radiusM, points, color, primNdx,
     jsvGeozoneMode = true;
 
     /* remove old primary */
-    if (!isDragging) { 
+    if (!isDragging) {
         this.primaryCenter = null;
         this.primaryIndex  = primNdx;
     }
@@ -1682,8 +1682,8 @@ JSMap.prototype._JSDrawGeozone = function(type, radiusM, points, color, primNdx,
             dragging = true;
         });
         m.events.register("mousemove", m, function(e) {
-            if (dragging) { 
-                m.moveTo(self.openLayersMap.getLayerPxFromViewPortPx(e.xy)); 
+            if (dragging) {
+                m.moveTo(self.openLayersMap.getLayerPxFromViewPortPx(e.xy));
             }
         });
         m.events.register("mouseup", m, function(e) {
@@ -1740,7 +1740,7 @@ JSMap.prototype._JSDrawGeozone = function(type, radiusM, points, color, primNdx,
             }
             try { this.openLayersMap.setCenter(centerPt, zoomFactor); } catch (e) { /*alert("Error[JSDrawGeozone]:"+e);*/ }
         }
-        
+
         /* current MPP */
         //var zoom = this.openLayersMap.getZoom();
         //var DPP  = this.openLayersMap.getResolution(); // degrees per pixel
@@ -1824,11 +1824,11 @@ JSMap.prototype._JSDrawGeozone = function(type, radiusM, points, color, primNdx,
         this._drawFeatures(true, zoneFeatures);
 
     } else {
-        
+
         alert("Geozone type not supported: " + type);
-        
+
     }
-    
+
     return null;
 };
 
@@ -1910,7 +1910,7 @@ JSMap.prototype._createPolygonFeature = function(vertices, colorStyle)
 // ----------------------------------------------------------------------------
 
 /**
-*** Create/Adjust feature points 
+*** Create/Adjust feature points
 *** @param olpt The OpenLayers.LonLat point
 **/
 JSMap.prototype._createGeometryPoint = function(olpt) // OpenLayers.LonLat
@@ -1945,12 +1945,12 @@ JSMap.prototype._mouseLocation = function(xy)
 };
 
 /**
-*** Mouse event handler to draw circles/lines on the map 
+*** Mouse event handler to draw circles/lines on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseDown = function(e)
 {
-    
+
     /* quick exits */
     if (!OpenLayers.Event.isLeftClick(e) || e.altKey || (e.ctrlKey && e.shiftKey)) {
         return true;
@@ -2016,7 +2016,7 @@ JSMap.prototype._event_OnMouseDown = function(e)
 };
 
 /**
-*** Mouse event handler to draw circles on the map 
+*** Mouse event handler to draw circles on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseUp = function(e)
@@ -2039,7 +2039,7 @@ JSMap.prototype._event_OnMouseUp = function(e)
 };
 
 /**
-*** Mouse event handler to detect lat/lon changes and draw circles/lines on the map 
+*** Mouse event handler to detect lat/lon changes and draw circles/lines on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseMove = function(e)
@@ -2099,7 +2099,7 @@ JSMap.prototype._event_OnMouseMove = function(e)
         OpenLayers.Event.stop(e);
         return false;
     }
-    
+
     return true;
 
 };
@@ -2261,7 +2261,7 @@ JSMap.prototype._event_MoveEnd = function()
         var zm = this.openLayersMap.getZoom();
         var sz = this.openLayersMap.getSize();
         if ((this.lastMapZoom != zm) || (sz.w != this.lastMapSize.w) || (sz.h != this.lastMapSize.h)) {
-            // TODO: (see '_createGeometryPoint' above) This is necessary because everything seems to be 
+            // TODO: (see '_createGeometryPoint' above) This is necessary because everything seems to be
             // shifted by MapWidth/2 pixels.
             if (jsvGeozoneMode) {
                 // redraw the Geozone

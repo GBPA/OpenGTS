@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,8 +73,8 @@ public class CommonServlet
     public  static final String SECTION_STYLESHEET              = "stylesheet";         // custom stylesheets
     public  static final String SECTION_JAVASCRIPT              = "javascript";         // custom javascript
 
-    public  static final String SECTION_PAGE_NAME               = "pagename";           // 
-    public  static final String SECTION_PAGE_URL                = "pageurl";            // 
+    public  static final String SECTION_PAGE_NAME               = "pagename";           //
+    public  static final String SECTION_PAGE_URL                = "pageurl";            //
 
     public  static final String SECTION_CSSFILE                 = "cssfile";
 
@@ -98,7 +98,7 @@ public class CommonServlet
     public  static final String SECTION_CONTENT_BODY            = "content.body";
     public  static final String SECTION_CONTENT_ALIGN           = "content.align";
     public  static final String SECTION_CONTENT_MESSAGE         = "content.message";
-    
+
     public  static final String SECTION_CONTENT_HTML            = "content.html";
 
     public  static final String SECTION_REQUEST_CONTEXT         = "request.context";
@@ -131,10 +131,10 @@ public class CommonServlet
     public static final String CSS_MESSAGE[]                    = new String[] { "messageResponseTable" , "messageResponseCell" };
 
     public static final String CSS_CONTENT_MESSAGE              = "contentMessage";
-    
+
     public static final String CSS_ADMIN_SELECT_TITLE           = "adminSelectTitle";
     public static final String CSS_ADMIN_SELECT_TABLE           = "adminSelectTable_sortable";   // ReportPresentation.SORTTABLE_CSS_CLASS;
-    
+
     public static final String CSS_ADMIN_TABLE_HEADER_ROW       = "adminTableHeaderRow";
     public static final String CSS_ADMIN_TABLE_HEADER_COL       = "adminTableHeaderCol_sort";
     public static final String CSS_ADMIN_TABLE_HEADER_COL_NS    = "adminTableHeaderCol_nosort";  // ReportPresentation.SORTTABLE_CSS_NOSORT;
@@ -153,7 +153,7 @@ public class CommonServlet
 
     // ------------------------------------------------------------------------
     // ID definitions
-    
+
     public static final String ID_CONTENT_MESSAGE               = "contentMessage";
 
     // ------------------------------------------------------------------------
@@ -174,9 +174,9 @@ public class CommonServlet
             for (int i = 0; i < html.length; i++) {
                 CommonServlet.println(out, html[i]);
             }
-        }  
+        }
     }
-    
+
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
@@ -214,7 +214,7 @@ public class CommonServlet
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    public CommonServlet() 
+    public CommonServlet()
     {
         super();
     }
@@ -226,7 +226,7 @@ public class CommonServlet
         RequestProperties reqState,
         HTMLOutput html)
         throws IOException
-    { 
+    {
         HttpServletResponse response = reqState.getHttpServletResponse();
 
         /* dispatch to JSP */
@@ -282,7 +282,7 @@ public class CommonServlet
         HTMLOutput navigation,
         HTMLOutput contents)
         throws IOException
-    { 
+    {
         CommonServlet.writePageFrame(
             reqState,
             bodyOnLoad, bodyOnUnload,
@@ -303,7 +303,7 @@ public class CommonServlet
         HTMLOutput contents,
         DataModel  model)
         throws IOException
-    { 
+    {
         HttpServletResponse response = reqState.getHttpServletResponse();
 
         /* dispatch to JSP */
@@ -339,7 +339,7 @@ public class CommonServlet
                 Print.logError("******* RequestDispatcher not found for URI: " + jspURI);
             }
         }
- 
+
         /* default if not handled by the above */
         // OBSOLETE: will be removed in the next release
         Print.logWarn("This page rendering section is OBSOLETE (should not be used)");
@@ -396,7 +396,7 @@ public class CommonServlet
 
         /* html specified? */
         if (html != null) {
-            html.write(out); 
+            html.write(out);
             out.close();
             return;
         }
@@ -404,7 +404,7 @@ public class CommonServlet
         // HTML start
         out.write("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n");
         out.write("<html xmlns='http://www.w3.org/1999/xhtml' xmlns:v='urn:schemas-microsoft-com:vml'>\n");
-        
+
         /* indicate this is an obsolete format */
         String jspName = reqState.getJspName();
         out.write("<!-- Default PageDecorations (Obsolete!) -->\n");
@@ -425,8 +425,8 @@ public class CommonServlet
         out.write("\n");
         out.write("<!-- Begin Page Style -->\n");
         pageDecor.writeStyle(out, reqState);
-        if (styleSheet != null) { 
-            styleSheet.write(out); 
+        if (styleSheet != null) {
+            styleSheet.write(out);
         }
         out.write("<!-- End Page Style -->\n");
         out.write("\n");
@@ -434,8 +434,8 @@ public class CommonServlet
         // JavaScript
         out.write("<!-- Begin Page JavaScript -->\n");
         JavaScriptTools.writeUtilsJS(out, request);
-        if (javascript != null) { 
-            javascript.write(out); 
+        if (javascript != null) {
+            javascript.write(out);
         }
         out.write("<!-- End Page JavaScript -->\n");
         out.write("\n");
@@ -446,15 +446,15 @@ public class CommonServlet
         // HTML Body start
         out.write("<body ");
         if (!StringTools.isBlank(bodyOnLoad)) {
-            out.write("onload='" + bodyOnLoad + "' "); 
+            out.write("onload='" + bodyOnLoad + "' ");
         }
         if (!StringTools.isBlank(bodyOnUnload)) {
-            out.write("onunload='" + bodyOnUnload + "' "); 
+            out.write("onunload='" + bodyOnUnload + "' ");
         }
         out.write(" leftmargin='0' rightmargin='0' topmargin='0' bottommargin='0'>\n");
-        
+
         // Framing table start
-        out.write("<table cellspacing='0' cellpadding='0' border='0' width='100%' height='100%'>\n");
+        out.write("<table cellspacing='0' class='table' cellpadding='0' border='0' width='100%' height='100%'>\n");
         out.write("<tbody>\n");
 
         // Top row
@@ -479,11 +479,11 @@ public class CommonServlet
             out.write("<tr>\n");
             out.write("<td colspan='3'>\n");
             //***** navigation here *******
-            if (navigation != null) { 
-                navigation.write(out); 
+            if (navigation != null) {
+                navigation.write(out);
             } else {
                 pageDecor.writeNavigation(out, reqState);
-            }        
+            }
             //*************************
             out.write("</td>\n");
             out.write("</tr>\n");
@@ -493,7 +493,7 @@ public class CommonServlet
 
         // Middle row
         out.write("<tr>\n");
-        
+
         // left wing
         if (reqState.writePageFrameSection(RequestProperties.PAGE_FRAME_LEFT)) {
             out.write("\n");
@@ -516,7 +516,7 @@ public class CommonServlet
             if (contents != null) {
                 String tableClass = contents.getTableClass();
                 if (!StringTools.isBlank(tableClass)) {
-                    out.write("<table class='"+tableClass+"' cellspacing='0' cellpadding='0' border='0'>\n");
+                    out.write("<table class='"+tableClass+" table' cellspacing='0' cellpadding='0' border='0'>\n");
                     if (CommonServlet.CSS_CONTENT_FRAME[0].equals(tableClass)) {
                         out.write("<tr>\n");
                         MenuBar.writeTableRow(out, pageName, reqState);
@@ -524,7 +524,7 @@ public class CommonServlet
                     }
                     out.write("<tr>\n");
                     out.write("<td class=" + contents.getCellClass() + " align='center' valign='top'>");
-                    contents.write(out); 
+                    contents.write(out);
                     out.write("</td>");
                     out.write("</tr>\n");
                     String frameMessage = contents.getTableMessage();
@@ -533,7 +533,7 @@ public class CommonServlet
                     }
                     out.write("</table>\n");
                 } else {
-                    contents.write(out); 
+                    contents.write(out);
                 }
             }
             //********************************************
@@ -554,7 +554,7 @@ public class CommonServlet
             out.write("<!-- End Page right -->\n");
             out.write("\n");
         }
-        
+
         // end of middle row
         out.write("</tr>\n");
 

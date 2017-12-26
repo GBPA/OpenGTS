@@ -292,7 +292,7 @@ public class DeviceChooser
 
         /* begin table HTML */
         StringBuffer html = new StringBuffer();
-        append(html,"<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+"' cellspacing='0' cellpadding='0' border='1'>\n");
+        append(html,"<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n");
 
         // table header
         append(html,"<thead>\n");
@@ -370,15 +370,15 @@ public class DeviceChooser
 
         /* form */
         if (DeviceChooser.isSearchEnabled(privLabel)) {
-            out.write("<form id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='GET' action=\"javascript:true;\" target='_self' style='padding-left:5px; background-color:#dddddd;'>\n"); // target='_top'
+            out.write("<form class='form-horizontal' id='"+ID_SEARCH_FORM+"' name='"+ID_SEARCH_FORM+"' method='GET' action=\"javascript:true;\" target='_self' style=''>\n"); // target='_top'
             out.write("<b>"+DEVICE_TEXT_Search+": </b>\n");
-            out.write("<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+"' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>\n");
+            out.write("<input id='"+ID_SEARCH_TEXT+"' name='"+ID_SEARCH_TEXT+"' class='"+CLASS_SEARCH_INPUT+" form-control' type='text' value='' size='"+SEARCH_TEXT_SIZE+"' onkeypress=\"return searchKeyPressed(event);\" onkeyup=\"return deviceSearch();\"/>\n");
             out.write("</form>\n");
         }
 
         /* begin table */
         out.write("<div id='"+ID_DIV_TABLE+"' class='"+CLASS_DEVSELECT_DIV_TABLE+"'>\n"); // FIX
-        out.write("<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+"' cellspacing='0' cellpadding='0' border='1'>\n");
+        out.write("<table id='"+ID_DEVSELECT_TABLE+"' class='"+CLASS_TABLE_COLUMN_SORTABLE+" table' cellspacing='0' cellpadding='0' border='0'>\n");
 
         // table header
         out.write("<thead>\n");

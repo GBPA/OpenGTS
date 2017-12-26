@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,10 +73,10 @@ function JSMap(element)
     this.virtEarthMap.AddShapeLayer(this.virtEarthShapeLayer);
     this.virtEarthRulerLayer = new VEShapeLayer();
     this.virtEarthMap.AddShapeLayer(this.virtEarthRulerLayer);
-    
+
     /* popup info box */
     this.visiblePopupInfoBox = null;
-    
+
     /* drawn shapes */
     this.drawShapes = [];
 
@@ -204,8 +204,8 @@ JSMap.prototype._startReplayTimer = function(replay, interval)
 **/
 JSMap.prototype._stopReplayTimer = function()
 {
-    if (this.replayTimer != null) { 
-        clearTimeout(this.replayTimer); 
+    if (this.replayTimer != null) {
+        clearTimeout(this.replayTimer);
         this.replayTimer = null;
     }
     jsmSetReplayState(this.replayInProgress? REPLAY_PAUSED : REPLAY_STOPPED);
@@ -373,10 +373,10 @@ JSMap.prototype.JSDrawPushpins = function(pushPins, recenterMode, replay)
 **/
 JSMap.prototype.JSDrawPOI = function(pushPins)
 {
-    
+
     /* hide infobox */
     this.virtEarthMap.HideInfoBox(); // hide any displayed InfoBox
-    
+
     /* draw pushpins now */
     if ((pushPins != null) && (pushPins.length > 0)) {
         var pushpinErr = null;
@@ -599,7 +599,7 @@ JSMap.prototype.JSDrawRoute = function(points, color)
 // ----------------------------------------------------------------------------
 
 /**
-*** Remove previously drawn shapes 
+*** Remove previously drawn shapes
 **/
 JSMap.prototype._removeShapes = function()
 {
@@ -628,16 +628,16 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
     }
 
     /* clear existing shapes? */
-    if (type.startsWith("!")) { 
+    if (type.startsWith("!")) {
         this._removeShapes();
-        type = type.substr(1); 
+        type = type.substr(1);
     }
 
     /* no geopoints? */
     if (!verticePts || (verticePts.length == 0)) {
         return false;
     }
-    
+
     /* color */
     if (!color || (color == "")) {
         color = "#0000FF";
@@ -663,7 +663,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             shape.HideIcon();  // remove the pushpin at the center of the circle
             shape.SetLineColor(new VEColor(rgb.R,rgb.G,rgb.B,1.0));
             shape.SetFillColor(new VEColor(rgb.R,rgb.G,rgb.B,0.1));
-            if (mapBounds) { 
+            if (mapBounds) {
                 mapBounds.extend(vp);
                 mapBounds.extend(this._calcRadiusPoint(vp, radiusM,   0.0));
                 mapBounds.extend(this._calcRadiusPoint(vp, radiusM,  90.0));
@@ -696,26 +696,26 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             shape.SetLineColor(new VEColor(rgb.R,rgb.G,rgb.B,1.0));
             shape.SetFillColor(new VEColor(rgb.R,rgb.G,rgb.B,0.1));
             if (mapBounds) {
-                mapBounds.extend(vp0); 
-                mapBounds.extend(vp1); 
+                mapBounds.extend(vp0);
+                mapBounds.extend(vp1);
             }
             this.drawShapes.push(shape);
             this.virtEarthShapeLayer.AddShape(shape);
             didDrawShape = true;
 
         }
-            
+
     } else
     if (type == "polygon") {
-       
+
         if (verticePts.length >= 3) {
 
             var vePts = [];
             for (var p = 0; p < verticePts.length; p++) {
                 var vePt = new VELatLong(verticePts[p].lat, verticePts[p].lon);
                 vePts.push(vePt);
-                if (mapBounds) { 
-                    mapBounds.extend(verticePts[p]); 
+                if (mapBounds) {
+                    mapBounds.extend(verticePts[p]);
                 }
             }
             var poly = new VEShape(VEShapeType.Polygon, vePts);
@@ -747,7 +747,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             circleShape.HideIcon();  // remove the pushpin at the center of the circle
             circleShape.SetLineColor(new VEColor(rgb.R,rgb.G,rgb.B,1.0));
             circleShape.SetFillColor(new VEColor(rgb.R,rgb.G,rgb.B,0.1));
-            if (mapBounds) { 
+            if (mapBounds) {
                 mapBounds.extend(vp);
                 mapBounds.extend(this._calcRadiusPoint(vp, radiusM,   0.0));
                 mapBounds.extend(this._calcRadiusPoint(vp, radiusM,  90.0));
@@ -756,7 +756,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
             }
             this.drawShapes.push(circleShape);
             this.virtEarthShapeLayer.AddShape(circleShape);
-            
+
             if (lastPT != null) {
                 var ptA = lastPT;   // JSMapPoint
                 var ptB = vp;       // JSMapPoint
@@ -781,7 +781,7 @@ JSMap.prototype.JSDrawShape = function(type, radiusM, verticePts, color, zoomTo,
                 this.virtEarthShapeLayer.AddShape(rectShape);
             }
             lastPT = vp;
-            
+
             didDrawShape = true;
         }
 
@@ -845,7 +845,7 @@ JSMap.prototype.JSDrawGeozone = function(type, radiusM, points, color, primNdx)
         //alert("No Zone center!");
         return null;
     }
-    
+
     /* zone shape color */
     this.shapeColor = (color && (color != ""))? color : "#00B400";
     this.lineWidth  = 3;
@@ -1008,11 +1008,11 @@ JSMap.prototype.JSDrawGeozone = function(type, radiusM, points, color, primNdx)
         this._setCenter(new VELatLong(centerPt.lat, centerPt.lon), zoom);
 
     } else {
-        
+
         alert("Geozone type not supported: " + type);
 
     }
-    
+
     return null;
 };
 
@@ -1117,7 +1117,7 @@ JSMap.prototype._addCircleShape = function(center, radiusM, color, width, isPrim
     /* Icon */
     /*
     if (jsvZoneEditable) {
-        var iconURL = "http://labs.google.com/ridefinder/images/mm_20_blue.png";
+        var iconURL = "https://labs.google.com/ridefinder/images/mm_20_blue.png";
         //var iconHotspot = [6, 12];
         //var xOfs = VEPushpin_XOfs - iconHotspot[0];
         //var yOfs = VEPushpin_YOfs - iconHotspot[1];
@@ -1134,7 +1134,7 @@ JSMap.prototype._addCircleShape = function(center, radiusM, color, width, isPrim
 
     }
     */
-    
+
     return shape;
 
 };
@@ -1186,7 +1186,7 @@ JSMap.prototype._addPolygonShape = function(points, color, width)
 // ----------------------------------------------------------------------------
 
 /**
-*** Mouse event handler to draw circles/lines on the map 
+*** Mouse event handler to draw circles/lines on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._getGeozoneAtPoint = function(lat,lon)
@@ -1205,16 +1205,16 @@ JSMap.prototype._getGeozoneAtPoint = function(lat,lon)
 };
 
 /**
-*** Mouse event handler to draw circles/lines on the map 
+*** Mouse event handler to draw circles/lines on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseDown = function(e)
 {
-    
+
     /* last mousedown X/Y */
     this.lastX = e.mapX;
     this.lastY = e.mapY;
-    
+
     /* quick exits */
     if (!e.leftMouseButton || e.altKey || (e.ctrlKey && e.shiftKey)) {
         this.dragType = DRAG_NONE;
@@ -1247,7 +1247,7 @@ JSMap.prototype._event_OnMouseDown = function(e)
                 this.dragType = DRAG_GEOZONE_RADIUS;
                 this.virtEarthRulerLayer.DeleteAllShapes();
             } else {
-                // move 
+                // move
                 this.dragType = DRAG_GEOZONE_CENTER;
                 var CC = this.geozoneCenter;
                 this.dragZoneOffsetLat = LL.Latitude  - CC.Latitude;
@@ -1257,13 +1257,13 @@ JSMap.prototype._event_OnMouseDown = function(e)
             return true;
         }
     }
-    
+
     this.dragType = DRAG_NONE;
     return false;
 };
 
 /**
-*** Mouse event handler to draw circles on the map 
+*** Mouse event handler to draw circles on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseUp = function(e)
@@ -1279,7 +1279,7 @@ JSMap.prototype._event_OnMouseUp = function(e)
         mapProviderParseZones(jsvZoneList);
         return true;
     }
-        
+
     /* normal mode */
     this.dragType = DRAG_NONE;
     this.dragRulerLatLon = null;
@@ -1288,7 +1288,7 @@ JSMap.prototype._event_OnMouseUp = function(e)
 };
 
 /**
-*** Mouse event handler to detect lat/lon changes and draw circles/lines on the map 
+*** Mouse event handler to detect lat/lon changes and draw circles/lines on the map
 *** @param e  The mouse event
 **/
 JSMap.prototype._event_OnMouseMove = function(e)
@@ -1334,7 +1334,7 @@ JSMap.prototype._event_OnMouseMove = function(e)
         this.virtEarthMap.HideInfoBox(this.dragMarker);
         return true;
     }
-    
+
     /* dragging the zone center? */
     if (this.dragType == DRAG_GEOZONE_CENTER) {
         this.virtEarthMap.HideInfoBox(this.dragMarker);
@@ -1344,7 +1344,7 @@ JSMap.prototype._event_OnMouseMove = function(e)
         this.virtEarthMap.HideInfoBox(this.dragMarker);
         return true;
     }
-    
+
     /* no-op */
     return false;
 

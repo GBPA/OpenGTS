@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,7 +63,7 @@ import org.opengts.routing.RouteProvider;
 public abstract class MapProviderAdapter
     implements MapProvider
 {
-    
+
     // ------------------------------------------------------------------------
 
     private static final String     DFT_AUTO_ENABLED           = "false";
@@ -97,7 +97,7 @@ public abstract class MapProviderAdapter
     private MapDimension                    mapDimension        = null;
 
     private MapDimension                    mapZoneDimension    = null;
-    
+
     //private Map<String,String>              zoomRegions         = null;
 
     private long                            mapFeatures         = 0L;
@@ -107,7 +107,7 @@ public abstract class MapProviderAdapter
     // ------------------------------------------------------------------------
 
     /**
-    *** Constructor 
+    *** Constructor
     *** @param name  This MapProvider name
     *** @param key   This MapProvider key
     **/
@@ -117,7 +117,7 @@ public abstract class MapProviderAdapter
     }
 
     /**
-    *** Constructor 
+    *** Constructor
     *** @param name  This MapProvider name
     *** @param key   This MapProvider key
     **/
@@ -133,15 +133,15 @@ public abstract class MapProviderAdapter
 
     /**
     *** Called after initialization of this MapProvider.  This allows the MapProvider
-    *** to perform any required initialization after all attributes have been set 
+    *** to perform any required initialization after all attributes have been set
     **/
     public void postInit()
     {
         // -- override implementation
     }
-    
+
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Sets the supported map features
     *** @param featureMask  The mask containing the supported features
@@ -150,7 +150,7 @@ public abstract class MapProviderAdapter
     {
         this.mapFeatures = featureMask;
     }
-    
+
     /**
     *** Adds the specified feature to the list of supported map features
     *** @param feature  The feature to add to the supported features
@@ -171,7 +171,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Performs simple validation checks on the authorization key, etc, and returns
     *** true is the validation was successful.
@@ -184,7 +184,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Gets this MapProvider's name
     *** @return  The map provider name
@@ -195,7 +195,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Gets this MapProvider's authorization key
     *** @return  The map provider authorization key
@@ -236,7 +236,7 @@ public abstract class MapProviderAdapter
         rtp.setProperties(props);
         this.mapDimension = null;
     }
-    
+
     /**
     *** Adds a property key/value to this MapProvider
     *** @param key  The property key
@@ -268,7 +268,7 @@ public abstract class MapProviderAdapter
 
     /**
     *** Sets the zoom regions
-    *** @param The zoon regions 
+    *** @param The zoon regions
     **/
     /*
     public void setZoomRegions(Map<String,String> map)
@@ -279,7 +279,7 @@ public abstract class MapProviderAdapter
 
     /**
     *** Returns the zoom regions
-    *** @return The zoon regions 
+    *** @return The zoon regions
     **/
     /*
     public Map<String,String> getZoomRegions()
@@ -346,7 +346,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     // <Legend>
     //    <Title><![CDATA[Pushpin Legend]]></Title>
     //    <Icon name="red"   ><![CDATA[Description]]></Icon>
@@ -393,9 +393,9 @@ public abstract class MapProviderAdapter
 
     }
 
-    public static String GetIconLegendHtml(String refName, Locale locale, 
-        OrderedMap<String,PushpinIcon> pushpinMap, 
-        String legendType, Element legendElem, 
+    public static String GetIconLegendHtml(String refName, Locale locale,
+        OrderedMap<String,PushpinIcon> pushpinMap,
+        String legendType, Element legendElem,
         boolean outputHtml)
     {
 
@@ -419,7 +419,7 @@ public abstract class MapProviderAdapter
                 legendTitle = XMLTools.getNodeText(titleElem," ",false).trim();
                 //Print.logInfo("Legend Title (before): " + legendTitle);
                 //legendTitle = RTConfig.insertKeyValues(titleText); <-- do not apply Locale here!
-            } else 
+            } else
             if (outputHtml) {
                 I18N i18n = I18N.getI18N(MapProviderAdapter.class, locale);
                 legendTitle = i18n.getString("MapProviderAdapter.legendTitle","Pushpin Legend");
@@ -448,7 +448,7 @@ public abstract class MapProviderAdapter
                 sb.append("<"+TAG_Title+"><![CDATA[" + legendTitle + "]]></"+TAG_Title+">\n");
             }
         }
-        
+
         /* begin icon table */
         if (outputHtml) {
             sb.append("<table class=\""+CSS_legend+"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n");
@@ -481,7 +481,7 @@ public abstract class MapProviderAdapter
                 // legend.device.icon.1=greendot|0.7|More than 20 mph
                 String iconKey  = "legend."+legendType+".icon."+(i+1);
                 String iconItem = RTConfig.getString(iconKey, null);
-                if (StringTools.isBlank(iconItem)) { 
+                if (StringTools.isBlank(iconItem)) {
                     break; // no more icons
                 }
                 String p[] = StringTools.split(iconItem,'|');
@@ -536,7 +536,7 @@ public abstract class MapProviderAdapter
                 sb.append("</"+TAG_Icon+">\n");
             }
             iconCount++;
-            
+
         }
 
         /* end output */
@@ -546,10 +546,10 @@ public abstract class MapProviderAdapter
             sb.append("</"+TAG_Legend+">");
         }
         //Print.logInfo("Legend output:\n" + sb);
-        
+
         /* return result */
         return (iconCount > 0)? sb.toString() : "";
-        
+
     }
 
     /**
@@ -576,7 +576,7 @@ public abstract class MapProviderAdapter
         if (legend == null) {
             Print.logWarn("Legend is null");
             return null;
-        } else 
+        } else
         if (legend.startsWith("<"+TAG_Legend)) {
             String legendHtml = this._getIconLegendHtml(legend, null, true);
             legendHtml = RTConfig.insertKeyValues(legendHtml); // apply localization now
@@ -725,8 +725,8 @@ public abstract class MapProviderAdapter
             long mpp = rtp.getLong(propName, EventUtil.DFT_MAX_PUSHPIN_LIMIT);
             return (mpp > 0)? mpp : EventUtil.DFT_MAX_PUSHPIN_LIMIT;
         } else {
-            String propName[] = reqState.isFleet()? 
-                MapProvider.PROP_maxPushpins_fleet : 
+            String propName[] = reqState.isFleet()?
+                MapProvider.PROP_maxPushpins_fleet :
                 MapProvider.PROP_maxPushpins_device;
             long mpp = rtp.getLong(propName, EventUtil.DFT_MAX_PUSHPIN_LIMIT);
             return (mpp > 0)? mpp : EventUtil.DFT_MAX_PUSHPIN_LIMIT;
@@ -747,7 +747,7 @@ public abstract class MapProviderAdapter
         double lon = rtp.getDouble(MapProvider.PROP_default_longitude, ((dft != null)? dft.getLongitude() : MapProvider.DEFAULT_LONGITUDE));
         return new GeoPoint(lat, lon);
     }
-    
+
     /**
     *** Gets the default zoom/scale level for this MapProvider
     *** @param dft  The default zoom/scale returned if this MapProvider does not explicitly define a value
@@ -797,7 +797,7 @@ public abstract class MapProviderAdapter
     */
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Gets the auto-update enabled state for this MapProvider
     *** @return True if auto-update is enabled for this MapProvider
@@ -875,7 +875,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Gets the replay enabled state for this MapProvider
     *** @return True if replay is enabled for this MapProvider
@@ -905,7 +905,7 @@ public abstract class MapProviderAdapter
         return (interval < 30L)? (interval * 1000L) : interval;
     }
 
-    /** 
+    /**
     *** Returns true if only a single pushpin is to be displayed at a time during replay
     *** @return True if only a single pushpin is to be displayed at a time during replay
     **/
@@ -925,7 +925,7 @@ public abstract class MapProviderAdapter
     // ------------------------------------------------------------------------
 
     /**
-    *** Writes any required CSS to the specified PrintWriter.  This method is 
+    *** Writes any required CSS to the specified PrintWriter.  This method is
     *** intended to be overridden to provide the required behavior.
     *** @param out  The PrintWriter
     *** @param reqState The session RequestProperties
@@ -962,7 +962,7 @@ public abstract class MapProviderAdapter
         String styleW = (mapW > 0)? (mapW+"px") : "100%"; // 99%
         String styleH = (mapH > 0)? (mapH+"px") : "100%"; // 99%
         StringBuffer sb = new StringBuffer();
-        sb.append("border:1px solid black;");
+        sb.append("");
         sb.append("padding:0px;");
         sb.append("margin:0px;");
         sb.append("width:").append(styleW).append(";");
@@ -995,7 +995,7 @@ public abstract class MapProviderAdapter
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Allows the subclass MapProvider to adjust the session state prior to displaying the map
     *** @param reqState The current session state
@@ -1019,8 +1019,8 @@ public abstract class MapProviderAdapter
         PrintWriter out = response.getWriter();
 
         /* mime content type */
-        String mimeType = EventUtil.IsXMLMapDataFormat(mapDataFormat)? 
-            HTMLTools.MIME_XML() : 
+        String mimeType = EventUtil.IsXMLMapDataFormat(mapDataFormat)?
+            HTMLTools.MIME_XML() :
             HTMLTools.MIME_JSON();
         CommonServlet.setResponseContentType(response, mimeType, StringTools.CharEncoding_UTF_8);
         response.setHeader("CACHE-CONTROL", "NO-CACHE");
@@ -1029,7 +1029,7 @@ public abstract class MapProviderAdapter
 
         /* write map data */
         this.writeMapUpdate( // XML/JSON format specified by caller
-            out, 0, 
+            out, 0,
             mapDataFormat, true/*isTopLevelTag*/,
             reqState); // XML/JSON
 
@@ -1046,7 +1046,7 @@ public abstract class MapProviderAdapter
     *** @throws IOException
     **/
     public void writeMapUpdate(
-        PrintWriter out, int indentLevel, 
+        PrintWriter out, int indentLevel,
         int mapDataFormat, boolean isTopLevelTag,
         RequestProperties reqState)
         throws IOException
@@ -1131,7 +1131,7 @@ public abstract class MapProviderAdapter
                             //Print.logInfo("Snapped event delta meters ["+ndx+"]: " + deltaM);
                             if (evdata[ndx] instanceof EventData) {
                                 // -- this can change the location by a significant distance. ignore the
-                                // -  change if the distance is beyond an acceptable threshold (the snapToRoad 
+                                // -  change if the distance is beyond an acceptable threshold (the snapToRoad
                                 // -  may have chosen an incorrect route).
                                 if (GeoPoint.deltaMeters(evdata[ndx],gpp) < 20.0) {
                                     // -- small distance changed
@@ -1171,7 +1171,7 @@ public abstract class MapProviderAdapter
                 evUtil.writeMapEvents( // debug only
                     mdf, indentLevel, new PrintWriter(System.out,true),
                     false, isTopLevelTag,
-                    privLabel, 
+                    privLabel,
                     evdata, inclZones,
                     iconSel, iconMap,
                     isFleet, fleetRoute, selID,
@@ -1182,13 +1182,13 @@ public abstract class MapProviderAdapter
             */
             // -- write map events to stream
             evUtil.writeMapEvents(
-                mdf, indentLevel, out, 
+                mdf, indentLevel, out,
                 reqState.isSoapRequest(), isTopLevelTag,
-                privLabel, 
+                privLabel,
                 evdata, inclZones,
                 iconSel, iconMap,
                 isFleet, fleetRoute, selID,
-                tmz, 
+                tmz,
                 acct, user,
                 latest, lastBatt, lastSig, proximityM);
         } catch (IOException ioe) {
@@ -1213,7 +1213,7 @@ public abstract class MapProviderAdapter
         }
         return this.pushpinIconMap;
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
@@ -1225,7 +1225,7 @@ public abstract class MapProviderAdapter
     {
         if (!this.isFeatureSupported(MapProvider.FEATURE_GEOZONES)) {
             return 0;
-        } else 
+        } else
         if (type == Geozone.GeozoneType.POINT_RADIUS.getIntValue()) {
             return 1;
         } else {
@@ -1242,7 +1242,7 @@ public abstract class MapProviderAdapter
     {
         return null;
     }
-    
+
     // ------------------------------------------------------------------------
 
     /**
