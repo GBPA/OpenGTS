@@ -684,12 +684,12 @@ public class GroupInfo
 
                     /* new group */
                     if (_allowNew) {
-                    out.write("<h3 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.createNewGroup","Create a new {0}",grpTitles)+":</h3>\n");
+                    out.write("<h2 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("GroupInfo.createNewGroup","Create a new {0}",grpTitles)+":</h2>\n");
                     out.write("<div style='margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<form class='form-horizontal' name='"+FORM_GROUP_NEW+"' method='post' action='"+newURL+"' target='_self'>"); // target='_top'
                     out.write(" <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_NEW+"'/>");
                     out.write(i18n.getString("GroupInfo.groupID","{0} ID",grpTitles)+": <input type='text' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' name='"+PARM_NEW_NAME+"' value='' size='32' maxlength='32'><br>\n");
-                    out.write(" <input type='submit' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("GroupInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
+                    out.write(" <input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_NEW+"' value='"+i18n.getString("GroupInfo.new","New")+"' style='margin-top:5px; margin-left:10px;'>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
 
@@ -798,7 +798,7 @@ public class GroupInfo
 
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                     if (_editGroup) {
-                        out.write("<input type='submit' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("GroupInfo.change","Change")+"'>\n");
+                        out.write("<input type='submit' class='btn btn-warning' name='"+PARM_SUBMIT_CHG+"' value='"+i18n.getString("GroupInfo.change","Change")+"'>\n");
                         out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                         out.write("<input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("GroupInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+editURL+"','_self');\">\n"); // target='_top'
                     } else {
@@ -832,7 +832,7 @@ public class GroupInfo
                     out.write("  <input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_UPD_PROPS+"'/>\n");
 
                     /* Device fields */
-                    out.println("  <table>");
+                    out.println("  <table class='table'>");
                     out.println(FormRow_TextField(PARM_GROUP_SELECT     , false     , i18n.getString("GroupInfo.groupID","{0} ID",grpTitles)+":"         , _selGroupID, 30, 30));
                     out.println(FormRow_TextField(PARM_GROUP_DESC       , false     , i18n.getString("GroupInfo.description","{0} Name",grpTitles) +":"  , (_selGroup!=null)?_selGroup.getDescription():"", 40, 40));
                     out.println(FormRow_TextField(PARM_PROP_START_TYPE  , _editProps, i18n.getString("GroupInfo.startType","Start Type")+":"             , "", 2, 2));
@@ -846,9 +846,9 @@ public class GroupInfo
                     out.println("  </table>");
 
                     /* end of form */
-                  
+
                     if (_editProps) {
-                    out.write("<input type='submit' name='"+PARM_SUBMIT_QUE+"' value='"+i18n.getString("GroupInfo.queue","Queue")+"'>\n");
+                    out.write("<input type='submit' class='btn btn-success' name='"+PARM_SUBMIT_QUE+"' value='"+i18n.getString("GroupInfo.queue","Queue")+"'>\n");
                     }
                     out.write("<a href='"+editURL+"' style='margin-left:20px;'>"+(_editProps?i18n.getString("GroupInfo.cancel","Cancel"):i18n.getString("GroupInfo.back","Back"))+"</a>\n");
                     out.write("</form>\n");

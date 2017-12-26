@@ -929,8 +929,7 @@ public class ReportMenu
                 out.write("\n");
 
                 // -- frame header
-                out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+i18n.getString("ReportMenu.gpsReports","GPS Tracking Reports")+"</span><br/>\n");
-                out.write("<span class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+i18n.getString("ReportMenu.selectReport","Please select a report from the following menu:")+"</span><br/>\n");
+                out.write("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+i18n.getString("ReportMenu.gpsReports","GPS Tracking Reports")+"</h1>\n");
 
 
                 /* begin calendar/report-selection table */
@@ -1260,7 +1259,7 @@ public class ReportMenu
                 out.write(" <!-- Begin Report Submit -->\n");
                 out.write(" <tr>\n");
                 out.write("  <td valign='bottom' style='text-align: left;'>\n");
-      
+
                 out.write("    <form class='form-horizontal' id='"+FORM_GET_REPORT+"' name='"+FORM_GET_REPORT+"' method='post' action=\"javascript:rptmSubmitReport();\" target='_self'>\n"); // target='_top'
                 out.write("    <span style='padding-left: 5px;'><b>"+i18n.getString("ReportMenu.format","Format:")+"</b></span>\n");
                 out.write("    <select id='"+PARM_FORMAT[0]+"' class='form-control' name='"+PARM_FORMAT[0]+"' onchange=\"javascript:rptmFormatChanged();\">\n");
@@ -1291,7 +1290,8 @@ public class ReportMenu
                     out.write("      <option value='"+ReportURL.FORMAT_CUSTOM+"'>Custom</option>\n");
                 }
                 out.write("    </select>\n");
-                out.write("    <span style='margin-left:30px;'><input type='submit' name='"+PARM_REPORT_SUBMIT+"' value='"+i18n.getString("ReportMenu.getReport","Get Report")+"'></span>\n");
+                out.write("    <br>\n");
+                out.write("    <span style='margin-left:30px;'><input type='submit'class='btn btn-success' name='"+PARM_REPORT_SUBMIT+"' value='"+i18n.getString("ReportMenu.getReport","Get Report")+"'></span>\n");
                 out.write("    <br>\n");
                 out.write("    <br>\n");
                 out.write("    <span id='formatMsgElem' style='margin-top:10px; margin-left:5px;'></span>\n");

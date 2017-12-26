@@ -1178,7 +1178,7 @@ public class UserInfo
                             }
                         }
                     }
-                    out.println(FormRow_Separator());
+                    //out.println(FormRow_Separator());
                     // -- login page
                     out.println(FormRow_ComboBox (PARM_LOGIN_PAGE    , _editUser , i18n.getString("UserInfo.firstLoginPage","First Login Page")+":" , loginPage, loginList, "", 16));
                     if (_showPrefDev && _viewDevID) {
@@ -1241,15 +1241,15 @@ public class UserInfo
 
                     /* end table */
                     out.println("</table>");
-                
+
 
                     /* ACL entries (overrides) */
                     if (_showACLs && _viewAcls) {
-                        out.write("<span style='margin-left: 4px; margin-top: 8px; font-weight: bold;'>");
+                        out.write("<h3 style='margin-left: 4px; margin-top: '>");
                         out.write(i18n.getString("UserInfo.userAccessControl","User Access Control"));
-                        out.write(": ");
-                        out.write(i18n.getString("UserInfo.scrollDownToView","(scroll to view all configurable options)"));
-                        out.write("</span>\n");
+                        //out.write(": ");
+                        //out.write(i18n.getString("UserInfo.scrollDownToView","(scroll to view all configurable options)"));
+                        out.write("</h3>\n");
                         out.write("<div class='userAclViewDiv'>\n");
                         out.write("<table>\n");
                         AclEntry aclEntries[] = privLabel.getAllAclEntries();
@@ -1285,6 +1285,7 @@ public class UserInfo
                         }
                         out.write("</table>\n");
                         out.write("</div>\n");
+                        out.write("<hr />\n");
                     }
 
                     /* end of form */
