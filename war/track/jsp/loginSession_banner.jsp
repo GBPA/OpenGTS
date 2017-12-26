@@ -36,7 +36,7 @@
 <body onload="<gts:track section='body.onload'/>" onunload="<gts:track section='body.onunload'/>">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <gts:var ifKey="isLoggedIn" value="true">
+        
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <!-- Toggle icon for mobile view -->
@@ -80,11 +80,11 @@
             <!-- /.navbar-top-links -->
             <!-- /.navbar-static-side -->
         </nav>
-        </gts:var>
+
 
         <!-- End Top Navigation -->
         <!-- Left navbar-header -->
-        <gts:var ifKey="isLoggedIn" value="true">
+
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -132,7 +132,7 @@
                 </ul>
             </div>
         </div>
-        </gts:var>
+
         <!-- Left navbar-header end -->
         <!-- Page Content -->
         <div id="page-wrapper">
