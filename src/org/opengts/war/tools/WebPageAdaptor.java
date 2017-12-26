@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +59,7 @@ public abstract class WebPageAdaptor
     public  static final String  PARM_COMMAND                           = CommonServlet.PARM_COMMAND;
     public  static final String  PARM_ARGUMENT                          = CommonServlet.PARM_ARGUMENT;
     public  static final String  PARM_CONTENT                           = CommonServlet.PARM_CONTENT;
-    
+
     public  static final String  SUBACL_SEPARATOR                       = ":";
 
     // ------------------------------------------------------------------------
@@ -68,7 +68,7 @@ public abstract class WebPageAdaptor
     public  static final String  SORTTABLE_JS                           = ReportPresentation.SORTTABLE_JS;
 
     private static final boolean COMBOBOX_SHOW_DISABLED_IF_NOT_ENABLED  = true;
-    
+
     // ------------------------------------------------------------------------
 
     /**
@@ -107,7 +107,7 @@ public abstract class WebPageAdaptor
     }
 
     // ------------------------------------------------------------------------
-    
+
     /**
     *** Return true if the specified ID contains valid characters
     *** @param privLabel The PrivateLabel instance.
@@ -187,7 +187,7 @@ public abstract class WebPageAdaptor
     {
         return MakeURL(baseURI, page, cmd, null);
     }
-    
+
     public static URIArg MakeURL(String baseURI, String page, String cmd, String arg)
     {
         URIArg uri = new URIArg(baseURI);
@@ -196,7 +196,7 @@ public abstract class WebPageAdaptor
         if (arg  != null) { uri.addArg(PARM_ARGUMENT,arg ); }
         return uri;
     }
-    
+
     public static String EncodeMakeURL(RequestProperties reqState, String baseURI)
     {
         return EncodeMakeURL(reqState, baseURI, null, null, null);
@@ -300,81 +300,81 @@ public abstract class WebPageAdaptor
     }
 
     public static String Form_TextField(
-        String name, 
-        boolean editable, String value, 
-        int size, int maxLen)
-    {
-        return Form_TextField(
-            null/*id*/, name, 
-            editable, value, null/*onclick*/, 
-            size, maxLen, 
-            null/*cssClass*/,
-            null/*dataList*/
-            );
-    }
-
-    public static String Form_TextField(
-        String id, String name, 
+        String name,
         boolean editable, String value,
         int size, int maxLen)
     {
         return Form_TextField(
-            id, name, 
-            editable, value, null/*onclick*/, 
-            size, maxLen, 
+            null/*id*/, name,
+            editable, value, null/*onclick*/,
+            size, maxLen,
             null/*cssClass*/,
             null/*dataList*/
             );
     }
 
     public static String Form_TextField(
-        String id, String name, 
+        String id, String name,
+        boolean editable, String value,
+        int size, int maxLen)
+    {
+        return Form_TextField(
+            id, name,
+            editable, value, null/*onclick*/,
+            size, maxLen,
+            null/*cssClass*/,
+            null/*dataList*/
+            );
+    }
+
+    public static String Form_TextField(
+        String id, String name,
         boolean editable, String value, String onclick,
         int size, int maxLen)
     {
         return Form_TextField(
-            id, name, 
+            id, name,
             editable, value, onclick, // fixed 2011/03/16
-            size, maxLen, 
+            size, maxLen,
             null/*cssClass*/,
             null/*dataList*/
             );
     }
 
     public static String Form_TextField(
-        String id, String name, 
+        String id, String name,
         boolean editable, String value, String onclick,
-        int size, int maxLen, 
+        int size, int maxLen,
         String cssClass)
     {
         return Form_TextField(
-            id, name, 
+            id, name,
             editable, value, onclick, // fixed 2011/03/16
-            size, maxLen, 
+            size, maxLen,
             cssClass,
             null/*dataList*/
             );
     }
 
     public static String Form_TextField(
-        String id, String name, 
+        String id, String name,
         boolean editable, String value, String onclick,
-        int size, int maxLen, 
+        int size, int maxLen,
         String dataList[])
     {
         return Form_TextField(
-            id, name, 
+            id, name,
             editable, value, onclick, // fixed 2011/03/16
-            size, maxLen, 
+            size, maxLen,
             null/*cssClass*/,
             dataList
             );
     }
 
     public static String Form_TextField(
-        String id, String name, 
+        String id, String name,
         boolean editable, String value, String onclick,
-        int size, int maxLen, 
+        int size, int maxLen,
         String cssClass,
         String dataList[]  // TODO: use ComboMap if possible
         )
@@ -408,12 +408,12 @@ public abstract class WebPageAdaptor
         if (!StringTools.isBlank(id)) {
             sb.append(" id='"+id+"'");
         }
-        sb.append(" class='" + inputClass + "'");
+        sb.append(" class='" + inputClass + " form-control'");
         sb.append(" type='text'");
         sb.append(" name='" + name + "'");
         sb.append(" value='" + escapeValue(value) + "'");
-        if (!editable) { 
-            sb.append(" readonly"); 
+        if (!editable) {
+            sb.append(" readonly");
         }
         if ((size > 0) && (maxLen > 0)) {
             sb.append(" size='" + size + "'");
@@ -422,7 +422,7 @@ public abstract class WebPageAdaptor
         if (editable) {
             // The follow attempts to consume the "Enter" key and prevent it
             // from submitting the form.
-            // - The following still causes Internet Explorer (IE) to submit the form!!  
+            // - The following still causes Internet Explorer (IE) to submit the form!!
             //   String js = "return !isEnterKeyPressed(event);";
             // - These seems to work OK on IE (and do no harm on Firefox, etc)
             //   String js = "if (isEnterKeyPressed(event)) { event.returnValue=false; event.cancel = true; return false; } else { return true; }";
@@ -457,31 +457,31 @@ public abstract class WebPageAdaptor
     // --------------------------------
 
     public static String FormRow_TextField(
-        String key, boolean editable, 
-        String description, String value, 
+        String key, boolean editable,
+        String description, String value,
         int size, int maxLen)
     {
         return FormRow_TextField(
-            null/*id*/, key, editable, 
+            null/*id*/, key, editable,
             description, value,
-            null/*onclick*/, 
-            size, maxLen, 
+            null/*onclick*/,
+            size, maxLen,
             null/*dataList*/,
             null/*trailingText*/
             );
     }
 
     public static String FormRow_TextField(
-        String key, boolean editable, 
-        String description, String value, 
+        String key, boolean editable,
+        String description, String value,
         int size, int maxLen,
         String dataList[])
     {
         return FormRow_TextField(
-            null/*id*/, key, editable, 
+            null/*id*/, key, editable,
             description, value,
-            null/*onclick*/, 
-            size, maxLen, 
+            null/*onclick*/,
+            size, maxLen,
             dataList,
             null/*trailingText*/
             );
@@ -489,30 +489,30 @@ public abstract class WebPageAdaptor
 
     public static String FormRow_TextField(
         String key, boolean editable,
-        String description, String value, 
-        int size, int maxLen, 
+        String description, String value,
+        int size, int maxLen,
         String trailingHtml)
     {
         return FormRow_TextField(
-            null/*id*/, key, editable, 
-            description, value, 
-            null/*onclick*/, 
-            size, maxLen, 
+            null/*id*/, key, editable,
+            description, value,
+            null/*onclick*/,
+            size, maxLen,
             null/*dataList*/,
             trailingHtml
             );
     }
 
     public static String FormRow_TextField(
-        String id, String key, boolean editable, 
-        String description, String value, 
-        String onclick, 
+        String id, String key, boolean editable,
+        String description, String value,
+        String onclick,
         int size, int maxLen)
     {
         return FormRow_TextField(
-            id, key, editable, 
-            description, value, 
-            onclick, 
+            id, key, editable,
+            description, value,
+            onclick,
             size, maxLen,
             null/*dataList*/,
             null/*trailingHtml*/
@@ -520,27 +520,27 @@ public abstract class WebPageAdaptor
     }
 
     public static String FormRow_TextField(
-        String id, String key, boolean editable, 
-        String description, String value, 
-        String onclick, 
-        int size, int maxLen, 
+        String id, String key, boolean editable,
+        String description, String value,
+        String onclick,
+        int size, int maxLen,
         String trailingHtml)
     {
         return FormRow_TextField(
-            id, key, editable, 
-            description, value, 
-            onclick, 
-            size, maxLen, 
+            id, key, editable,
+            description, value,
+            onclick,
+            size, maxLen,
             null/*dataList*/,
             trailingHtml
             );
     }
 
     public static String FormRow_TextField(
-        String id, String key, boolean editable, 
-        String description, String value, 
-        String onclick, 
-        int size, int maxLen, 
+        String id, String key, boolean editable,
+        String description, String value,
+        String onclick,
+        int size, int maxLen,
         String dataList[],
         String trailingHtml
         )
@@ -567,13 +567,13 @@ public abstract class WebPageAdaptor
     // ------------------------------------------------------------------------
     // helpers to create Form TextArea
 
-    public static String Form_TextArea(String name, boolean editable, 
+    public static String Form_TextArea(String name, boolean editable,
         String value, int rows, int cols)
     {
         return Form_TextArea(null, name, editable, value, rows, cols);
     }
 
-    public static String Form_TextArea(String id, String name, boolean editable, 
+    public static String Form_TextArea(String id, String name, boolean editable,
         String value, int rows, int cols)
     {
         StringBuffer sb = new StringBuffer();
@@ -582,14 +582,14 @@ public abstract class WebPageAdaptor
         if (!StringTools.isBlank(id)) {
             sb.append(" id='"+id+"'");
         }
-        sb.append(" class='" + inputClass + "'");
+        sb.append(" class='" + inputClass + " form-control'");
         sb.append(" name='" + name + "'");
         if (!editable) {
-            sb.append(" readonly"); 
+            sb.append(" readonly");
         }
         sb.append(" rows='" + rows + "'");
         sb.append(" cols='" + cols + "'");
-        if (editable) { 
+        if (editable) {
             //sb.append(" onkeypress=\"return !isEnterKeyPressed(event);\"");
         }
         sb.append(" nowrap>");
@@ -610,8 +610,8 @@ public abstract class WebPageAdaptor
         /* start row */
         sb.append("<tr>");
         /* description */
-        if (StringTools.isBlank(desc)) { 
-            desc = "&nbsp;"; 
+        if (StringTools.isBlank(desc)) {
+            desc = "&nbsp;";
         }
         sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"' valign='top' nowrap>"+desc+"</td>");
         /* form input */
@@ -646,7 +646,7 @@ public abstract class WebPageAdaptor
             if (!StringTools.isBlank(id)) {
                 sb.append(" id='" + id + "'");
             }
-            sb.append(" class='"+ CommonServlet.CSS_ADMIN_COMBO_BOX + "'");
+            sb.append(" class='"+ CommonServlet.CSS_ADMIN_COMBO_BOX + " form-control'");
             sb.append(" name='" + key + "'");
             // -- style
             if (size > 0) {
@@ -667,9 +667,9 @@ public abstract class WebPageAdaptor
             if (selKey == null) {
                 selKey = new ComboOption("");
             }
-    
+
             /* selectable options */
-            if (ListTools.isEmpty(map)) { 
+            if (ListTools.isEmpty(map)) {
                 // 'list' should never be empty
                 Print.logWarn("ComboBox 'list' is empty: key=" + key);
                 sb.append("<option value='"+selKey.getKey()+"' selected>" + FilterText(selKey.getDescription()) + "</option>");
@@ -681,18 +681,18 @@ public abstract class WebPageAdaptor
                     sb.append("<option value='" + comboKey + "' " + isSel + ">" + FilterText(comboDesc) + "</option>");
                 }
             }
-    
+
             /* end form select */
             sb.append("</select>");
-        
+
             /* return result */
             return sb.toString();
 
         } else {
-            
+
             String dispValue = (selKey != null)? selKey.getDescription() : StringTools.trim(map.get(""));
             return Form_TextField(id, key, false, dispValue, null, size, size);
-            
+
         }
 
     }
@@ -741,12 +741,12 @@ public abstract class WebPageAdaptor
 
         /* editable */
         if (editable || COMBOBOX_SHOW_DISABLED_IF_NOT_ENABLED) {
-            
+
             StringBuffer sb = new StringBuffer();
             /* start row */
             sb.append("<tr>");
-            if (StringTools.isBlank(desc)) { 
-                desc = "&nbsp;"; 
+            if (StringTools.isBlank(desc)) {
+                desc = "&nbsp;";
             }
             sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"' nowrap>"+desc+"</td>");
             /* form input */
@@ -773,7 +773,7 @@ public abstract class WebPageAdaptor
             }
 
         }
-        
+
     }
 
     // ------------------------------------------------------------------------
@@ -810,17 +810,17 @@ public abstract class WebPageAdaptor
         /* return result */
         return sb.toString();
     }
-    
+
     // --------------------------------
-    
+
     public static String FormRow_CheckBox(String desc, String id, String name, boolean editable, boolean checked, String tooltip, String onchange)
     {
         StringBuffer sb = new StringBuffer();
         /* start row */
         sb.append("<tr>");
         /* description */
-        if (StringTools.isBlank(desc)) { 
-            desc = "&nbsp;"; 
+        if (StringTools.isBlank(desc)) {
+            desc = "&nbsp;";
         }
         sb.append("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"' nowrap>"+desc+"</td>");
         /* form input */
@@ -901,7 +901,7 @@ public abstract class WebPageAdaptor
     private String          baseURI             = null;
 
     private String          jspURI              = null;
-    
+
     private String          cssDir              = "css";
 
     private MenuGroup       menuGroup           = null;
@@ -917,7 +917,7 @@ public abstract class WebPageAdaptor
 
     private boolean         loginRequired       = true;
     private int             sortIndex           = -1;
-    
+
     private I18N.Text       menuDesc            = null;
     private I18N.Text       menuHelp            = null;
     private I18N.Text       navDesc             = null;
@@ -938,7 +938,7 @@ public abstract class WebPageAdaptor
         // this.setPageNavigation(new String[] { PAGE_LOGIN, PAGE_MENU_TOP });
         // this.setLoginRequired(true);
     }
-    
+
     /* post initialization */
     protected void postInit()
     {
@@ -959,22 +959,22 @@ public abstract class WebPageAdaptor
     {
         return this.baseURI;
     }
-    
+
     public void setBaseURI(String baseURI)
     {
         this.baseURI = baseURI;
     }
-    
+
     public URIArg getPageURI()
     {
         return this.getPageURI(null, null);
     }
-    
+
     public URIArg getPageURI(String command)
     {
         return this.getPageURI(command, null);
     }
-    
+
     public URIArg getPageURI(String command, String cmdArg)
     {
         return MakeURL(this.getBaseURI(), this.getPageName(), command, cmdArg);
@@ -986,7 +986,7 @@ public abstract class WebPageAdaptor
     {
         return this.pageName;
     }
-    
+
     public void setPageName(String pageName)
     {
         this.pageName = pageName;
@@ -998,7 +998,7 @@ public abstract class WebPageAdaptor
     {
         return this.privateLabel;
     }
-    
+
     public void setPrivateLabel(PrivateLabel privLabel)
     {
         this.privateLabel = privLabel;
@@ -1022,7 +1022,7 @@ public abstract class WebPageAdaptor
     {
         return "_self";
     }
-    
+
     public PixelDimension getWindowDimension()
     {
         return null;
@@ -1034,7 +1034,7 @@ public abstract class WebPageAdaptor
     {
         return this.cssDir;
     }
-    
+
     public void setCssDirectory(String cssDir)
     {
         this.cssDir = cssDir;
@@ -1046,7 +1046,7 @@ public abstract class WebPageAdaptor
     {
         return this.getPageNavigationHTML(reqState, true);
     }
-    
+
     public String getPageNavigationHTML(RequestProperties reqState, boolean reInit)
     {
         if ((reInit || (this.pageNavHTML == null)) && this.hasPageNavigation()) {
@@ -1056,7 +1056,7 @@ public abstract class WebPageAdaptor
                 Print.logWarn("Page Navigation PrivateLabel undefined: " + this.getPageName());
                 this.pageNavHTML = "";
             } else {
-                // <a href="/track/Track?page=menu.top">Main Menu</a> | 
+                // <a href="/track/Track?page=menu.top">Main Menu</a> |
                 // <a href="/track/Track?page=login">Logout</a>&nbsp;&nbsp;
                 StringBuffer sb = new StringBuffer();
                 for (int i = pageNavNames.length - 1; i >= 0; i--) {
@@ -1089,11 +1089,11 @@ public abstract class WebPageAdaptor
     {
         this.pageNavList = pageNav;
     }
-    
-    public boolean hasPageNavigation() 
+
+    public boolean hasPageNavigation()
     {
         return !ListTools.isEmpty(this.getPageNavigation());
-    }   
+    }
 
     public String[] getPageNavigation()
     {
@@ -1162,7 +1162,7 @@ public abstract class WebPageAdaptor
     {
         this.menuGroup = mg;
     }
-    
+
     public MenuGroup getMenuGroup(RequestProperties reqState)
     {
         return this.menuGroup;
@@ -1197,7 +1197,7 @@ public abstract class WebPageAdaptor
     {
         return this.iconImageURI;
     }
-    
+
     public void setMenuIconImage(String iconURI)
     {
         if (StringTools.isBlank(iconURI) || iconURI.startsWith("!")) {
@@ -1213,7 +1213,7 @@ public abstract class WebPageAdaptor
     {
         return this.btnImageURI;
     }
-    
+
     public void setMenuButtonImage(String btnURI)
     {
         if (StringTools.isBlank(btnURI) || btnURI.startsWith("!")) {
@@ -1229,7 +1229,7 @@ public abstract class WebPageAdaptor
     {
         return this.btnImageALT;
     }
-    
+
     public void setMenuButtonAltImage(String btnURI)
     {
         if (StringTools.isBlank(btnURI) || btnURI.startsWith("!")) {
@@ -1255,7 +1255,7 @@ public abstract class WebPageAdaptor
             return "";
         }
     }
-    
+
     protected String _getMenuDescription(RequestProperties reqState, String dft)
     {
         if (this.menuDesc != null) {
@@ -1282,7 +1282,7 @@ public abstract class WebPageAdaptor
             return "";
         }
     }
-    
+
     protected String _getMenuHelp(RequestProperties reqState, String dft)
     {
         if (this.menuHelp != null) {
@@ -1309,7 +1309,7 @@ public abstract class WebPageAdaptor
             return "";
         }
     }
-    
+
     protected String _getNavigationDescription(RequestProperties reqState, String dft)
     {
         if (this.navDesc != null) {
@@ -1336,7 +1336,7 @@ public abstract class WebPageAdaptor
             return this.getNavigationDescription(reqState);
         }
     }
-   
+
     protected String _getNavigationTab(RequestProperties reqState, String dft)
     {
         if (this.navTab != null) {
@@ -1391,7 +1391,7 @@ public abstract class WebPageAdaptor
         //    this.pageProperties.logProperties(this.getPageName() + " Page Properties");
         //}
     }
-    
+
     public RTProperties getProperties()
     {
         if (this.pageProperties == null) {
@@ -1450,7 +1450,7 @@ public abstract class WebPageAdaptor
         /* check runtime properties */
         String K = this.getRuntimePropertyKey(key);
         if (RTConfig.hasProperty(K)) {
-            double val = RTConfig.getDouble(K, Double.NaN); 
+            double val = RTConfig.getDouble(K, Double.NaN);
             if (val != Double.NaN) {
                 return val;
             }
@@ -1540,15 +1540,15 @@ public abstract class WebPageAdaptor
     // ------------------------------------------------------------------------
 
     public abstract void writePage(
-        final RequestProperties reqState, 
+        final RequestProperties reqState,
         final String pageMsg)
         throws IOException;
 
     // ------------------------------------------------------------------------
 
     public static void writeCssLink(
-        PrintWriter out, 
-        final RequestProperties reqState, 
+        PrintWriter out,
+        final RequestProperties reqState,
         String cssFileName, String cssFileDir)
         throws IOException
     {
@@ -1602,7 +1602,7 @@ public abstract class WebPageAdaptor
             out.write(privLabel.resolveCssFile(cssFileName,cssFileDir));
         }
         out.write("\"/>\n");
-        
+
     }
 
     // ------------------------------------------------------------------------

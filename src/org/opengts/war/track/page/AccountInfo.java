@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,7 +71,7 @@ public class AccountInfo
     extends WebPageAdaptor
     implements Constants
 {
-    
+
     // ------------------------------------------------------------------------
     // Parameters
 
@@ -113,7 +113,7 @@ public class AccountInfo
 
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public AccountInfo()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -121,9 +121,9 @@ public class AccountInfo
         this.setPageNavigation(new String[] { PAGE_LOGIN, PAGE_MENU_TOP });
         this.setLoginRequired(true);
     }
-    
+
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -135,7 +135,7 @@ public class AccountInfo
         I18N i18n = privLabel.getI18N(AccountInfo.class);
         return super._getMenuDescription(reqState,i18n.getString("AccountInfo.editMenuDesc","View/Edit Account Information"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -279,7 +279,7 @@ public class AccountInfo
                     String grpPlurTitle = groupsTitle;
                     currAcct.setDeviceGroupTitle(grpSingTitle, grpPlurTitle);
                     // -- 'Address' title
-                    String adrSingTitle = addrTitle; 
+                    String adrSingTitle = addrTitle;
                     String adrPlurTitle = addrsTitle;
                     currAcct.setAddressTitle(adrSingTitle, adrPlurTitle);
                     // -- default user
@@ -345,8 +345,8 @@ public class AccountInfo
 
                 String menuURL = privLabel.getWebPageURL(reqState, PAGE_MENU_TOP);
                 String chgURL  = privLabel.getWebPageURL(reqState, pageName, COMMAND_INFO_UPDATE);
-                String frameTitle = _allowEdit? 
-                    i18n.getString("AccountInfo.editAccount","Edit Account Information") : 
+                String frameTitle = _allowEdit?
+                    i18n.getString("AccountInfo.editAccount","Edit Account Information") :
                     i18n.getString("AccountInfo.viewAccount","View Account Information");
 
                 // frame content
@@ -362,10 +362,10 @@ public class AccountInfo
                 String      grpTitles[]      = currAcct.getDeviceGroupTitles(locale, new String[]{"",""});
                 String      adrTitles[]      = currAcct.getAddressTitles(locale, new String[]{"",""});
                 int         neFldLen         = Account.getMaximumNotifyEmailLength(); // 125
-                out.println("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>");
+                out.println("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>");
                 out.println("<hr/>");
-                out.println("<form name='AccountInfo' method='post' action='"+chgURL+"' target='_self'>");
-                out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                out.println("<form name='AccountInfo' method='post' class='form-horizontal' action='"+chgURL+"' target='_self'>");
+                out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                 out.println(FormRow_TextField(PARM_ACCOUNT_ID   , false     , i18n.getString("AccountInfo.accountID","Account ID:")                  , currAcct.getAccountID()       , 32, 32)); // read-only
                 out.println(FormRow_TextField(PARM_ACCOUNT_DESC , _allowEdit, i18n.getString("AccountInfo.accountName","Account Description:")       , currAcct.getDescription()     , 40, 40));
                 out.println(FormRow_TextField(PARM_CONTACT_NAME , _allowEdit, i18n.getString("AccountInfo.contactName","Contact Name:")              , currAcct.getContactName()     , 40, 40));
@@ -390,7 +390,7 @@ public class AccountInfo
                 out.print  (Form_TextField(PARM_DEVICES_TITLE, _allowEdit, devTitles[1], 20, 40));
                 out.print  ("</td>");
                 out.println("</tr>");
- 
+
                 /* "Fleet" title */
                 out.print  ("<tr>");
                 out.print  ("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'>"+i18n.getString("AccountInfo.groupTitle","'DeviceGroup' Title:")+"</td>");
@@ -400,7 +400,7 @@ public class AccountInfo
                 out.print  (Form_TextField(PARM_GROUPS_TITLE, _allowEdit, grpTitles[1], 20, 40));
                 out.print  ("</td>");
                 out.println("</tr>");
- 
+
                 /* "Address" title */
                 out.print  ("<tr>");
                 out.print  ("<td class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE_HEADER+"'>"+i18n.getString("AccountInfo.addressTitle","'Address' Title:")+"</td>");
@@ -443,11 +443,11 @@ public class AccountInfo
                 out.write("<hr style='margin-bottom:5px;'>\n");
                 out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                 if (_allowEdit) {
-                    out.write("<input type='submit' name='"+PARM_SUBMIT_CHANGE+"' value='"+i18n.getString("AccountInfo.change","Change")+"'>\n");
+                    out.write("<input type='submit' class='btn btn-lg btn-success' name='"+PARM_SUBMIT_CHANGE+"' value='"+i18n.getString("AccountInfo.change","Change")+"'>\n");
                     out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
-                    out.write("<input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("AccountInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
+                    out.write("<input type='button' class='btn btn-lg btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("AccountInfo.cancel","Cancel")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
                 } else {
-                    out.write("<input type='button' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("AccountInfo.back","Back")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
+                    out.write("<input type='button' class='btn btn-lg btn-default' name='"+PARM_BUTTON_BACK+"' value='"+i18n.getString("AccountInfo.back","Back")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
                 }
                 out.write("</form>\n");
 
@@ -466,6 +466,6 @@ public class AccountInfo
             model);                     // Model
 
     }
-    
+
     // ------------------------------------------------------------------------
 }
