@@ -36,7 +36,7 @@
 <body onload="<gts:track section='body.onload'/>" onunload="<gts:track section='body.onunload'/>">
     <div id="wrapper">
         <!-- Top Navigation -->
-        
+
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <!-- Toggle icon for mobile view -->
@@ -64,15 +64,15 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><gts:var ifKey="isLoggedIn" value="true">${accountDesc}</gts:var></a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
-                            <li><a href="./?page=acct.info"><i class="ti-user"></i> &nbsp;My Account</a></li>
-                            <li><a href="./?page=passwd"><i class="ti-settings"></i> &nbsp;My Password</a></li>
+                            <li><a href="/dashboard/Track?page=acct.info"><i class="ti-user"></i> &nbsp;My Account</a></li>
+                            <li><a href="/dashboard/Track?page=passwd"><i class="ti-settings"></i> &nbsp;My Password</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="./?page=login"><i class="fa fa-power-off"></i> &nbsp;Logout</a></li>
+                            <li><a href="/dashboard/Track?page=login"><i class="fa fa-power-off"></i> &nbsp;Logout</a></li>
                         </ul>
                         <!-- /.user dropdown-user -->
                     </li>
                     <!-- /.user dropdown -->
-                    <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+                    <li class="right-side-toggle"> </li>
                     <!-- /.dropdown -->
                 </ul>
             </div>

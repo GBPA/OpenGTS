@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -73,13 +73,13 @@ public class OpenLayers
     // ------------------------------------------------------------------------
     // http://www.openlayers.org/api/OpenLayers.js
     // http://www.openstreetmap.org/openlayers/OpenStreetMap.js
-    // 
+    //
     /* OpenLayers JavaScript URL */
-    private static final String OPENLAYERS_2_JS_URL             = "http://openlayers.org/api/OpenLayers.js";
+    private static final String OPENLAYERS_2_JS_URL             = "https://openlayers.org/api/OpenLayers.js";
     private static final String OPENLAYERS_2_JS_URL_SSL         = "https://openlayers.org/api/OpenLayers.js";
 
     /* OpenLayers 3 */
-    private static final String OPENLAYERS_4_JS_URL             = "http://openlayers.org/en/v4.1.1/build/ol.js";
+    private static final String OPENLAYERS_4_JS_URL             = "https://openlayers.org/en/v4.1.1/build/ol.js";
     private static final String OPENLAYERS_4_JS_URL_SSL         = "https://openlayers.org/en/v4.1.1/build/ol.js";
 
     // ------------------------------------------------------------------------
@@ -116,16 +116,16 @@ public class OpenLayers
     public  static final String PROP_OPENSEAMAP_showOverlay[]   = new String[] { "openSeaMap.showOverlay"     };
 
     // ------------------------------------------------------------------------
-    
+
     private static final int   DEFAULT_ZOOM             = 4;
 
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 
-    /* OpenLayers instance */ 
-    public OpenLayers(String name, String key) 
+    /* OpenLayers instance */
+    public OpenLayers(String name, String key)
     {
-        super(name, key); 
+        super(name, key);
         this.addSupportedFeature(FEATURE_LATLON_DISPLAY);
         this.addSupportedFeature(FEATURE_DISTANCE_RULER);
         this.addSupportedFeature(FEATURE_GEOZONES);
@@ -138,15 +138,15 @@ public class OpenLayers
 
     // ------------------------------------------------------------------------
 
-    /* write mapping support JS to stream */ 
-    protected void writeJSVariables(PrintWriter out, RequestProperties reqState) 
+    /* write mapping support JS to stream */
+    protected void writeJSVariables(PrintWriter out, RequestProperties reqState)
         throws IOException
     {
         super.writeJSVariables(out, reqState);
         out.write("// OpenLayers custom vars\n");
         RTProperties rtp = this.getProperties();
         // -- GeoServer support
-        boolean gsEnable = rtp.getBoolean(PROP_GEOSERVER_enable, false); 
+        boolean gsEnable = rtp.getBoolean(PROP_GEOSERVER_enable, false);
         JavaScriptTools.writeJSVar(out, "GEOSERVER_enable", gsEnable);
         if (gsEnable) {
             String gsTitle  = StringTools.blankDefault(rtp.getString(PROP_GEOSERVER_title,null), "WMS Provider");
@@ -169,40 +169,40 @@ public class OpenLayers
             JavaScriptTools.writeJSVar(out, "GEOSERVER_layerType"    , gsLayerT);
         }
         // -- SitiMapa
-        boolean smEnable = !gsEnable? rtp.getBoolean(PROP_SITIMAPA_enable,false) : false; 
+        boolean smEnable = !gsEnable? rtp.getBoolean(PROP_SITIMAPA_enable,false) : false;
         JavaScriptTools.writeJSVar(out, "SITIMAPA_enable", smEnable);
         // -- Mapquest support (Mapquest dropped support on 2016/07/11)
-        boolean mqOsmLayer    = rtp.getBoolean(PROP_MAPQUEST_showOSMLayer   ,false); 
-        boolean mqAerialLayer = rtp.getBoolean(PROP_MAPQUEST_showAerialLayer,false); 
+        boolean mqOsmLayer    = rtp.getBoolean(PROP_MAPQUEST_showOSMLayer   ,false);
+        boolean mqAerialLayer = rtp.getBoolean(PROP_MAPQUEST_showAerialLayer,false);
         JavaScriptTools.writeJSVar(out, "MAPQUEST_showOSMLayer"   , mqOsmLayer);
         JavaScriptTools.writeJSVar(out, "MAPQUEST_showAerialLayer", mqAerialLayer);
         // -- Nokia-Here support
-        boolean nhLayer   = rtp.getBoolean(PROP_NOKIAHERE_showLayer,false); 
-        String  nhAppID   = rtp.getString(PROP_NOKIAHERE_appID     ,"APP_ID"); 
-        String  nhAppCode = rtp.getString(PROP_NOKIAHERE_appCode   ,"APP_CODE"); 
+        boolean nhLayer   = rtp.getBoolean(PROP_NOKIAHERE_showLayer,false);
+        String  nhAppID   = rtp.getString(PROP_NOKIAHERE_appID     ,"APP_ID");
+        String  nhAppCode = rtp.getString(PROP_NOKIAHERE_appCode   ,"APP_CODE");
         JavaScriptTools.writeJSVar(out, "NOKIAHERE_showLayer", nhLayer);
         JavaScriptTools.writeJSVar(out, "NOKIAHERE_appID"    , nhAppID);
         JavaScriptTools.writeJSVar(out, "NOKIAHERE_appCode"  , nhAppCode);
         // -- OpenSeaMap overlay
-        boolean seaOverlay = rtp.getBoolean(PROP_OPENSEAMAP_showOverlay,false); 
+        boolean seaOverlay = rtp.getBoolean(PROP_OPENSEAMAP_showOverlay,false);
         JavaScriptTools.writeJSVar(out, "OPENSEAMAP_showOverlay", seaOverlay);
     }
 
     // ------------------------------------------------------------------------
 
     protected void writeJSIncludes(PrintWriter out, RequestProperties reqState)
-        throws IOException 
+        throws IOException
     {
         MapProvider mp = reqState.getMapProvider();
         RTProperties mrtp = (mp != null)? mp.getProperties() : null;
 
         /* SSL? */
         String useSSLStr = (mrtp != null)? mrtp.getString(PROP_useSSL, null) : null;
-        boolean useSSL = false; 
+        boolean useSSL = false;
         if (StringTools.isBlank(useSSLStr)) {
             // -- default: follow parent URL secure protocol
             useSSL = reqState.isSecure()? true : false;
-        } else 
+        } else
         if (useSSLStr.equalsIgnoreCase("auto")) {
             // -- auto: follow parent URL secure protocol
             useSSL = reqState.isSecure()? true : false;
@@ -236,7 +236,7 @@ public class OpenLayers
             jsURLs.add("http://map.openseamap.org/javascript/utilities.js");
         }
         super.writeJSIncludes(out, reqState, jsURLs.toArray(new String[jsURLs.size()]));
-        
+
     }
 
     // ------------------------------------------------------------------------

@@ -18,7 +18,7 @@
 /** @mapstraction */
 (function(){
 
-//////////////////////////// 
+////////////////////////////
 //
 // utility to functions, TODO namespace or remove before release
 //
@@ -44,7 +44,7 @@ function $m() {
 }
 
 /**
- * loadScript is a JSON data fetcher 
+ * loadScript is a JSON data fetcher
  * @param {String} src URL to JSON file
  * @param {Function} callback Callback function
  */
@@ -62,7 +62,7 @@ function loadScript(src, callback) {
 }
 
 /**
- * 
+ *
  * @param {Object} point
  * @param {Object} level
  */
@@ -137,7 +137,7 @@ function metresToLon(m, lat) {
 // etc.
 
 /**
- * 
+ *
  * @param {Object} pixels
  * @param {Object} zoom
  */
@@ -146,7 +146,7 @@ function getDegreesFromGoogleZoomLevel(pixels, zoom) {
 }
 
 /**
- * 
+ *
  * @param {Object} pixels
  * @param {Object} degrees
  */
@@ -155,7 +155,7 @@ function getGoogleZoomLevelFromDegrees(pixels, degrees) {
 }
 
 /**
- * 
+ *
  * @param {Object} number
  * @param {Object} base
  */
@@ -164,7 +164,7 @@ function logN(number, base) {
 }
 
 
-///////////////////////////// 
+/////////////////////////////
 //
 // Mapstraction proper begins here
 //
@@ -188,25 +188,25 @@ function Mapstraction(element,api,debug) {
   this.images = [];
   this.loaded = {};
   this.onload = {};
-	
+
   // Mapstraction.writeInclude(api, "nothing");
-	
+
   // optional debug support
   if (debug === true) {
     this.debug = true;
-  } 
+  }
   else {
     this.debug = false;
   }
 
-  // This is so that it is easy to tell which revision of this file 
+  // This is so that it is easy to tell which revision of this file
   // has been copied into other projects.
   this.svn_revision_string = '$Revision: 1.1 $';
   this.addControlsArgs = {};
-	
+
   // if (this.currentElement) {
     this.addAPI($m(element), api);
-  // }  
+  // }
 }
 
 
@@ -240,7 +240,7 @@ Mapstraction.prototype.swap = function(element,api) {
     }
 
     for (var j = 0; j < this.polylines.length; j++) {
-      this.addPolyline( this.polylines[j], true); 
+      this.addPolyline( this.polylines[j], true);
     }
   }
   else {
@@ -257,20 +257,20 @@ Mapstraction.prototype.swap = function(element,api) {
 };
 
 /**
- * 
+ *
  * @param {Object} element
  * @param {String} api
  */
-Mapstraction.prototype.addAPI = function(element,api) { 
+Mapstraction.prototype.addAPI = function(element,api) {
   this.loaded[api] = false;
-  this.onload[api] = [];	
+  this.onload[api] = [];
   var me = this;
-  
+
   switch (api) {
     case 'yahoo':
       if (YMap) {
         this.maps[api] = new YMap(element);
-        
+
         YEvent.Capture(this.maps[api], EventsList.MouseClick, function(event,location) { me.clickHandler(location.Lat, location.Lon, location, me); });
         YEvent.Capture(this.maps[api], EventsList.changeZoom, function() { me.moveendHandler(me); });
         YEvent.Capture(this.maps[api], EventsList.endPan, function() { me.moveendHandler(me); });
@@ -286,7 +286,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
           this.maps[api] = new GMap2(element);
 
           GEvent.addListener(this.maps[api], 'click', function(marker,location) {
-              // If the user puts their own Google markers directly on the map 
+              // If the user puts their own Google markers directly on the map
               // then there is no location and this event should not fire.
               if ( location ) {
               me.clickHandler(location.y,location.x,location,me);
@@ -317,7 +317,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
         var ffp = navigator.userAgent.indexOf(ffn);
         if (ffp != -1) {
           ffv = parseFloat(navigator.userAgent.substring(ffp+ffn.length));
-        } 
+        }
         if (ffv >= 1.5) {
           Msn.Drawing.Graphic.CreateGraphic = function(f,b) { return new Msn.Drawing.SVGGraphic(f, b); };
         }
@@ -339,77 +339,77 @@ Mapstraction.prototype.addAPI = function(element,api) {
     case 'openlayers':
 
       this.maps[api] = new OpenLayers.Map(
-        element.id, 
+        element.id,
         {
-          maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34), 
+          maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
           maxResolution:156543, numZoomLevels:18, units:'meters', projection: "EPSG:41001"
         }
       );
-      
+
       this.layers['osmmapnik'] = new OpenLayers.Layer.TMS(
-        'OSM Mapnik', 
-        [    
+        'OSM Mapnik',
+        [
             "http://a.tile.openstreetmap.org/",
             "http://b.tile.openstreetmap.org/",
             "http://c.tile.openstreetmap.org/"
-        ], 
+        ],
         {
-          type:'png', 
+          type:'png',
           getURL: function (bounds) {
             var res = this.map.getResolution();
             var x = Math.round ((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
             var y = Math.round ((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
             var z = this.map.getZoom();
-            var limit = Math.pow(2, z);    
+            var limit = Math.pow(2, z);
             if (y < 0 || y >= limit) {
               return null;
             } else {
               x = ((x % limit) + limit) % limit;
-              var path = z + "/" + x + "/" + y + "." + this.type; 
+              var path = z + "/" + x + "/" + y + "." + this.type;
               var url = this.url;
               if (url instanceof Array) {
                 url = this.selectUrl(path, url);
               }
               return url + path;
             }
-           }, 
-           displayOutsideMaxExtent: true
-         }
-       );
-       
-      this.layers['osm'] = new OpenLayers.Layer.TMS(
-        'OSM', 
-        [    
-            "http://a.tah.openstreetmap.org/Tiles/tile.php/",
-            "http://b.tah.openstreetmap.org/Tiles/tile.php/",
-            "http://c.tah.openstreetmap.org/Tiles/tile.php/"
-        ], 
-        {
-          type:'png', 
-          getURL: function (bounds) {
-            var res = this.map.getResolution();
-            var x = Math.round ((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-            var y = Math.round ((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
-            var z = this.map.getZoom();
-            var limit = Math.pow(2, z);    
-            if (y < 0 || y >= limit) {
-              return null;
-            } else {
-              x = ((x % limit) + limit) % limit;
-              var path = z + "/" + x + "/" + y + "." + this.type; 
-              var url = this.url;
-              if (url instanceof Array) {
-                url = this.selectUrl(path, url);
-              }
-              return url + path;
-            }
-           }, 
+           },
            displayOutsideMaxExtent: true
          }
        );
 
-      this.maps[api].addLayer(this.layers['osmmapnik']); 
-      this.maps[api].addLayer(this.layers['osm']);   
+      this.layers['osm'] = new OpenLayers.Layer.TMS(
+        'OSM',
+        [
+            "http://a.tah.openstreetmap.org/Tiles/tile.php/",
+            "http://b.tah.openstreetmap.org/Tiles/tile.php/",
+            "http://c.tah.openstreetmap.org/Tiles/tile.php/"
+        ],
+        {
+          type:'png',
+          getURL: function (bounds) {
+            var res = this.map.getResolution();
+            var x = Math.round ((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+            var y = Math.round ((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+            var z = this.map.getZoom();
+            var limit = Math.pow(2, z);
+            if (y < 0 || y >= limit) {
+              return null;
+            } else {
+              x = ((x % limit) + limit) % limit;
+              var path = z + "/" + x + "/" + y + "." + this.type;
+              var url = this.url;
+              if (url instanceof Array) {
+                url = this.selectUrl(path, url);
+              }
+              return url + path;
+            }
+           },
+           displayOutsideMaxExtent: true
+         }
+       );
+
+      this.maps[api].addLayer(this.layers['osmmapnik']);
+      this.maps[api].addLayer(this.layers['osm']);
       this.loaded[api] = true;
       break;
     case 'openstreetmap':
@@ -419,7 +419,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
           this.maps[api] = new GMap2(element);
 
           GEvent.addListener(this.maps[api], 'click', function(marker,location) {
-              // If the user puts their own Google markers directly on the map 
+              // If the user puts their own Google markers directly on the map
               // then there is no location and this event should not fire.
               if ( location ) {
               me.clickHandler(location.y,location.x,location,me);
@@ -430,22 +430,22 @@ Mapstraction.prototype.addAPI = function(element,api) {
 
           // Add OSM tiles
 
-          var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)), 0, "copyleft"); 
-          var copyrightCollection = new GCopyrightCollection('OSM'); 
-          copyrightCollection.addCopyright(copyright); 
+          var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)), 0, "copyleft");
+          var copyrightCollection = new GCopyrightCollection('OSM');
+          copyrightCollection.addCopyright(copyright);
 
-          var tilelayers = []; 
-          tilelayers[0] = new GTileLayer(copyrightCollection, 1, 18); 
+          var tilelayers = [];
+          tilelayers[0] = new GTileLayer(copyrightCollection, 1, 18);
           tilelayers[0].getTileUrl = function (a, b) {
             return "http://tile.openstreetmap.org/"+b+"/"+a.x+"/"+a.y+".png";
           };
           tilelayers[0].isPng = function() { return true;};
           tilelayers[0].getOpacity = function() { return 1.0; };
-          
-          var custommap = new GMapType(tilelayers, new GMercatorProjection(19), "OSM", {errorMessage:"More OSM coming soon"}); 
-          this.maps[api].addMapType(custommap); 
-          
-          // Have to tell Mapstraction that we're good so the 
+
+          var custommap = new GMapType(tilelayers, new GMercatorProjection(19), "OSM", {errorMessage:"More OSM coming soon"});
+          this.maps[api].addMapType(custommap);
+
+          // Have to tell Mapstraction that we're good so the
           // setCenterAndZoom call below initializes the map
           this.loaded[api] = true;
 
@@ -464,9 +464,9 @@ Mapstraction.prototype.addAPI = function(element,api) {
 
       break;
     case 'multimap':
-	 	
+
       if (MultimapViewer) {
-	  		
+
         if(this.debug){
           // multimap calls this print_debug function to output debug info
           window.print_debug = function(strMessage){
@@ -480,9 +480,9 @@ Mapstraction.prototype.addAPI = function(element,api) {
 
           };
         }
-			
+
         this.maps[api] = new MultimapViewer(element);
-	  	
+
         this.maps[api].addEventHandler('click', function(eventType, eventTarget, arg1, arg2, arg3){
           if (arg1) {
             me.clickHandler(arg1.lat, arg1.lon, me);
@@ -493,14 +493,14 @@ Mapstraction.prototype.addAPI = function(element,api) {
         });
         this.maps[api].addEventHandler('endPan', function(eventType, eventTarget, arg1, arg2, arg3){
           me.moveendHandler(me);
-        });	  	
+        });
         this.loaded[api] = true;
-	  	
+
       }
       else {
         alert('Multimap map script not imported');
       }
-		
+
       break;
     case 'map24':
       // Copied from Google and modified
@@ -510,11 +510,11 @@ Mapstraction.prototype.addAPI = function(element,api) {
 
             Map24.MapApplication.init
             ( { NodeName: element.id, MapType: "Static" } );
-            me.maps[api] = Map24.MapApplication.Map; 
+            me.maps[api] = Map24.MapApplication.Map;
 
-            Map24.MapApplication.Map.addListener('Map24.Event.MapClick', 
+            Map24.MapApplication.Map.addListener('Map24.Event.MapClick',
               function(e) {
-              me.clickHandler(e.Coordinate.Latitude/60,    
+              me.clickHandler(e.Coordinate.Latitude/60,
                 e.Coordinate.Longitude/60,
                 me);
 
@@ -522,7 +522,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
               }
               );
 
-            Map24.MapApplication.Map.addListener("MapPanStop", 
+            Map24.MapApplication.Map.addListener("MapPanStop",
               function(e) {
               me.moveendHandler(me);
               }
@@ -530,13 +530,13 @@ Mapstraction.prototype.addAPI = function(element,api) {
 
             /**/
 
-            var client=Map24.MapApplication.Map.MapClient['Static']; 
+            var client=Map24.MapApplication.Map.MapClient['Static'];
 
 
             /*
 
                These *will* cause the specified listener to run when we stop
-               panning the map, but the default pan stop handler will be 
+               panning the map, but the default pan stop handler will be
                cancelled. The result of this will be that when we have stopped
                panning, we will permanently be in 'pan' mode and unable to do
                anything else (e.g. click on the map to create a new marker).
@@ -546,15 +546,15 @@ Mapstraction.prototype.addAPI = function(element,api) {
                var defaultOnZoomInStop = client.onZoomInStop;
                var defaultOnZoomOutStop = client.onZoomOutStop;
 
-               client.onPanStop = function(e) 
-               { me.moveendHandler(me); defaultOnPanStop(e);  
+               client.onPanStop = function(e)
+               { me.moveendHandler(me); defaultOnPanStop(e);
                status('DEFAULTONPANSTOP DONE');}
 
             // Handle zoom events - these also fire moveendHandler for the
             // other APIs in Mapstraction
-            client.onZoomInStop = function(e) 
+            client.onZoomInStop = function(e)
             { me.moveendHandler(me); defaultOnZoomInStop(e); }
-            client.onZoomOutStop = function(e) 
+            client.onZoomOutStop = function(e)
             { me.moveendHandler(me); defaultOnZoomOutStop(e);  }
 
              */
@@ -592,7 +592,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
         }
       };
       this.maps[api].load();
-      break;	
+      break;
     case 'openspace':
       // create the map with no controls and don't centre popup info window
       this.maps[api] = new OpenSpace.Map(element,{ controls: [],centreInfoWindow: false });
@@ -603,7 +603,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
       this.maps[api].addControl(new OpenLayers.Control.KeyboardDefaults());
       // include copyright statement
       this.maps[api].addControl(new OpenSpace.Control.CopyrightCollection());
-      
+
       this.maps[api].events.register("click", this.maps[api], function(evt) {
         var point = this.getLonLatFromViewPortPx( evt.xy );
         // convert to LatLonPoint
@@ -617,7 +617,7 @@ Mapstraction.prototype.addAPI = function(element,api) {
     default:
       if(this.debug) {
         alert(api + ' not supported by mapstraction');
-      }        
+      }
   }
 
 
@@ -635,7 +635,7 @@ Mapstraction._getScriptLocation = function() {
   var scripts = document.getElementsByTagName('script');
   for(var i=0; i<scripts.length; i++) {
     var src = scripts[i].getAttribute('src');
-    if(src) { 
+    if(src) {
       var index = src.lastIndexOf(SCRIPT_NAME);
       if((index > -1) && (index + SCRIPT_NAME.length == src.length)) {
         scriptLocation=src.slice(0, -SCRIPT_NAME.length);
@@ -651,47 +651,47 @@ Mapstraction.writeInclude = function(api, key, version) {
   var allScriptTags = '';
   var host = Mapstraction._getScriptLocation() + 'lib/';
   switch(api) {
-    case 'google': 
+    case 'google':
       if(version === null) { version = '2'; }
-      jsfiles.push('http://maps.google.com/maps?file=api&v=' + version + '&key=' + key);
+      jsfiles.push('https://maps.google.com/maps?file=api&v=' + version + '&key=' + key);
       break;
     case 'microsoft':
       if(version === null) { version = 'v3'; }
-      jsfiles.push('http://dev.virtualearth.net/mapcontrol/' + version + '/mapcontrol.js');
+      jsfiles.push('https://dev.virtualearth.net/mapcontrol/' + version + '/mapcontrol.js');
       break;
     case 'yahoo':
       if(version === null) { version = '3.0'; }
-      jsfiles.push('http://api.maps.yahoo.com/ajaxymap?v='+ version + '&appid=' + key);
+      jsfiles.push('https://api.maps.yahoo.com/ajaxymap?v='+ version + '&appid=' + key);
       break;
     case 'openlayers':
-      jsfiles.push('http://openlayers.org/api/OpenLayers.js');
+      jsfiles.push('https://openlayers.org/api/OpenLayers.js');
       break;
     case 'multimap':
       if(version === null) { version = '1.2'; }
-      jsfiles.push('http://developer.multimap.com/API/maps/' + version + '/' + key);
+      jsfiles.push('https://developer.multimap.com/API/maps/' + version + '/' + key);
       break;
-    case "map24": 
-      jsfiles.push('http://api.maptp.map24.com/ajax?appkey=' + key);
+    case "map24":
+      jsfiles.push('https://api.maptp.map24.com/ajax?appkey=' + key);
       break;
-    case "mapquest": 
+    case "mapquest":
       if(version === null) { version = "5.1"; }
-      jsfiles.push('http://btilelog.access.mapquest.com/tilelog/transaction?transaction=script&key=' + key + '&ipr=true&itk=true&v=' + version);
+      jsfiles.push('https://btilelog.access.mapquest.com/tilelog/transaction?transaction=script&key=' + key + '&ipr=true&itk=true&v=' + version);
       jsfiles.push('mapquest-js/mqcommon.js');
       jsfiles.push('mapquest-js/mqutils.js');
       jsfiles.push('mapquest-js/mqobjects.js');
       jsfiles.push('mapquest-js/mqexec.js');
       break;
-    case "freeearth": 
-      jsfiles.push('http://freeearth.poly9.com/api.js');
+    case "freeearth":
+      jsfiles.push('https://freeearth.poly9.com/api.js');
       break;
     case "openspace":
-      jsfiles.push('http://openspace.ordnancesurvey.co.uk/osmapapi/openspace.js?key=' + key);
+      jsfiles.push('https://openspace.ordnancesurvey.co.uk/osmapapi/openspace.js?key=' + key);
       jsfiles.push('mapstraction-js/mapstraction-openspace.js');
       break;
   }
-  
+
   for(var i=0; i<jsfiles.length; i++) {
-    if(/MSIE/.test(navigator.userAgent) || /Safari/.test(navigator.userAgent)) { 
+    if(/MSIE/.test(navigator.userAgent) || /Safari/.test(navigator.userAgent)) {
       // var currentScriptTag="<script src='"+host+jsfiles[i]+"'></script>";
       var currentScriptTag = jsfiles[i];
       allScriptTags += currentScriptTag;
@@ -707,7 +707,7 @@ Mapstraction.writeInclude = function(api, key, version) {
   if(allScriptTags) {
     document.write(allScriptTags);
   }
-    
+
 };
 
 /**
@@ -760,7 +760,7 @@ Mapstraction.prototype.resizeTo = function(width,height){
       this.currentElement.style.height = height;
       this.maps[this.api].checkResize();
       break;
-    case 'openspace' :  
+    case 'openspace' :
       this.currentElement.style.width = width;
       this.currentElement.style.height = height;
       this.maps[this.api].updateSize();
@@ -790,7 +790,7 @@ Mapstraction.prototype.resizeTo = function(width,height){
 };
 
 /////////////////////////
-// 
+//
 // Event Handling
 //
 // FIXME need to consolidate some of these handlers...
@@ -817,7 +817,7 @@ Mapstraction.prototype.addEventListener = function() {
 	var listener = {};
 	listener.event_type = arguments[0];
  	listener.callback_function = arguments[1];
-	
+
 	// added the calling object so we can retain scope of callback function
 	if(arguments.length == 3) {
 		listener.back_compat_mode = false;
@@ -917,7 +917,7 @@ Mapstraction.prototype.addControls = function( args ) {
       }
       if (args.scale) { c.unshift(new GScaleControl()); map.addControl(c[0]); }
 
-      if (this.api != "openstreetmap") {	 
+      if (this.api != "openstreetmap") {
         if (args.overview) { c.unshift(new GOverviewMapControl()); map.addControl(c[0]); }
         if (args.map_type) { c.unshift(new GMapTypeControl()); map.addControl(c[0]); }
       }
@@ -926,16 +926,16 @@ Mapstraction.prototype.addControls = function( args ) {
     case 'yahoo':
       if (args.pan) {
         map.addPanControl();
-      } 
+      }
       else {
         map.removePanControl();
       }
       if (args.zoom == 'large') {
         map.addZoomLong();
-      } 
+      }
       else if ( args.zoom == 'small' ) {
         map.addZoomShort();
-      } 
+      }
       else {
         map.removeZoomScale();
       }
@@ -943,9 +943,9 @@ Mapstraction.prototype.addControls = function( args ) {
 
     case 'openlayers':
       // FIXME: OpenLayers has a bug removing all the controls says crschmidt
-      for (var i = map.controls.length; i>1; i--) { 
+      for (var i = map.controls.length; i>1; i--) {
         map.controls[i-1].deactivate();
-        map.removeControl(map.controls[i-1]); 
+        map.removeControl(map.controls[i-1]);
       }
       // FIXME - can pan & zoom be separate?
       if ( args.pan             )      { map.addControl(new OpenLayers.Control.PanZoomBar()); }
@@ -960,13 +960,13 @@ Mapstraction.prototype.addControls = function( args ) {
     case 'openspace':
       // remove existing controls but leave the basic navigation, keyboard and copyright controls in place
       // these were added in addAPI and not normally be removed
-      for (var i = map.controls.length; i>3; i--) { 
+      for (var i = map.controls.length; i>3; i--) {
         map.controls[i-1].deactivate();
-        map.removeControl(map.controls[i-1]); 
+        map.removeControl(map.controls[i-1]);
       }
       // pan and zoom controls not available separately
       if ( args.zoom == 'large') {
-        map.addControl(new OpenSpace.Control.LargeMapControl()); 
+        map.addControl(new OpenSpace.Control.LargeMapControl());
       }
       else if ( args.zoom == 'small' || args.pan ) {
         map.addControl(new OpenSpace.Control.SmallMapControl());
@@ -980,7 +980,7 @@ Mapstraction.prototype.addControls = function( args ) {
       if ( args.map_type ) {
         // this is all you get with openspace, a control to switch on or off the layers and markers
         // probably not much use to anybody
-        map.addControl(new OpenLayers.Control.LayerSwitcher()); 
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
       }
       break;
 
@@ -995,10 +995,10 @@ Mapstraction.prototype.addControls = function( args ) {
 
       if (pan_zoom_widget != "MMWidget") {
         eval(' map.addWidget( new ' + pan_zoom_widget + '() );');
-      } 
+      }
 
       if ( args.map_type ) { map.addWidget( new MMMapTypeWidget() ); }
-      if ( args.overview ) { map.addWidget( new MMOverviewWidget() ); }			
+      if ( args.overview ) { map.addWidget( new MMOverviewWidget() ); }
       break;
 
     case 'mapquest':
@@ -1041,7 +1041,7 @@ Mapstraction.prototype.addSmallControls = function() {
     case 'yahoo':
       map.addPanControl();
       map.addZoomShort();
-      this.addControlsArgs.pan = true; 
+      this.addControlsArgs.pan = true;
       this.addControlsArgs.zoom = 'small';
       break;
     case 'google':
@@ -1056,18 +1056,18 @@ Mapstraction.prototype.addSmallControls = function() {
     case 'multimap':
       smallPanzoomWidget = new MMSmallPanZoomWidget();
       map.addWidget( smallPanzoomWidget );
-      this.addControlsArgs.pan = true; 
+      this.addControlsArgs.pan = true;
       this.addControlsArgs.zoom = 'small';
       break;
     case 'mapquest':
       map.addControl(new MQZoomControl(map));
       map.addControl(new PanControl(map));
-      this.addControlsArgs.pan = true; 
+      this.addControlsArgs.pan = true;
       this.addControlsArgs.zoom = 'small';
       break;
     case 'openspace':
       map.addControl(new OpenSpace.Control.SmallMapControl());
-      break;      
+      break;
   }
 };
 
@@ -1097,13 +1097,13 @@ Mapstraction.prototype.addLargeControls = function() {
     case 'google':
       map.addControl(new GMapTypeControl());
       map.addControl(new GOverviewMapControl()) ;
-      this.addControlsArgs.overview = true; 
+      this.addControlsArgs.overview = true;
       this.addControlsArgs.map_type = true;
       // no break statement here intentionally
     case 'openstreetmap':
       map.addControl(new GLargeMapControl());
       map.addControl(new GScaleControl()) ;
-      this.addControlsArgs.pan = true; 
+      this.addControlsArgs.pan = true;
       this.addControlsArgs.zoom = 'large';
       this.addControlsArgs.scale = true;
       break;
@@ -1117,9 +1117,9 @@ Mapstraction.prototype.addLargeControls = function() {
       map.addControl(new MQLargeZoomControl(map));
       map.addControl(new PanControl(map));
       map.addControl(new MQViewControl(map));
-      this.addControlsArgs.pan = true; 
+      this.addControlsArgs.pan = true;
       this.addControlsArgs.zoom = 'large';
-      this.addControlsArgs.map_type = true; 
+      this.addControlsArgs.map_type = true;
       break;
     case 'openspace':
       map.addControl(new OpenSpace.Control.LargeMapControl());
@@ -1156,14 +1156,14 @@ Mapstraction.prototype.addMapTypeControls = function() {
       break;
     case 'openlayers':
       map.addControl( new OpenLayers.Control.LayerSwitcher({'ascending':false}) );
-      break;      
+      break;
   }
 };
 
 /**
  * Enable/disable dragging of the map
  * Supported by: yahoo, google, openstreetmap, multimap, openspace
- * @param {Boolean} on 
+ * @param {Boolean} on
  */
 Mapstraction.prototype.dragging = function(on) {
   if(this.loaded[this.api] === false) {
@@ -1264,7 +1264,7 @@ Mapstraction.prototype.setCenterAndZoom = function(point, zoom) {
     case 'freeearth':
       if (this.freeEarthLoaded) {
         map.setTargetLatLng( point.toFreeEarth() );
-      } 
+      }
 	  else {
         var me = this;
         this.freeEarthOnLoad.push( function() { me.setCenterAndZoom(point); } );
@@ -1367,10 +1367,10 @@ Mapstraction.prototype.addMarker = function(marker, old) {
               OpenLayers.Event.stop(evt);
           });
         }
-      }	  
+      }
       this.layers['markers'].addMarker(osmarker);
       if (! old) { this.markers.push(marker); }
-      break;    
+      break;
     case 'multimap':
       var mmpin = marker.toMultiMap();
       marker.setChild(mmpin);
@@ -1463,7 +1463,7 @@ Mapstraction.prototype.removeMarker = function(marker) {
         case 'openspace' :
           this.layers['markers'].removeMarker(marker.proprietary_marker);
           marker.proprietary_marker.destroy();
-          break;          
+          break;
       }
       marker.onmap = false;
       break;
@@ -1514,7 +1514,7 @@ Mapstraction.prototype.removeAllMarkers = function() {
     case 'openlayers':
     case 'openspace':
       this.layers['markers'].clearMarkers();
-      break;      
+      break;
     default:
       if(this.debug) {
         alert(this.api + ' not supported by Mapstraction.removeAllMarkers');
@@ -1536,9 +1536,9 @@ Mapstraction.prototype.declutterMarkers = function(opts) {
 		this.onload[this.api].push( function() { me.declutterMarkers(opts); } );
 		return;
 	}
-	
+
 	var map = this.maps[this.api];
-	
+
 	switch(this.api)
 	{
 //		case 'yahoo':
@@ -1558,8 +1558,8 @@ Mapstraction.prototype.declutterMarkers = function(opts) {
 //			break;
 		case 'multimap':
 			/*
-			 * Multimap supports quite a lot of decluttering options such as whether 
-			 * to use an accurate of fast declutter algorithm and what icon to use to 
+			 * Multimap supports quite a lot of decluttering options such as whether
+			 * to use an accurate of fast declutter algorithm and what icon to use to
 			 * represent a cluster. Using all this would mean abstracting all the enums
 			 * etc so we're only implementing the group name function at the moment.
 			 */
@@ -1570,7 +1570,7 @@ Mapstraction.prototype.declutterMarkers = function(opts) {
 //			break;
 //		case 'map24':
 //
-//			break;			
+//			break;
 		default:
 			if(this.debug) {
 				alert(this.api + ' not supported by Mapstraction.declutterMarkers');
@@ -1617,7 +1617,7 @@ Mapstraction.prototype.addPolyline = function(polyline, old) {
       break;
     case 'microsoft':
       mpolyline = polyline.toMicrosoft();
-      polyline.setChild(mpolyline); 
+      polyline.setChild(mpolyline);
       map.AddPolyline(mpolyline);
       if(!old) {this.polylines.push(polyline);}
       break;
@@ -1648,7 +1648,7 @@ Mapstraction.prototype.addPolyline = function(polyline, old) {
       polyline.setChild(m24polyline);
       m24polyline.commit();
       if(!old) {this.polylines.push(polyline);}
-      break;			
+      break;
     default:
       if(this.debug) {
         alert(this.api + ' not supported by Mapstraction.addPolyline');
@@ -1666,9 +1666,9 @@ Mapstraction.prototype.removePolyline = function(polyline) {
     this.onload[this.api].push( function() { me.removePolyline(polyline); } );
     return;
   }
-	
+
   var map = this.maps[this.api];
-	
+
   var tmparray = [];
   while(this.polylines.length > 0){
     current_polyline = this.polylines.pop();
@@ -1695,10 +1695,10 @@ Mapstraction.prototype.removePolyline = function(polyline) {
           break;
         case 'map24':
           polyline.proprietary_polyline.remove();
-          break;   
+          break;
         case 'openlayers':
           this.layers['polylines'].removeFeatures([polyline.proprietary_polyline]);
-          break;                 
+          break;
       }
       polyline.onmap = false;
       break;
@@ -1708,7 +1708,7 @@ Mapstraction.prototype.removePolyline = function(polyline) {
   }
   this.polylines = this.polylines.concat(tmparray);
 };
-	
+
 /**
  * Removes all polylines from the map
  */
@@ -1720,7 +1720,7 @@ Mapstraction.prototype.removeAllPolylines = function() {
   }
 
   var map = this.maps[this.api];
-  
+
   switch (this.api) {
     case 'openspace':
       for(var i = 0, length = this.polylines.length; i < length; i++){
@@ -1769,7 +1769,7 @@ Mapstraction.prototype.removeAllPolylines = function() {
         alert(this.api + ' not supported by Mapstraction.removeAllPolylines');
       }
   }
-  this.polylines = []; 
+  this.polylines = [];
 };
 
 /**
@@ -1822,7 +1822,7 @@ Mapstraction.prototype.getCenter = function() {
       break;
     default:
       if(this.debug) {
-        alert(this.api + ' not supported by Mapstraction.getCenter');			
+        alert(this.api + ' not supported by Mapstraction.getCenter');
       }
   }
   return point;
@@ -1867,19 +1867,19 @@ Mapstraction.prototype.setCenter = function(point) {
     case 'freeearth':
       if (this.freeEarthLoaded) {
       	map.setTargetLatLng( point.toFreeEarth() );
-      } 
+      }
       else {
         var me = this;
         this.freeEarthOnLoad.push( function(){ me.setCenterAndZoom(point); } );
       }
       break;
     case 'map24':
-      // Since center changes the zoom level to default 
+      // Since center changes the zoom level to default
       // we have to get the original metre width and pass it back in when
       // centering.
       var mv = map.MapClient['Static'].getCurrentMapView();
       var newSettings = {};
-      newSettings.MinimumWidth = lonToMetres 
+      newSettings.MinimumWidth = lonToMetres
         (mv.LowerRight.Longitude - mv.TopLeft.Longitude,
          (mv.LowerRight.Latitude+mv.TopLeft.Latitude)/2);
       newSettings.Latitude =  point.lat*60;
@@ -1940,7 +1940,7 @@ Mapstraction.prototype.setZoom = function(zoom) {
       break;
     case 'mapquest':
       map.setZoomLevel(zoom - 3); // MapQuest seems off by 3
-      break;			
+      break;
     case 'map24':
       // get the current centre than calculate the settings based on this
       var point = this.getCenter();
@@ -1948,7 +1948,7 @@ Mapstraction.prototype.setZoom = function(zoom) {
       newSettings.Latitude = point.lat*60;
       newSettings.Longitude = point.lon*60;
       var client = map.MapClient['Static'];
-      var dLon = getDegreesFromGoogleZoomLevel 
+      var dLon = getDegreesFromGoogleZoomLevel
         (client.getCanvasSize().Width,zoom);
       newSettings.MinimumWidth = lonToMetres (dLon, point.lat);
       Map24.MapApplication.center ( newSettings );
@@ -2007,24 +2007,24 @@ Mapstraction.prototype.autoCenterAndZoom = function() {
       }
       if (lon < lon_min) {
         lon_min = lon;
-      }      
+      }
     }
   }
   this.setBounds( new BoundingBox(lat_min, lon_min, lat_max, lon_max) );
 };
 
-/** 
+/**
  * centerAndZoomOnPoints sets the center and zoom of the map from an array of points
- * 
+ *
  * This is useful if you don't want to have to add markers to the map
  */
 Mapstraction.prototype.centerAndZoomOnPoints = function(points) {
 	var bounds = new BoundingBox(points[0].lat,points[0].lon,points[0].lat,points[0].lon);
-	
+
 	for (var i=1, len = points.length ; i<len; i++) {
 		bounds.extend(points[i]);
 	}
-     
+
 	this.setBounds(bounds);
 };
 
@@ -2055,8 +2055,8 @@ Mapstraction.prototype.getZoom = function() {
     case 'multimap':
       return map.getZoomFactor();
     case 'mapquest':
-      return map.getZoomLevel() + 3; // Mapquest seems off by 3?			
-    case 'map24': 
+      return map.getZoomLevel() + 3; // Mapquest seems off by 3?
+    case 'map24':
       // since map24 doesn't use a Google-style set of zoom levels, we have
       // to round to the nearest zoom
       var mv = map.MapClient['Static'].getCurrentMapView();
@@ -2081,14 +2081,14 @@ Mapstraction.prototype.getZoomLevelForBoundingBox = function( bbox ) {
     var me = this;
     return -1;
   }
-	
+
   var map = this.maps[this.api];
-	
+
   // NE and SW points from the bounding box.
   var ne = bbox.getNorthEast();
   var sw = bbox.getSouthWest();
   var zoom;
-	
+
   switch (this.api) {
     case 'openspace' :
       var obounds = new OpenSpace.MapBounds();
@@ -2115,7 +2115,7 @@ Mapstraction.prototype.getZoomLevelForBoundingBox = function( bbox ) {
       // since map24 doesn't use a Google-style set of zoom levels, we work
       // out what zoom level will show the given longitude difference within
       // the current map pixel width
-      var dLon = ne.lon - sw.lon; 
+      var dLon = ne.lon - sw.lon;
       var width = map.MapClient['Static'].getCanvasSize().Width;
       zoom = getGoogleZoomLevelFromDegrees (width,dLon);
       return Math.round(zoom);
@@ -2331,12 +2331,12 @@ Mapstraction.prototype.getMapType = function() {
         default:
           return null;
       }
-      break;			
+      break;
     default:
       if(this.debug) {
         alert(this.api + ' not supported by Mapstraction.getMapType');
       }
-  } 
+  }
 };
 
 /**
@@ -2346,7 +2346,7 @@ Mapstraction.prototype.getMapType = function() {
  */
 Mapstraction.prototype.getBounds = function () {
   if(this.loaded[this.api] === false) {
-    return null; 
+    return null;
   }
 
   var map = this.maps[this.api];
@@ -2392,14 +2392,14 @@ Mapstraction.prototype.getBounds = function () {
       // NW is this correct ???
       // return new BoundingBox(se.lat, se.lon, nw.lat, nw.lon);
 
-      // should be this instead 
-      return new BoundingBox(se.lat, nw.lon, nw.lat, se.lon);            
+      // should be this instead
+      return new BoundingBox(se.lat, nw.lon, nw.lat, se.lon);
     case 'map24':
       var mv = map.MapClient['Static'].getCurrentMapView();
       se = mv.LowerRight;
       nw = mv.TopLeft;
-      return new BoundingBox (se.Latitude/60, nw.Longitude/60, 
-          nw.Latitude/60, se.Longitude/60 );			
+      return new BoundingBox (se.Latitude/60, nw.Longitude/60,
+          nw.Latitude/60, se.Longitude/60 );
     default:
       if(this.debug) {
         alert(this.api + ' not supported by Mapstraction.getBounds');
@@ -2428,7 +2428,7 @@ Mapstraction.prototype.setBounds = function(bounds){
       obounds.extend(new LatLonPoint(sw.lat,sw.lon).toOpenSpace());
       obounds.extend(new LatLonPoint(ne.lat,ne.lon).toOpenSpace());
       map.zoomToExtent(obounds);
-      break;    
+      break;
     case 'google':
     case 'openstreetmap':
       var gbounds = new GLatLngBounds(new GLatLng(sw.lat,sw.lon),new GLatLng(ne.lat,ne.lon));
@@ -2474,18 +2474,18 @@ Mapstraction.prototype.setBounds = function(bounds){
       if(this.debug) {
         alert(this.api + ' not supported by Mapstraction.setBounds');
       }
-      break;			
+      break;
     case 'freeearth':
       var center = new LatLonPoint((sw.lat + ne.lat)/2, (ne.lon + sw.lon)/2);
-      this.setCenter(center);	
+      this.setCenter(center);
       break;
     case 'map24':
       var settings = {};
-      settings.Latitude = ((sw.lat+ne.lat) / 2) * 60;    
-      settings.Longitude = ((sw.lon+ne.lon) / 2) * 60;    
+      settings.Latitude = ((sw.lat+ne.lat) / 2) * 60;
+      settings.Longitude = ((sw.lon+ne.lon) / 2) * 60;
 
       // need to convert lat/lon to metres
-      settings.MinimumWidth = lonToMetres 
+      settings.MinimumWidth = lonToMetres
         (ne.lon-sw.lon, (ne.lat+sw.lat)/2);
 
       Map24.MapApplication.center(settings);
@@ -2504,7 +2504,7 @@ Mapstraction.prototype.setBounds = function(bounds){
  * @param {src} url of image
  * @param {opacity} opacity 0-100
  * @param {west} west boundary
- * @param {south} south boundary 
+ * @param {south} south boundary
  * @param {east} east boundary
  * @param {north} north boundary
  */
@@ -2564,14 +2564,14 @@ Mapstraction.prototype.addImageOverlay = function(id, src, opacity, west, south,
 };
 
 Mapstraction.prototype.setImageOpacity = function(id, opacity) {
-  if (opacity < 0) { opacity = 0; }  
+  if (opacity < 0) { opacity = 0; }
   if (opacity >= 100) { opacity = 100; }
   var c = opacity / 100;
   var d = document.getElementById(id);
   if(typeof(d.style.filter)=='string'){ d.style.filter='alpha(opacity:'+opacity+')'; }
   if(typeof(d.style.KHTMLOpacity)=='string'){ d.style.KHTMLOpacity=c; }
   if(typeof(d.style.MozOpacity)=='string'){ d.style.MozOpacity=c; }
-  if(typeof(d.style.opacity)=='string'){ d.style.opacity=c; } 
+  if(typeof(d.style.opacity)=='string'){ d.style.opacity=c; }
 };
 
 Mapstraction.prototype.setImagePosition = function(id) {
@@ -2584,7 +2584,7 @@ Mapstraction.prototype.setImagePosition = function(id) {
   var map = this.maps[this.api];
   var x = document.getElementById(id);
   var d; var e;
-	
+
   switch (this.api) {
     case 'google':
     case 'openstreetmap':
@@ -2596,11 +2596,11 @@ Mapstraction.prototype.setImagePosition = function(id) {
       e = map.geoPosToContainerPixels(new MMLatLon(x.getAttribute('south'), x.getAttribute('east')));
       break;
   }
-	
+
   x.style.top = d.y.toString() + 'px';
   x.style.left = d.x.toString() + 'px';
   x.style.width = (e.x - d.x).toString() + 'px';
-  x.style.height = (e.y - d.y).toString() + 'px'; 
+  x.style.height = (e.y - d.y).toString() + 'px';
 };
 
 /**
@@ -2617,7 +2617,7 @@ Mapstraction.prototype.addOverlay = function(url, autoCenterAndZoom) {
   }
   if(autoCenterAndZoom == null)
 	autoCenterAndZoom = false;
-	
+
   var map = this.maps[this.api];
   switch (this.api) {
     case 'yahoo':
@@ -2633,7 +2633,7 @@ Mapstraction.prototype.addOverlay = function(url, autoCenterAndZoom) {
     case 'microsoft':
 		var shapeLayer = new VEShapeLayer();
 		var shapeSpec = new VEShapeSourceSpecification(VEDataType.ImportXML,url,shapeLayer);
-		map.ImportShapeLayerData(shapeSpec, function(feed){ }, autoCenterAndZoom);		
+		map.ImportShapeLayerData(shapeSpec, function(feed){ }, autoCenterAndZoom);
       break;
       // case 'openlayers':
       //     map.addLayer(new OpenLayers.Layer.GeoRSS("GeoRSS Layer", url));
@@ -2644,7 +2644,7 @@ Mapstraction.prototype.addOverlay = function(url, autoCenterAndZoom) {
       if (this.freeEarthLoaded) {
         var ferss = new FE.GeoRSS(url);
         map.addOverlay(ferss);
-      } 
+      }
       else {
         var me = this;
         this.freeEarthOnLoad.push( function() { me.addOverlay(url); } );
@@ -2685,16 +2685,16 @@ for (var i = 0; i < features.length; i++) {
 		marker = new Marker(new LatLonPoint(item.geometry.coordinates[1],item.geometry.coordinates[0]));
 		markers.push(marker);
 		this.addMarkerWithData(marker,{
-			infoBubble : html, 
-			label : item.title, 
-			date : "new Date(\""+item.date+"\")", 
+			infoBubble : html,
+			label : item.title,
+			date : "new Date(\""+item.date+"\")",
 			iconShadow : item.icon_shadow,
-			marker : item.id, 
-			date : "new Date(\""+item.date+"\")", 
+			marker : item.id,
+			date : "new Date(\""+item.date+"\")",
 			iconShadowSize : item.icon_shadow_size,
 			icon : "http://boston.openguides.org/markers/AQUA.png",
-			iconSize : item.icon_size, 
-			category : item.source_id, 
+			iconSize : item.icon_size,
+			category : item.source_id,
 			draggable : false,
 			hover : false});
 			break;
@@ -2712,15 +2712,15 @@ for (var i = 0; i < features.length; i++) {
 
 /**
  * Adds a Tile Layer to the map
- * 
- * Requires providing a parameterized tile url. Use {Z}, {X}, and {Y} to specify where the parameters 
- *  should go in the URL. 
- * 
+ *
+ * Requires providing a parameterized tile url. Use {Z}, {X}, and {Y} to specify where the parameters
+ *  should go in the URL.
+ *
  * For example, the OpenStreetMap tiles are:
  *  http://tile.openstreetmap.org/{Z}/{X}/{Y}.png
- * 
- * @param {tile_url} template url of the tiles. 
- * @param {opacity} opacity of the tile layer - 0 is transparent, 1 is opaque. (default=0.6) 
+ *
+ * @param {tile_url} template url of the tiles.
+ * @param {opacity} opacity of the tile layer - 0 is transparent, 1 is opaque. (default=0.6)
  * @param {copyright_text} copyright text to use for the tile layer. (default=Mapstraction)
  * @param {min_zoom} Minimum (furtherest out) zoom level that tiles are available (default=1)
  * @param {max_zoom} Maximum (closest) zoom level that the tiles are available (default=18)
@@ -2731,10 +2731,10 @@ Mapstraction.prototype.addTileLayer = function(tile_url, opacity, copyright_text
   }
   if(!this.tileLayers) {
     this.tileLayers = [];
-  }    
+  }
   if(!opacity) {
     opacity = 0.6;
-  }  
+  }
   if(!copyright_text) {
     copyright_text = "Mapstraction";
   }
@@ -2744,18 +2744,18 @@ Mapstraction.prototype.addTileLayer = function(tile_url, opacity, copyright_text
   if(!max_zoom) {
     max_zoom = 18;
   }
-    
+
   switch (this.api) {
     case 'google':
     case 'openstreetmap':
-      var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)), 0, "copyleft"); 
-      var copyrightCollection = new GCopyrightCollection(copyright_text); 
-      copyrightCollection.addCopyright(copyright); 
-  
-      var tilelayers = []; 
-      tilelayers[0] = new GTileLayer(copyrightCollection, min_zoom, max_zoom); 
+      var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)), 0, "copyleft");
+      var copyrightCollection = new GCopyrightCollection(copyright_text);
+      copyrightCollection.addCopyright(copyright);
+
+      var tilelayers = [];
+      tilelayers[0] = new GTileLayer(copyrightCollection, min_zoom, max_zoom);
       tilelayers[0].isPng = function() { return true; };
-      tilelayers[0].getOpacity = function() { return opacity; };   
+      tilelayers[0].getOpacity = function() { return opacity; };
       tilelayers[0].getTileUrl = function (a, b) {
         url = tile_url;
         url = url.replace(/\{Z\}/,b);
@@ -2764,7 +2764,7 @@ Mapstraction.prototype.addTileLayer = function(tile_url, opacity, copyright_text
         return url;
       };
       tileLayerOverlay = new GTileLayerOverlay(tilelayers[0]);
-  
+
       this.tileLayers.push( [tile_url, tileLayerOverlay, true] );
       this.maps[this.api].addOverlay(tileLayerOverlay);
       break;
@@ -2775,7 +2775,7 @@ Mapstraction.prototype.addTileLayer = function(tile_url, opacity, copyright_text
 
 /**
  * Turns a Tile Layer on or off
- * @param {tile_url} url of the tile layer that was created. 
+ * @param {tile_url} url of the tile layer that was created.
  */
 Mapstraction.prototype.toggleTileLayer = function(tile_url) {
   switch (this.api) {
@@ -2786,13 +2786,13 @@ Mapstraction.prototype.toggleTileLayer = function(tile_url) {
           if(this.tileLayers[f][2]) {
               this.maps[this.api].removeOverlay(this.tileLayers[f][1]);
               this.tileLayers[f][2] = false;
-          } 
+          }
           else {
               this.maps[this.api].addOverlay(this.tileLayers[f][1]);
-              this.tileLayers[f][2] = true;                    
+              this.tileLayers[f][2] = true;
           }
         }
-      }        
+      }
       break;
   }
 };
@@ -2821,7 +2821,7 @@ Mapstraction.prototype.removeFilter = function(field, operator, value) {
 
   var del;
   for (var f=0; f<this.filters.length; f++) {
-    if (this.filters[f][0] == field && 
+    if (this.filters[f][0] == field &&
         (! operator || (this.filters[f][1] == operator && this.filters[f][2] == value))) {
       this.filters.splice(f,1);
       f--; //array size decreased
@@ -2836,7 +2836,7 @@ Mapstraction.prototype.removeFilter = function(field, operator, value) {
  * @param {Object} value
  */
 Mapstraction.prototype.toggleFilter = function(field, operator, value) {
-  if (!this.filters) { 
+  if (!this.filters) {
     this.filters = [];
   }
 
@@ -2881,15 +2881,15 @@ Mapstraction.prototype.doFilter = function() {
         for (var f=0; f<this.filters.length; f++) {
           mmfilters.push( new MMSearchFilter( this.filters[f][0], this.filters[f][1], this.filters[f][2] ));
         }
-        map.setMarkerFilters( mmfilters );	
-        map.redrawMap();			
+        map.setMarkerFilters( mmfilters );
+        map.redrawMap();
         break;
       default:
-        var vis;	
+        var vis;
         for (var m=0; m<this.markers.length; m++) {
           vis = true;
           for (var f = 0; f < this.filters.length; f++) {
-            if (! this.applyFilter(this.markers[m], this.filters[f])) {	
+            if (! this.applyFilter(this.markers[m], this.filters[f])) {
               vis = false;
             }
           }
@@ -3087,7 +3087,7 @@ LatLonPoint.prototype.toFreeEarth = function() {
 
 /**
  * toMap24 returns a Map24 point
- * @returns a Map24.Point 
+ * @returns a Map24.Point
  */
 LatLonPoint.prototype.toMap24 = function() {
   return new Map24.Point (this.lon,this.lat);
@@ -3135,7 +3135,7 @@ LatLonPoint.prototype.distance = function(otherPoint) {
 	dr = 0.017453292519943295; // 2.0 * PI / 360.0; or, radians per degree
 	d = Math.cos(otherPoint.lon*dr - this.lon*dr) * Math.cos(otherPoint.lat*dr - this.lat*dr);
 	return Math.acos(d)*6378.137; // equatorial radius
-	//return -1; 
+	//return -1;
 };
 
 /**
@@ -3228,13 +3228,13 @@ BoundingBox.prototype.toSpan = function() {
 BoundingBox.prototype.extend = function(point) {
   if(this.sw.lat > point.lat) {
     this.sw.lat = point.lat;
-  }   
+  }
   if(this.sw.lon > point.lon) {
     this.sw.lon = point.lon;
-  }   
+  }
   if(this.ne.lat < point.lat) {
     this.ne.lat = point.lat;
-  }   
+  }
   if(this.ne.lon < point.lon) {
     this.ne.lon = point.lon;
   }
@@ -3289,7 +3289,7 @@ Marker.prototype.addData = function(options){
           this.setIcon(options.icon, options.iconSize);
         }
         else {
-          this.setIcon(options.icon);					
+          this.setIcon(options.icon);
         }
         break;
       case 'iconShadow':
@@ -3317,12 +3317,12 @@ Marker.prototype.addData = function(options){
         this.setGroupName(options.groupName);
         break;
       default:
-        // don't have a specific action for this bit of 
+        // don't have a specific action for this bit of
         // data so set a named attribute
         this.setAttribute(sOptKey, options[sOptKey]);
         break;
     }
-  }    
+  }
 };
 
 /**
@@ -3417,13 +3417,13 @@ Marker.prototype.toYahoo = function() {
   var size;
   if(this.iconSize) {
     size = new YSize(this.iconSize[0], this.iconSize[1]);
-  }   
+  }
   if(this.iconUrl) {
-    if(this.iconSize) 
-        ymarker = new YMarker(this.location.toYahoo (),new YImage(this.iconUrl, size));          
+    if(this.iconSize)
+        ymarker = new YMarker(this.location.toYahoo (),new YImage(this.iconUrl, size));
     else
         ymarker = new YMarker(this.location.toYahoo (),new YImage(this.iconUrl));
-  } 
+  }
   else {
     if(this.iconSize)
         ymarker = new YMarker(this.location.toYahoo(),null,size);
@@ -3460,7 +3460,7 @@ Marker.prototype.toYahoo = function() {
       event_action = EventsList.MouseClick;
     }
     YEvent.Capture(ymarker, event_action, function() {
-        document.getElementById(div).innerHTML = theInfo;}); 
+        document.getElementById(div).innerHTML = theInfo;});
   }
 
   return ymarker;
@@ -3481,7 +3481,7 @@ Marker.prototype.toGoogle = function() {
 			icon.iconSize = new GSize(this.iconSize[0], this.iconSize[1]);
       var anchor;
       if(this.iconAnchor) {
-        anchor = new GPoint(this.iconAnchor[0], this.iconAnchor[1]);                
+        anchor = new GPoint(this.iconAnchor[0], this.iconAnchor[1]);
       }
       else {
         // FIXME: hard-coding the anchor point
@@ -3493,7 +3493,7 @@ Marker.prototype.toGoogle = function() {
       icon.shadow = this.iconShadowUrl;
       if(this.iconShadowSize) {
         icon.shadowSize = new GSize(this.iconShadowSize[0], this.iconShadowSize[1]);
-      }		
+      }
     }
     options.icon = icon;
   }
@@ -3501,7 +3501,7 @@ Marker.prototype.toGoogle = function() {
     options.draggable = this.draggable;
   }
   var gmarker = new GMarker( this.location.toGoogle(),options);
-	
+
   if(this.infoBubble){
     var theInfo = this.infoBubble;
     var event_action;
@@ -3515,7 +3515,7 @@ Marker.prototype.toGoogle = function() {
       gmarker.openInfoWindowHtml(theInfo, {maxWidth: 100});
     });
   }
-	
+
   if(this.hoverIconUrl){
     GEvent.addListener(gmarker, "mouseover", function() {
       gmarker.setImage(this.hoverIconUrl);
@@ -3524,7 +3524,7 @@ Marker.prototype.toGoogle = function() {
       gmarker.setImage(this.iconUrl);
     });
   }
-	
+
   if(this.infoDiv){
     var theInfo = this.infoDiv;
     var div = this.div;
@@ -3539,7 +3539,7 @@ Marker.prototype.toGoogle = function() {
       document.getElementById(div).innerHTML = theInfo;
     });
   }
-	
+
   return gmarker;
 };
 
@@ -3639,7 +3639,7 @@ Marker.prototype.toOpenSpace = function() {
     // FIXME: hard-coding the anchor point
     anchor = new OpenLayers.Pixel(-(size.w/2), -size.h);
   }
-  
+
   if(this.iconUrl) {
     icon = new OpenSpace.Icon(this.iconUrl, size, anchor);
   }
@@ -3667,7 +3667,7 @@ Marker.prototype.toMicrosoft = function() {
 };
 
 /**
- * toMap24 returns a Map24 Location 
+ * toMap24 returns a Map24 Location
  * @returns Map24 Location
  */
 Marker.prototype.toMap24 = function() {
@@ -3676,7 +3676,7 @@ Marker.prototype.toMap24 = function() {
   ops.Longitude = this.location.lon*60;
   ops.Latitude = this.location.lat*60;
   if(this.infoBubble) {
-    // not sure how map24 differentiates between tooltips and 
+    // not sure how map24 differentiates between tooltips and
     // info bubble content
     ops.TooltipContent =  this.infoBubble;
   }
@@ -3710,7 +3710,7 @@ Marker.prototype.toMap24 = function() {
 Marker.prototype.toMultiMap = function() {
   //prepare our markeroptions
   var mmmarkeropts = {};
-	
+
   if(this.iconUrl) {
     mmmarkeropts.icon = new MMIcon(this.iconUrl);
     if(this.iconSize) {
@@ -3719,11 +3719,11 @@ Marker.prototype.toMultiMap = function() {
     else {
       //mmmarkeropts.icon.iconSize = new MMDimensions(32, 32); //how to get this?
     }
-		
+
     if(this.iconAnchor) {
       mmmarkeropts.icon.iconAnchor = new MMPoint(this.iconAnchor[0], this.iconAnchor[1]);
     }
-		
+
     if(this.groupName) {
       mmmarkeropts.icon.groupName = this.groupName;
     }
@@ -3732,20 +3732,20 @@ Marker.prototype.toMultiMap = function() {
   if(this.labelText) {
     mmmarkeropts.label = this.labelText;
   }
-	
-	
+
+
   var mmmarker = new MMMarkerOverlay( this.location.toMultiMap(), mmmarkeropts );
-  
+
   if(this.infoBubble) {
     mmmarker.setInfoBoxContent(this.infoBubble);
   }
-	
+
   if(this.infoDiv) { }
-	
+
   for (var key in this.attributes) {
     mmmarker.setAttribute(key, this.attributes[key]);
   }
-	
+
   return mmmarker;
 };
 
@@ -3797,7 +3797,7 @@ Marker.prototype.toFreeEarth = function() {
   if(this.infoBubble) {
     var theBubble = this.infoBubble;
     FE.Event.addListener(femarker, 'click', function() {
-        femarker.openInfoWindowHtml( theBubble, 200, 100 ); 
+        femarker.openInfoWindowHtml( theBubble, 200, 100 );
         } );
   }
 
@@ -3841,8 +3841,8 @@ Marker.prototype.openBubble = function() {
     this.mapstraction.onload[this.api].push( function() { my_marker.openBubble(); } );
     return;
   }
-    
-  if( this.api) { 
+
+  if( this.api) {
     switch (this.api) {
       case 'yahoo':
         var ypin = this.proprietary_marker;
@@ -3866,7 +3866,7 @@ Marker.prototype.openBubble = function() {
         // MapQuest hack to work around bug when opening marker
         this.proprietary_marker.setRolloverEnabled(false);
         this.proprietary_marker.showInfoWindow();
-        this.proprietary_marker.setRolloverEnabled(true);			
+        this.proprietary_marker.setRolloverEnabled(true);
         break;
     }
   } else {
@@ -3901,7 +3901,7 @@ Marker.prototype.hide = function() {
         break;
       case 'mapquest':
         this.proprietary_marker.setVisible(false);
-        break;				
+        break;
       default:
         if(this.debug) {
           alert(this.api + "not supported by Marker.hide");
@@ -3935,7 +3935,7 @@ Marker.prototype.show = function() {
         break;
       case 'mapquest':
         this.proprietary_marker.setVisible(true);
-        break;	
+        break;
       default:
         if(this.debug) {
           alert(this.api + "not supported by Marker.show");
@@ -3980,8 +3980,8 @@ Polyline.prototype.addData = function(options){
         break;
       default:
         this.setAttribute(sOpt, options[sOpt]);
-        break;			
-    }     
+        break;
+    }
   }
 };
 
@@ -4055,7 +4055,7 @@ Polyline.prototype.toOpenSpace = function() {
       strokeOpacity: this.opacity,
       fillOpacity: 0,
       strokeWidth: this.width
-    }); 
+    });
   }
   return ospolyline;
 };
@@ -4082,8 +4082,8 @@ Polyline.prototype.toGoogle = function() {
 
 Polyline.prototype.toMap24 = function() {
   var m24polyline;
-  var m24longs = ""; 
-  var m24lats = ""; 
+  var m24longs = "";
+  var m24lats = "";
   for (var i=0; i<this.points.length; i++) {
     if(i) {
       m24longs += "|";
@@ -4246,17 +4246,17 @@ Polyline.prototype.hide = function() {
 };
 
 // Displays the coordinates of the cursor in the HTML element
-// 
+//
 // @element ID of the HTML element to display the coordinates in
 Mapstraction.prototype.mousePosition = function(element) {
     if(this.loaded[this.api] === false) {
         var me = this;
         this.onload[this.api].push( function() { me.mousePosition(element); } );
         return;
-    }    
+    }
     var locDisp = document.getElementById(element);
     if (locDisp != null) {
-        var map = this.maps[this.api];       
+        var map = this.maps[this.api];
         switch (this.api) {
             case 'openlayers':
             try {
@@ -4312,12 +4312,12 @@ Mapstraction.prototype.mousePosition = function(element) {
  * Currently only supported by MapQuest
  * @params {Object} route The route object returned in the callback from MapstractionRouter
  */
-Mapstraction.prototype.showRoute = function(route) { 
+Mapstraction.prototype.showRoute = function(route) {
   if(this.loaded[this.api] === false) {
     var me = this;
     this.onload[this.api].push( function() { me.showRoute(route); } );
     return;
-  }	
+  }
   var map = this.maps[this.api];
   switch (this.api) {
     case 'mapquest':
@@ -4341,7 +4341,7 @@ window.mxn = {
   'Mapstraction': Mapstraction,
   'Marker': Marker,
   'Polyline': Polyline,
-  
+
   /*
    * Expose utility functions to the outside
    */
@@ -4350,18 +4350,18 @@ window.mxn = {
     'lonToMetres': lonToMetres,
     'loadScript': loadScript
   },
-  
+
   /**
-   * Allow spillage of classes for backward compatibility with 
-   * non-namespaced versions. NOTE: Doesn't expose loose utility 
+   * Allow spillage of classes for backward compatibility with
+   * non-namespaced versions. NOTE: Doesn't expose loose utility
    * functions.
    */
   activatePolluteMode: function(){
     if(
-      window.BoundingBox || 
+      window.BoundingBox ||
       window.LatLonPoint ||
       window.Mapstraction ||
-      window.Marker || 
+      window.Marker ||
       window.Polyline
     ) { alert('Warning: Mapstraction pollute mode naming clash.'); }
     window['BoundingBox'] = BoundingBox;
