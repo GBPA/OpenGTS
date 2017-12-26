@@ -42,13 +42,14 @@ response.setDateHeader("EXPIRES"  , 0         );
 <body onload="<gts:track section='body.onload'/>" onunload="<gts:track section='body.onunload'/>">
     <div id="wrapper">
         <!-- Top Navigation -->
+        <gts:var ifKey="isLoggedIn" value="true">
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
                 <!-- Toggle icon for mobile view -->
                 <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
                 <!-- Logo -->
                 <div class="top-left-part">
-                    <a class="logo" href="./?page=menu.top">
+                    <a class="logo" href="/dashboard/Track?page=menu.top">
                         <!-- Logo icon image, you can use font-icon also -->
                         <img src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/images/agileadmin-logo.png" alt="home" />
 
@@ -67,7 +68,7 @@ response.setDateHeader("EXPIRES"  , 0         );
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <!-- .user dropdown -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">${accountDesc} </a>
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><gts:var ifKey="isLoggedIn" value="true">${accountDesc}</gts:var></a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li><a href="./?page=acct.info"><i class="ti-user"></i> &nbsp;My Account</a></li>
                             <li><a href="./?page=passwd"><i class="ti-settings"></i> &nbsp;My Password</a></li>
@@ -85,8 +86,11 @@ response.setDateHeader("EXPIRES"  , 0         );
             <!-- /.navbar-top-links -->
             <!-- /.navbar-static-side -->
         </nav>
+        </gts:var>
+
         <!-- End Top Navigation -->
         <!-- Left navbar-header -->
+        <gts:var ifKey="isLoggedIn" value="true">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -100,45 +104,41 @@ response.setDateHeader("EXPIRES"  , 0         );
                         </div>
                         <!-- /input-group -->
                     </li>
-                    <li><a href="./?page=menu.top" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"><i class="fa fa-briefcase"></i> &nbsp;Dashboard</span></a></li>
+                    <li><a href="/dashboard/Track?page=menu.top" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"><i class="fa fa-briefcase"></i> &nbsp;Dashboard</span></a></li>
                     <li>
                         <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-map-marker"></i> &nbsp;Mapping<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="./?page=map.device">Vehicle Map</a> </li>
-                            <li> <a href="./?page=map.fleet">Fleet Map</a> </li>
+                            <li> <a href="/dashboard/Track?page=map.device">Vehicle Map</a> </li>
+                            <li> <a href="/dashboard/Track?page=map.fleet">Fleet Map</a> </li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-bar-chart"></i> &nbsp;Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="javascript:void(0)">Device Detail</a> </li>
-                            <li> <a href="javascript:void(0)">Group Detail</a> </li>
-                            <li> <a href="javascript:void(0)">Group Summary</a> </li>
-                            <li> <a href="javascript:void(0)">Device Performance</a> </li>
-                            <li> <a href="javascript:void(0)">Operator Performance</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.devDetail">Device Detail</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.grpDetail">Group Detail</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.grpSummary">Group Summary</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.devPerf">Device Performance</a> </li>
+                            <li> <a href="/dashboard/Track?page=menu.rpt.drvrPerf">Operator Performance</a> </li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-power-off"></i> &nbsp; Manage<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="javascript:void(0)">Users</a> </li>
-                            <li> <a href="javascript:void(0)">Devices</a> </li>
-                            <li> <a href="javascript:void(0)">Fleets</a> </li>
-                            <li> <a href="javascript:void(0)">Geozones</a> </li>
+                            <li> <a href="/dashboard/Track?page=user.info">Users</a> </li>
+                            <li> <a href="/dashboard/Track?page=dev.info">Devices</a> </li>
+                            <li> <a href="/dashboard/Track?page=group.info">Fleets</a> </li>
+                            <li> <a href="/dashboard/Track?page=driver.info">Operators</a> </li>
+                            <li> <a href="/dashboard/Track?page=zone.info">Geozones</a> </li>
                         </ul>
                     </li>
 
-                    <li>
-                        <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-bolt"></i> &nbsp;System<span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li> <a href="javascript:void(0)">Accounts</a> </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
         </div>
+        </gts:var>
         <!-- Left navbar-header end -->
         <!-- Page Content -->
         <div id="page-wrapper">
@@ -147,13 +147,16 @@ response.setDateHeader("EXPIRES"  , 0         );
                     <div class="col-md-12">
                         <div class="white-box">
                             <gts:track section="content.body"/>
+
+
+
                         </div>
                     </div>
                 </div>
                 <!-- .row -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> ${copyright} </footer>
+            <footer class="footer text-center"> <gts:var>${copyright}</gts:var> Redeveloped by <a href="mailto:acamerondev@protonmail.com">AC</a>.</footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
