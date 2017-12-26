@@ -225,7 +225,7 @@ public class TopMenu
                     out.println("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+
                         i18n.getString("TopMenu.selectItem","Please select an item from the following menu:")+
                         "</p>");
-            
+
                 }
 
                 /* display menu */
@@ -239,7 +239,81 @@ public class TopMenu
                     case EXPAND:
                     case EXPAND_ICON: {
                         boolean menuHelp = privLabel.getBooleanProperty(PrivateLabel.PROP_TopMenu_showMenuHelp,true);
-                        ExpandMenu.writeMenu(out, reqState, "topMenuExpand", true, showIcon, descriptionType, menuHelp);
+                        //ExpandMenu.writeMenu(out, reqState, "topMenuExpand", true, showIcon, descriptionType, menuHelp);
+
+                        out.println("<div class='row'>
+                          <div class='col-lg-6 col-sm-6 col-xs-12'>
+                            <div class='col-md-5 col-xs-12 col-sm-6'>
+                                <div class='white-box text-center bg-info'>
+                                  <a href='/dashboard/Track?page=map.device'>
+                                    <h1 class='text-white counter'><i class='fa fa-car'></i></h1>
+                                    <p class='text-white'>Select and track the location of a vehicle on a map</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                            <div class='col-md-5 col-xs-12 col-sm-6'>
+                                <div class='white-box text-center bg-success'>
+                                  <a href='/dashboard/Track?page=map.fleet'>
+                                    <h1 class='text-white counter'><i class='fa fa-group'></i></h1>
+                                    <p class='text-white'>Select and track the location of a fleet on a map</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                          </div>
+
+                          <div class='col-lg-6 col-sm-6 col-xs-12'>
+
+                            <div class='col-md-4 col-xs-6 col-sm-6'>
+                                <div class='white-box text-center'>
+                                  <a href='/dashboard/Track?page=menu.rpt.devDetail'>
+                                    <h1 class='text-info counter'><i class='fa fa-truck'></i></h1>
+                                    <p class='text-info'>Vehicle Detail Reports</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                            <div class='col-md-4 col-xs-6 col-sm-6'>
+                                <div class='white-box text-center'>
+                                  <a href='/dashboard/Track?page=menu.rpt.grpDetail'>
+                                    <h1 class='text-info counter'><i class='fa fa-group'></i></h1>
+                                    <p class='text-info'>Fleet Detail Reports</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                            <div class='col-md-4 col-xs-6 col-sm-6'>
+                                <div class='white-box text-center'>
+                                  <a href='/dashboard/Track?page=menu.rpt.grpSummary'>
+                                    <h1 class='text-info counter'><i class='fa fa-newspaper-o'></i></h1>
+                                    <p class='text-info'>Fleet Summary Reports</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                            <div class='col-md-4 col-xs-6 col-sm-6'>
+                                <div class='white-box text-center'>
+                                  <a href='/dashboard/Track?page=menu.rpt.devPerf'>
+                                    <h1 class='text-info counter'><i class='fa fa-tablet'></i></h1>
+                                    <p class='text-info'>Device Performance Reports</p>
+                                  </a>
+                                </div>
+                            </div>
+
+                            <div class='col-md-4 col-xs-6 col-sm-6'>
+                                <div class='white-box text-center'>
+                                  <a href='/dashboard/Track?page=menu.rpt.drvrPerf'>
+                                    <h1 class='text-info counter'><i class='fa fa-tachometer'></i></h1>
+                                    <p class='text-info'>Driver Performance Reports</p>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>");
+
+
                     } break;
                     case BUTTON:
                     case BUTTON_ICON: {

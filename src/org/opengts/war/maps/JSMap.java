@@ -440,12 +440,12 @@ public class JSMap
             if (iE) {
                 out.write(" iconEval:\"" + I + "\",");
             } else {
-                out.write(" iconURL:\"" + I + "\",");
+                out.write(" iconURL:https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/\"" + I + "\",");
             }
             out.write(" iconSize:["+iW+","+iH+"],");
             out.write(" iconOffset:["+iX+","+iY+"],");
             out.write(" iconHotspot:["+iX+","+iY+"],");
-            out.write(" shadowURL:\""+S+"\",");
+            out.write(" shadowURL:https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/\""+S+"\",");
             out.write(" shadowSize:["+sW+","+sH+"]");
             if (!StringTools.isBlank(B)) {
                 // -- background

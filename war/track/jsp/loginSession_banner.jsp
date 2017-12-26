@@ -137,9 +137,11 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row" style="margin-top: 20px;">
+                <div class="row" style="margin-top: 15px;">
                     <div class="col-md-12">
                         <div class="white-box">
+
+                            <p class="text-warning"><gts:track section="content.message"/></p>
                             <gts:track section="content.body"/>
 
 
