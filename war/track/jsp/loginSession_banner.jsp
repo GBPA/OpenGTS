@@ -8,183 +8,162 @@ response.setHeader("PRAGMA"       , "NO-CACHE");
 response.setHeader("P3P"          , "CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT'");
 response.setDateHeader("EXPIRES"  , 0         );
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
-<html xmlns='http://www.w3.org/1999/xhtml' xmlns:v='urn:schemas-microsoft-com:vml'>
-<!-- jsp/loginSession_banner.jsp: <gts:var>${version} [${privateLabelName}]</gts:var>
-  =======================================================================================
-  Copyright(C) 2007-2017 GeoTelematic Solutions, Inc., All rights reserved
-  Project: OpenGTS - Open GPS Tracking System [http://www.opengts.org]
-  =======================================================================================
--->
+<!DOCTYPE html>
+<html lang="en">
 <gts:var ifKey="notDefined" value="true">
-<!--
-  See "logSession.jsp" for additional notes
-  =======================================================================================
-  Change History:
-   2010/01/28  Martin D. Flynn
-      -Initial Release
-  =======================================================================================
--->
 </gts:var>
-
-<!-- Head -->
 <head>
+    <gts:var>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    </gts:var>
 
-  <!-- meta -->
-  <gts:var>
-  <meta name="author" content="GeoTelematic Solutions, Inc."/>
-  <meta http-equiv="content-type" content='text/html; charset=UTF-8'/>
-  <meta http-equiv="cache-control" content='no-cache'/>
-  <meta http-equiv="pragma" content="no-cache"/>
-  <meta http-equiv="expires" content="0"/>
-  <meta name="copyright" content="${copyright}"/>
-  <meta name="robots" content="none"/>
-  </gts:var>
-
-  <!-- page title -->
-  <gts:var>
-  <title>${pageTitle}</title>
-  </gts:var>
-
-  <!-- default style -->
-  <link rel='stylesheet' type='text/css' href='css/General.css'/>
-  <link rel='stylesheet' type='text/css' href='css/MenuBar.css'/>
-  <link rel='stylesheet' type='text/css' href='css/Controls.css'/>
-
-  <!-- custom overrides style -->
-  <link rel='stylesheet' type='text/css' href='custom/General.css'/>
-  <link rel='stylesheet' type='text/css' href='custom/MenuBar.css'/>
-  <link rel='stylesheet' type='text/css' href='custom/Controls.css'/>
-
-  <!-- javascript -->
-  <gts:track section="javascript"/>
-
-  <!-- local style -->
-  <style type="text/css">
-    BODY { 
-        background-color: #DBDEEB; 
-        direction: <gts:var>${localeDirection}</gts:var>;
-    }
-    TD.titleText {
-        /* background: #DBDEEB url('./images/Banner_White90.png') center no-repeat; */
-        background: #DBDEEB url('./images/Banner_WhiteShadow.png') center no-repeat;
-        font-family: arial,verdana,sans-serif;
-        font-size: 28pt;
-        font-weight: bold;
-        text-align: center;
-        color: #000000;
-    }
-  </style>
-
-  <!-- page specific style -->
-  <gts:track section="stylesheet"/>
-
-  <!-- custom override style -->
-  <link rel='stylesheet' type='text/css' href='custom/Custom.css'/>
-
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <gts:var>
+    <title>${pageTitle}</title>
+    </gts:var>
+    <link href="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/css/animate.css" rel="stylesheet">
+    <link href="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/css/style.css" rel="stylesheet">
+    <link href="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+    <gts:track section="javascript"/>
+    <gts:track section="stylesheet"/>
 </head>
 
-<!-- ======================================================================================= -->
-
 <body onload="<gts:track section='body.onload'/>" onunload="<gts:track section='body.onunload'/>">
+    <div id="wrapper">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <!-- Toggle icon for mobile view -->
+                <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                <!-- Logo -->
+                <div class="top-left-part">
+                    <a class="logo" href="./?page=menu.top">
+                        <!-- Logo icon image, you can use font-icon also -->
+                        <img src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/images/agileadmin-logo.png" alt="home" />
 
-<table width="100%" height="100%" align="center" border="0" cellspacing="0" cellpadding="0" style="padding-top: 5px;">
-<tbody>
+                        <span class="hidden-xs"><img src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/images/agileadmin-text.png" alt="home" /></span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <!-- Search input and Toggle icon -->
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+                    <li>
+                      <!-- search bar -->
+                    </li>
+                </ul>
+                <!-- This is the message dropdown -->
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <!-- .user dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">${accountDesc} </a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li><a href="./?page=acct.info"><i class="ti-user"></i> &nbsp;My Account</a></li>
+                            <li><a href="./?page=passwd"><i class="ti-settings"></i> &nbsp;My Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="./?page=login"><i class="fa fa-power-off"></i> &nbsp;Logout</a></li>
+                        </ul>
+                        <!-- /.user dropdown-user -->
+                    </li>
+                    <!-- /.user dropdown -->
+                    <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- Left navbar-header -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <!-- input-group -->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+                        </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li><a href="./?page=menu.top" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"><i class="fa fa-briefcase"></i> &nbsp;Dashboard</span></a></li>
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-map-marker"></i> &nbsp;Mapping<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">
+                            <li> <a href="./?page=map.device">Vehicle Map</a> </li>
+                            <li> <a href="./?page=map.fleet">Fleet Map</a> </li>
+                        </ul>
+                    </li>
 
-  <!-- Begin Page header/navigation ======================================== -->
-  <tr>
-  <td width="100%">
-    <table class="bannerTable" width="860" border="0" cellpadding="0" cellspacing="0" align="center">
-    <tbody>
-    <tr>
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-bar-chart"></i> &nbsp;Reports<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">
+                            <li> <a href="javascript:void(0)">Device Detail</a> </li>
+                            <li> <a href="javascript:void(0)">Group Detail</a> </li>
+                            <li> <a href="javascript:void(0)">Group Summary</a> </li>
+                            <li> <a href="javascript:void(0)">Device Performance</a> </li>
+                            <li> <a href="javascript:void(0)">Operator Performance</a> </li>
+                        </ul>
+                    </li>
 
-      <gts:var>
-      <td width="860" height="120" class="titleText" halign="center">
-        ${pageTitle}<br>
-        <font style="font-size: 9pt;"><i>(Powered by <a href="http://www.opengts.org" target="_blank" style="color:#444444;">OpenGTS</a>)</i></font>
-      </td>
-      </gts:var>
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-power-off"></i> &nbsp; Manage<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">
+                            <li> <a href="javascript:void(0)">Users</a> </li>
+                            <li> <a href="javascript:void(0)">Devices</a> </li>
+                            <li> <a href="javascript:void(0)">Fleets</a> </li>
+                            <li> <a href="javascript:void(0)">Geozones</a> </li>
+                        </ul>
+                    </li>
 
-    </tr>
-    </tbody>
-    </table>
-  </td>
-  </tr>
-  <tr>
-  <td align="center">
-     <table width="860" border="0" cellpadding="0" cellspacing="0">
-     <tbody>
-     <tr>
-       <td class="navBarClear" nowrap align="left">&nbsp;<gts:var ifKey="isLoggedIn" value="true"><i>${i18n.Account}:</i> ${accountDesc} (${userDesc})</gts:var></td>
-       <td class="navBarClear" nowrap align="right" width="100%"><gts:var>&nbsp;${navigation}&nbsp;&nbsp;</gts:var></td>
-     </tr>
-     </tbody>
-     </table>
-  </td>
-  </tr>
-  <!-- End Page header/navigation ======================================== -->
-
-  <!-- Begin Page contents ======================================== -->
-  <tr height="100%">
-  <td>
-    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-    <tr>
-        <td valign='top' align='center' height='100%'>
-           <table class="<gts:track section='content.class.table'/>" cellspacing='0' cellpadding='0' border='0'>
-           <tbody>
-              <!-- The MenuBar is displayed iff 'content.class.table' is "contentTable"/"contentMapTable" -->
-              <tr><gts:track section="content.menubar"/></tr>
-              <tr height='100%'>
-                <td class="<gts:track section='content.class.cell'/>">
-                    <gts:track section="content.body"/>
-                </td>
-              </tr>
-              <tr>
-                <td id="<gts:track section='content.id.message'/>" class="<gts:track section='content.class.message'/>">
-                    <gts:track section="content.message"/>
-                </td>
-              </tr>
-           </tbody>
-           </table>
-        </td>
-    </tr>
-    </tbody>
-    </table>
-  </td>
-  </tr>
-  <!-- End Page contents ======================================== -->
-
-  <!-- Begin Page footer ======================================== -->
-  <tr>
-    <td style="font-size: 7pt; border-bottom: 1px solid #888888;">&nbsp;</td>
-  </tr>
-  <tr>
-  <td>
-    <table class="copyrightFooterClear" width="100%" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-    <tr>
-      <td style="padding: 0px 0px 2px 5px;">&nbsp;</td>
-      <td width="100%">
-         &nbsp;
-         <gts:var>${copyright}</gts:var>
-      </td>
-      <td nowrap style="padding-bottom: 2px;">
-         <span style="font-size: 7pt; font-style: oblique; color: #888888;"><gts:var ifTrue="login.showGTSVersion">${version}</gts:var></span>&nbsp;&nbsp;
-         <gts:var ifTrue="login.showPiLink"><a style="font-size: 11pt; text-decoration: none;" href="${login.piLink=http://www.opengts.org}" target="_blank">&pi;</a>&nbsp;</gts:var>
-      </td>
-    </tr>
-    </tbody>
-    </table>
-  </td>
-  </tr>
-  <!-- End Page footer ======================================== -->
-
-</tbody>
-</table>
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu"><i class="fa fa-bolt"></i> &nbsp;System<span class="fa arrow"></span></span></a>
+                        <ul class="nav nav-second-level">
+                            <li> <a href="javascript:void(0)">Accounts</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Left navbar-header end -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <gts:track section="content.body"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> ${copyright} </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/jquery.slimscroll.js"></script>
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/waves.js"></script>
+    <script src="https://gbpawebdiag949.blob.core.windows.net/gbpa-web/opengts/agileadmin/js/custom.min.js"></script>
 </body>
-
-<!-- ======================================================================================= -->
-
 </html>
