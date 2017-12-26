@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +64,7 @@ public class AccountLogin
     // Tomcat conf/server.xml
     //   emptySessionPath="true"
     //   <SessionId cookiesFirst="true" noCookies="true"/>
-    // HttpServletResponse.encodeURL()
+    // HttpServletResponse.encodeURL() 
     // ------------------------------------------------------------------------
 
     private static       String  FORM_LOGIN                 = "Login";
@@ -92,7 +92,7 @@ public class AccountLogin
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // WebPage interface
-
+    
     public AccountLogin()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -265,7 +265,7 @@ public class AccountLogin
         /* Style */
         HTMLOutput HTML_CSS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
-                String cssDir = AccountLogin.this.getCssDirectory();
+                String cssDir = AccountLogin.this.getCssDirectory(); 
                 WebPageAdaptor.writeCssLink(out, reqState, "AccountLogin.css", cssDir);
                 // -- Login page background image? (ie "./extra/images/texture/Clouds.png")
                 String bgImage    = reqState.getKeyValue(PrivateLabel.PROP_AccountLogin_background_image     , null, null        );
@@ -327,10 +327,10 @@ public class AccountLogin
                 String  accountID  = StringTools.trim(AccountRecord.getFilteredID(AttributeTools.getRequestString(req,Constants.PARM_ACCOUNT,"")));
                 String  userID     = StringTools.trim(AccountRecord.getFilteredID(AttributeTools.getRequestString(req,Constants.PARM_USER   ,"")));
                 // -- other args
-                String  newURL     = privLabel.hasWebPage(PAGE_ACCOUNT_NEW )?
+                String  newURL     = privLabel.hasWebPage(PAGE_ACCOUNT_NEW )? 
                     //EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),PAGE_ACCOUNT_NEW ) : null;
                     privLabel.getWebPageURL(reqState,PAGE_ACCOUNT_NEW) : null;
-                String  forgotURL  = privLabel.hasWebPage(PAGE_PASSWD_EMAIL)?
+                String  forgotURL  = privLabel.hasWebPage(PAGE_PASSWD_EMAIL)? 
                     //EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),PAGE_PASSWD_EMAIL) : null;
                     privLabel.getWebPageURL(reqState,PAGE_PASSWD_EMAIL) : null;
                 boolean acctLogin  = privLabel.getAccountLogin();
@@ -352,13 +352,38 @@ public class AccountLogin
                 //  </form>
 
                 // -- start LoginTable
-                out.print("<table class='"+CSS_LOGIN_CONTENT_TABLE+" table' cellpadding='0' cellspacing='0' border='0'");
+                out.print("<table class='"+CSS_LOGIN_CONTENT_TABLE+"' cellpadding='0' cellspacing='0' border='0'");
                     out.print(" width='100%'");
                     out.print(">\n");
 
+                // -- top image row
+                if (showLogin300Banner) {
+                    // -- JSP "nobanner" is expected
+                    out.println("<tr class='banner300ImageRow'>");
+                    out.println("  <td class='banner300ImageCell' colSpan='2'>");
+                    if (showLogin300BannerTitle) {
+                    out.println("    <span class='banner300ImageTitle'>"+privLabel.getPageTitle()+"</span><br>");
+                    }
+                    out.println("    <img src='"+banner300Image+"'/>"); // width='300' />");
+                    out.println("  </td>");
+                    out.println("</tr>");
+                }
 
                 // -- start LoginTable/AccountUserPasswordContentRow
                 out.println("<tr class='accountUserPasswordContentRow'>");
+
+                // -- vertical separator (optional)
+                String vSepImg = acctRTP.getString(PROP_VSeparatorImage,"./images/VSep_DBlue.png");
+                if (!StringTools.isBlank(vSepImg)) {
+                    String W = acctRTP.getString(PROP_VSeparatorImage_W,"8");
+                    String H = acctRTP.getString(PROP_VSeparatorImage_H,"300");
+                    out.print("<td class='"+CSS_LOGIN_VSEP_CELL+"'>");
+                    out.print("<img ");
+                    if (!StringTools.isBlank(W)) { out.print(" width='"+W+"'"); }
+                    if (!StringTools.isBlank(H)) { out.print(" height='"+H+"'"); }
+                    out.print(" src='"+vSepImg+"'/>");
+                    out.print("</td>");
+                }
 
                 // -- start AccountUserPasswordCell
                 out.println("<td class='"+CSS_LOGIN_TEXT_CELL+"'>");
@@ -368,10 +393,12 @@ public class AccountLogin
                     i18n.getString("AccountLogin.enterLogin","Enter your Login ID and Password") :
                     i18n.getString("AccountLogin.enterLoginNoPass","Enter Login ID (No Password Required)");
                 String enterLoginText = i18n.getString("AccountLogin.pleaseLogIn","Please Log In");
+                out.println("<span style='font-size:12pt;font-weight:bold;'>"+enterLoginText+"</span>");
+                out.println(HR);
 
                 // -- Account/User/Password form/table
-                out.println("<form name='"+FORM_LOGIN+"' method='post' class='form-horizontal' action='"+baseURL+"' target='"+target+"'>");
-                out.println("  <table class='"+CSS_LOGIN_FORM_TABLE+" table' cellpadding='0' cellspacing='0' border='0'>");
+                out.println("<form name='"+FORM_LOGIN+"' method='post' action='"+baseURL+"' target='"+target+"'>");
+                out.println("  <table class='"+CSS_LOGIN_FORM_TABLE+"' cellpadding='0' cellspacing='0' border='0'>");
                 String focusFieldID = "";
 
                 // -- Account login field
@@ -386,7 +413,7 @@ public class AccountLogin
                     out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
-                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_ACCOUNT+"' value='"+accountID+"' placeholder='"+text+"' size='32' maxlength='32'>");
+                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+"' style='font-size:10pt' type='text' "+ro+" name='"+Constants.PARM_ACCOUNT+"' value='"+accountID+"' placeholder='"+text+"' size='32' maxlength='32'>");
                     out.print(      "</td>");
                     out.print(  "</tr>\n");
                     focusFieldID = fldID;
@@ -402,7 +429,7 @@ public class AccountLogin
                     out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
-                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
+                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+"' style='font-size:10pt' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
                     out.print(      "</td>");
                     out.print(  "</tr>\n");
                     if (StringTools.isBlank(focusFieldID)) { focusFieldID = fldID; }
@@ -416,7 +443,7 @@ public class AccountLogin
                     out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
-                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='32'>");
+                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+"' style='font-size:10pt' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='32'>");
                     out.print(      "</td>");
                     out.print(  "</tr>\n");
                     if (StringTools.isBlank(focusFieldID)) { focusFieldID = fldID; }
@@ -430,7 +457,7 @@ public class AccountLogin
                     out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
-                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USEREMAIL+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
+                    out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+"' style='font-size:10pt' type='text' "+ro+" name='"+Constants.PARM_USEREMAIL+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
                     out.print(      "</td>");
                     out.print(  "</tr>\n");
                     if (StringTools.isBlank(focusFieldID)) { focusFieldID = fldID; }
@@ -445,7 +472,7 @@ public class AccountLogin
                     out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
-                    out.print(      "<input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' "+ro+" name='"+Constants.PARM_PASSWORD+"' value='' placeholder='"+text+"' size='32' maxlength='32'>");
+                    out.print(      "<input class='"+CommonServlet.CSS_TEXT_INPUT+"' style='font-size:10pt' type='password' "+ro+" name='"+Constants.PARM_PASSWORD+"' value='' placeholder='"+text+"' size='32' maxlength='32'>");
                     out.print(      "</td>");
                     out.print(  "</tr>\n");
                 }
@@ -472,12 +499,40 @@ public class AccountLogin
 
                 // -- Login
                 out.print("<br>");
-                out.print("<input type='submit' class='btn btn-lg btn-success' name='submit' value='"+i18n.getString("AccountLogin.login","Login")+"'>\n");
+                out.print("<input type='submit' name='submit' value='"+i18n.getString("AccountLogin.login","Login")+"' style='font-size:10pt'>\n");
 
+                // -- forgot password
+                if (showPasswd && (forgotURL != null)) {
+                    out.println("  <span style='font-size:9pt;padding-left:10px;padding-right:5px;float:right'><i><a href='"+forgotURL+"'>"+i18n.getString("AccountLogin.forgotPassword","Forgot password?")+"</a></i></span>");
+                }
 
                 // -- end Account/User/Password forn
                 out.println("</form>");
 
+                // -- "Cookies/JavaScript must be enabled"
+                out.println("<br/>");
+                out.println("<span style='font-size:8pt'><i>"+i18n.getString("AccountLogin.cookiesJavaScript","(Cookies and JavaScript must be enabled)")+"</i></span>");
+                out.println("<br/>");
+
+                // -- Demo button
+                if (showDemo) {
+                    out.println(HR);
+                    //out.println("<br/>");
+                    out.println("<form name='"+FORM_DEMO+"' method='post' action='"+baseURL+"' target='"+target+"'>");
+                    out.println("  <input type='hidden' name='"+Constants.PARM_ACCOUNT  +"' value='"+reqState.getDemoAccountID()+"'/>");
+                    out.println("  <input type='hidden' name='"+Constants.PARM_USER     +"' value=''/>");
+                    out.println("  <input type='hidden' name='"+Constants.PARM_PASSWORD +"' value=''/>");
+                    out.println("  <span style='font-size:9pt;padding-right:5px;'>"+i18n.getString("AccountLogin.freeDemo","Click here for a Demo")+"</span>");
+                    out.println("  <input type='submit' name='submit' value='"+i18n.getString("AccountLogin.demo","Demo")+"'>");
+                    out.println("</form>");
+                    //out.println("<br/>");
+                }
+
+                // -- New Account
+                if (newURL != null) {
+                    out.println(HR);
+                    out.println("<span style='font-size:8pt'><i><a href='"+newURL+"'>"+i18n.getString("AccountLogin.freeAccount","Sign up for a free account")+"</a></i></span>");
+                }
 
                 // -- end AccountUserPasswordCell
                 out.println("</td>");
@@ -499,7 +554,7 @@ public class AccountLogin
                     out.write("</script>\n");
                 }
 
-
+                
             }
         };
 
