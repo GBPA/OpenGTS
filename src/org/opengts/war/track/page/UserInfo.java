@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@
 //      have a set contact email address.
 //     -Allow creating "admin" user, if logged-in as the default "admin" user.
 //  2011/03/08  Martin D. Flynn
-//     -Added support for notification email. 
+//     -Added support for notification email.
 //  2012/04/03  Martin D. Flynn
 //     -Added option to hide ACL list override (see PROP_UserInfo_showAccessControlList)
 //  2013/03/01  Martin D. Flynn
@@ -94,7 +94,7 @@ public class UserInfo
     // ------------------------------------------------------------------------
     // Parameters
 
-    // forms 
+    // forms
     public  static final String FORM_USER_SELECT        = "UserInfoSelect";
     public  static final String FORM_USER_EDIT          = "UserInfoEdit";
     public  static final String FORM_USER_NEW           = "UserInfoNew";
@@ -175,7 +175,7 @@ public class UserInfo
     {
         return FirstLogin.class.getEnumConstants();
     }
-    
+
     private static ComboMap GetFirstLoginListMap(Locale locale)
     {
         ComboMap map = new ComboMap();
@@ -187,7 +187,7 @@ public class UserInfo
 
     // ------------------------------------------------------------------------
     // WebPage interface
-    
+
     public UserInfo()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -198,7 +198,7 @@ public class UserInfo
     }
 
     // ------------------------------------------------------------------------
-   
+
     public String getMenuName(RequestProperties reqState)
     {
         return MenuBar.MENU_ADMIN;
@@ -210,7 +210,7 @@ public class UserInfo
         I18N i18n = privLabel.getI18N(UserInfo.class);
         return super._getMenuDescription(reqState,i18n.getString("UserInfo.editMenuDesc","View/Edit User Information"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -235,7 +235,7 @@ public class UserInfo
     }
 
     // ------------------------------------------------------------------------
-    
+
     public String[] getChildAclList()
     {
         return _ACL_LIST;
@@ -557,8 +557,8 @@ public class UserInfo
                         }
                     } else {
                         boolean userActv = ComboOption.parseYesNoText(locale, userActive, true);
-                        if (selUser.getIsActive() != userActv) { 
-                            selUser.setIsActive(userActv); 
+                        if (selUser.getIsActive() != userActv) {
+                            selUser.setIsActive(userActv);
                         }
                     }
                     // -- password
@@ -596,7 +596,7 @@ public class UserInfo
                     // -- contact email
                     if (!requireEmail && StringTools.isBlank(contactEmail)) {
                         // -- allow blank
-                        selUser.setContactEmail(contactEmail); 
+                        selUser.setContactEmail(contactEmail);
                     } else
                     if (contactEmail.equals(selUser.getContactEmail())) {
                         // -- already set, leave as-is (even if invalid)
@@ -619,7 +619,7 @@ public class UserInfo
                         if (user == null) {
                             // -- no duplicate found
                             selUser.setContactEmail(contactEmail);
-                        } else 
+                        } else
                         if (user.getAccountID().equals(selUser.getAccountID()) &&
                             user.getUserID().equals(selUser.getUserID())         ) {
                             // -- this user is the duplicate (unlikely since we prechecked above
@@ -811,7 +811,7 @@ public class UserInfo
                     // -- save
                     if (saveOK) {
                         selUser.save();
-                        //Track.writeMessageResponse(reqState, 
+                        //Track.writeMessageResponse(reqState,
                         //    i18n.getString("UserInfo.userUpdated","User information updated"));
                         m = i18n.getString("UserInfo.userUpdated","User information updated"); // UserErrMsg
                     } else {
@@ -820,7 +820,7 @@ public class UserInfo
                         listUsers = false;
                     }
                 } catch (Throwable t) {
-                    //Track.writeErrorResponse(reqState, 
+                    //Track.writeErrorResponse(reqState,
                     //    i18n.getString("UserInfo.errorUpdate","Internal error updating User"));
                     Print.logException("Updating User", t);
                     m = i18n.getString("UserInfo.errorUpdate","Internal error updating User"); // UserErrMsg
@@ -898,8 +898,8 @@ public class UserInfo
                 String editURL    = UserInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                 String selectURL  = UserInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
                 String newURL     = UserInfo.this.encodePageURL(reqState);//,RequestProperties.TRACK_BASE_URI());
-                String frameTitle = _allowEdit? 
-                    i18n.getString("UserInfo.viewEditUser","View/Edit User Information") : 
+                String frameTitle = _allowEdit?
+                    i18n.getString("UserInfo.viewEditUser","View/Edit User Information") :
                     i18n.getString("UserInfo.viewUser","View User Information");
               //String selectUserJS = "javascript:dinfoSelectUser()";
                 out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</span><br/>\n");
@@ -907,13 +907,13 @@ public class UserInfo
 
                 // user selection table (Select, User ID, User Desc)
                 if (_listUsers) {
-                    
+
                     // user selection table (Select, User ID, User Desc)
                     out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.selectUser","Select a User")+":</h1>\n");
                     out.write("<div style='margin-left:25px;'>\n");
                     out.write("<form name='"+FORM_USER_SELECT+"' method='post' action='"+selectURL+"' target='_self'>"); // target='_top'
                     out.write("<input type='hidden' name='"+PARM_COMMAND+"' value='"+COMMAND_INFO_SELECT+"'/>");
-                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+"' cellspacing=0 cellpadding=0 border=0>\n");
+                    out.write("<table class='"+CommonServlet.CSS_ADMIN_SELECT_TABLE+" table' cellspacing=0 cellpadding=0 border=0>\n");
                     out.write(" <thead>\n");
                     out.write("  <tr class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_ROW+"'>\n");
                     out.write("   <th class='"+CommonServlet.CSS_ADMIN_TABLE_HEADER_COL_SEL+"' nowrap>"+FilterText(i18n.getString("UserInfo.select","Select"))+"</th>\n");
@@ -949,7 +949,7 @@ public class UserInfo
                                 long  lastLoginTime = usr.getLastLoginTime();
                                 String lastLogin    = FilterText(currAcct.formatDateTime(lastLoginTime));
                                 String checked      = _selUserID.equals(uid)? " checked" : "";
-                                String viewStyle    = (_allowEdit && !_allowEditAll)? ((currUserID.equals(uid))?"background-color:#FFFFFF;":"background-color:#E5E5E5;") : ""; 
+                                String viewStyle    = (_allowEdit && !_allowEditAll)? ((currUserID.equals(uid))?"background-color:#FFFFFF;":"background-color:#E5E5E5;") : "";
                                 out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL_SEL+"' "+SORTTABLE_SORTKEY+"='"+u+"' style='"+viewStyle+"'><input type='radio' name='"+PARM_USER_SELECT+"' id='"+userID+"' value='"+userID+"' "+checked+"></td>\n");
                                 out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL    +"' nowrap><label for='"+userID+"'>"+userID+"</label></td>\n");
                                 out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL    +"' nowrap>"+userDesc+"</td>\n");
@@ -964,37 +964,37 @@ public class UserInfo
                                 out.write("   <td class='"+CommonServlet.CSS_ADMIN_TABLE_BODY_COL    +"' "+SORTTABLE_SORTKEY+"='"+lastLoginTime+"' nowrap>"+lastLogin+"</td>\n");
                             }
                         } catch (DBException dbe) {
-                            // 
+                            //
                         }
                         out.write("  </tr>\n");
                     }
                     out.write(" </tbody>\n");
                     out.write("</table>\n");
-                    out.write("<table cellpadding='0' cellspacing='0' border='0' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
+                    out.write("<table cellpadding='0' cellspacing='0' border='0' class='table' style='width:95%; margin-top:5px; margin-left:5px; margin-bottom:5px;'>\n");
                     out.write("<tr>\n");
-                    if (_allowView  ) { 
+                    if (_allowView  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_VIEW+"' value='"+i18n.getString("UserInfo.view","View")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
-                    if (_allowEdit  ) { 
+                    if (_allowEdit  ) {
                         out.write("<td style='padding-left:5px;'>");
                         out.write("<input type='submit' name='"+PARM_SUBMIT_EDIT+"' value='"+i18n.getString("UserInfo.edit","Edit")+"'>");
-                        out.write("</td>\n"); 
+                        out.write("</td>\n");
                     }
                     out.write("<td style='width:100%; text-align:right; padding-right:10px;'>");
                     if (_allowDelete) {
                         out.write("<input type='submit' name='"+PARM_SUBMIT_DEL+"' value='"+i18n.getString("UserInfo.delete","Delete")+"' "+Onclick_ConfirmDelete(locale)+">");
                     } else {
-                        out.write("&nbsp;"); 
+                        out.write("&nbsp;");
                     }
-                    out.write("</td>\n"); 
+                    out.write("</td>\n");
                     out.write("</tr>\n");
                     out.write("</table>\n");
                     out.write("</form>\n");
                     out.write("</div>\n");
                     out.write("<hr>\n");
-                    
+
                     /* new user */
                     if (_allowNew) {
                     out.write("<h1 class='"+CommonServlet.CSS_ADMIN_SELECT_TITLE+"'>"+i18n.getString("UserInfo.createNewUser","Create a new user")+":</h1>\n");
@@ -1136,7 +1136,7 @@ public class UserInfo
 
                     /* User fields */
                     ComboOption userActive = ComboOption.getYesNoOption(locale, ((_selUser != null) && _selUser.isActive()));
-                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+"' cellspacing='0' callpadding='0' border='0'>");
+                    out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                   //out.println(FormRow_ComboBox (PARM_USER_SELECT   , !isCurrentUserSelected, i18n.getString("UserInfo.userID","User ID")+":", _selUserID, _userList, selectUserJS, -1));
                     out.println(FormRow_TextField(PARM_USER_SELECT   , false     , i18n.getString("UserInfo.userID","User ID")+":"            , _selUserID, 40, 40));
                     out.println(FormRow_ComboBox (PARM_USER_ACTIVE   , _editUser && !isCurrentUserSelected, i18n.getString("UserInfo.active","Active")+":", userActive, ComboMap.getYesNoMap(locale), "", -1));
@@ -1160,7 +1160,7 @@ public class UserInfo
                         if (!_showAddress) { out.println(FormRow_Separator()); }
                         out.println(FormRow_TextField(PARM_OFFICE_LOC, _editUser , i18n.getString("UserInfo.officeLocation" ,"Office Location")+":", (_selUser!=null)?_selUser.getOfficeLocation() :"", 50, 50));
                     }
-                    // -- speed/distance units 
+                    // -- speed/distance units
                     if (User.getFactory().hasField(User.FLD_speedUnits)) {
                         ComboOption speedUnits    = privLabel.getEnumComboOption(Account.getSpeedUnits(_selUser)      );
                         ComboOption distanceUnits = privLabel.getEnumComboOption(Account.getDistanceUnits(_selUser)   );
@@ -1184,7 +1184,7 @@ public class UserInfo
                     out.println(FormRow_ComboBox (PARM_LOGIN_PAGE    , _editUser , i18n.getString("UserInfo.firstLoginPage","First Login Page")+":" , loginPage, loginList, "", 16));
                     if (_showPrefDev && _viewDevID) {
                         String selDevID = (_selUser != null)? _selUser.getPreferredDeviceID() : "";
-                        ComboMap devMap = new ComboMap(reqState.createDeviceDescriptionMap(true/*includeID*/)); 
+                        ComboMap devMap = new ComboMap(reqState.createDeviceDescriptionMap(true/*includeID*/));
                         devMap.insert("", i18n.getString("UserInfo.noDevice","None",devTitles)); // "No {0}"
                       //OrderedSet<String> devList = new OrderedSet<String>();
                       //devList.add(""); // none
@@ -1277,7 +1277,7 @@ public class UserInfo
                                     String  dftHtml  = i18n.getString("UserInfo.defaultIsAcl","[Default is ''{0}'']","<b>"+dftAcc.toString(locale)+"</b>");
                                     out.write(FormRow_ComboBox(argKey, true , desc+":", accSel, aclOpt, "", 18, dftHtml) + "\n");
                                 } else {
-                                    ComboOption accSel = (usrAcc != null)? 
+                                    ComboOption accSel = (usrAcc != null)?
                                         privLabel.getEnumComboOption(usrAcc) :
                                         privLabel.getEnumComboOption(dftAcc);
                                     out.write(FormRow_ComboBox(argKey, false, desc+":", accSel, aclOpt, "", 18, null) + "\n");
@@ -1316,6 +1316,6 @@ public class UserInfo
             HTML_CONTENT);              // Content
 
     }
-    
+
     // ------------------------------------------------------------------------
 }

@@ -363,7 +363,7 @@ public class AccountInfo
                 String      adrTitles[]      = currAcct.getAddressTitles(locale, new String[]{"",""});
                 int         neFldLen         = Account.getMaximumNotifyEmailLength(); // 125
                 out.println("<h1 class='"+CommonServlet.CSS_MENU_TITLE+"'>"+frameTitle+"</h1>");
-                out.println("<hr/>");
+                //out.println("<hr/>");
                 out.println("<form name='AccountInfo' method='post' class='form-horizontal' action='"+chgURL+"' target='_self'>");
                 out.println("<table class='"+CommonServlet.CSS_ADMIN_VIEW_TABLE+" table' cellspacing='0' callpadding='0' border='0'>");
                 out.println(FormRow_TextField(PARM_ACCOUNT_ID   , false     , i18n.getString("AccountInfo.accountID","Account ID:")                  , currAcct.getAccountID()       , 32, 32)); // read-only
@@ -440,7 +440,7 @@ public class AccountInfo
                 out.println("</table>");
 
                 /* end of form */
-                out.write("<hr style='margin-bottom:5px;'>\n");
+                //out.write("<hr style='margin-bottom:5px;'>\n");
                 out.write("<span style='padding-left:10px'>&nbsp;</span>\n");
                 if (_allowEdit) {
                     out.write("<input type='submit' class='btn btn-lg btn-success' name='"+PARM_SUBMIT_CHANGE+"' value='"+i18n.getString("AccountInfo.change","Change")+"'>\n");

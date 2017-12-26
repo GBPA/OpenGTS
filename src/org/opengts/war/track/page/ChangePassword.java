@@ -6,9 +6,9 @@
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,22 +48,22 @@ public class ChangePassword
     extends WebPageAdaptor
     implements Constants
 {
- 
+
     // ------------------------------------------------------------------------
 
     public  static final String COMMAND_PWD_CHANGE  = "chg";
-    
+
     public  static final String PARM_PWD_SUBMIT     = PARM_PASSWORD + "_subchg";
-    public  static final String PARM_OLD_PASSWD     = PARM_PASSWORD + "_old";    
-    public  static final String PARM_NEW1_PASSWD    = PARM_PASSWORD + "_nw1";    
-    public  static final String PARM_NEW2_PASSWD    = PARM_PASSWORD + "_nw2";    
+    public  static final String PARM_OLD_PASSWD     = PARM_PASSWORD + "_old";
+    public  static final String PARM_NEW1_PASSWD    = PARM_PASSWORD + "_nw1";
+    public  static final String PARM_NEW2_PASSWD    = PARM_PASSWORD + "_nw2";
 
     // -- button types
     public  static final String PARM_BUTTON_CANCEL  = "b_cancel";
 
     // ------------------------------------------------------------------------
     // -- WebPage interface
-    
+
     public ChangePassword()
     {
         this.setBaseURI(RequestProperties.TRACK_BASE_URI());
@@ -85,7 +85,7 @@ public class ChangePassword
         I18N i18n = privLabel.getI18N(ChangePassword.class);
         return super._getMenuDescription(reqState,i18n.getString("ChangePassword.menuDesc","Change your password"));
     }
-   
+
     public String getMenuHelp(RequestProperties reqState, String parentMenuName)
     {
         PrivateLabel privLabel = reqState.getPrivateLabel();
@@ -179,7 +179,7 @@ public class ChangePassword
                     if (pwdNew1.equals("")) { // prevent blank passwords
                         m = i18n.getString("ChangePassword.blankPassNotAllowed","New password may not be blank"); // UserErrMsg
                         error = true;
-                    } else 
+                    } else
                     if (!pwdNew1.equals(pwdNew2)) {
                         m = i18n.getString("ChangePassword.unconfirmedAcctPass","New password not confirmed"); // UserErrMsg
                         error = true;
@@ -207,7 +207,7 @@ public class ChangePassword
                 m = i18n.getString("ChangePassword.cancelled","Cancelled"); // UserErrMsg
             }
         }
-        
+
         /* JavaScript */
         HTMLOutput HTML_JS = new HTMLOutput() {
             public void write(PrintWriter out) throws IOException {
@@ -223,19 +223,19 @@ public class ChangePassword
                 String menuURL = privLabel.getWebPageURL(reqState, PAGE_MENU_TOP);
               //String pwdURL  = EncodeMakeURL(reqState,RequestProperties.TRACK_BASE_URI(),pageName,COMMAND_PWD_CHANGE);
                 String pwdURL  = privLabel.getWebPageURL(reqState, pageName, COMMAND_PWD_CHANGE);
-                out.write("<span class='"+CommonServlet.CSS_MENU_TITLE+"'>"+i18n.getString("ChangePassword.menuDesc","Change your password")+"</span><br/>\n");
-                out.write("<span class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+i18n.getString("ChangePassword.enterCurrent","Enter your Current and New Passwords:")+"</span>\n");
+                out.write("<h1>"+i18n.getString("ChangePassword.menuDesc","Change your password")+"</h1>\n");
+                out.write("<p class='"+CommonServlet.CSS_MENU_INSTRUCTIONS+"'>"+i18n.getString("ChangePassword.enterCurrent","Enter your Current and New Passwords:")+"</p>\n");
                 out.write("<hr/>\n");
-                out.write("<form name='Passwd' method='post' action='"+pwdURL+"' target='_self'>\n"); // target='_top'
-                out.write("  <table>\n");
-                out.write("  <tr><td>"+i18n.getString("ChangePassword.oldPass","Old Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='password' name='"+PARM_OLD_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
-                out.write("  <tr><td>"+i18n.getString("ChangePassword.newPass","New Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='password' name='"+PARM_NEW1_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
-                out.write("  <tr><td>"+i18n.getString("ChangePassword.confirmNew","Confirm New:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+"' type='password' name='"+PARM_NEW2_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
+                out.write("<form name='Passwd' class='form-horizontal' method='post' action='"+pwdURL+"' target='_self'>\n"); // target='_top'
+                out.write("  <table class='table'>\n");
+                out.write("  <tr><td>"+i18n.getString("ChangePassword.oldPass","Old Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_OLD_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
+                out.write("  <tr><td>"+i18n.getString("ChangePassword.newPass","New Password:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_NEW1_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
+                out.write("  <tr><td>"+i18n.getString("ChangePassword.confirmNew","Confirm New:")+"</td><td><input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' name='"+PARM_NEW2_PASSWD+"' value='' maxlength='20' size='20'></td></tr>\n");
                 out.write("  </table>\n");
-                out.write("  <input type='submit' name='"+PARM_PWD_SUBMIT+"' value='"+i18n.getString("ChangePassword.change","Change")+"'>\n");
-                out.write("  <hr style='margin: 5px 0px 5px 0px;'>\n");
+                out.write("  <input type='submit' class='btn btn-success' name='"+PARM_PWD_SUBMIT+"' value='"+i18n.getString("ChangePassword.change","Change")+"'>\n");
+                //out.write("  <hr style='margin: 5px 0px 5px 0px;'>\n");
               //out.write("  <a href='"+menuURL+"'>"+i18n.getString("ChangePassword.cancel","Cancel")+"</a>\n");
-                out.write("  <input type='button' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("ChangePassword.cancel","Cancel")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
+                out.write("  <input type='button' class='btn btn-default' name='"+PARM_BUTTON_CANCEL+"' value='"+i18n.getString("ChangePassword.cancel","Cancel")+"' onclick=\"javascript:openURL('"+menuURL+"','_self');\">\n"); // target='_top'
                 out.write("</form>\n");
             }
         };

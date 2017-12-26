@@ -352,7 +352,7 @@ public class AccountLogin
                 //  </form>
 
                 // -- start LoginTable
-                out.print("<table class='"+CSS_LOGIN_CONTENT_TABLE+" table' cellpadding='0' cellspacing='0' border='0'");
+                out.print("<table class='"+CSS_LOGIN_CONTENT_TABLE+"' cellpadding='0' cellspacing='0' border='0'");
                     out.print(" width='100%'");
                     out.print(">\n");
 
@@ -393,8 +393,7 @@ public class AccountLogin
                     i18n.getString("AccountLogin.enterLogin","Enter your Login ID and Password") :
                     i18n.getString("AccountLogin.enterLoginNoPass","Enter Login ID (No Password Required)");
                 String enterLoginText = i18n.getString("AccountLogin.pleaseLogIn","Please Log In");
-                out.println("<span style='font-size:12pt;font-weight:bold;'>"+enterLoginText+"</span>");
-                out.println(HR);
+                out.println("<h1>"+enterLoginText+"</h1>");
 
                 // -- Account/User/Password form/table
                 out.println("<form name='"+FORM_LOGIN+"' method='post' class='form-horizontal' action='"+baseURL+"' target='"+target+"'>");
@@ -410,7 +409,7 @@ public class AccountLogin
                     String text  = text_.endsWith(":")?text_.substring(0,text_.length()-1):text_;
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(      "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
                     out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_ACCOUNT+"' value='"+accountID+"' placeholder='"+text+"' size='32' maxlength='32'>");
@@ -426,7 +425,7 @@ public class AccountLogin
                     String text  = text_.endsWith(":")?text_.substring(0,text_.length()-1):text_;
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(      "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
                     out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
@@ -440,7 +439,7 @@ public class AccountLogin
                     String text  = text_.endsWith(":")?text_.substring(0,text_.length()-1):text_;
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(      "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
                     out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USER+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='32'>");
@@ -454,7 +453,7 @@ public class AccountLogin
                     String text  = text_.endsWith(":")?text_.substring(0,text_.length()-1):text_;
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(      "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
                     out.print(      "<input id='"+fldID+"' class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='text' "+ro+" name='"+Constants.PARM_USEREMAIL+"' value='"+userID+"' placeholder='"+text+"' size='32' maxlength='40'>");
@@ -469,7 +468,7 @@ public class AccountLogin
                     String text  = text_.endsWith(":")?text_.substring(0,text_.length()-1):text_;
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(      "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(      "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(      "<td class='accountLoginFieldValue'>");
                     out.print(      "<input class='"+CommonServlet.CSS_TEXT_INPUT+" form-control' type='password' "+ro+" name='"+Constants.PARM_PASSWORD+"' value='' placeholder='"+text+"' size='32' maxlength='32'>");
@@ -486,7 +485,7 @@ public class AccountLogin
                     ComboMap comboLocaleMap = new ComboMap(localeMap);
                     out.print("  <tr>");
                     if (!placeholderOnly) {
-                    out.print(    "<td class='accountLoginFieldLabel'>"+text_+"</td>");
+                    out.print(    "<td class='accountLoginFieldLabel' style='font-weight: 500;'>"+text_+"</td>");
                     }
                     out.print(    "<td class='accountLoginFieldValue'>");
                     out.write(      Form_ComboBox(CommonServlet.PARM_LOCALE, CommonServlet.PARM_LOCALE, true, comboLocaleMap, dftLocale, null/*onchange*/));
@@ -499,7 +498,7 @@ public class AccountLogin
 
                 // -- Login
                 out.print("<br>");
-                out.print("<input type='submit' class='btn btn-lg btn-success' name='submit' value='"+i18n.getString("AccountLogin.login","Login")+"' style='font-size:10pt'>\n");
+                out.print("<input type='submit' class='btn btn-success' name='submit' value='"+i18n.getString("AccountLogin.login","Login")+"' >\n");
 
 
                 // -- end Account/User/Password forn
